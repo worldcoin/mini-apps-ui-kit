@@ -6,6 +6,9 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
+    "storybook": "turbo storybook",
+    "build-storybook": "turbo build-storybook",
+    "preview-storybook": "pnpm dlx http-server ./packages/mini-apps-ui-kit-react/storybook-static",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
