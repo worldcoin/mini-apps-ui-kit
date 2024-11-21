@@ -1,0 +1,22 @@
+{
+  "name": "mini-apps-ui-kit-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "storybook": "turbo storybook",
+    "build-storybook": "turbo build-storybook",
+    "preview-storybook": "pnpm dlx http-server ./packages/mini-apps-ui-kit-react/storybook-static",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "prettier": "^3.3.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "packageManager": "pnpm@9.12.1"
+}
