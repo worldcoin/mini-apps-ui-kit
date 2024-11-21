@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Testing
+coverage
+
+# Turbo 
+.turbo
+
+# Vercel 
+.vercel
+
+# Build output
+dist
+build
+out
+.next
+
+# Misc
+.DS_Store
+*.pem
+*storybook.log
