@@ -13,7 +13,7 @@
     "build": "tsc -b ./tsconfig.lib.json && vite build",
     "lint": "eslint .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "tailwindcss -i ./src/styles/globals.css -o ./output.css && storybook build"
   },
   "peerDependencies": {
     "react": "^18 || ^19",
