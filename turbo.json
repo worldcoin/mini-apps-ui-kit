@@ -3,9 +3,7 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULTS", ".env*"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "cache": false
     },
     "dev": {
       "cache": false,
