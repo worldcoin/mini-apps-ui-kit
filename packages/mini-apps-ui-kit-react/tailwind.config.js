@@ -1,5 +1,9 @@
 module.exports = {
-  content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{html,js,ts,jsx,tsx}",
+    "./stories/**/*.{html,js,ts,jsx,tsx}",
+    "./.storybook/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     fontFamily: {
       custom: "var(--mini-apps-ui-kit-font-family)",
