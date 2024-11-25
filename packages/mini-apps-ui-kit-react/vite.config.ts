@@ -12,33 +12,31 @@ export default defineConfig({
       tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
     }),
   ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "./src"),
+    },
+  },
   build: {
     sourcemap: true,
     copyPublicDir: false,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      fileName: "index",
       formats: ["es"],
       name: "mini-apps-ui-kit/react",
     },
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime"],
-      input: {
-        index: resolve(__dirname, "src/index.ts"),
-        ...Object.fromEntries(
-          glob.sync("src/components/**/*.{ts,tsx}").map((file) => [
-            // This removes the 'src/' and file extension
+      input: Object.fromEntries([
+        ["index", resolve(__dirname, "src/index.ts")],
+        ...glob
+          .sync("src/components/**/*.{ts,tsx}")
+          .map((file) => [
             file.slice(4).replace(/\.(ts|tsx)$/, ""),
             resolve(__dirname, file),
           ]),
-        ),
-      },
+      ]),
       output: {
-        globals: {
-          react: "React",
-          "react-dom": "React-dom",
-          "react/jsx-runtime": "react/jsx-runtime",
-        },
         // Ensure each entry point creates its own directory
         preserveModules: true,
         preserveModulesRoot: "src",

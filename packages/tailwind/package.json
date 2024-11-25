@@ -1,0 +1,12 @@
+{
+  "name": "@repo/tailwind",
+  "version": "0.0.1",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "tailwindcss": "^3.4.15"
+  }
+}

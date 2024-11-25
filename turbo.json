@@ -3,9 +3,15 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
-      "cache": false
+      "cache": false,
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
     },
     "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:storybook": {
       "cache": false,
       "persistent": true
     },
