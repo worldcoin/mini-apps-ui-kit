@@ -16,7 +16,10 @@ const meta = {
     },
     variant: {
       control: "radio",
-      options: ["number", "heading", "subtitle", "body"],
+      options: ["number", "heading", "subtitle", "body", "mono"],
+      table: {
+        readonly: true,
+      },
     },
   },
 } satisfies Meta<typeof Typography>;
@@ -79,6 +82,7 @@ export const Body: Story = {
     },
   },
 };
+
 export const Mono: Story = {
   args: {
     variant: "mono",
