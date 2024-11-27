@@ -58,7 +58,6 @@ export default tseslint.config({
 ## Font Configuration
 
 The library uses three fonts:
-
 - **Rubik** as the sans-serif font for body text and subtitles `(--font-sans)`
 - **Sora** as the display font for headings and numbers `(--font-display)`
 - **SF Mono** as the monospace font `(--font-mono)`
