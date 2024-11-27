@@ -3,64 +3,165 @@ import { cn } from "../../lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
 interface TypographyProps<T extends ElementType = "p">
-  extends VariantProps<typeof typographyVariants> {
+  extends Omit<VariantProps<typeof typographyVariants>, "variant" | "level"> {
   /**
    * The HTML element to render the typography as
    * @default "p"
    */
   as?: T;
   /**
-   * The variant of the typography
-   * @default "B2"
+   * The variant and level combinations for typography
+   * @default "body"
    */
   variant?:
-    | "D1"
-    | "N1"
-    | "N2"
-    | "N3"
-    | "N4"
-    | "N5"
-    | "N6"
-    | "H1"
-    | "H2"
-    | "H3"
-    | "H4"
-    | "S1"
-    | "S2"
-    | "S3"
-    | "S4"
-    | "B1"
-    | "B2"
-    | "B3"
-    | "B4";
+    | "subtitle"
+    | "body"
+    | {
+        variant: "number";
+        level: 1 | 2 | 3 | 4 | 5 | 6;
+      }
+    | {
+        variant: "heading";
+        level: 1 | 2 | 3 | 4;
+      };
 }
+
+// D1: "text-[56px] font-semibold tracking-normal leading-[1.2] font-display",
+// H4: "text-[20px] font-sans",
 
 const typographyVariants = cva("", {
   variants: {
     variant: {
-      D1: "text-[56px] font-semibold tracking-normal leading-[1.2] font-display",
-      N1: "text-[44px] font-semibold tracking-normal leading-[1.2] font-display",
-      N2: "text-[34px] font-semibold tracking-normal leading-[1.2] font-display",
-      N3: "text-[30px] font-semibold tracking-normal leading-[1.2] font-display",
-      N4: "text-[26px] font-semibold tracking-normal leading-[1.2] font-display",
-      N5: "text-[20px] font-semibold tracking-normal leading-[1.2] font-display",
-      N6: "text-base font-semibold tracking-normal leading-[1.2] font-display",
-      H1: "text-[30px] font-semibold tracking-[-0.01em] leading-[1.2] font-display",
-      H2: "text-[26px] font-semibold tracking-[-0.01em] leading-[1.2] font-display",
-      H3: "text-[20px] font-semibold tracking-[-0.01em] leading-[1.2] font-display",
-      H4: "text-[20px] font-semibold tracking-[-0.01em] leading-[1.2] font-sans",
-      S1: "text-[18px] font-medium tracking-normal leading-[1.2] font-sans",
-      S2: "text-base font-medium tracking-normal leading-[1.2] font-sans",
-      S3: "text-sm font-medium tracking-normal leading-[1.2] font-sans",
-      S4: "text-xs font-medium tracking-normal leading-[1.2] font-sans",
-      B1: "text-lg font-normal tracking-normal leading-[1.3] font-sans",
-      B2: "text-base font-normal tracking-normal leading-[1.3] font-sans",
-      B3: "text-sm font-normal tracking-normal leading-[1.3] font-sans",
-      B4: "text-xs font-normal tracking-normal leading-[1.3] font-sans",
+      number: "font-semibold tracking-normal leading-[1.2] font-display",
+      heading: "font-semibold tracking-[-0.01em] leading-[1.2] font-display",
+      subtitle: "font-medium tracking-normal leading-[1.2] font-sans",
+      body: "font-normal tracking-normal leading-[1.3] font-sans",
+      mono: "font-normal tracking-normal font-mono",
+    },
+    level: {
+      1: "",
+      2: "",
+      3: "",
+      4: "",
+      5: "",
+      6: "",
     },
   },
+  compoundVariants: [
+    {
+      variant: "number",
+      level: 1,
+      className: "text-[56px]",
+    },
+    {
+      variant: "number",
+      level: 2,
+      className: "text-[44px]",
+    },
+    {
+      variant: "number",
+      level: 3,
+      className: "text-[34px]",
+    },
+    {
+      variant: "number",
+      level: 4,
+      className: "text-[30px]",
+    },
+    {
+      variant: "number",
+      level: 5,
+      className: "text-[26px]",
+    },
+    {
+      variant: "number",
+      level: 6,
+      className: "text-[20px]",
+    },
+    {
+      variant: "heading",
+      level: 1,
+      className: "text-[30px]",
+    },
+    {
+      variant: "heading",
+      level: 2,
+      className: "text-[26px]",
+    },
+    {
+      variant: "heading",
+      level: 3,
+      className: "text-[20px]",
+    },
+    // {
+    //   variant: "heading",
+    //   level: 4,
+    //   className: "text-[20px]"
+    // },
+    {
+      variant: "subtitle",
+      level: 1,
+      className: "text-[18px]",
+    },
+    {
+      variant: "subtitle",
+      level: 2,
+      className: "text-base",
+    },
+    {
+      variant: "subtitle",
+      level: 3,
+      className: "text-sm",
+    },
+    {
+      variant: "subtitle",
+      level: 4,
+      className: "text-xs",
+    },
+    {
+      variant: "body",
+      level: 1,
+      className: "text-lg",
+    },
+    {
+      variant: "body",
+      level: 2,
+      className: "text-base",
+    },
+    {
+      variant: "body",
+      level: 3,
+      className: "text-sm",
+    },
+    {
+      variant: "body",
+      level: 4,
+      className: "text-xs",
+    },
+    {
+      variant: "mono",
+      level: 1,
+      className: "text-sm leading-[1]",
+    },
+    {
+      variant: "mono",
+      level: 2,
+      className: "text-xs leading-[1.25]",
+    },
+    {
+      variant: "mono",
+      level: 3,
+      className: "text-2xs leading-[1.25]",
+    },
+    {
+      variant: "mono",
+      level: 4,
+      className: "text-[8px] leading-[1.3]",
+    },
+  ],
   defaultVariants: {
-    variant: "B2",
+    variant: "body",
+    level: 2,
   },
 });
 
@@ -69,12 +170,19 @@ const Typography = forwardRef<
   TypographyProps & React.ComponentPropsWithoutRef<ElementType>
 >(
   (
-    { variant = "B2", children, as: Component = "p", className, ...props },
+    {
+      variant = "body",
+      level = 1,
+      children,
+      as: Component = "p",
+      className,
+      ...props
+    },
     ref,
   ) => {
     return (
       <Component
-        className={cn(typographyVariants({ variant, className }))}
+        className={cn(typographyVariants({ variant, level, className }))}
         ref={ref}
         {...props}
       >

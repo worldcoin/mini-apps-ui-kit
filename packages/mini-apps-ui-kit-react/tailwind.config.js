@@ -6,7 +6,9 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      custom: "var(--mini-apps-ui-kit-font-family)",
+      sans: "var(--font-sans)",
+      display: "var(--font-display)",
+      mono: "var(--font-mono)",
     },
     colors: {
       gray: {
