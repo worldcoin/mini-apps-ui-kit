@@ -14,14 +14,12 @@ interface TypographyProps<T extends ElementType = "p">
    * @default "body"
    */
   variant?:
-    | "subtitle"
-    | "body"
     | {
         variant: "number";
         level: 1 | 2 | 3 | 4 | 5 | 6;
       }
     | {
-        variant: "heading";
+        variant: "heading" | "subtitle" | "body" | "mono";
         level: 1 | 2 | 3 | 4;
       };
 }
