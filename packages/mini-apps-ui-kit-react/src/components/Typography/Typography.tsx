@@ -4,7 +4,35 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 interface TypographyProps<T extends ElementType = "p">
   extends VariantProps<typeof typographyVariants> {
+  /**
+   * The HTML element to render the typography as
+   * @default "p"
+   */
   as?: T;
+  /**
+   * The variant of the typography
+   * @default "B2"
+   */
+  variant?:
+    | "D1"
+    | "N1"
+    | "N2"
+    | "N3"
+    | "N4"
+    | "N5"
+    | "N6"
+    | "H1"
+    | "H2"
+    | "H3"
+    | "H4"
+    | "S1"
+    | "S2"
+    | "S3"
+    | "S4"
+    | "B1"
+    | "B2"
+    | "B3"
+    | "B4";
 }
 
 const typographyVariants = cva("", {
@@ -39,17 +67,22 @@ const typographyVariants = cva("", {
 const Typography = forwardRef<
   HTMLElement,
   TypographyProps & React.ComponentPropsWithoutRef<ElementType>
->(({ variant, children, as: Component = "p", className, ...props }, ref) => {
-  return (
-    <Component
-      className={cn(typographyVariants({ variant, className }))}
-      ref={ref}
-      {...props}
-    >
-      {children}
-    </Component>
-  );
-});
+>(
+  (
+    { variant = "B2", children, as: Component = "p", className, ...props },
+    ref,
+  ) => {
+    return (
+      <Component
+        className={cn(typographyVariants({ variant, className }))}
+        ref={ref}
+        {...props}
+      >
+        {children}
+      </Component>
+    );
+  },
+);
 
 Typography.displayName = "Typography";
 
