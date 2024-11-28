@@ -12,6 +12,7 @@ module.exports = {
     },
     colors: {
       transparent: "transparent",
+      current: "currentColor",
       gray: {
         900: "var(--gray-900)",
         700: "var(--gray-700)",
