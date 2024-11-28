@@ -21,6 +21,11 @@ const meta = {
     },
     disabled: {
       control: "boolean",
+      defaultValue: false,
+    },
+    isLoading: {
+      control: "boolean",
+      defaultValue: false,
     },
   },
   args: { onClick: fn() },

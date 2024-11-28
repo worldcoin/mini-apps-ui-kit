@@ -2,9 +2,10 @@
 
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
+import Spinner from "./Spinner";
 
 const buttonVariants = cva(
-  "font-display font-semibold leading-[1.2] tracking-normal transition-colors",
+  "font-display font-semibold leading-[1.2] tracking-normal transition-colors flex items-center justify-center pointer-events-none",
   {
     variants: {
       variant: {
@@ -28,6 +29,10 @@ const buttonVariants = cva(
         md: "rounded-xl",
         lg: "rounded-2xl",
         full: "rounded-full",
+      },
+      isLoading: {
+        true: "bg-transparent text-transparent disabled:bg-transparent disabled:text-transparent border-none",
+        false: "",
       },
     },
     defaultVariants: {
@@ -56,16 +61,33 @@ interface ButtonProps
    * @default "md"
    */
   radius?: "none" | "sm" | "md" | "lg" | "full";
+  /**
+   * Whether the button is in a loading state
+   * @default false
+   */
+  isLoading?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, radius, className, ...props }, ref) => {
+  (
+    { variant, size, radius, className, isLoading, children, ...props },
+    ref,
+  ) => {
     return (
       <button
         ref={ref}
-        className={buttonVariants({ variant, size, radius, className })}
+        className={buttonVariants({
+          variant,
+          size,
+          radius,
+          isLoading,
+          className,
+        })}
         {...props}
-      />
+      >
+        {children}
+        {isLoading && <Spinner className="absolute" />}
+      </button>
     );
   },
 );
