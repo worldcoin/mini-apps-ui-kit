@@ -24,9 +24,6 @@ interface TypographyProps<T extends ElementType = "p">
       };
 }
 
-// D1: "text-[56px] font-semibold tracking-normal leading-[1.2] font-display",
-// H4: "text-[20px] font-sans",
-
 const typographyVariants = cva("", {
   variants: {
     variant: {
@@ -91,11 +88,6 @@ const typographyVariants = cva("", {
       level: 3,
       className: "text-[20px]",
     },
-    // {
-    //   variant: "heading",
-    //   level: 4,
-    //   className: "text-[20px]"
-    // },
     {
       variant: "subtitle",
       level: 1,
