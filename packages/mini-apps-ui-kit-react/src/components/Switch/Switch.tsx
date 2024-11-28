@@ -47,7 +47,7 @@ const switchClasses = cva(
         false: "border-gray-300 bg-gray-300",
       },
       disabled: {
-        true: "opacity-20 cursor-not-allowed",
+        true: "opacity-20 cursor-not-allowed", // TODO: rework opacity to match design when it's provided
         false: "",
       },
     },
