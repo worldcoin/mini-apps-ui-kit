@@ -7,7 +7,7 @@ import {
 import { cva, type VariantProps } from "class-variance-authority";
 
 export interface SwitchProps
-  extends RadixSwitchProps,
+  extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange">,
     VariantProps<typeof switchClasses> {
   /**
    * The checked state of the switch.
@@ -17,7 +17,12 @@ export interface SwitchProps
   /**
    * Callback function that is triggered when the checked state changes.
    */
-  onCheckedChange?: (checked: boolean) => void;
+  onChange?: (checked: boolean) => void;
+  /**
+   * Default callback function that is triggered when the checked state changes.
+   * This is used internally by the component.
+   */
+  onDefaultElementChange?: RadixSwitchProps["onChange"];
   /**
    * Disables the switch when set to true.
    * @default false
@@ -77,7 +82,8 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (
     {
       checked = false,
-      onCheckedChange,
+      onChange: onCheckedChange,
+      onDefaultElementChange,
       disabled = false,
       className = "",
       thumbClassName = "",
@@ -91,6 +97,7 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         ref={ref}
         checked={checked}
         onCheckedChange={onCheckedChange}
+        onChange={onDefaultElementChange}
         disabled={disabled}
         className={switchClasses({ checked, disabled, className })}
         {...rest}
