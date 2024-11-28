@@ -1,4 +1,3 @@
-// src/tailwind-plugin/index.ts
 import plugin from "tailwindcss/plugin";
 
 const colors = {
@@ -44,7 +43,7 @@ const colors = {
   },
 };
 
-export default plugin(
+const uiKitTailwindPlugin = plugin(
   function ({ addBase }) {
     addBase({
       ":root": {
@@ -93,3 +92,5 @@ export default plugin(
     },
   },
 );
+
+export default uiKitTailwindPlugin;

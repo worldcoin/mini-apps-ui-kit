@@ -3,17 +3,17 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --filter=mini-apps-ui-kit/react",
     "dev": "turbo dev",
+    "dev:sb": "turbo dev:sb",
     "lint": "turbo lint",
-    "storybook": "turbo storybook",
-    "build-storybook": "turbo build-storybook",
-    "preview-storybook": "pnpm dlx http-server ./packages/mini-apps-ui-kit-react/storybook-static",
+    "build:sb": "turbo build:sb",
+    "preview:sb": "pnpm dlx http-server ./packages/mini-apps-ui-kit-react/storybook-static",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "turbo": "^2.3.0",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "turbo": "^2.3.0"
   },
   "engines": {
     "node": ">=22"

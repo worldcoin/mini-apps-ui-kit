@@ -18,17 +18,19 @@ export default defineConfig({
     },
   },
   build: {
-    sourcemap: true,
+    // sourcemap: true,
+
     copyPublicDir: false,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       formats: ["es"],
-      name: "mini-apps-ui-kit/react",
+      name: "@mini-apps-ui-kit/react",
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: ["react", "react-dom", "react/jsx-runtime", "tailwindcss"],
       input: Object.fromEntries([
         ["index", resolve(__dirname, "src/index.ts")],
+        ["tailwind/index", resolve(__dirname, "src/tailwind/index.ts")],
         ...glob
           .sync("src/components/**/*.{ts,tsx}")
           .map((file) => [

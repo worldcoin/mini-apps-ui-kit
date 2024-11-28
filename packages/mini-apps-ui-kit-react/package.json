@@ -1,29 +1,35 @@
 {
-  "name": "mini-apps-ui-kit/react",
-  "private": true,
+  "name": "@mini-apps-ui-kit/react",
   "version": "0.0.1",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "public"
   ],
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
     "./Button": {
-      "types": "./dist/components/Button/Button.d.ts",
-      "default": "./dist/components/Button/Button.js"
-    }
+      "types": "./dist/components/Button/index.d.ts",
+      "default": "./dist/components/Button/index.js"
+    },
+    "./tailwind": {
+      "types": "./dist/tailwind/index.d.ts",
+      "default": "./dist/tailwind/index.js"
+    },
+    "./styles.css": "./public/globals.css"
   },
   "scripts": {
-    "dev": "vite build --watch",
-    "dev:stroybook": "pnpm storybook",
-    "build": "tsc -b ./tsconfig.lib.json && vite build",
-    "lint": "eslint .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "dependencies": {
-    "@repo/tailwind": "workspace:*"
+    "dev:sb": "concurrently \"tailwindcss -i ./styles/globals.css -o ./public/globals.css --watch\" \"pnpm storybook\"",
+    "build:tailwind": "tailwindcss -i ./styles/globals.css -o ./public/globals.css",
+    "build:sb": "pnpm build:tailwind && storybook build",
+    "build": "pnpm build:tailwind && tsc -b ./tsconfig.lib.json && vite build",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "react": "^18 || ^19",

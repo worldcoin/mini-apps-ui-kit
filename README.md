@@ -11,9 +11,12 @@ pnpm install
 
 ```bash
 # Run Storybook in dev mode
+pnpm dev:sb
+```
+
+```bash
+# Run Next.js example app in dev mode without hot reload
 pnpm dev
-# or
-pnpm storybook
 ```
 
 ```bash
@@ -23,11 +26,11 @@ pnpm build
 
 ```bash
 # Build Storybook for production
-pnpm build-storybook
+pnpm build:storybook
 ```
 
 ```bash
-# Preview Storybook in production mode (after pnpm build-storybook)
+# Preview built Storybook in production mode (after pnpm build:storybook)
 pnpm preview-storybook
 ```
 
