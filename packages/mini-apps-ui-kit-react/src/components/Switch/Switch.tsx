@@ -78,7 +78,7 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         checked={checked}
         onCheckedChange={onCheckedChange}
         disabled={disabled}
-        className={switchClasses({ checked, disabled, className })}
+        className={switchClasses({ checked, disabled })}
         {...rest}
       >
         <RadixSwitch.Thumb className={thumbClasses({ checked })} />
