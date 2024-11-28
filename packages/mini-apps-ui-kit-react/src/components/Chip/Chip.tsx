@@ -34,7 +34,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
     return (
       <div
         ref={ref}
-        className={`font-custom inline-flex items-center gap-2 px-2 py-1.5 rounded-full font-medium text-sm leading-none ${variantStyles[variant]} ${className}`}
+        className={`font-sans inline-flex items-center gap-2 px-2 py-1.5 rounded-full font-medium text-sm leading-none ${variantStyles[variant]} ${className}`}
       >
         {icon && <span>{icon}</span>}
         <span>{label}</span>
