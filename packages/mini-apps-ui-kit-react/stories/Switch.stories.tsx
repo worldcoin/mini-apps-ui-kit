@@ -10,6 +10,9 @@ const meta: Meta<SwitchProps> = {
     layout: "centered",
   },
   argTypes: {
+    onDefaultElementChange: {
+      control: false,
+    },
     thumbProps: {
       control: false,
       table: {
@@ -34,9 +37,7 @@ const Template: StoryFn<SwitchProps> = (args) => {
     setIsChecked(args.checked);
   }, [args.checked]);
 
-  return (
-    <Switch {...args} checked={isChecked} onCheckedChange={setIsChecked} />
-  );
+  return <Switch {...args} checked={isChecked} onChange={setIsChecked} />;
 };
 
 export const Unchecked: Story = Template.bind({});
