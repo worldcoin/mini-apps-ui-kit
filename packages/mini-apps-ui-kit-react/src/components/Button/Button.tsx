@@ -8,10 +8,14 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-gray-900 text-gray-0",
-        secondary: "bg-gray-200 text-gray-900",
-        tertiary: "bg-transparent text-gray-500 border border-gray-200",
-        ghost: "bg-transparent text-gray-500",
+        primary:
+          "bg-gray-900 text-gray-0 hover:bg-gray-700 active:bg-gray-500 disabled:bg-gray-100 disabled:text-gray-300",
+        secondary:
+          "bg-gray-200 text-gray-900 hover:bg-gray-300 active:bg-gray-400 disabled:bg-gray-100 disabled:text-gray-300",
+        tertiary:
+          "bg-transparent text-gray-500 border border-gray-200 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
+        ghost:
+          "bg-transparent text-gray-500 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
       },
       size: {
         sm: "text-sm h-10 px-2",
@@ -52,19 +56,14 @@ interface ButtonProps
    * @default "md"
    */
   radius?: "none" | "sm" | "md" | "lg" | "full";
-  /**
-   * Optional color override for the button text
-   */
-  color?: string;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, radius, className, color, ...props }, ref) => {
+  ({ variant, size, radius, className, ...props }, ref) => {
     return (
       <button
         ref={ref}
         className={buttonVariants({ variant, size, radius, className })}
-        style={{ color: color }}
         {...props}
       />
     );

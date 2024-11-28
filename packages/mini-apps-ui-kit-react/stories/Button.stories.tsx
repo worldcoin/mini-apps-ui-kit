@@ -12,15 +12,15 @@ const meta = {
   argTypes: {
     variant: {
       control: "radio",
-      options: ["primary", "secondary", "tertiary", "ghost"],
     },
     size: {
       control: "radio",
-      options: ["sm", "md", "lg"],
     },
     radius: {
       control: "radio",
-      options: ["none", "sm", "md", "lg", "full"],
+    },
+    disabled: {
+      control: "boolean",
     },
   },
   args: { onClick: fn() },
