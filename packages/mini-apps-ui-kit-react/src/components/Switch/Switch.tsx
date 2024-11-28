@@ -4,8 +4,11 @@ import {
   SwitchProps as RadixSwitchProps,
   SwitchThumbProps as RadixSwitchThumbProps,
 } from "@radix-ui/react-switch";
+import { cva, type VariantProps } from "class-variance-authority";
 
-export interface SwitchProps extends RadixSwitchProps {
+export interface SwitchProps
+  extends RadixSwitchProps,
+    VariantProps<typeof switchClasses> {
   /**
    * The checked state of the switch.
    * @default false
@@ -35,6 +38,41 @@ export interface SwitchProps extends RadixSwitchProps {
   thumbProps?: Omit<RadixSwitchThumbProps, "className">;
 }
 
+const switchClasses = cva(
+  "w-10 h-auto border-2 rounded-full relative inline-flex items-center transition-all",
+  {
+    variants: {
+      checked: {
+        true: "border-gray-900 bg-gray-900",
+        false: "border-gray-300 bg-gray-300",
+      },
+      disabled: {
+        true: "opacity-20 cursor-not-allowed",
+        false: "",
+      },
+    },
+    defaultVariants: {
+      checked: false,
+      disabled: false,
+    },
+  },
+);
+
+const thumbClasses = cva(
+  "block w-5 h-5 rounded-full bg-gray-0 transition-transform transform",
+  {
+    variants: {
+      checked: {
+        true: "translate-x-4",
+        false: "translate-x-0",
+      },
+    },
+    defaultVariants: {
+      checked: false,
+    },
+  },
+);
+
 const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (
     {
@@ -54,11 +92,11 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         checked={checked}
         onCheckedChange={onCheckedChange}
         disabled={disabled}
-        className={`w-10 h-auto border-2 rounded-full relative inline-flex items-center transition-all ${checked ? "border-gray-900 bg-gray-900" : "border-gray-300 bg-gray-300"} ${disabled ? "opacity-20 cursor-not-allowed" : ""} ${className}`}
+        className={switchClasses({ checked, disabled, className })}
         {...rest}
       >
         <RadixSwitch.Thumb
-          className={`block w-5 h-5 rounded-full bg-gray-0 transition-transform transform ${checked ? "translate-x-4" : "translate-x-0"} ${thumbClassName}`}
+          className={thumbClasses({ checked, className: thumbClassName })}
           {...thumbProps}
         />
       </RadixSwitch.Root>
