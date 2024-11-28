@@ -2,7 +2,7 @@ import { ElementType, forwardRef } from "react";
 import { cn } from "../../lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
-interface TypographyProps<T extends ElementType = "p">
+export interface TypographyProps<T extends ElementType = "p">
   extends Omit<VariantProps<typeof typographyVariants>, "variant" | "level"> {
   /**
    * The HTML element to render the typography as
@@ -46,52 +46,52 @@ const typographyVariants = cva("", {
     {
       variant: "number",
       level: 1,
-      className: "text-[56px]",
+      className: "text-[3.5rem]",
     },
     {
       variant: "number",
       level: 2,
-      className: "text-[44px]",
+      className: "text-[2.75rem]",
     },
     {
       variant: "number",
       level: 3,
-      className: "text-[34px]",
+      className: "text-[2.125rem]",
     },
     {
       variant: "number",
       level: 4,
-      className: "text-[30px]",
+      className: "text-[1.875rem]",
     },
     {
       variant: "number",
       level: 5,
-      className: "text-[26px]",
+      className: "text-[1.625rem]",
     },
     {
       variant: "number",
       level: 6,
-      className: "text-[20px]",
+      className: "text-[1.25rem]",
     },
     {
       variant: "heading",
       level: 1,
-      className: "text-[30px]",
+      className: "text-[1.875rem]",
     },
     {
       variant: "heading",
       level: 2,
-      className: "text-[26px]",
+      className: "text-[1.625rem]",
     },
     {
       variant: "heading",
       level: 3,
-      className: "text-[20px]",
+      className: "text-[1.25rem]",
     },
     {
       variant: "subtitle",
       level: 1,
-      className: "text-[18px]",
+      className: "text-[1.125rem]",
     },
     {
       variant: "subtitle",
@@ -146,7 +146,7 @@ const typographyVariants = cva("", {
     {
       variant: "mono",
       level: 4,
-      className: "text-[8px] leading-[1.3]",
+      className: "text-[0.5rem] leading-[1.3]",
     },
   ],
   defaultVariants: {
