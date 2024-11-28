@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Typography from "../../src/components/Typography/Typography";
 
-const meta = {
+const meta: Meta<typeof Typography> = {
   title: "components/Typography",
   component: Typography,
   parameters: {
@@ -22,7 +22,7 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof Typography>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
