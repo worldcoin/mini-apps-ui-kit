@@ -108,7 +108,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           radius,
           isLoading,
           fullWidth,
-          className,
         })}
         {...props}
       >
