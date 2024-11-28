@@ -19,8 +19,12 @@ export interface TypographyProps<T extends ElementType = "p">
         level: 1 | 2 | 3 | 4 | 5 | 6;
       }
     | {
-        variant: "heading" | "subtitle" | "body" | "mono";
+        variant: "subtitle" | "body" | "mono";
         level: 1 | 2 | 3 | 4;
+      }
+    | {
+        variant: "heading";
+        level: 1 | 2 | 3;
       };
 }
 
