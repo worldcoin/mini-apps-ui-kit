@@ -1,9 +1,6 @@
 import { forwardRef } from "react";
 import * as RadixSwitch from "@radix-ui/react-switch";
-import {
-  SwitchProps as RadixSwitchProps,
-  SwitchThumbProps as RadixSwitchThumbProps,
-} from "@radix-ui/react-switch";
+import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
 import { cva, type VariantProps } from "class-variance-authority";
 
 export interface SwitchProps
@@ -19,11 +16,6 @@ export interface SwitchProps
    */
   onChange?: (checked: boolean) => void;
   /**
-   * Default callback function that is triggered when the checked state changes.
-   * This is used internally by the component.
-   */
-  onDefaultElementChange?: RadixSwitchProps["onChange"];
-  /**
    * Disables the switch when set to true.
    * @default false
    */
@@ -32,15 +24,6 @@ export interface SwitchProps
    * Additional class names to apply to the root element.
    */
   className?: string;
-  /**
-   * Additional class names to apply to the thumb element.
-   */
-  thumbClassName?: string;
-  /**
-   * Additional props to apply to the thumb element.
-   * @type {Omit<RadixSwitchThumbProps, "className">}
-   */
-  thumbProps?: Omit<RadixSwitchThumbProps, "className">;
 }
 
 const switchClasses = cva(
@@ -83,11 +66,8 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
     {
       checked = false,
       onChange: onCheckedChange,
-      onDefaultElementChange,
       disabled = false,
       className = "",
-      thumbClassName = "",
-      thumbProps,
       ...rest
     },
     ref,
@@ -97,15 +77,11 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
         ref={ref}
         checked={checked}
         onCheckedChange={onCheckedChange}
-        onChange={onDefaultElementChange}
         disabled={disabled}
         className={switchClasses({ checked, disabled, className })}
         {...rest}
       >
-        <RadixSwitch.Thumb
-          className={thumbClasses({ checked, className: thumbClassName })}
-          {...thumbProps}
-        />
+        <RadixSwitch.Thumb className={thumbClasses({ checked })} />
       </RadixSwitch.Root>
     );
   },
