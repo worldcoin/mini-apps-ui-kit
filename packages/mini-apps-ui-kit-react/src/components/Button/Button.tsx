@@ -3,10 +3,10 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import Spinner from "./Spinner";
-import { cn } from "../../lib/utils";
+import { Slot } from "@radix-ui/react-slot";
 
 const buttonVariants = cva(
-  "font-display font-semibold leading-[1.2] tracking-normal transition-colors flex items-center justify-center pointer-events-none group",
+  "font-display font-semibold leading-[1.2] tracking-normal transition-colors flex items-center justify-center gap-1",
   {
     variants: {
       variant: {
@@ -20,9 +20,9 @@ const buttonVariants = cva(
           "bg-transparent text-gray-500 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
       },
       size: {
-        sm: "text-sm h-10 px-2",
-        md: "text-base h-12 px-3",
-        lg: "text-base h-14 px-4",
+        sm: "text-sm h-10 px-2 min-w-10",
+        md: "text-base h-12 px-3 min-w-12",
+        lg: "text-base h-14 px-4 min-w-14",
       },
       radius: {
         none: "rounded-none",
@@ -48,6 +48,20 @@ const buttonVariants = cva(
     },
   },
 );
+const iconContainerStyles = {
+  sm: {
+    width: "1rem",
+    height: "1rem",
+  },
+  md: {
+    width: "1.25rem",
+    height: "1.25rem",
+  },
+  lg: {
+    width: "1.5rem",
+    height: "1.5rem",
+  },
+};
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -82,25 +96,32 @@ interface ButtonProps
    * @default false
    */
   fullWidth?: boolean;
+  /**
+   * Whether the button should be rendered as a slot
+   * @default false
+   */
+  asChild?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant,
-      size,
+      size = "lg",
       radius,
       className,
       isLoading,
       children,
       icon,
       fullWidth,
+      asChild,
       ...props
     },
     ref,
   ) => {
+    const Comp = asChild ? Slot : "button";
     return (
-      <button
+      <Comp
         ref={ref}
         className={buttonVariants({
           variant,
@@ -112,19 +133,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {icon && (
-          <div
-            className={cn(
-              "w-4 h-4 mr-1 overflow-hidden",
-              isLoading && "opacity-0",
-            )}
+          <Slot
+            style={{
+              ...iconContainerStyles[size],
+              opacity: isLoading ? 0 : 1,
+            }}
           >
             {icon}
-          </div>
+          </Slot>
         )}
-        {children}
+        {children && <span>{children}</span>}
 
         {isLoading && <Spinner className="absolute" />}
-      </button>
+      </Comp>
     );
   },
 );
