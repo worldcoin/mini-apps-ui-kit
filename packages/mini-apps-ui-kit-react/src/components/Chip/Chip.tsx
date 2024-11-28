@@ -30,7 +30,7 @@ const variantStyles: Record<ChipVariant, string> = {
 };
 
 const Chip = forwardRef<HTMLDivElement, ChipProps>(
-  ({ className, icon, label, variant = "default" }, ref) => {
+  ({ className = "", icon, label, variant = "default" }, ref) => {
     return (
       <div
         ref={ref}
