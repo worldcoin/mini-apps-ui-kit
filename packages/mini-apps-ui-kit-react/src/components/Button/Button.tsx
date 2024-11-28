@@ -36,14 +36,35 @@ const buttonVariants = cva(
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  /**
+   * The variant style to use
+   * @default "primary"
+   */
+  variant?: "primary" | "secondary" | "tertiary" | "ghost";
+  /**
+   * The size of the button
+   * @default "md"
+   */
+  size?: "sm" | "md" | "lg";
+  /**
+   * The border radius of the button
+   * @default "md"
+   */
+  radius?: "none" | "sm" | "md" | "lg" | "full";
+  /**
+   * Optional color override for the button text
+   */
+  color?: string;
+}
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size, radius, className, ...props }, ref) => {
+  ({ variant, size, radius, className, color, ...props }, ref) => {
     return (
       <button
         ref={ref}
         className={buttonVariants({ variant, size, radius, className })}
+        style={{ color: color }}
         {...props}
       />
     );
