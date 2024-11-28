@@ -9,19 +9,6 @@ const meta: Meta<SwitchProps> = {
   parameters: {
     layout: "centered",
   },
-  argTypes: {
-    onDefaultElementChange: {
-      control: false,
-    },
-    thumbProps: {
-      control: false,
-      table: {
-        type: {
-          summary: 'Omit<RadixSwitchThumbProps, "className">',
-        },
-      },
-    },
-  },
   tags: ["autodocs"],
 };
 
@@ -58,23 +45,19 @@ export const Checked: Story = Template.bind({});
 
 Checked.args = {
   checked: true,
-  thumbProps: {
-    title: "custom-thumb",
-  },
 };
 
 Checked.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const switchElement = await canvas.findByRole("switch");
-  const thumbElement = await canvas.findByTitle("custom-thumb");
 
   expect(switchElement).toBeInTheDocument();
   expect(switchElement).toBeChecked();
   expect(switchElement).toHaveAttribute("aria-checked", "true");
   expect(switchElement).toHaveClass("border-gray-900 bg-gray-900");
   expect(switchElement).not.toHaveClass("border-gray-300 bg-gray-300");
-  expect(thumbElement).toBeInTheDocument();
-  expect(thumbElement).toHaveClass("translate-x-4");
+  expect(switchElement.firstChild).toBeInTheDocument();
+  expect(switchElement.firstChild).toHaveClass("translate-x-4");
 };
 
 export const Disabled: Story = Template.bind({});
