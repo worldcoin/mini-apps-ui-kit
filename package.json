@@ -8,7 +8,7 @@
     "dev:sb": "turbo dev:sb",
     "lint": "turbo lint",
     "build:sb": "turbo build:sb",
-    "preview:sb": "pnpm dlx http-server ./packages/@mini-apps-ui-kit-react/storybook-static",
+    "preview:sb": "pnpm dlx http-server ./packages/mini-apps-ui-kit-react/storybook-static",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
