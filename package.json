@@ -3,12 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "turbo build --filter=mini-apps-ui-kit/react",
+    "build": "turbo build --filter=@mini-apps-ui-kit/react",
     "dev": "turbo dev",
     "dev:sb": "turbo dev:sb",
     "lint": "turbo lint",
     "build:sb": "turbo build:sb",
-    "preview:sb": "pnpm dlx http-server ./packages/mini-apps-ui-kit-react/storybook-static",
+    "preview:sb": "pnpm dlx http-server ./packages/@mini-apps-ui-kit-react/storybook-static",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {

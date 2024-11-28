@@ -36,6 +36,6 @@ pnpm preview-storybook
 
 ## Files Structure
 
-- `packages/mini-apps-ui-kit-react`: React components library
-- `packages/mini-apps-ui-kit-react/src/components`: React components, make sure every component has it's own index.ts file
-- `packages/mini-apps-ui-kit-react/stories`: Storybook stories
+- `packages/@mini-apps-ui-kit-react`: React components library
+- `packages/@mini-apps-ui-kit-react/src/components`: React components, make sure every component has it's own index.ts file
+- `packages/@mini-apps-ui-kit-react/stories`: Storybook stories
