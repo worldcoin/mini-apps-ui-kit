@@ -39,7 +39,7 @@ const meta: Meta<typeof Button> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {
+export const Text: Story = {
   args: {
     children: "Button",
     variant: "primary",
@@ -55,7 +55,7 @@ export const Primary: Story = {
   },
 };
 
-export const WithIcon: Story = {
+export const TextWithIcon: Story = {
   args: {
     icon: <Star />,
     children: "Button",
@@ -75,6 +75,26 @@ export const WithIcon: Story = {
     const icon = await canvas.findByTestId("button-icon");
 
     expect(button).toBeInTheDocument();
+    expect(icon).toBeInTheDocument();
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    icon: <Star />,
+    variant: "primary",
+    size: "md",
+    radius: "md",
+  },
+  argTypes: {
+    icon: {
+      control: false,
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const icon = await canvas.findByTestId("button-icon");
+
     expect(icon).toBeInTheDocument();
   },
 };
