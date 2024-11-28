@@ -3,8 +3,8 @@ import { expect, fn, within } from "@storybook/test";
 import Button from "../../src/components/Button";
 import { Star } from "./Icon";
 
-const meta = {
-  title: "Button",
+const meta: Meta<typeof Button> = {
+  title: "components/Button",
   component: Button,
   parameters: {
     layout: "centered",
@@ -34,7 +34,7 @@ const meta = {
     },
   },
   args: { onClick: fn() },
-} satisfies Meta<typeof Button>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
