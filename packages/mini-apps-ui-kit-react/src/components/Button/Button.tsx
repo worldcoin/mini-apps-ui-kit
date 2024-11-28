@@ -3,9 +3,10 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import Spinner from "./Spinner";
+import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "font-display font-semibold leading-[1.2] tracking-normal transition-colors flex items-center justify-center pointer-events-none",
+  "font-display font-semibold leading-[1.2] tracking-normal transition-colors flex items-center justify-center pointer-events-none group",
   {
     variants: {
       variant: {
@@ -31,14 +32,19 @@ const buttonVariants = cva(
         full: "rounded-full",
       },
       isLoading: {
-        true: "bg-transparent text-transparent disabled:bg-transparent disabled:text-transparent border-none",
+        true: "bg-transparent text-transparent fill-transparent disabled:bg-transparent disabled:text-transparent border-none",
+        false: "",
+      },
+      fullWidth: {
+        true: "w-full",
         false: "",
       },
     },
     defaultVariants: {
       variant: "primary",
-      size: "md",
+      size: "lg",
       radius: "md",
+      fullWidth: false,
     },
   },
 );
@@ -66,11 +72,31 @@ interface ButtonProps
    * @default false
    */
   isLoading?: boolean;
+  /**
+   * Optional icon to display in the button (max size 16x16px)
+   * Set the icon color to `currentColor` to match the button variant color
+   */
+  icon?: React.ReactNode;
+  /**
+   * Whether the button should take up the full width of its container
+   * @default false
+   */
+  fullWidth?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { variant, size, radius, className, isLoading, children, ...props },
+    {
+      variant,
+      size,
+      radius,
+      className,
+      isLoading,
+      children,
+      icon,
+      fullWidth,
+      ...props
+    },
     ref,
   ) => {
     return (
@@ -81,11 +107,23 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           size,
           radius,
           isLoading,
+          fullWidth,
           className,
         })}
         {...props}
       >
+        {icon && (
+          <div
+            className={cn(
+              "w-4 h-4 mr-1 overflow-hidden",
+              isLoading && "opacity-0",
+            )}
+          >
+            {icon}
+          </div>
+        )}
         {children}
+
         {isLoading && <Spinner className="absolute" />}
       </button>
     );
