@@ -32,6 +32,9 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
       defaultValue: false,
     },
+    icon: {
+      control: false,
+    },
   },
   args: { onClick: fn() },
   decorators: [
