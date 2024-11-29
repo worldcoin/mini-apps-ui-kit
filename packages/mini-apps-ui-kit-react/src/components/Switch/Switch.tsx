@@ -4,7 +4,7 @@ import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
 import { cva, type VariantProps } from "class-variance-authority";
 
 export interface SwitchProps
-  extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange">,
+  extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange" | "className">,
     VariantProps<typeof switchClasses> {
   /**
    * The checked state of the switch.
@@ -20,10 +20,6 @@ export interface SwitchProps
    * @default false
    */
   disabled?: boolean;
-  /**
-   * Additional class names to apply to the root element.
-   */
-  className?: string;
 }
 
 const switchClasses = cva(
@@ -63,13 +59,7 @@ const thumbClasses = cva(
 
 const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   (
-    {
-      checked = false,
-      onChange: onCheckedChange,
-      disabled = false,
-      className = "",
-      ...rest
-    },
+    { checked = false, onChange: onCheckedChange, disabled = false, ...rest },
     ref,
   ) => {
     return (
