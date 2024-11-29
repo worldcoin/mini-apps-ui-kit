@@ -32,7 +32,7 @@ const buttonVariants = cva(
         full: "rounded-full",
       },
       isLoading: {
-        true: "bg-transparent text-transparent fill-transparent disabled:bg-transparent disabled:text-transparent border-none",
+        true: "bg-transparent text-transparent fill-transparent disabled:bg-transparent disabled:text-transparent border-none hover:bg-transparent active:bg-transparent",
         false: "",
       },
       fullWidth: {
@@ -87,8 +87,7 @@ export interface ButtonProps
    */
   isLoading?: boolean;
   /**
-   * Optional icon to display in the button (max size 16x16px)
-   * Set the icon color to `currentColor` to match the button variant color
+   * Optional icon to display in the button.
    */
   icon?: React.ReactNode;
   /**
