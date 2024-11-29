@@ -1,4 +1,5 @@
 import { forwardRef, ReactNode } from "react";
+import { Slot } from "@radix-ui/react-slot";
 
 type ChipVariant = "default" | "success" | "warning" | "error" | "important";
 
@@ -36,7 +37,7 @@ const Chip = forwardRef<HTMLDivElement, ChipProps>(
         ref={ref}
         className={`font-sans inline-flex items-center gap-2 px-2 py-1.5 rounded-full font-medium text-sm leading-none ${variantStyles[variant]} ${className}`}
       >
-        {icon && <span>{icon}</span>}
+        {icon && <Slot style={{ width: "1rem", height: "1rem" }}>{icon}</Slot>}
         <span>{label}</span>
       </div>
     );

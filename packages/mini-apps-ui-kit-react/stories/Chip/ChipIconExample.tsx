@@ -1,6 +1,6 @@
 import { ChipProps } from "../../src/components/Chip";
 
-interface ChipIconExampleProps {
+interface ChipIconExampleProps extends React.SVGProps<SVGSVGElement> {
   variant?: ChipProps["variant"];
   color?: string;
 }
@@ -16,18 +16,17 @@ const variantClasses: Record<NonNullable<ChipProps["variant"]>, string> = {
 export function ChipIconExample({
   variant = "default",
   color,
+  ...rest
 }: ChipIconExampleProps) {
-  const styles = color ? { fill: color } : { fill: variantClasses[variant] };
-
   return (
     <svg
-      width="16"
-      height="16"
+      width="20"
+      height="20"
       viewBox="0 0 16 16"
-      fill="none"
+      fill={color || variantClasses[variant]}
       xmlns="http://www.w3.org/2000/svg"
       data-testid="chip-icon"
-      style={styles}
+      {...rest}
     >
       <path
         fillRule="evenodd"
