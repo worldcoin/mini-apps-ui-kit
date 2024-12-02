@@ -24,7 +24,7 @@ export interface ChipProps {
 }
 
 const chipVariants = cva(
-  "font-sans h-7 inline-flex items-center gap-2 px-2 rounded-full font-medium text-sm leading-none",
+  "inline-flex h-7 items-center gap-2 rounded-full px-2 font-sans text-sm font-medium leading-none",
   {
     variants: {
       variant: {
@@ -41,17 +41,16 @@ const chipVariants = cva(
   },
 );
 
-const Chip = forwardRef<
-  HTMLDivElement,
-  ChipProps & VariantProps<typeof chipVariants>
->(({ className = "", icon, label, variant = "default" }, ref) => {
-  return (
-    <div ref={ref} className={chipVariants({ variant, className })}>
-      {icon && <Slot style={{ width: "1rem", height: "1rem" }}>{icon}</Slot>}
-      <span>{label}</span>
-    </div>
-  );
-});
+const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof chipVariants>>(
+  ({ className = "", icon, label, variant = "default" }, ref) => {
+    return (
+      <div ref={ref} className={chipVariants({ variant, className })}>
+        {icon && <Slot style={{ width: "1rem", height: "1rem" }}>{icon}</Slot>}
+        <span>{label}</span>
+      </div>
+    );
+  },
+);
 
 Chip.displayName = "Chip";
 
