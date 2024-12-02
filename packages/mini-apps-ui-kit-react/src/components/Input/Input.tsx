@@ -8,7 +8,7 @@ import { Slot } from "@radix-ui/react-slot";
 
 // flex  file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground
 const inputVariants = cva(
-  "bg-gray-100 placeholder:text-gray-400 text-gray-900 h-[3.125rem] border border-gray-100 rounded-xl px-3 py-4 focus:bg-gray-0 focus:border-gray-200 w-full outline-none transition-colors duration-200 focus:shadow-card  disabled:cursor-not-allowed focus-visible:outline-none ",
+  "h-[3.125rem] w-full rounded-xl border border-gray-100 bg-gray-100 px-3 py-4 text-gray-900 outline-none transition-colors duration-200 placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
   {
     variants: {
       error: {
