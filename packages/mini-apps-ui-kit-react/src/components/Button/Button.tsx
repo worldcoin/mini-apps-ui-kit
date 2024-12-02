@@ -6,7 +6,7 @@ import Spinner from "./Spinner";
 import { Slot } from "@radix-ui/react-slot";
 
 const buttonVariants = cva(
-  "font-display font-semibold leading-[1.2] tracking-normal transition-colors flex items-center justify-center gap-1",
+  "flex items-center justify-center gap-1 font-display font-semibold leading-[1.2] tracking-normal transition-colors",
   {
     variants: {
       variant: {
@@ -15,14 +15,14 @@ const buttonVariants = cva(
         secondary:
           "bg-gray-200 text-gray-900 hover:bg-gray-300 active:bg-gray-400 disabled:bg-gray-100 disabled:text-gray-300",
         tertiary:
-          "bg-transparent text-gray-500 border border-gray-200 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
+          "border border-gray-200 bg-transparent text-gray-500 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
         ghost:
           "bg-transparent text-gray-500 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
       },
       size: {
-        sm: "text-sm h-10 px-2 min-w-10",
-        md: "text-base h-12 px-3 min-w-12",
-        lg: "text-base h-14 px-4 min-w-14",
+        sm: "h-10 min-w-10 px-2 text-sm",
+        md: "h-12 min-w-12 px-3 text-base",
+        lg: "h-14 min-w-14 px-4 text-base",
       },
       radius: {
         none: "rounded-none",
@@ -32,7 +32,7 @@ const buttonVariants = cva(
         full: "rounded-full",
       },
       isLoading: {
-        true: "bg-transparent text-transparent fill-transparent disabled:bg-transparent disabled:text-transparent border-none hover:bg-transparent active:bg-transparent",
+        true: "border-none bg-transparent fill-transparent text-transparent hover:bg-transparent active:bg-transparent disabled:bg-transparent disabled:text-transparent",
         false: "",
       },
       fullWidth: {
