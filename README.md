@@ -26,12 +26,12 @@ pnpm build
 
 ```bash
 # Build Storybook for production
-pnpm build:storybook
+pnpm build:sb
 ```
 
 ```bash
 # Preview built Storybook in production mode (after pnpm build:storybook)
-pnpm preview-storybook
+pnpm preview:sb
 ```
 
 ## Files Structure
