@@ -3,7 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, within } from "@storybook/test";
 
 import Button from "../../src/components/Button";
-import { Star } from "../assets/Icon";
+import { Star } from "../helpers/icons/Icon";
+import { iconControl } from "../helpers/icon-control";
 
 const meta: Meta<typeof Button> = {
   title: "components/Button",
@@ -30,9 +31,7 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
       defaultValue: false,
     },
-    icon: {
-      control: false,
-    },
+    icon: iconControl,
   },
   args: { onClick: fn() },
   decorators: [
@@ -72,11 +71,6 @@ export const TextWithIcon: Story = {
     radius: "md",
     fullWidth: false,
   },
-  argTypes: {
-    icon: {
-      control: false,
-    },
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByText("Button");
@@ -93,11 +87,6 @@ export const Icon: Story = {
     variant: "primary",
     size: "md",
     radius: "md",
-  },
-  argTypes: {
-    icon: {
-      control: false,
-    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
