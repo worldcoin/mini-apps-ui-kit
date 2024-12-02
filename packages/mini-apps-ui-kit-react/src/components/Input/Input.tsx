@@ -4,6 +4,7 @@ import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 import { typographyVariants } from "../Typography";
+import { Slot } from "@radix-ui/react-slot";
 
 // flex  file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground
 const inputVariants = cva(
@@ -24,21 +25,37 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement>,
     VariantProps<typeof inputVariants> {
   error?: boolean;
+  startAdornment?: React.ReactNode;
+  endAdornment?: React.ReactNode;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, error, ...props }, ref) => {
+  ({ className, type, error, startAdornment, endAdornment, ...props }, ref) => {
     return (
-      <input
-        type={type}
-        className={cn(
-          inputVariants({ error }),
-          typographyVariants({ variant: "body", level: 3 }),
-          className,
+      <div className="relative flex items-center">
+        {startAdornment && (
+          <div className="absolute left-3 flex items-center">
+            <Slot className="">{startAdornment}</Slot>
+          </div>
         )}
-        ref={ref}
-        {...props}
-      />
+        <input
+          type={type}
+          className={cn(
+            inputVariants({ error }),
+            typographyVariants({ variant: "body", level: 3 }),
+            startAdornment && "pl-10",
+            endAdornment && "pr-10",
+            className,
+          )}
+          ref={ref}
+          {...props}
+        />
+        {endAdornment && (
+          <div className="absolute right-3 flex items-center">
+            <Slot className="">{endAdornment}</Slot>
+          </div>
+        )}
+      </div>
     );
   },
 );
