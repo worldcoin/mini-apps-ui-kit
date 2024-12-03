@@ -13,11 +13,7 @@ const variantClasses: Record<NonNullable<ChipProps["variant"]>, string> = {
   important: "var(--info-700)",
 };
 
-export function ChipIconExample({
-  variant = "default",
-  color,
-  ...rest
-}: ChipIconExampleProps) {
+export function ChipIconExample({ variant = "default", color, ...rest }: ChipIconExampleProps) {
   return (
     <svg
       width="20"
