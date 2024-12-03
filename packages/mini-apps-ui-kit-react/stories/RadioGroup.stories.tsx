@@ -37,10 +37,7 @@ export const Default: Story = {
     <RadioGroup {...args}>
       {options.map((value) => (
         <div
-          className={cn(
-            "flex items-center",
-            args.orientation === "vertical" ? "pb-2" : "pr-2",
-          )}
+          className={cn("flex items-center", args.orientation === "vertical" ? "pb-2" : "pr-2")}
           key={value}
         >
           <RadioGroupItem value={value} />
@@ -95,9 +92,7 @@ export const WithLabels: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const labelOptions = await Promise.all(
-      options.map((value) => canvas.findByText(value)),
-    );
+    const labelOptions = await Promise.all(options.map((value) => canvas.findByText(value)));
 
     expect(labelOptions).toHaveLength(options.length);
 

@@ -5,10 +5,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 export interface RadioGroupProps
-  extends Omit<
-    RadixRadioGroupProps,
-    "onValueChange" | "onChange" | "className"
-  > {
+  extends Omit<RadixRadioGroupProps, "onValueChange" | "onChange" | "className"> {
   /**
    * The value of the radio item that should be checked when initially rendered.
    * Use when you do not need to control the state of the radio items.
@@ -47,7 +44,7 @@ const radioGroupVariants = cva(`flex`, {
       horizontal: "flex-row",
     },
     disabled: {
-      true: "opacity-20 cursor-not-allowed", // TODO: rework opacity to match design when it's provided
+      true: "cursor-not-allowed opacity-20", // TODO: rework opacity to match design when it's provided
       false: "",
     },
   },
