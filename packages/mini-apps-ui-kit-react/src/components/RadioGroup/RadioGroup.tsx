@@ -2,7 +2,6 @@ import { forwardRef } from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { RadioGroupProps as RadixRadioGroupProps } from "@radix-ui/react-radio-group";
 import { cva } from "class-variance-authority";
-import { cn } from "../../lib/utils";
 
 export interface RadioGroupProps
   extends Omit<RadixRadioGroupProps, "onValueChange" | "onChange" | "className"> {
@@ -71,7 +70,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         ref={ref}
         defaultValue={defaultValue}
         onValueChange={onValueChange}
-        className={cn(radioGroupVariants({ orientation, disabled }))}
+        className={radioGroupVariants({ orientation, disabled })}
         disabled={disabled}
         orientation={orientation}
         name={name}
