@@ -4,8 +4,7 @@ import { RadioGroupItemProps as RadixRadioGroupItemProps } from "@radix-ui/react
 import { cva } from "class-variance-authority";
 import { Tick } from "../Icons/Tick";
 
-export interface RadioGroupItemProps
-  extends Omit<RadixRadioGroupItemProps, "className"> {
+export interface RadioGroupItemProps extends Omit<RadixRadioGroupItemProps, "className"> {
   /**
    * The value of the radio group item.
    */
@@ -17,15 +16,11 @@ export interface RadioGroupItemProps
 }
 
 const radioGroupItemVariants = cva(
-  `
-  w-6 h-6 border border-[0.09375rem] rounded-full transition-all
-  data-[state=unchecked]:bg-transparent data-[state=unchecked]:border-gray-400
-  data-[state=checked]:bg-gray-900 data-[state=checked]:border-gray-900
-  `,
+  `h-6 w-6 rounded-full border border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-400 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent`,
   {
     variants: {
       disabled: {
-        true: "opacity-20 cursor-not-allowed", // TODO: rework opacity to match design when it's provided
+        true: "cursor-not-allowed opacity-20", // TODO: rework opacity to match design when it's provided
         false: "",
       },
     },
