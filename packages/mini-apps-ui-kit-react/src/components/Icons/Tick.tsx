@@ -20,9 +20,9 @@ export function Tick({ className }: TickProps) {
       <path
         d="M3.33301 8.6665L5.68396 10.5473C6.2355 10.9885 7.03544 10.9231 7.50794 10.3981L12.6663 4.6665"
         stroke="white"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
