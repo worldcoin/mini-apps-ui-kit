@@ -7,6 +7,9 @@ import { cn } from "../src/lib/utils";
 const meta: Meta<typeof RadioGroup> = {
   title: "components/RadioGroup",
   component: RadioGroup,
+  subcomponents: {
+    RadioGroupItem: RadioGroupItem as React.ComponentType<unknown>,
+  },
   parameters: {
     layout: "centered",
   },
@@ -28,7 +31,7 @@ const meta: Meta<typeof RadioGroup> = {
 
 export default meta;
 
-type Story = StoryObj<typeof RadioGroup>;
+type Story = StoryObj<typeof meta>;
 
 const options = ["option1", "option2", "option3"];
 
