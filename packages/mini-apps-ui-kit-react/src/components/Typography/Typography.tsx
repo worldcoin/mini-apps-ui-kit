@@ -31,11 +31,11 @@ export interface TypographyProps<T extends ElementType = "p">
 const typographyVariants = cva("", {
   variants: {
     variant: {
-      number: "font-semibold tracking-normal leading-[1.2] font-display",
-      heading: "font-semibold tracking-[-0.01em] leading-[1.2] font-display",
-      subtitle: "font-medium tracking-normal leading-[1.2] font-sans",
-      body: "font-normal tracking-normal leading-[1.3] font-sans",
-      mono: "font-normal tracking-normal font-mono",
+      number: "font-display font-semibold leading-[1.2] tracking-normal",
+      heading: "font-display font-semibold leading-[1.2] tracking-[-0.01em]",
+      subtitle: "font-sans font-medium leading-[1.2] tracking-normal",
+      body: "font-sans font-normal leading-[1.3] tracking-normal",
+      mono: "font-mono font-normal tracking-normal",
     },
     level: {
       1: "",
@@ -164,14 +164,7 @@ const Typography = forwardRef<
   TypographyProps & React.ComponentPropsWithoutRef<ElementType>
 >(
   (
-    {
-      variant = "body",
-      level = 1,
-      children,
-      as: Component = "p",
-      className,
-      ...props
-    },
+    { variant = "body", level = 1, children, as: Component = "p", className, ...props },
     ref,
   ) => {
     return (

@@ -23,7 +23,7 @@ export interface SwitchProps
 }
 
 const switchClasses = cva(
-  "w-10 h-auto border-2 rounded-full relative inline-flex items-center transition-all",
+  "relative inline-flex h-auto w-10 items-center rounded-full border-2 transition-all",
   {
     variants: {
       checked: {
@@ -31,7 +31,7 @@ const switchClasses = cva(
         false: "border-gray-300 bg-gray-300",
       },
       disabled: {
-        true: "opacity-20 cursor-not-allowed", // TODO: rework opacity to match design when it's provided
+        true: "cursor-not-allowed opacity-20", // TODO: rework opacity to match design when it's provided
         false: "",
       },
     },
@@ -43,7 +43,7 @@ const switchClasses = cva(
 );
 
 const thumbClasses = cva(
-  "block w-5 h-5 rounded-full bg-gray-0 transition-transform transform",
+  "block h-5 w-5 transform rounded-full bg-gray-0 transition-transform",
   {
     variants: {
       checked: {
@@ -58,10 +58,7 @@ const thumbClasses = cva(
 );
 
 const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-  (
-    { checked = false, onChange: onCheckedChange, disabled = false, ...rest },
-    ref,
-  ) => {
+  ({ checked = false, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
     return (
       <RadixSwitch.Root
         ref={ref}
