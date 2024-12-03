@@ -1,4 +1,7 @@
 {
   "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "preserveSymlinks": true
+  },
   "include": ["src"]
 }
