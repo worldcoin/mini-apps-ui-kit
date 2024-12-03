@@ -5,10 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { Tick } from "../Icons/Tick";
 
 export interface CheckboxProps
-  extends Omit<
-      RadixCheckboxProps,
-      "onCheckedChange" | "onChange" | "className"
-    >,
+  extends Omit<RadixCheckboxProps, "onCheckedChange" | "onChange" | "className">,
     VariantProps<typeof checkboxClasses> {
   /**
    * The checked state of the checkbox.
@@ -27,15 +24,15 @@ export interface CheckboxProps
 }
 
 const checkboxClasses = cva(
-  "w-6 h-6 border-[0.09375rem] rounded-md flex items-center justify-center transition-all",
+  "flex h-6 w-6 items-center justify-center rounded-md border-[0.09375rem] transition-all",
   {
     variants: {
       checked: {
-        true: "bg-gray-900 border-gray-900",
-        false: "bg-transparent border-gray-400",
+        true: "border-gray-900 bg-gray-900",
+        false: "border-gray-400 bg-transparent",
       },
       disabled: {
-        true: "opacity-20 cursor-not-allowed", // TODO: rework opacity to match design when it's provided
+        true: "cursor-not-allowed opacity-20", // TODO: rework opacity to match design when it's provided
         false: "",
       },
     },
@@ -47,10 +44,7 @@ const checkboxClasses = cva(
 );
 
 const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
-  (
-    { checked = false, onChange: onCheckedChange, disabled = false, ...rest },
-    ref,
-  ) => {
+  ({ checked = false, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
     return (
       <RadixCheckbox.Root
         ref={ref}
