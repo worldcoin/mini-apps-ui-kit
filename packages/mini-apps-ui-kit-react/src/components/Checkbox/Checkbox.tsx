@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import { CheckboxProps as RadixCheckboxProps } from "@radix-ui/react-checkbox";
 import { cva, type VariantProps } from "class-variance-authority";
-import { Tick } from "./Tick";
+import { Tick } from "../Icons/Tick";
 
 export interface CheckboxProps
   extends Omit<
