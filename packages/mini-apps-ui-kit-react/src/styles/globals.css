@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    /* Font */
     --font-sans: "Rubik";
     --font-display: "Sora";
     --font-mono: "SF Mono";
