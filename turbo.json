@@ -20,6 +20,11 @@
       "dependsOn": ["^lint"]
     },
     "test": {},
-    "build-storybook": {}
+    "build:sb": {
+      "outputs": ["storybook-static/**"]
+    },
+    "sb:move": {
+      "cache": false
+    }
   }
 }

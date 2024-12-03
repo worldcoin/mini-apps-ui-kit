@@ -25,6 +25,7 @@
   },
   "scripts": {
     "storybook": "storybook dev -p 6006",
+    "sb:move": "mv ./storybook-static ../../storybook-static",
     "dev:sb": "concurrently \"tailwindcss -i ./styles/globals.css -o ./public/globals.css --watch\" \"pnpm storybook\"",
     "build:tailwind": "tailwindcss -i ./styles/globals.css -o ./public/globals.css",
     "build:sb": "pnpm build:tailwind && storybook build",
