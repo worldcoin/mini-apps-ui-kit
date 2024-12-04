@@ -6,5 +6,7 @@ export { default as Typography } from "./components/Typography";
 export * from "./components/Typography";
 export { default as Switch } from "./components/Switch";
 export * from "./components/Switch";
+export { RadioGroup, RadioGroupItem } from "./components/RadioGroup";
+export * from "./components/RadioGroup";
 export { default as Checkbox } from "./components/Checkbox";
 export * from "./components/Checkbox";
