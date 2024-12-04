@@ -4,8 +4,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import { typographyVariants } from "../Typography";
 import { cn } from "../../lib/utils";
+import { Slot } from "@radix-ui/react-slot";
 
 const pillVariants = cva(
+  // TODO: Add disabled classes
   "transition-colors h-9 inline-flex items-center px-4 rounded-full duration-200",
   {
     variants: {
@@ -28,12 +30,18 @@ export interface PillProps
    * @default false
    */
   checked?: boolean;
+  /**
+   * Whether the pill is rendered as a child component
+   * @default false
+   */
+  asChild?: boolean;
 }
 
 const Pill = forwardRef<HTMLButtonElement, PillProps>(
-  ({ checked, children, ...props }, ref) => {
+  ({ checked, children, asChild, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button";
     return (
-      <button
+      <Comp
         ref={ref}
         className={cn(
           pillVariants({ checked }),
@@ -42,7 +50,7 @@ const Pill = forwardRef<HTMLButtonElement, PillProps>(
         {...props}
       >
         {children}
-      </button>
+      </Comp>
     );
   },
 );
