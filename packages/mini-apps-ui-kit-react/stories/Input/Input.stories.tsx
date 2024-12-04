@@ -14,7 +14,6 @@ const meta: Meta<InputProps> = {
   },
   tags: ["autodocs"],
 };
-
 export default meta;
 type Story = StoryObj<InputProps>;
 
@@ -27,5 +26,19 @@ export const Text: Story = {
     const input = await canvas.findByPlaceholderText("Enter your name");
 
     expect(input).toBeInTheDocument();
+  },
+};
+
+export const File: Story = {
+  args: {
+    type: "file",
+    placeholder: "Choose file",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = await canvas.findByPlaceholderText("Choose file");
+
+    expect(input).toBeInTheDocument();
+    expect(input).toHaveAttribute("type", "file");
   },
 };
