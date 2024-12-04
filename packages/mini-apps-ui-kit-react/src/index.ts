@@ -10,3 +10,4 @@ export { RadioGroup, RadioGroupItem } from "./components/RadioGroup";
 export * from "./components/RadioGroup";
 export { default as Checkbox } from "./components/Checkbox";
 export * from "./components/Checkbox";
+export { default as uiKitTailwindPlugin } from "./tailwind";
