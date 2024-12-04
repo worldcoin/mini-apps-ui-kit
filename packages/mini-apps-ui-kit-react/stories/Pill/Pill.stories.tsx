@@ -12,6 +12,9 @@ const meta: Meta<typeof Pill> = {
     checked: {
       control: "boolean",
     },
+    asChild: {
+      control: false,
+    },
   },
 };
 
