@@ -1,8 +1,8 @@
 export function Switch(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="40"
-      height="24"
+      width="30"
+      height="18"
       viewBox="0 0 40 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
