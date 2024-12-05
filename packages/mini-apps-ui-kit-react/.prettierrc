@@ -1,0 +1,13 @@
+{
+  "singleQuote": false,
+  "trailingComma": "all",
+  "semi": true,
+  "printWidth": 96,
+  "tailwindFunctions": [
+    "clsx",
+    "cva"
+  ],
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
+}
