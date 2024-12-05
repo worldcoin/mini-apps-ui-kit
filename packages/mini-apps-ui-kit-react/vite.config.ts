@@ -1,9 +1,9 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { resolve } from "path";
-import dts from "vite-plugin-dts";
 import { glob } from "glob";
 import preserveDirectives from 'rollup-preserve-directives'
+import { resolve } from "path";
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 // https://vite.dev/config/
 export default defineConfig({

@@ -3,7 +3,7 @@
 import { forwardRef } from "react";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 
 export interface SwitchProps
   extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange" | "className">,
