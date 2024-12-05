@@ -17,6 +17,30 @@
       "types": "./dist/components/Button/index.d.ts",
       "default": "./dist/components/Button/index.js"
     },
+    "./Chip": {
+      "types": "./dist/components/Chip/index.d.ts",
+      "default": "./dist/components/Chip/index.js"
+    },
+    "./Typography": {
+      "types": "./dist/components/Typography/index.d.ts",
+      "default": "./dist/components/Typography/index.js"
+    },
+    "./Switch": {
+      "types": "./dist/components/Switch/index.d.ts",
+      "default": "./dist/components/Switch/index.js"
+    },
+    "./RadioGroup": {
+      "types": "./dist/components/RadioGroup/index.d.ts",
+      "default": "./dist/components/RadioGroup/index.js"
+    },
+    "./RadioGroupItem": {
+      "types": "./dist/components/RadioGroup/index.d.ts",
+      "default": "./dist/components/RadioGroup/index.js"
+    },
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "default": "./dist/components/Checkbox/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "default": "./dist/tailwind/index.js"
