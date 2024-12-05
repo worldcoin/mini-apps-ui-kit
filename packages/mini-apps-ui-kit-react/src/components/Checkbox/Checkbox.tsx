@@ -56,7 +56,7 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
         {...rest}
       >
         <RadixCheckbox.Indicator>
-          <Tick />
+          <Tick className="text-gray-0" />
         </RadixCheckbox.Indicator>
       </RadixCheckbox.Root>
     );

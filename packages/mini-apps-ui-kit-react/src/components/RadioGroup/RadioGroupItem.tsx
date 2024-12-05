@@ -17,7 +17,7 @@ export interface RadioGroupItemProps extends Omit<RadixRadioGroupItemProps, "cla
 }
 
 const radioGroupItemVariants = cva(
-  `h-6 w-6 rounded-full border border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-400 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent`,
+  `h-6 w-6 rounded-full border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-400 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent`,
   {
     variants: {
       disabled: {
@@ -42,7 +42,7 @@ const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>(
         {...rest}
       >
         <RadioGroupPrimitive.Indicator className="flex items-center justify-center">
-          <Tick />
+          <Tick className="text-gray-0" />
         </RadioGroupPrimitive.Indicator>
       </RadioGroupPrimitive.Item>
     );
