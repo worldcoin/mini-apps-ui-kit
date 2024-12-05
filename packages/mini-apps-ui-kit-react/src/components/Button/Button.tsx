@@ -90,6 +90,7 @@ export interface ButtonProps
   /**
    * Optional icon to display in the button.
    * The component passed to this prop must accept a `style` prop.
+   * The component should use currentColor to match the Input's styling.
    */
   icon?: React.ReactNode;
   /**

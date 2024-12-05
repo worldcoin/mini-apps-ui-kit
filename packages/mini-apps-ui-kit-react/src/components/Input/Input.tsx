@@ -3,7 +3,6 @@ import * as React from "react";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-import { Slot } from "@radix-ui/react-slot";
 import { Tick } from "../Icons/Tick";
 
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
@@ -37,11 +36,13 @@ export interface InputProps
   /**
    * Element to be rendered at the start (left side) of the input.
    * The component passed to this prop must accept a `style` prop.
+   * The component should use currentColor to match the Input's styling.
    */
   startAdornment?: React.ReactNode;
   /**
    * Element to be rendered at the end (right side) of the input.
    * The component passed to this prop must accept a `style` prop.
+   * The component should use currentColor to match the Input's styling.
    */
   endAdornment?: React.ReactNode;
   /**
@@ -73,15 +74,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative flex w-full items-center">
         {startAdornment && (
-          <div className="absolute left-3 flex items-center">
-            <Slot
-              className="max-h-5 overflow-hidden"
-              style={{
-                maxWidth: `${startAdornmentWidth}rem`,
-              }}
-            >
-              {startAdornment}
-            </Slot>
+          <div
+            className="absolute bottom-3 left-3 top-3 flex items-center justify-start overflow-hidden"
+            style={{
+              width: `${startAdornmentWidth}rem`,
+            }}
+          >
+            {startAdornment}
           </div>
         )}
         <input
@@ -100,19 +99,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {(endAdornment || isValid) && (
-          <div className="absolute right-3 flex items-center">
-            {isValid ? (
-              <Tick className="text-success-700" />
-            ) : (
-              <Slot
-                className="max-h-5 overflow-hidden"
-                style={{
-                  maxWidth: `${endAdornmentWidth}rem`,
-                }}
-              >
-                {endAdornment}
-              </Slot>
-            )}
+          <div
+            className="absolute bottom-3 right-3 top-3 flex items-center justify-end overflow-hidden"
+            style={{
+              width: `${endAdornmentWidth}rem`,
+            }}
+          >
+            {isValid ? <Tick className="text-success-700" /> : endAdornment}
           </div>
         )}
       </div>
