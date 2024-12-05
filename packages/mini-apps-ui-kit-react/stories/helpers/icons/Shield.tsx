@@ -21,7 +21,7 @@ export function Shield({ variant = "default", color, ...rest }: ShieldProps) {
       viewBox="0 0 16 16"
       fill={color || variantClasses[variant]}
       xmlns="http://www.w3.org/2000/svg"
-      data-testid="chip-icon"
+      data-testid="shield-icon"
       {...rest}
     >
       <path

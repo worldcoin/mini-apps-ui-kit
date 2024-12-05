@@ -58,6 +58,12 @@ export const StartLargeIcon: Story = {
     startAdornment: <CountryCode />,
     startAdornmentWidth: 4.5,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const icon = await canvas.findByTestId("country-code-icon");
+
+    expect(icon).toBeInTheDocument();
+  },
 };
 
 export const EndLargeIcon: Story = {
@@ -65,5 +71,11 @@ export const EndLargeIcon: Story = {
     placeholder: "Enter your number",
     endAdornment: <Switch />,
     endAdornmentWidth: 2,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const icon = await canvas.findByTestId("switch-icon");
+
+    expect(icon).toBeInTheDocument();
   },
 };
