@@ -1,4 +1,4 @@
-import { Star } from "./icons/Icon";
+import { Star } from "./icons/Star";
 import { Shield } from "./icons/Shield";
 
 export const iconControl = {
