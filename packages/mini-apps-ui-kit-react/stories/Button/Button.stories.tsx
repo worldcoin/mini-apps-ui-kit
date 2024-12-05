@@ -74,7 +74,7 @@ export const TextWithIcon: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByText("Button");
-    const icon = await canvas.findByTestId("button-icon");
+    const icon = await canvas.findByTestId("star-icon");
 
     expect(button).toBeInTheDocument();
     expect(icon).toBeInTheDocument();
@@ -90,7 +90,7 @@ export const Icon: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const icon = await canvas.findByTestId("button-icon");
+    const icon = await canvas.findByTestId("star-icon");
 
     expect(icon).toBeInTheDocument();
   },

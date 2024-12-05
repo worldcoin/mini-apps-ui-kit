@@ -38,7 +38,7 @@ export const DefaultWithIcon: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Default with icon");
-    const icon = await canvas.findByTestId("chip-icon");
+    const icon = await canvas.findByTestId("shield-icon");
 
     expect(chip).toBeInTheDocument();
     expect(icon).toBeInTheDocument();
@@ -54,7 +54,7 @@ export const SuccessWithIcon: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Success with icon");
-    const icon = await canvas.findByTestId("chip-icon");
+    const icon = await canvas.findByTestId("shield-icon");
 
     expect(chip).toBeInTheDocument();
     expect(chip.parentNode).toHaveClass("bg-success-100 text-success-700");
@@ -71,7 +71,7 @@ export const WarningWithIcon: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Warning with icon");
-    const icon = await canvas.findByTestId("chip-icon");
+    const icon = await canvas.findByTestId("shield-icon");
 
     expect(chip).toBeInTheDocument();
     expect(chip.parentNode).toHaveClass("bg-warning-100 text-warning-700");
@@ -88,7 +88,7 @@ export const ErrorWithIcon: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Error with icon");
-    const icon = await canvas.findByTestId("chip-icon");
+    const icon = await canvas.findByTestId("shield-icon");
 
     expect(chip).toBeInTheDocument();
     expect(chip.parentNode).toHaveClass("bg-error-100 text-error-700");
@@ -105,7 +105,7 @@ export const ImportantWithIcon: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Important with icon");
-    const icon = await canvas.findByTestId("chip-icon");
+    const icon = await canvas.findByTestId("shield-icon");
 
     expect(chip).toBeInTheDocument();
     expect(chip.parentNode).toHaveClass("bg-info-100 text-info-700");
@@ -123,7 +123,7 @@ export const DifferentColors: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Different colors");
-    const icon = await canvas.findByTestId("chip-icon");
+    const icon = await canvas.findByTestId("shield-icon");
 
     expect(chip).toBeInTheDocument();
     expect(chip.parentNode).toHaveClass("bg-success-100 text-primary-pink");
