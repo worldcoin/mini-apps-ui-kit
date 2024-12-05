@@ -3,6 +3,8 @@ import { expect, within } from "@storybook/test";
 import Input, { InputProps } from "../../src/components/Input";
 import { iconControl } from "../helpers/icon-control";
 import { CountryCode } from "../helpers/icons/CountryCode";
+import { Switch } from "../helpers/icons/Switch";
+
 const meta: Meta<InputProps> = {
   title: "components/Input",
   component: Input,
@@ -40,7 +42,6 @@ export const Text: Story = {
 export const File: Story = {
   args: {
     type: "file",
-    placeholder: "Choose file",
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -51,10 +52,18 @@ export const File: Story = {
   },
 };
 
-export const LargeIcon: Story = {
+export const StartLargeIcon: Story = {
   args: {
     placeholder: "Enter your number",
     startAdornment: <CountryCode />,
     startAdornmentWidth: 4.5,
+  },
+};
+
+export const EndLargeIcon: Story = {
+  args: {
+    placeholder: "Enter your number",
+    endAdornment: <Switch />,
+    endAdornmentWidth: 2,
   },
 };

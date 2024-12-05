@@ -3,7 +3,6 @@ import * as React from "react";
 import { cva } from "class-variance-authority";
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-import { typographyVariants } from "../Typography";
 import { Slot } from "@radix-ui/react-slot";
 import { Tick } from "../Icons/Tick";
 
@@ -11,28 +10,11 @@ const DEFAULT_ADORNMENT_WIDTH = 1.5;
 // "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
 // flex  file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground
 export const inputVariants = cva(
-  "h-[3.125rem] w-full rounded-xl border border-gray-100 bg-gray-100 px-3 py-4 text-base text-gray-900 outline-none transition-colors duration-200 placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
+  "h-[3.125rem] w-full rounded-xl border border-gray-100 bg-gray-100 px-3 py-4 text-base leading-none text-gray-900 outline-none transition-colors duration-200 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
   {
     variants: {
       isError: {
         true: "border-error-700 bg-error-100 focus:border-error-700 focus:bg-error-100",
-      },
-      type: {
-        file: "file:text-foreground file:border-0 file:bg-transparent file:text-sm file:font-medium",
-        // text: "",
-        // password: "",
-        // email: "",
-        // number: "",
-        // tel: "",
-        // url: "",
-        // search: "",
-        // date: "",
-        // time: "",
-        // datetime: "",
-        // month: "",
-        // week: "",
-        // color: "",
-        // range: "",
       },
     },
     defaultVariants: {
@@ -77,7 +59,7 @@ export interface InputProps
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      type,
+      type = "text",
       isError,
       startAdornment,
       endAdornment,
@@ -105,10 +87,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           type={type}
-          className={cn(
-            inputVariants({ isError }),
-            typographyVariants({ variant: "body", level: 3 }),
-          )}
+          className={cn(inputVariants({ isError }))}
           style={{
             ...(startAdornment && {
               paddingLeft: `${1 + startAdornmentWidth}rem`,

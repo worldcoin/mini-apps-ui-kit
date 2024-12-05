@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, within } from "@storybook/test";
 
 import Button from "../../src/components/Button";
-import { Star } from "../helpers/icons/Icon";
+import { Star } from "../helpers/icons/Star";
 import { iconControl } from "../helpers/icon-control";
 
 const meta: Meta<typeof Button> = {
