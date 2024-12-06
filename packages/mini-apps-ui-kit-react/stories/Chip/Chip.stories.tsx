@@ -6,15 +6,11 @@ import { ChipIconExample } from "./ChipIconExample";
 const meta: Meta<ChipProps> = {
   title: "components/Chip",
   component: Chip,
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
     icon: {
       control: false,
     },
   },
-  tags: ["autodocs"],
 };
 
 export default meta;

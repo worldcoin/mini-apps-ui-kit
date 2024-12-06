@@ -1,3 +1,5 @@
+"use client";
+
 import { forwardRef } from "react";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
@@ -43,7 +45,7 @@ const switchClasses = cva(
 );
 
 const thumbClasses = cva(
-  "block h-5 w-5 transform rounded-full bg-gray-0 transition-transform",
+  "bg-gray-0 block h-5 w-5 transform rounded-full transition-transform",
   {
     variants: {
       checked: {

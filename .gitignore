@@ -22,3 +22,4 @@ out
 .DS_Store
 *.pem
 *storybook.log
+storybook-static

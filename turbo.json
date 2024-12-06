@@ -3,9 +3,16 @@
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
     "build": {
-      "cache": false
+      "cache": false,
+      "outputs": ["dist/**"],
+      "dependsOn": ["^build"]
     },
     "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "dev:sb": {
       "cache": false,
       "persistent": true
     },
@@ -13,6 +20,11 @@
       "dependsOn": ["^lint"]
     },
     "test": {},
-    "build-storybook": {}
+    "build:sb": {
+      "outputs": ["storybook-static/**"]
+    },
+    "sb:move": {
+      "cache": false
+    }
   }
 }

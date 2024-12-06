@@ -10,10 +10,6 @@ const meta: Meta<typeof RadioGroup> = {
   subcomponents: {
     RadioGroupItem: RadioGroupItem as React.ComponentType<unknown>,
   },
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
   argTypes: {
     defaultValue: {
       control: false,
