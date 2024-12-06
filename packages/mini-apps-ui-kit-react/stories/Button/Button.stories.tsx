@@ -6,10 +6,6 @@ import { Star } from "./Icon";
 const meta: Meta<typeof Button> = {
   title: "components/Button",
   component: Button,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
   argTypes: {
     variant: {
       control: "radio",
