@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { expect, within } from "@storybook/test";
+
 import Chip, { ChipProps } from "../../src/components/Chip";
 import { ChipIconExample } from "./ChipIconExample";
 

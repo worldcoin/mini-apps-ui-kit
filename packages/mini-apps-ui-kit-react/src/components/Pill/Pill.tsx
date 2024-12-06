@@ -1,14 +1,15 @@
 "use client";
 
-import { cva, type VariantProps } from "class-variance-authority";
-import { ButtonHTMLAttributes, forwardRef } from "react";
-import { typographyVariants } from "../Typography";
-import { cn } from "../../lib/utils";
 import { Slot } from "@radix-ui/react-slot";
+import { type VariantProps, cva } from "class-variance-authority";
+import { ButtonHTMLAttributes, forwardRef } from "react";
+
+import { cn } from "../../lib/utils";
+import { typographyVariants } from "../Typography";
 
 const pillVariants = cva(
   // TODO: Add disabled classes
-  "transition-colors h-9 inline-flex items-center px-4 rounded-full duration-200",
+  "inline-flex h-9 items-center rounded-full px-4 transition-colors duration-200",
   {
     variants: {
       checked: {

@@ -1,9 +1,9 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import { resolve } from "path";
-import dts from "vite-plugin-dts";
 import { glob } from "glob";
-import preserveDirectives from 'rollup-preserve-directives'
+import { resolve } from "path";
+import preserveDirectives from "rollup-preserve-directives";
+import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -35,10 +35,7 @@ export default defineConfig({
         ["tailwind/index", resolve(__dirname, "src/tailwind/index.ts")],
         ...glob
           .sync("src/components/**/*.{ts,tsx}")
-          .map((file) => [
-            file.slice(4).replace(/\.(ts|tsx)$/, ""),
-            resolve(__dirname, file),
-          ]),
+          .map((file) => [file.slice(4).replace(/\.(ts|tsx)$/, ""), resolve(__dirname, file)]),
       ]),
       output: {
         // Ensure each entry point creates its own directory

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import Pill from "../../src/components/Pill/Pill";
 
 const meta: Meta<typeof Pill> = {
