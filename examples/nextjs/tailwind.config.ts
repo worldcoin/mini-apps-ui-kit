@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+
 import { uiKitTailwindPlugin } from "@mini-apps-ui-kit/react";
 
 export default {

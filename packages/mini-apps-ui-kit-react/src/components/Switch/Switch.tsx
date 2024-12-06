@@ -1,9 +1,9 @@
 "use client";
 
-import { forwardRef } from "react";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
 import { type VariantProps, cva } from "class-variance-authority";
+import { forwardRef } from "react";
 
 export interface SwitchProps
   extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange" | "className">,

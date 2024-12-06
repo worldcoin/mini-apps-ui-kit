@@ -8,6 +8,7 @@ React components UI Kit library for Mini Apps
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## Tailwind Configuration
+
 - `./styles/globals.css`: is the main entrypoint for the tailwind css styles
 - `./public/globals.css`: compiled tailwind css styles
 - `./src/tailwind`: tailwind plugin with uiKit tailwind presets
@@ -90,4 +91,3 @@ Or use the following code to load the fonts via CSS:
 ```
 
 For SF Mono, you'll need to obtain it from Apple's developer resources as it's not freely available. You can download it from [Apple's developer fonts page](https://developer.apple.com/fonts/).
-

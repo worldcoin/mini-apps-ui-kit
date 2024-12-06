@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
+
 import "@mini-apps-ui-kit/react/styles.css";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
