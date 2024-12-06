@@ -1,9 +1,10 @@
 "use client";
 
-import { cva, type VariantProps } from "class-variance-authority";
-import { ButtonHTMLAttributes, forwardRef } from "react";
-import Spinner from "./Spinner";
 import { Slot } from "@radix-ui/react-slot";
+import { type VariantProps, cva } from "class-variance-authority";
+import { ButtonHTMLAttributes, forwardRef } from "react";
+
+import Spinner from "./Spinner";
 
 const buttonVariants = cva(
   "flex items-center justify-center gap-1 font-display font-semibold leading-[1.2] tracking-normal transition-colors",

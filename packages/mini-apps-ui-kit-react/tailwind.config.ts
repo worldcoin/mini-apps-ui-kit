@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+
 import uiKitTailwindPlugin from "./src/tailwind";
 
 const config: Config = {
