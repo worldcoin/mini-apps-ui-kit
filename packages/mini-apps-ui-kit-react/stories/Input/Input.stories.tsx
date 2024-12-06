@@ -8,14 +8,13 @@ import { Switch } from "../helpers/icons/Switch";
 const meta: Meta<InputProps> = {
   title: "components/Input",
   component: Input,
-  parameters: {
-    layout: "centered",
-  },
   argTypes: {
     startAdornment: iconControl,
     endAdornment: iconControl,
+    type: {
+      control: false,
+    },
   },
-  tags: ["autodocs"],
   decorators: [
     (Story) => (
       <div style={{ width: "200px", display: "flex", justifyContent: "center" }}>
@@ -39,20 +38,7 @@ export const Text: Story = {
   },
 };
 
-export const File: Story = {
-  args: {
-    type: "file",
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const input = await canvas.findByPlaceholderText("Choose file");
-
-    expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute("type", "file");
-  },
-};
-
-export const StartLargeIcon: Story = {
+export const StartCustomSizeIcon: Story = {
   args: {
     placeholder: "Enter your number",
     startAdornment: <CountryCode />,
@@ -66,7 +52,7 @@ export const StartLargeIcon: Story = {
   },
 };
 
-export const EndLargeIcon: Story = {
+export const EndCustomSizeIcon: Story = {
   args: {
     placeholder: "Enter your number",
     endAdornment: <Switch />,
