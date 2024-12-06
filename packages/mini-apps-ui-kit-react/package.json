@@ -17,6 +17,30 @@
       "types": "./dist/components/Button/index.d.ts",
       "default": "./dist/components/Button/index.js"
     },
+    "./Chip": {
+      "types": "./dist/components/Chip/index.d.ts",
+      "default": "./dist/components/Chip/index.js"
+    },
+    "./Typography": {
+      "types": "./dist/components/Typography/index.d.ts",
+      "default": "./dist/components/Typography/index.js"
+    },
+    "./Switch": {
+      "types": "./dist/components/Switch/index.d.ts",
+      "default": "./dist/components/Switch/index.js"
+    },
+    "./RadioGroup": {
+      "types": "./dist/components/RadioGroup/index.d.ts",
+      "default": "./dist/components/RadioGroup/index.js"
+    },
+    "./RadioGroupItem": {
+      "types": "./dist/components/RadioGroup/index.d.ts",
+      "default": "./dist/components/RadioGroup/index.js"
+    },
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "default": "./dist/components/Checkbox/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "default": "./dist/tailwind/index.js"
@@ -25,6 +49,8 @@
   },
   "scripts": {
     "storybook": "storybook dev -p 6006",
+    "build-storybook": "tailwindcss -i ./src/styles/globals.css -o ./output.css && storybook build",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "sb:move": "mv ./storybook-static ../../storybook-static",
     "dev:sb": "concurrently \"tailwindcss -i ./styles/globals.css -o ./public/globals.css --watch\" \"pnpm storybook\"",
     "build:tailwind": "tailwindcss -i ./styles/globals.css -o ./public/globals.css",
@@ -64,6 +90,8 @@
     "eslint-plugin-storybook": "^0.11.1",
     "glob": "^11.0.0",
     "globals": "^15.11.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "storybook": "^8.4.4",
@@ -72,5 +100,14 @@
     "typescript-eslint": "^8.11.0",
     "vite": "^5.4.10",
     "vite-plugin-dts": "^4.3.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-radio-group": "^1.2.1",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5"
   }
 }
