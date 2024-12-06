@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
 import { glob } from "glob";
+import preserveDirectives from 'rollup-preserve-directives'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -11,6 +12,7 @@ export default defineConfig({
     dts({
       tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
     }),
+    preserveDirectives(),
   ],
   resolve: {
     alias: {
