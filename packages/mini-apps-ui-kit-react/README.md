@@ -1,11 +1,16 @@
-# React + TypeScript + Vite
+# @mini-apps-ui-kit/react
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React components UI Kit library for Mini Apps
 
-Currently, two official plugins are available:
+## Getting Started
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Tailwind Configuration
+- `./styles/globals.css`: is the main entrypoint for the tailwind css styles
+- `./public/globals.css`: compiled tailwind css styles
+- `./src/tailwind`: tailwind plugin with uiKit tailwind presets
 
 ## Expanding the ESLint configuration
 
@@ -85,3 +90,4 @@ Or use the following code to load the fonts via CSS:
 ```
 
 For SF Mono, you'll need to obtain it from Apple's developer resources as it's not freely available. You can download it from [Apple's developer fonts page](https://developer.apple.com/fonts/).
+
