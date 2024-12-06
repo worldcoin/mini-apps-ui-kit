@@ -6,10 +6,6 @@ import Switch, { SwitchProps } from "../src/components/Switch";
 const meta: Meta<SwitchProps> = {
   title: "components/Switch",
   component: Switch,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
 };
 
 export default meta;

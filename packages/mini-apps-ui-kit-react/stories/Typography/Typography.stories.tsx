@@ -4,10 +4,6 @@ import Typography from "../../src/components/Typography/Typography";
 const meta: Meta<typeof Typography> = {
   title: "components/Typography",
   component: Typography,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
   argTypes: {
     as: {
       table: {

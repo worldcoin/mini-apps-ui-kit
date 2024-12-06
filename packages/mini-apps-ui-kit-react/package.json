@@ -49,7 +49,6 @@
   },
   "scripts": {
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "tailwindcss -i ./src/styles/globals.css -o ./output.css && storybook build",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "sb:move": "mv ./storybook-static ../../storybook-static",
     "dev:sb": "concurrently \"tailwindcss -i ./styles/globals.css -o ./public/globals.css --watch\" \"pnpm storybook\"",
@@ -90,8 +89,6 @@
     "eslint-plugin-storybook": "^0.11.1",
     "glob": "^11.0.0",
     "globals": "^15.11.0",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "storybook": "^8.4.4",
