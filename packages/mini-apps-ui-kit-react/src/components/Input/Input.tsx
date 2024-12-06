@@ -8,7 +8,7 @@ import { Tick } from "../Icons/Tick";
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "h-[3.125rem] w-full rounded-xl border border-gray-100 bg-gray-100 px-3 py-4 text-base leading-none text-gray-900 outline-none transition-colors duration-200 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
+  "h-[3.125rem] w-full rounded-xl border border-gray-100 bg-gray-100 px-3 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
   {
     variants: {
       isError: {
