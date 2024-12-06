@@ -45,7 +45,7 @@ const switchClasses = cva(
 );
 
 const thumbClasses = cva(
-  "bg-gray-0 block h-5 w-5 transform rounded-full transition-transform",
+  "block h-5 w-5 transform rounded-full bg-gray-0 transition-transform",
   {
     variants: {
       checked: {
