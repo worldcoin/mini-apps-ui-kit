@@ -648,6 +648,10 @@ video {
   top: 0.75rem;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -702,6 +706,14 @@ video {
 
 .h-auto {
   height: auto;
+}
+
+.h-\[1\.625rem\] {
+  height: 1.625rem;
+}
+
+.h-\[26px\] {
+  height: 26px;
 }
 
 .w-10 {
@@ -1092,6 +1104,14 @@ video {
 
 .text-warning-700 {
   color: var(--warning-700);
+}
+
+.text-gray-700 {
+  color: var(--gray-700);
+}
+
+.text-gray-400 {
+  color: var(--gray-400);
 }
 
 .opacity-20 {
