@@ -10,3 +10,5 @@ export { RadioGroup, RadioGroupItem } from "./components/RadioGroup";
 export * from "./components/RadioGroup";
 export { default as Checkbox } from "./components/Checkbox";
 export * from "./components/Checkbox";
+export { default as Select } from "./components/Select";
+export * from "./components/Select";

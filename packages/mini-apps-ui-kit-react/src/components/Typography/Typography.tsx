@@ -28,7 +28,7 @@ export interface TypographyProps<T extends ElementType = "p">
       };
 }
 
-const typographyVariants = cva("", {
+export const typographyVariants = cva("", {
   variants: {
     variant: {
       number: "font-display font-semibold leading-[1.2] tracking-normal",
