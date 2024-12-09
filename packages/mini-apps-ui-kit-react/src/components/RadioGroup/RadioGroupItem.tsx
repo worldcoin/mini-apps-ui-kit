@@ -1,7 +1,8 @@
-import { forwardRef } from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { RadioGroupItemProps as RadixRadioGroupItemProps } from "@radix-ui/react-radio-group";
 import { cva } from "class-variance-authority";
+import { forwardRef } from "react";
+
 import { Tick } from "../Icons/Tick";
 
 export interface RadioGroupItemProps extends Omit<RadixRadioGroupItemProps, "className"> {

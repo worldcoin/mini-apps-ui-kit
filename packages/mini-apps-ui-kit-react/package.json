@@ -1,24 +1,71 @@
 {
-  "name": "mini-apps-ui-kit/react",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@mini-apps-ui-kit/react",
+  "version": "0.0.1",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "public"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./Button": {
+      "types": "./dist/components/Button/index.d.ts",
+      "default": "./dist/components/Button/index.js"
+    },
+    "./Chip": {
+      "types": "./dist/components/Chip/index.d.ts",
+      "default": "./dist/components/Chip/index.js"
+    },
+    "./Typography": {
+      "types": "./dist/components/Typography/index.d.ts",
+      "default": "./dist/components/Typography/index.js"
+    },
+    "./Switch": {
+      "types": "./dist/components/Switch/index.d.ts",
+      "default": "./dist/components/Switch/index.js"
+    },
+    "./RadioGroup": {
+      "types": "./dist/components/RadioGroup/index.d.ts",
+      "default": "./dist/components/RadioGroup/index.js"
+    },
+    "./RadioGroupItem": {
+      "types": "./dist/components/RadioGroup/index.d.ts",
+      "default": "./dist/components/RadioGroup/index.js"
+    },
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "default": "./dist/components/Checkbox/index.js"
+    },
+    "./tailwind": {
+      "types": "./dist/tailwind/index.d.ts",
+      "default": "./dist/tailwind/index.js"
+    },
+    "./styles.css": "./public/globals.css"
+  },
   "scripts": {
-    "dev": "concurrently \"tailwindcss -i ./src/styles/globals.css -o ./output.css --watch\" \"pnpm storybook\"",
-    "build": "tsc -b ./tsconfig.lib.json && vite build",
-    "lint": "eslint .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "tailwindcss -i ./src/styles/globals.css -o ./output.css && storybook build",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "sb:move": "mv ./storybook-static ../../storybook-static",
+    "dev:sb": "concurrently \"tailwindcss -i ./styles/globals.css -o ./public/globals.css --watch\" \"pnpm storybook\"",
+    "build:tailwind": "tailwindcss -i ./styles/globals.css -o ./public/globals.css",
+    "build:sb": "pnpm build:tailwind && storybook build",
+    "build": "pnpm build:tailwind && tsc -b ./tsconfig.lib.json && vite build",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "react": "^18 || ^19",
-    "react-dom": "^18 || ^19"
+    "react-dom": "^18 || ^19",
+    "tailwindcss": "^3"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
@@ -42,10 +89,9 @@
     "eslint-plugin-storybook": "^0.11.1",
     "glob": "^11.0.0",
     "globals": "^15.11.0",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "rollup-preserve-directives": "^1.1.3",
     "storybook": "^8.4.4",
     "tailwindcss": "^3.4.15",
     "typescript": "~5.6.2",

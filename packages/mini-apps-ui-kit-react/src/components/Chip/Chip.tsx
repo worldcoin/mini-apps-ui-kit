@@ -1,6 +1,6 @@
-import { forwardRef, ReactNode } from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
+import { ReactNode, forwardRef } from "react";
 
 type ChipVariant = "default" | "success" | "warning" | "error" | "important";
 

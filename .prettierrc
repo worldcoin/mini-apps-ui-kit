@@ -1,0 +1,20 @@
+{
+  "singleQuote": false,
+  "trailingComma": "all",
+  "semi": true,
+  "printWidth": 96,
+  "tailwindFunctions": [
+    "clsx",
+    "cva"
+  ],
+  "importOrder": [
+    "^(@|[a-zA-Z])(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "@trivago/prettier-plugin-sort-imports"
+  ]
+}
