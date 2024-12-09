@@ -1,11 +1,12 @@
 "use client";
 
-import { forwardRef, useEffect, useState } from "react";
 import * as RadixSelect from "@radix-ui/react-select";
+import { cva } from "class-variance-authority";
+import React, { forwardRef, useEffect, useState } from "react";
+
 import { cn } from "../../lib/utils";
 import { typographyVariants } from "../Typography";
 import { ArrowDown } from "./ArrowDown";
-import { cva } from "class-variance-authority";
 
 export interface SelectOption {
   /**
@@ -19,7 +20,7 @@ export interface SelectOption {
 }
 
 export interface SelectProps
-  extends Omit<RadixSelect.SelectProps, "className" | "onValueChange"> {
+  extends Omit<RadixSelect.SelectProps, "className" | "onValueChange" | "style"> {
   /**
    * The value of the select item that should be selected by default.
    * Use when you do not need to control the state of the select items.
