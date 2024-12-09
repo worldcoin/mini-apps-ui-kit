@@ -1,15 +1,12 @@
-import { useState } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import Select, { SelectOption } from "../src/components/Select";
+import { useState } from "react";
+
 import Button from "../src/components/Button";
+import Select, { SelectOption, SelectProps } from "../src/components/Select";
 
 const meta: Meta<typeof Select> = {
   title: "components/Select",
   component: Select,
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
   argTypes: {
     value: {
       control: false,
@@ -26,7 +23,7 @@ const meta: Meta<typeof Select> = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<SelectProps>;
 
 const options: SelectOption[] = [
   { value: "10", label: "$10" },
