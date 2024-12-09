@@ -1,4 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
+import { expect, fireEvent, waitFor, within } from "@storybook/test";
 import { useState } from "react";
 
 import Button from "../src/components/Button";
@@ -14,7 +15,7 @@ const meta: Meta<typeof Select> = {
   },
   decorators: [
     (Story) => (
-      <div className="w-[300px]">
+      <div className="w-[300px]" data-testid="select-container">
         <Story />
       </div>
     ),
@@ -42,6 +43,17 @@ export const Default: Story = {
     options,
     placeholder: "Value",
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const placeholder = await canvas.getByText("Value");
+
+    expect(placeholder).toBeInTheDocument();
+
+    const selectInput = await canvas.getByRole("combobox");
+
+    expect(selectInput).toBeInTheDocument();
+  },
 };
 
 export const WithDefaultValue: Story = {
@@ -53,6 +65,54 @@ export const WithDefaultValue: Story = {
     defaultValue: options[0].value,
     placeholder: "Value",
   },
+  play: async ({ canvasElement }) => {
+    let selectViewport: Element | null = null;
+    const canvas = within(canvasElement);
+
+    const selectedValue = await canvas.getByText("$10");
+
+    expect(selectedValue).toBeVisible();
+
+    const selectInput = await canvas.getByRole("combobox");
+
+    fireEvent.click(selectInput);
+
+    await waitFor(() => {
+      selectViewport = document.body.querySelector("[data-radix-select-viewport]");
+
+      expect(selectViewport).toBeVisible();
+    });
+
+    let collectionItems = selectViewport!.querySelectorAll("[data-radix-collection-item]");
+
+    expect(collectionItems.length).toBe(options.length);
+
+    fireEvent.click(collectionItems[1]);
+
+    await waitFor(async () => {
+      const selectedValue = await canvas.getByText("$25");
+
+      expect(selectedValue).toBeVisible();
+    });
+
+    fireEvent.click(selectInput);
+
+    await waitFor(() => {
+      selectViewport = document.body.querySelector("[data-radix-select-viewport]");
+
+      expect(selectViewport).toBeVisible();
+    });
+
+    collectionItems = selectViewport!.querySelectorAll("[data-radix-collection-item]");
+
+    fireEvent.click(collectionItems[0]);
+
+    await waitFor(async () => {
+      const selectedValue = await canvas.getByText("$10");
+
+      expect(selectedValue).toBeVisible();
+    });
+  },
 };
 
 export const Disabled: Story = {
@@ -63,6 +123,13 @@ export const Disabled: Story = {
     options,
     placeholder: "Value",
     disabled: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const selectInput = await canvas.getByRole("combobox");
+
+    expect(selectInput).toBeDisabled();
   },
 };
 
@@ -77,6 +144,17 @@ export const WithError: Story = {
     placeholder: "Value",
     error: "Error message",
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const selectInput = await canvas.getByRole("combobox");
+
+    expect(selectInput).toHaveClass("shadow-none border border-error-700 bg-error-100");
+
+    const errorMessage = await canvas.getByText("Error message");
+
+    expect(errorMessage).toBeVisible();
+  },
 };
 
 export const WithDefaultOpen: Story = {
@@ -90,7 +168,19 @@ export const WithDefaultOpen: Story = {
     placeholder: "Value",
     defaultOpen: true,
   },
+  play: async () => {
+    const selectViewport = document.body.querySelector("[data-radix-select-viewport]");
+
+    expect(selectViewport).toBeVisible();
+  },
 };
+
+const longListOptions = Array.from({ length: 100 }, (_, idx) => idx + 1)
+  .filter((value) => value % 5 === 0 || value % 10 === 0)
+  .map((value) => ({
+    value: value.toString(),
+    label: `$${value}`,
+  }));
 
 export const LongList: Story = {
   render: (args) => {
@@ -99,13 +189,26 @@ export const LongList: Story = {
     return <Select {...args} value={selectedValue} onChange={setSelectedValue} />;
   },
   args: {
-    options: Array.from({ length: 100 }, (_, idx) => idx + 1)
-      .filter((value) => value % 5 === 0 || value % 10 === 0)
-      .map((value) => ({
-        value: value.toString(),
-        label: `$${value}`,
-      })),
+    options: longListOptions,
     placeholder: "Scroll through options",
+  },
+  play: async ({ canvasElement }) => {
+    let selectViewport: Element | null = null;
+    const canvas = within(canvasElement);
+
+    const selectInput = await canvas.getByRole("combobox");
+
+    fireEvent.click(selectInput);
+
+    await waitFor(() => {
+      selectViewport = document.body.querySelector("[data-radix-select-viewport]");
+
+      expect(selectViewport).toBeVisible();
+    });
+
+    const collectionItems = selectViewport!.querySelectorAll("[data-radix-collection-item]");
+
+    expect(collectionItems.length).toBe(longListOptions.length);
   },
 };
 
@@ -138,5 +241,29 @@ export const ControlledOpen: Story = {
   args: {
     options,
     placeholder: "Controlled open",
+  },
+  play: async ({ canvasElement }) => {
+    let selectViewport: Element | null = null;
+    const canvas = within(canvasElement);
+
+    const button = await canvas.getByText("Toggle Dropdown");
+
+    expect(button).toBeVisible();
+
+    fireEvent.click(button);
+
+    await waitFor(() => {
+      selectViewport = document.body.querySelector("[data-radix-select-viewport]");
+
+      expect(selectViewport).toBeVisible();
+    });
+
+    fireEvent.click(button);
+
+    await waitFor(() => {
+      selectViewport = document.body.querySelector("[data-radix-select-viewport]");
+
+      expect(selectViewport).not.toBeInTheDocument();
+    });
   },
 };
