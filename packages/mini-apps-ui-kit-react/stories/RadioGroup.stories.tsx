@@ -1,6 +1,8 @@
-import { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { expect, userEvent, within } from "@storybook/test";
+import { useState } from "react";
+
 import { RadioGroup, RadioGroupItem } from "../src/components/RadioGroup";
 import { cn } from "../src/lib/utils";
 
@@ -10,10 +12,6 @@ const meta: Meta<typeof RadioGroup> = {
   subcomponents: {
     RadioGroupItem: RadioGroupItem as React.ComponentType<unknown>,
   },
-  parameters: {
-    layout: "centered",
-  },
-  tags: ["autodocs"],
   argTypes: {
     defaultValue: {
       control: false,

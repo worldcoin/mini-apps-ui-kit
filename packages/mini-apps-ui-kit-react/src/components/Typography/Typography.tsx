@@ -1,6 +1,7 @@
+import { type VariantProps, cva } from "class-variance-authority";
 import { ElementType, forwardRef } from "react";
+
 import { cn } from "../../lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
 
 export interface TypographyProps<T extends ElementType = "p">
   extends Omit<VariantProps<typeof typographyVariants>, "variant" | "level"> {

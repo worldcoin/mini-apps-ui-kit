@@ -1,7 +1,9 @@
-import { forwardRef } from "react";
+"use client";
+
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
-import { cva, type VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
+import { forwardRef } from "react";
 
 export interface SwitchProps
   extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange" | "className">,
@@ -43,7 +45,7 @@ const switchClasses = cva(
 );
 
 const thumbClasses = cva(
-  "block h-5 w-5 transform rounded-full bg-gray-0 transition-transform",
+  "bg-gray-0 block h-5 w-5 transform rounded-full transition-transform",
   {
     variants: {
       checked: {
