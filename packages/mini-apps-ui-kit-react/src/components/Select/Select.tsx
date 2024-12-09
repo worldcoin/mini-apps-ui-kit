@@ -2,7 +2,7 @@
 
 import * as RadixSelect from "@radix-ui/react-select";
 import { cva } from "class-variance-authority";
-import React, { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import { cn } from "../../lib/utils";
 import { typographyVariants } from "../Typography";
@@ -183,6 +183,7 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
             <RadixSelect.Viewport
               className={cn(
                 "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] p-2",
+                options.length === 0 && "hidden",
               )}
             >
               {options.map((option) => (
