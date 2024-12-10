@@ -73,7 +73,7 @@ export interface SelectProps
 }
 
 const triggerVariants = cva(
-  "flex h-[3.125rem] w-full min-w-[6rem] cursor-pointer items-center justify-between whitespace-nowrap rounded-xl border-2 px-3 py-4 font-sans outline-none transition-all transition-transform [&>span:first-of-type]:line-clamp-1",
+  "text-base flex h-[3.125rem] w-full min-w-[6rem] cursor-pointer items-center justify-between whitespace-nowrap rounded-xl border-2 px-3 py-4 font-sans outline-none transition-all transition-transform [&>span:first-of-type]:line-clamp-1",
   {
     variants: {
       isOpen: {
