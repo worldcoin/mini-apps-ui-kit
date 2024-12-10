@@ -23,7 +23,6 @@ export const WithValidationMessage: Story = {
   render: ({ message = "This field is required" }) => (
     <Form.Root>
       <Form.Field name="email">
-        <Form.Label>Email</Form.Label>
         <Form.Control asChild>
           <Input placeholder="Enter your email" />
         </Form.Control>
@@ -42,11 +41,10 @@ export const WithErrorState: Story = {
   render: ({ message = "Please enter a valid email" }) => (
     <Form.Root>
       <Form.Field name="email" className="has-error">
-        <Form.Label>Email</Form.Label>
         <Form.Control asChild>
-          <Input isError placeholder="Enter your email" />
+          <Input error placeholder="Enter your email" />
         </Form.Control>
-        <Form.Message isError>{message}</Form.Message>
+        <Form.Message error>{message}</Form.Message>
       </Form.Field>
     </Form.Root>
   ),

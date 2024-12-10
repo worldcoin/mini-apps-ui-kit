@@ -26,5 +26,5 @@ export const Message = forwardRef<
     {...props}
   />
 ));
-export const ValidityState = RadixForm.ValidityState;
-export const Submit = RadixForm.Submit;
+export const ValidityState: typeof RadixForm.ValidityState = RadixForm.ValidityState;
+export const Submit: typeof RadixForm.Submit = RadixForm.Submit;
