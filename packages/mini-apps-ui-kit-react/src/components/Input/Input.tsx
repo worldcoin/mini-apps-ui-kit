@@ -1,22 +1,23 @@
-import * as React from "react";
+import type { VariantProps } from "class-variance-authority";
 
 import { cva } from "class-variance-authority";
-import type { VariantProps } from "class-variance-authority";
+import * as React from "react";
+
 import { cn } from "../../lib/utils";
 import { Tick } from "../Icons/Tick";
 
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "h-[3.125rem] w-full rounded-xl border border-gray-100 bg-gray-100 px-3 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
+  "h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-3 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
   {
     variants: {
-      isError: {
+      error: {
         true: "border-error-700 bg-error-100 focus:border-error-700 focus:bg-error-100",
       },
     },
     defaultVariants: {
-      isError: false,
+      error: false,
     },
   },
 );
@@ -27,7 +28,7 @@ export interface InputProps
   /**
    * If true, the input will display in an error state with error styling
    */
-  isError?: boolean;
+  error?: boolean;
   /**
    * If true, the input will display in a valid state with success styling
    */
@@ -60,7 +61,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       type = "text",
-      isError,
+      error,
       startAdornment,
       endAdornment,
       isValid,
@@ -85,7 +86,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           type={type}
-          className={cn(inputVariants({ isError }))}
+          className={cn(inputVariants({ error }))}
           style={{
             ...(startAdornment && {
               paddingLeft: `${1 + startAdornmentWidth}rem`,
