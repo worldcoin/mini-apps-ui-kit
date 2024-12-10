@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { FormProps } from "@radix-ui/react-form";
 import { expect, within } from "@storybook/test";
 
 import * as Form from "../../src/components/Form";
 import Input from "../../src/components/Input";
 
-type FormStoryProps = FormProps & {
+type FormStoryProps = Form.FormProps & {
   message?: string;
 };
 
