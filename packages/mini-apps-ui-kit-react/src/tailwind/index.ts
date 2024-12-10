@@ -48,7 +48,7 @@ const uiKitTailwindPlugin = plugin(
   {
     theme: {
       boxShadow: {
-        card: '0 0.625rem 1.15rem 0 #191C201A',
+        card: "0 0.625rem 1.875rem 0 #191C201A",
       },
       fontFamily: {
         sans: "var(--font-sans)",
