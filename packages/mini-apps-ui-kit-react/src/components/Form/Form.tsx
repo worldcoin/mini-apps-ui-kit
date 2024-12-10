@@ -10,9 +10,9 @@ export const Control = RadixForm.Control;
 export const Message = forwardRef<
   React.ElementRef<typeof RadixForm.Message>,
   React.ComponentPropsWithoutRef<typeof RadixForm.Message> & {
-    isError?: boolean;
+    error?: boolean;
   }
->(({ className, isError, ...props }, ref) => (
+>(({ className, error, ...props }, ref) => (
   <RadixForm.Message
     ref={ref}
     className={cn(
@@ -21,7 +21,7 @@ export const Message = forwardRef<
         variant: "body",
         level: 3,
       }),
-      isError ? "text-error-700" : "text-gray-500",
+      error ? "text-error-700" : "text-gray-500",
     )}
     {...props}
   />
