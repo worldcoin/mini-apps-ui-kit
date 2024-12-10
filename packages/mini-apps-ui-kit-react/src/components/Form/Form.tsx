@@ -6,7 +6,6 @@ import { typographyVariants } from "../Typography";
 
 export const Root = RadixForm.Root;
 export const Field = RadixForm.Field;
-export const Label = RadixForm.Label;
 export const Control = RadixForm.Control;
 export const Message = forwardRef<
   React.ElementRef<typeof RadixForm.Message>,
