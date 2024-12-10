@@ -648,6 +648,10 @@ video {
   top: 0.75rem;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -694,6 +698,10 @@ video {
 
 .h-9 {
   height: 2.25rem;
+}
+
+.h-\[1\.625rem\] {
+  height: 1.625rem;
 }
 
 .h-\[3\.125rem\] {
@@ -956,6 +964,10 @@ video {
 
 .pr-2 {
   padding-right: 0.5rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
 }
 
 .font-display {
