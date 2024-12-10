@@ -89,7 +89,7 @@ const triggerVariants = cva(
         false: "",
       },
       error: {
-        true: "shadow-none border border-error-700 bg-error-100",
+        true: "shadow-none border-error-700 bg-error-100",
         false: "",
       },
       disabled: {

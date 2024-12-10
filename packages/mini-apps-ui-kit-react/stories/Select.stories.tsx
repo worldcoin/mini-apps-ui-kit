@@ -149,7 +149,7 @@ export const WithError: Story = {
 
     const selectInput = await canvas.getByRole("combobox");
 
-    expect(selectInput).toHaveClass("shadow-none border border-error-700 bg-error-100");
+    expect(selectInput).toHaveClass("shadow-none border-error-700 bg-error-100");
 
     const errorMessage = await canvas.getByText("Error message");
 
