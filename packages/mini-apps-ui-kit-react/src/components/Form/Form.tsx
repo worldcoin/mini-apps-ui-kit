@@ -16,7 +16,7 @@ export const Message = forwardRef<
   <RadixForm.Message
     ref={ref}
     className={cn(
-      "h-[1.625rem] mt-1",
+      "h-[1.625rem] mt-1 flex items-center",
       typographyVariants({
         variant: "body",
         level: 3,
