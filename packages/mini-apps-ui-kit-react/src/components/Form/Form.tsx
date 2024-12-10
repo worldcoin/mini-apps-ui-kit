@@ -1,9 +1,12 @@
+import type { FormProps as RadixFormProps } from "@radix-ui/react-form";
+
 import { cn } from "@/lib/utils";
 import * as RadixForm from "@radix-ui/react-form";
 import { forwardRef } from "react";
 
 import { typographyVariants } from "../Typography";
 
+export type FormProps = RadixFormProps;
 export const Root = RadixForm.Root;
 export const Field = RadixForm.Field;
 export const Control = RadixForm.Control;
