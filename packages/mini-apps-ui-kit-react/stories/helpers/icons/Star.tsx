@@ -6,7 +6,7 @@ export function Star(props: React.SVGProps<SVGSVGElement>) {
       viewBox="0 0 17 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      data-testid="button-icon"
+      data-testid="star-icon"
       {...props}
     >
       <path

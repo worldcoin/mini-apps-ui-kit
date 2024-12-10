@@ -3,7 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, within } from "@storybook/test";
 
 import Button from "../../src/components/Button";
-import { Star } from "./Icon";
+import { iconControl } from "../helpers/icon-control";
+import { Star } from "../helpers/icons/Star";
 
 const meta: Meta<typeof Button> = {
   title: "components/Button",
@@ -30,9 +31,7 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
       defaultValue: false,
     },
-    icon: {
-      control: false,
-    },
+    icon: iconControl,
   },
   args: { onClick: fn() },
   decorators: [
@@ -72,15 +71,10 @@ export const TextWithIcon: Story = {
     radius: "md",
     fullWidth: false,
   },
-  argTypes: {
-    icon: {
-      control: false,
-    },
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByText("Button");
-    const icon = await canvas.findByTestId("button-icon");
+    const icon = await canvas.findByTestId("star-icon");
 
     expect(button).toBeInTheDocument();
     expect(icon).toBeInTheDocument();
@@ -94,14 +88,9 @@ export const Icon: Story = {
     size: "md",
     radius: "md",
   },
-  argTypes: {
-    icon: {
-      control: false,
-    },
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const icon = await canvas.findByTestId("button-icon");
+    const icon = await canvas.findByTestId("star-icon");
 
     expect(icon).toBeInTheDocument();
   },
