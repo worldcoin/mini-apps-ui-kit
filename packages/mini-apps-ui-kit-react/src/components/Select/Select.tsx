@@ -44,9 +44,10 @@ export interface SelectProps
    */
   placeholder?: string;
   /**
-   * The error message to display when there is an error.
+   * If true, the select will display in an error state with error styling
+   * @default false
    */
-  error?: string;
+  error?: boolean;
   /**
    * The open state of the select when it is initially rendered.
    * Use when you do not need to control its open state.
@@ -116,7 +117,7 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
       onChange,
       open,
       onOpenChange,
-      error,
+      error = false,
       defaultOpen = false,
       disabled = false,
       name,
@@ -161,7 +162,7 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
             triggerVariants({
               isOpen,
               value: !!value,
-              error: !!error,
+              error,
               disabled,
               defaultValue: !!defaultValue,
             }),
@@ -202,18 +203,6 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
             </RadixSelect.Viewport>
           </RadixSelect.Content>
         </RadixSelect.Portal>
-
-        {error && (
-          <p
-            className={cn(
-              "mt-1 w-full overflow-hidden text-ellipsis whitespace-normal px-2 py-1 text-error-700",
-              typographyVariants({ variant: "body", level: 3 }),
-              disabled && "cursor-not-allowed opacity-20",
-            )}
-          >
-            {error}
-          </p>
-        )}
       </RadixSelect.Root>
     );
   },

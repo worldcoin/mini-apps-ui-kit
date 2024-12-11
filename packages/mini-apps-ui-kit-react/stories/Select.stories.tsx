@@ -3,6 +3,7 @@ import { expect, fireEvent, waitFor, within } from "@storybook/test";
 import { useState } from "react";
 
 import Button from "../src/components/Button";
+import * as Form from "../src/components/Form";
 import Select, { SelectOption, SelectProps } from "../src/components/Select";
 
 const meta: Meta<typeof Select> = {
@@ -133,16 +134,25 @@ export const Disabled: Story = {
   },
 };
 
-export const WithError: Story = {
+export const WithErrorLabel: Story = {
   render: (args) => {
     const [selectedValue, setSelectedValue] = useState<string | undefined>();
 
-    return <Select {...args} value={selectedValue} onChange={setSelectedValue} />;
+    return (
+      <Form.Root>
+        <Form.Field name="select" className="has-error">
+          <Form.Control asChild>
+            <Select {...args} value={selectedValue} onChange={setSelectedValue} />
+          </Form.Control>
+          <Form.Message error>Error message</Form.Message>
+        </Form.Field>
+      </Form.Root>
+    );
   },
   args: {
     options,
     placeholder: "Value",
-    error: "Error message",
+    error: true,
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
