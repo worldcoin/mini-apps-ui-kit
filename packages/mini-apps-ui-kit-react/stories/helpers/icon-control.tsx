@@ -1,5 +1,5 @@
-import { Star } from "./icons/Star";
 import { Shield } from "./icons/Shield";
+import { Star } from "./icons/Star";
 
 export const iconControl = {
   control: "select",
