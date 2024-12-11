@@ -21,6 +21,10 @@
       "types": "./dist/components/Chip/index.d.ts",
       "default": "./dist/components/Chip/index.js"
     },
+    "./Form": {
+      "types": "./dist/components/Form/index.d.ts",
+      "default": "./dist/components/Form/index.js"
+    },
     "./Typography": {
       "types": "./dist/components/Typography/index.d.ts",
       "default": "./dist/components/Typography/index.js"
@@ -101,6 +105,7 @@
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-form": "^0.1.0",
     "@radix-ui/react-radio-group": "^1.2.1",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-switch": "^1.1.1",
