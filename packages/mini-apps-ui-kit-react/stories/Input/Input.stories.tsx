@@ -16,6 +16,9 @@ const meta: Meta<InputProps> = {
     type: {
       control: false,
     },
+    disabled: {
+      control: "boolean",
+    },
   },
   decorators: [
     (Story) => (
@@ -65,5 +68,18 @@ export const EndCustomSizeIcon: Story = {
     const icon = await canvas.findByTestId("switch-icon");
 
     expect(icon).toBeInTheDocument();
+  },
+};
+
+export const WithPasteButton: Story = {
+  args: {
+    placeholder: "Enter text to paste",
+    showPasteButton: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const pasteButton = await canvas.findByText("Paste");
+
+    expect(pasteButton).toBeInTheDocument();
   },
 };

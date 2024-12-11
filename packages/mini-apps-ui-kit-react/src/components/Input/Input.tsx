@@ -1,15 +1,16 @@
 import type { VariantProps } from "class-variance-authority";
 
+import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
-import { Tick } from "../Icons/Tick";
+import EndAdornment from "./EndAdornment";
 
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-3 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
+  "peer h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
   {
     variants: {
       error: {
@@ -23,6 +24,29 @@ export const inputVariants = cva(
     defaultVariants: {
       error: false,
       isFocused: false,
+    },
+  },
+);
+
+export const iconVariants = cva(
+  "absolute bottom-3 top-3 flex items-center justify-end overflow-hidden",
+  {
+    variants: {
+      error: {
+        true: "text-error-700",
+      },
+      disabled: {
+        true: "text-gray-300 cursor-not-allowed",
+        false: "text-gray-400",
+      },
+      position: {
+        start: "left-3",
+        end: "right-3",
+      },
+    },
+    defaultVariants: {
+      error: false,
+      disabled: false,
     },
   },
 );
@@ -65,6 +89,12 @@ export interface InputProps
    * @default false
    */
   isFocused?: boolean;
+
+  /**
+   * If true, displays a paste button as an end adornment
+   * @default false
+   */
+  showPasteButton?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -75,54 +105,64 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       startAdornment,
       endAdornment,
       isValid,
+      showPasteButton,
       startAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       isFocused = false,
+      disabled,
       ...props
     },
     ref,
   ) => {
+    const inputRef: React.RefObject<HTMLInputElement> = React.useMemo(
+      () => ref || React.createRef<HTMLInputElement>(),
+      [ref],
+    );
     return (
       <div className="relative flex w-full items-center">
         {startAdornment && (
-          <div
-            className="absolute bottom-3 left-3 top-3 flex items-center justify-start overflow-hidden"
-            style={{
-              width: `${startAdornmentWidth}rem`,
-            }}
+          <Slot
+            className={cn(iconVariants({ error, disabled, position: "start" }))}
+            style={{ width: `${startAdornmentWidth}rem` }}
           >
             {startAdornment}
-          </div>
+          </Slot>
         )}
         <input
-          ref={ref}
+          ref={inputRef}
           type={type}
+          disabled={disabled}
           className={cn(inputVariants({ error, isFocused }))}
+          {...props}
           style={{
             ...(startAdornment && {
               paddingLeft: `${1 + startAdornmentWidth}rem`,
             }),
-            ...(endAdornment && {
+            ...((endAdornment || showPasteButton) && {
               paddingRight: `${1 + endAdornmentWidth}rem`,
             }),
             ...(isValid && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
           }}
-          {...props}
         />
-        {(endAdornment || isValid) && (
-          <div
-            className="absolute bottom-3 right-3 top-3 flex items-center justify-end overflow-hidden"
-            style={{
-              width: `${endAdornmentWidth}rem`,
-            }}
+        {(endAdornment || isValid || showPasteButton) && (
+          <Slot
+            className={cn(iconVariants({ error, disabled, position: "end" }))}
+            style={{ width: `${endAdornmentWidth}rem` }}
           >
-            {isValid ? <Tick className="text-success-700" /> : endAdornment}
-          </div>
+            <EndAdornment
+              isValid={isValid}
+              showPasteButton={showPasteButton}
+              inputRef={inputRef}
+              endAdornment={endAdornment}
+            />
+          </Slot>
         )}
       </div>
     );
   },
 );
+// endAdornmentWidth={3.875}
+
 Input.displayName = "Input";
 
 export default Input;
