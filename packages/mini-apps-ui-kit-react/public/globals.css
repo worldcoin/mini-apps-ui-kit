@@ -834,6 +834,10 @@ video {
   position:relative
 }
 
+.bottom-1{
+  bottom:0.25rem
+}
+
 .bottom-3{
   bottom:0.75rem
 }
@@ -842,8 +846,16 @@ video {
   left:0.75rem
 }
 
+.right-1{
+  right:0.25rem
+}
+
 .right-3{
   right:0.75rem
+}
+
+.top-1{
+  top:0.25rem
 }
 
 .top-3{
@@ -965,6 +977,10 @@ video {
   height:150%
 }
 
+.h-\[2\.625rem\]{
+  height:2.625rem
+}
+
 .h-\[3\.125rem\]{
   height:3.125rem
 }
@@ -1015,6 +1031,10 @@ video {
 
 .w-\[200px\]{
   width:200px
+}
+
+.w-\[3\.875rem\]{
+  width:3.875rem
 }
 
 .w-\[300px\]{
@@ -1329,6 +1349,11 @@ video {
   padding-right:0.5rem
 }
 
+.px-2\.5{
+  padding-left:0.625rem;
+  padding-right:0.625rem
+}
+
 .px-3{
   padding-left:0.75rem;
   padding-right:0.75rem
@@ -1433,6 +1458,10 @@ video {
   font-weight:600
 }
 
+.uppercase{
+  text-transform:uppercase
+}
+
 .leading-\[1\.25\]{
   line-height:1.25
 }
@@ -1467,6 +1496,10 @@ video {
 
 .text-gray-0{
   color:var(--gray-0)
+}
+
+.text-gray-300{
+  color:var(--gray-300)
 }
 
 .text-gray-400{
@@ -1664,12 +1697,20 @@ video {
   color:transparent
 }
 
+.disabled\:opacity-50:disabled{
+  opacity:0.5
+}
+
 .disabled\:opacity-90:disabled{
   opacity:0.9
 }
 
 .disabled\:active\:bg-transparent:active:disabled{
   background-color:transparent
+}
+
+.peer:focus ~ .peer-focus\:bg-gray-100{
+  background-color:var(--gray-100)
 }
 
 .has-\[\:disabled\]\:opacity-50:has(:disabled){
