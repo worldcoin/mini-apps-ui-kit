@@ -1,11 +1,11 @@
 import type { VariantProps } from "class-variance-authority";
 
-import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
-import EndAdornment from "./EndAdornment";
+import { Tick } from "../Icons/Tick";
+import PasteButton from "../PasteButton/PasteButton";
 
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
@@ -28,32 +28,29 @@ export const inputVariants = cva(
   },
 );
 
-export const iconVariants = cva(
-  "absolute bottom-3 top-3 flex items-center justify-end overflow-hidden",
-  {
-    variants: {
-      error: {
-        true: "text-error-700",
-      },
-      disabled: {
-        true: "text-gray-300 cursor-not-allowed",
-        false: "text-gray-400",
-      },
-      position: {
-        start: "left-3",
-        end: "right-3",
-      },
+export const iconVariants = cva("absolute top-3 bottom-3 flex items-center overflow-hidden", {
+  variants: {
+    error: {
+      true: "text-error-700",
     },
-    defaultVariants: {
-      error: false,
-      disabled: false,
+    disabled: {
+      true: "text-gray-300 cursor-not-allowed",
+      false: "text-gray-400",
+    },
+    position: {
+      start: "left-3 justify-start",
+      end: "right-3 justify-end",
     },
   },
-);
+  defaultVariants: {
+    error: false,
+    disabled: false,
+  },
+});
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "className" | "style">,
-    Omit<VariantProps<typeof inputVariants>, "type"> {
+    Omit<VariantProps<typeof inputVariants>, "type" | "disabled"> {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -121,12 +118,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative flex w-full items-center">
         {startAdornment && (
-          <Slot
+          <div
             className={cn(iconVariants({ error, disabled, position: "start" }))}
             style={{ width: `${startAdornmentWidth}rem` }}
           >
             {startAdornment}
-          </Slot>
+          </div>
         )}
         <input
           ref={inputRef}
@@ -144,24 +141,25 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ...(isValid && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
           }}
         />
-        {(endAdornment || isValid || showPasteButton) && (
-          <Slot
+        {showPasteButton ? (
+          <PasteButton
+            inputRef={inputRef}
             className={cn(iconVariants({ error, disabled, position: "end" }))}
-            style={{ width: `${endAdornmentWidth}rem` }}
-          >
-            <EndAdornment
-              isValid={isValid}
-              showPasteButton={showPasteButton}
-              inputRef={inputRef}
-              endAdornment={endAdornment}
-            />
-          </Slot>
+          />
+        ) : (
+          (endAdornment || isValid) && (
+            <div
+              className={cn(iconVariants({ error, disabled, position: "end" }))}
+              style={{ width: `${endAdornmentWidth}rem` }}
+            >
+              {isValid ? <Tick className="text-success-700" /> : endAdornment}
+            </div>
+          )
         )}
       </div>
     );
   },
 );
-// endAdornmentWidth={3.875}
 
 Input.displayName = "Input";
 

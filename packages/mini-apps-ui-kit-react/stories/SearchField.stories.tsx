@@ -38,3 +38,11 @@ export const Error: Story = {
     </Form.Root>
   ),
 };
+
+export const WithPasteButton: Story = {
+  render: (args) => (
+    <Form.Root>
+      <SearchField placeholder="Name, Address or ENS" showPasteButton {...args} />
+    </Form.Root>
+  ),
+};

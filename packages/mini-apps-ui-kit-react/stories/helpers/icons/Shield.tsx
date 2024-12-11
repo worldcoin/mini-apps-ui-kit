@@ -5,21 +5,13 @@ interface ShieldProps extends React.SVGProps<SVGSVGElement> {
   color?: string;
 }
 
-const variantClasses: Record<NonNullable<ChipProps["variant"]>, string> = {
-  default: "var(--gray-500)",
-  success: "var(--success-700)",
-  warning: "var(--warning-700)",
-  error: "var(--error-700)",
-  important: "var(--info-700)",
-};
-
-export function Shield({ variant = "default", color, ...rest }: ShieldProps) {
+export function Shield({ variant = "default", color = "currentColor", ...rest }: ShieldProps) {
   return (
     <svg
       width="20"
       height="20"
       viewBox="0 0 16 16"
-      fill={color || variantClasses[variant]}
+      fill={color}
       xmlns="http://www.w3.org/2000/svg"
       data-testid="shield-icon"
       {...rest}
