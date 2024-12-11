@@ -2,6 +2,7 @@ export { default as Button } from "./components/Button";
 export * from "./components/Button";
 export { default as Chip } from "./components/Chip";
 export * from "./components/Chip";
+export * from "./components/Form";
 export { default as Pill } from "./components/Pill";
 export * from "./components/Pill";
 export { default as Switch } from "./components/Switch";
