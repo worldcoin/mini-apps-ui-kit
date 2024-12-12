@@ -1025,16 +1025,12 @@ video {
   width:1.5rem
 }
 
+.w-80{
+  width:20rem
+}
+
 .w-\[150\%\]{
   width:150%
-}
-
-.w-\[200px\]{
-  width:200px
-}
-
-.w-\[3\.875rem\]{
-  width:3.875rem
 }
 
 .w-\[300px\]{
@@ -1693,12 +1689,12 @@ video {
   color:var(--gray-300)
 }
 
-.disabled\:text-transparent:disabled{
-  color:transparent
+.disabled\:text-gray-400:disabled{
+  color:var(--gray-400)
 }
 
-.disabled\:opacity-50:disabled{
-  opacity:0.5
+.disabled\:text-transparent:disabled{
+  color:transparent
 }
 
 .disabled\:opacity-90:disabled{

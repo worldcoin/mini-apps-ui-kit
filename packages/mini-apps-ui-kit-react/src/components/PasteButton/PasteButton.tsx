@@ -20,7 +20,7 @@ const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
         ref={ref}
         className={cn(
           className,
-          "bottom-1 right-1 top-1 flex h-[2.625rem] w-[3.875rem] items-center justify-center rounded-lg px-4 text-base font-medium text-gray-500 transition duration-300 bg-gray-0 peer-focus:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-[2.625rem] items-center justify-center rounded-lg px-4 text-base font-medium text-gray-500 transition duration-300 bg-gray-0 peer-focus:bg-gray-100 disabled:cursor-not-allowed",
         )}
         onClick={async () => {
           try {

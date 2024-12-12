@@ -10,27 +10,40 @@ const meta: Meta<typeof SearchField> = {
   argTypes: {
     error: {
       control: "boolean",
+      description: "Error state",
+    },
+    disabled: {
+      control: "boolean",
+      description: "Disabled state",
     },
     isValid: {
       control: "boolean",
+      description: "Valid state",
+    },
+    showPasteButton: {
+      control: "boolean",
+      description: "Show paste button",
     },
   },
+  decorators: [
+    (Story) => (
+      <div className="w-80 flex justify-center">
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => (
-    <Form.Root>
-      <SearchField placeholder="Name, Address or ENS" {...args} />
-    </Form.Root>
-  ),
+  render: (args) => <SearchField placeholder="Name, Address or ENS" {...args} />,
 };
 
 export const Error: Story = {
   render: (args) => (
-    <Form.Root>
+    <Form.Root className="w-full">
       <Form.Field name="search">
         <SearchField placeholder="Name, Address or ENS" error {...args} />
         <Form.Message error>This is an error message</Form.Message>
@@ -41,8 +54,6 @@ export const Error: Story = {
 
 export const WithPasteButton: Story = {
   render: (args) => (
-    <Form.Root>
-      <SearchField placeholder="Name, Address or ENS" showPasteButton {...args} />
-    </Form.Root>
+    <SearchField placeholder="Name, Address or ENS" showPasteButton {...args} />
   ),
 };
