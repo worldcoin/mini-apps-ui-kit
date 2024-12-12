@@ -10,7 +10,7 @@ import PasteButton from "../PasteButton/PasteButton";
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "peer h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed",
+  "peer h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:text-gray-400 disabled:cursor-not-allowed",
   {
     variants: {
       error: {
@@ -92,6 +92,11 @@ export interface InputProps
    * @default false
    */
   showPasteButton?: boolean;
+  /**
+   * Label for the paste button
+   * @default "Paste"
+   */
+  pasteButtonLabel?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -103,6 +108,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       endAdornment,
       isValid,
       showPasteButton,
+      pasteButtonLabel,
       startAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       isFocused = false,
@@ -111,10 +117,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const inputRef: React.RefObject<HTMLInputElement> = React.useMemo(
-      () => ref || React.createRef<HTMLInputElement>(),
-      [ref],
-    );
+    const internalRef = React.useRef<HTMLInputElement>(null);
+    const inputRef = React.useMemo(() => ref || internalRef, [ref]);
     return (
       <div className="relative flex w-full items-center">
         {startAdornment && (
@@ -138,23 +142,28 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ...((endAdornment || showPasteButton) && {
               paddingRight: `${1 + endAdornmentWidth}rem`,
             }),
-            ...(isValid && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
+            ...(isValid &&
+              !showPasteButton && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
           }}
         />
-        {showPasteButton ? (
+        {showPasteButton && !isValid && (
           <PasteButton
             inputRef={inputRef}
-            className={cn(iconVariants({ error, disabled, position: "end" }))}
+            label={pasteButtonLabel}
+            className={cn(
+              iconVariants({ error, disabled, position: "end" }),
+              "bottom-1 right-1 top-1",
+            )}
           />
-        ) : (
-          (endAdornment || isValid) && (
-            <div
-              className={cn(iconVariants({ error, disabled, position: "end" }))}
-              style={{ width: `${endAdornmentWidth}rem` }}
-            >
-              {isValid ? <Tick className="text-success-700" /> : endAdornment}
-            </div>
-          )
+        )}
+
+        {(isValid || (endAdornment && !showPasteButton)) && (
+          <div
+            className={cn(iconVariants({ error, disabled, position: "end" }))}
+            style={{ width: `${endAdornmentWidth}rem` }}
+          >
+            {isValid ? <Tick className="text-success-700" /> : endAdornment}
+          </div>
         )}
       </div>
     );

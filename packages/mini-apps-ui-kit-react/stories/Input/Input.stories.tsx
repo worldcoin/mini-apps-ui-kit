@@ -22,8 +22,8 @@ const meta: Meta<InputProps> = {
   },
   decorators: [
     (Story) => (
-      <div className="w-[200px] flex justify-center">
-        <Story />
+      <div className="w-80 flex justify-center">
+        <Story   />
       </div>
     ),
   ],
