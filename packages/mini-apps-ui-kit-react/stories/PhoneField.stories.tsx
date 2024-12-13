@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import PhoneField, { PhoneFieldProps } from "@/components/PhoneField";
 import { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "@storybook/test";
 import { useRef, useState } from "react";
 
 import * as Form from "../src/components/Form";
@@ -31,6 +32,14 @@ export const Default: Story = {
 
     return <PhoneField {...args} value={value} onChange={setValue} />;
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+    expect(input).toBeVisible();
+    expect(input).toHaveValue("+1 ");
+  },
 };
 
 export const WithErrorLabel: Story = {
@@ -51,6 +60,17 @@ export const WithErrorLabel: Story = {
   args: {
     error: true,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+    expect(input).toHaveClass("border-error-700 bg-error-100");
+
+    const errorMessage = await canvas.getByText("Error message");
+
+    expect(errorMessage).toBeVisible();
+  },
 };
 
 export const Disabled: Story = {
@@ -62,6 +82,15 @@ export const Disabled: Story = {
   args: {
     disabled: true,
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const selectButton = await canvas.getByRole("combobox");
+
+    expect(input).toBeDisabled();
+    expect(selectButton).toBeDisabled();
+  },
 };
 
 export const ShowValidStateWhenMin12Digits: Story = {
@@ -70,6 +99,16 @@ export const ShowValidStateWhenMin12Digits: Story = {
     const isValid = value.length >= 12;
 
     return <PhoneField {...args} value={value} onChange={setValue} isValid={isValid} />;
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const tickIcon = await canvas.findByTestId("tick-icon");
+
+    expect(input).toBeVisible();
+    expect(input).toHaveValue("+1 (234) 567-8912");
+    expect(tickIcon).toBeVisible();
   },
 };
 
