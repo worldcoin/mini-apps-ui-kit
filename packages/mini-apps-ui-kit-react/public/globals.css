@@ -636,12 +636,20 @@ video {
   bottom: 0.75rem;
 }
 
+.left-0 {
+  left: 0px;
+}
+
 .left-3 {
   left: 0.75rem;
 }
 
 .right-3 {
   right: 0.75rem;
+}
+
+.top-0 {
+  top: 0px;
 }
 
 .top-3 {
@@ -656,8 +664,32 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.mr-1 {
+  margin-right: 0.25rem;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.-ml-3 {
+  margin-left: -0.75rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mt-5 {
+  margin-top: 1.25rem;
 }
 
 .block {
@@ -716,8 +748,16 @@ video {
   height: 1.625rem;
 }
 
+.h-\[150\%\] {
+  height: 150%;
+}
+
 .h-\[3\.125rem\] {
   height: 3.125rem;
+}
+
+.h-\[400px\] {
+  height: 400px;
 }
 
 .h-\[var\(--radix-select-trigger-height\)\] {
@@ -748,6 +788,10 @@ video {
   width: 1.5rem;
 }
 
+.w-\[150\%\] {
+  width: 150%;
+}
+
 .w-\[200px\] {
   width: 200px;
 }
@@ -756,8 +800,16 @@ video {
   width: 300px;
 }
 
+.w-\[400px\] {
+  width: 400px;
+}
+
 .w-full {
   width: 100%;
+}
+
+.w-auto {
+  width: auto;
 }
 
 .min-w-10 {
@@ -864,12 +916,8 @@ video {
   overflow: hidden;
 }
 
-.text-ellipsis {
-  text-overflow: ellipsis;
-}
-
-.whitespace-normal {
-  white-space: normal;
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
 .whitespace-nowrap {
@@ -944,6 +992,10 @@ video {
   background-color: var(--error-100);
 }
 
+.bg-error-800 {
+  background-color: var(--error-800);
+}
+
 .bg-gray-0 {
   background-color: var(--gray-0);
 }
@@ -996,6 +1048,11 @@ video {
   stroke: var(--gray-400);
 }
 
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -1013,11 +1070,6 @@ video {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
 }
 
 .py-4 {
@@ -1280,6 +1332,11 @@ video {
   --tw-shadow: 0 0.625rem 1.875rem 0 #191C201A;
   --tw-shadow-colored: 0 0.625rem 1.875rem 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.focus\:outline-none:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .focus-visible\:outline-none:focus-visible {

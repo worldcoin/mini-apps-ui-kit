@@ -1,3 +1,5 @@
+export { default as uiKitTailwindPlugin } from "./tailwind";
+
 export { default as Button } from "./components/Button";
 export * from "./components/Button";
 export { default as Chip } from "./components/Chip";
@@ -15,4 +17,5 @@ export { default as Checkbox } from "./components/Checkbox";
 export * from "./components/Checkbox";
 export { default as Select } from "./components/Select";
 export * from "./components/Select";
-export { default as uiKitTailwindPlugin } from "./tailwind";
+export { default as PhoneField } from "./components/PhoneField";
+export * from "./components/PhoneField";
