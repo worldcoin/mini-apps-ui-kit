@@ -104,15 +104,17 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       },
     );
 
-    useImperativeHandle(ref, () => {
-      const currentInputRef = inputRef.current as HTMLDivElement;
+    // useImperativeHandle(ref, () => {
+    //   const currentInputRef = inputRef.current as HTMLDivElement;
 
-      return {
-        ...currentInputRef,
-        focus: () => currentInputRef?.focus(),
-        blur: () => currentInputRef?.blur(),
-      };
-    });
+    //   return {
+    //     ...currentInputRef,
+    //     focus: () => currentInputRef?.focus(),
+    //     blur: () => currentInputRef?.blur(),
+    //   };
+    // });
+
+    useImperativeHandle(ref, () => inputRef.current as HTMLDivElement);
 
     const handleCountrySelect = (selectedCountry: ParsedCountry) => {
       setCountry(selectedCountry.iso2);
@@ -133,6 +135,14 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       <Input
         {...props}
         ref={inputRef}
+        // ref={(el) => {
+        //   inputRef.current = el;
+        //   // if (typeof ref === "function") {
+        //   //   ref(el);
+        //   // } else if (ref) {
+        //   //   ref.current = el;
+        //   // }
+        // }}
         value={inputValue}
         onChange={handlePhoneValueChange}
         placeholder={placeholder}

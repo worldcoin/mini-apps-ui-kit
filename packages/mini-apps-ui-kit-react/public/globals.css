@@ -1289,10 +1289,6 @@ video {
   background-color: transparent;
 }
 
-.hover\:underline:hover {
-  text-decoration-line: underline;
-}
-
 .focus\:border-error-700:focus {
   border-color: var(--error-700);
 }
