@@ -7,6 +7,13 @@ import * as Form from "../src/components/Form";
 const meta: Meta<typeof SearchField> = {
   title: "components/SearchField",
   component: SearchField,
+  parameters: {
+    docs: {
+      description: {
+        component: "A text input component designed for search functionality.",
+      },
+    },
+  },
   argTypes: {
     error: {
       control: "boolean",
