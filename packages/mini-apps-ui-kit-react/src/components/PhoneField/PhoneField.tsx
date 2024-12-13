@@ -104,45 +104,23 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       },
     );
 
-    // useImperativeHandle(ref, () => {
-    //   const currentInputRef = inputRef.current as HTMLDivElement;
-
-    //   return {
-    //     ...currentInputRef,
-    //     focus: () => currentInputRef?.focus(),
-    //     blur: () => currentInputRef?.blur(),
-    //   };
-    // });
-
+    // This allows the parent component to interact with the input element directly
     useImperativeHandle(ref, () => inputRef.current as HTMLDivElement);
+
+    const handleDropdownCloseAutoFocus = (event: Event) => {
+      event.preventDefault();
+      inputRef.current?.focus();
+    };
 
     const handleCountrySelect = (selectedCountry: ParsedCountry) => {
       setCountry(selectedCountry.iso2);
       setIsCountrySelectorOpen(false);
-
-      // TODO: investigate
-      // Delay focus to ensure RadixSelect's internal logic completes
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 1);
-    };
-
-    const handleOpenChange = (open: boolean) => {
-      setIsCountrySelectorOpen(open);
     };
 
     return (
       <Input
         {...props}
         ref={inputRef}
-        // ref={(el) => {
-        //   inputRef.current = el;
-        //   // if (typeof ref === "function") {
-        //   //   ref(el);
-        //   // } else if (ref) {
-        //   //   ref.current = el;
-        //   // }
-        // }}
         value={inputValue}
         onChange={handlePhoneValueChange}
         placeholder={placeholder}
@@ -155,7 +133,7 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         startAdornment={
           <RadixSelect.Root
             open={isCountrySelectorOpen}
-            onOpenChange={handleOpenChange}
+            onOpenChange={setIsCountrySelectorOpen}
             disabled={disabled}
           >
             <RadixSelect.Trigger className={cn(triggerVariants({ disabled }))}>
@@ -171,6 +149,7 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
               <RadixSelect.Content
                 position="popper"
                 className={cn(DROPDOWN_CONTAINER_STYLES, "-ml-3 mt-5 w-auto")}
+                onCloseAutoFocus={handleDropdownCloseAutoFocus}
               >
                 <CountrySelectorDropdown
                   show
