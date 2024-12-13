@@ -1,5 +1,7 @@
 import type { Preview } from "@storybook/react";
 
+import "react-international-phone/style.css";
+
 import "../public/globals.css";
 
 const preview: Preview = {

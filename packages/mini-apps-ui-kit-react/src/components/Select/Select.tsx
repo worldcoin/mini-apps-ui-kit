@@ -108,6 +108,9 @@ const triggerVariants = cva(
   },
 );
 
+export const dropdownContainerStyles =
+  "relative z-50 mt-1 max-h-[11.75rem] w-full overflow-hidden rounded-2xl bg-gray-0 shadow-regular-large";
+
 const Select = forwardRef<HTMLButtonElement, SelectProps>(
   (
     {
@@ -170,17 +173,12 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
         >
           <RadixSelect.Value placeholder={placeholder} />
           <RadixSelect.Icon className="h-5 w-5">
-            <ArrowDown />
+            <ArrowDown className="text-gray-900" />
           </RadixSelect.Icon>
         </RadixSelect.Trigger>
 
         <RadixSelect.Portal>
-          <RadixSelect.Content
-            position="popper"
-            className={cn(
-              "relative z-50 mt-1 max-h-[11.75rem] w-full overflow-hidden rounded-2xl bg-gray-0 shadow-regular-large",
-            )}
-          >
+          <RadixSelect.Content position="popper" className={cn(dropdownContainerStyles)}>
             <RadixSelect.Viewport
               className={cn(
                 "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] p-2",
