@@ -63,7 +63,7 @@ const NumberPad = ({ value = "", onChange, disabled = false }: NumberPadProps) =
           key={button.value}
           onClick={() => handleButtonClick(button.value)}
           disabled={disabled}
-          className="h-12 min-w-28 flex items-center justify-center text-[1.625rem] font-semibold font-display rounded-md transition-colors duration-200 tap:bg-gray-50 active:bg-gray-50 select-none disabled:text-gray-500 disabled:cursor-not-allowed disabled:tap:bg-transparent disabled:active:bg-transparent"
+          className="h-12 min-w-28 flex items-center justify-center text-[1.625rem] font-semibold font-display rounded-md transition-colors duration-200 tap:bg-gray-50 active:bg-gray-50 select-none disabled:text-gray-300 disabled:cursor-not-allowed disabled:tap:bg-transparent disabled:active:bg-transparent"
         >
           {button.label || button.value}
         </button>
