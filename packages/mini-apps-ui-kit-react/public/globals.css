@@ -728,6 +728,10 @@ video {
   height: auto;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
 .max-h-\[11\.75rem\] {
   max-height: 11.75rem;
 }
@@ -758,6 +762,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[400px\] {
+  width: 400px;
 }
 
 .min-w-10 {
@@ -802,6 +810,20 @@ video {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-none {
+  animation: none;
 }
 
 .cursor-not-allowed {
@@ -864,14 +886,6 @@ video {
   overflow: hidden;
 }
 
-.text-ellipsis {
-  text-overflow: ellipsis;
-}
-
-.whitespace-normal {
-  white-space: normal;
-}
-
 .whitespace-nowrap {
   white-space: nowrap;
 }
@@ -898,6 +912,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-\[14px\] {
+  border-radius: 14px;
 }
 
 .border {
@@ -980,6 +998,10 @@ video {
   background-color: var(--warning-100);
 }
 
+.bg-gray-50 {
+  background-color: var(--gray-50);
+}
+
 .fill-current {
   fill: currentColor;
 }
@@ -1000,6 +1022,10 @@ video {
   padding: 0.5rem;
 }
 
+.p-4 {
+  padding: 1rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1013,11 +1039,6 @@ video {
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
-}
-
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
 }
 
 .py-4 {
@@ -1194,6 +1215,10 @@ video {
   outline-offset: 2px;
 }
 
+.outline {
+  outline-style: solid;
+}
+
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
@@ -1244,6 +1269,10 @@ video {
   color: var(--gray-400);
 }
 
+.hover\:border-gray-300:hover {
+  border-color: var(--gray-300);
+}
+
 .hover\:bg-gray-100:hover {
   background-color: var(--gray-100);
 }
@@ -1258,6 +1287,10 @@ video {
 
 .hover\:bg-transparent:hover {
   background-color: transparent;
+}
+
+.hover\:bg-gray-50:hover {
+  background-color: var(--gray-50);
 }
 
 .focus\:border-error-700:focus {
