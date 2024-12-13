@@ -1,5 +1,6 @@
 "use client";
 
+import { DROPDOWN_CONTAINER_STYLES } from "@/lib/constants/dropdownStyles";
 import * as RadixSelect from "@radix-ui/react-select";
 import { cva } from "class-variance-authority";
 import { forwardRef, useEffect, useState } from "react";
@@ -108,9 +109,6 @@ const triggerVariants = cva(
   },
 );
 
-export const dropdownContainerStyles =
-  "relative z-50 mt-1 max-h-[11.75rem] w-full overflow-hidden rounded-2xl bg-gray-0 shadow-regular-large";
-
 const Select = forwardRef<HTMLButtonElement, SelectProps>(
   (
     {
@@ -178,7 +176,7 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
         </RadixSelect.Trigger>
 
         <RadixSelect.Portal>
-          <RadixSelect.Content position="popper" className={cn(dropdownContainerStyles)}>
+          <RadixSelect.Content position="popper" className={cn(DROPDOWN_CONTAINER_STYLES)}>
             <RadixSelect.Viewport
               className={cn(
                 "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] p-2",
