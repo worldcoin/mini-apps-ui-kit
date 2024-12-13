@@ -652,6 +652,10 @@ video {
   z-index: 50;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -789,6 +793,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .min-w-10 {
@@ -959,6 +967,10 @@ video {
 
 .rounded-xl {
   border-radius: 0.75rem;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .border {
@@ -1414,6 +1426,10 @@ video {
 
 .disabled\:active\:bg-transparent:active:disabled {
   background-color: transparent;
+}
+
+.has-\[\:disabled\]\:opacity-50:has(:disabled) {
+  opacity: 0.5;
 }
 
 .data-\[state\=checked\]\:border-gray-900[data-state="checked"] {
