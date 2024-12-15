@@ -1,7 +1,7 @@
 import Button from "@/components/Button";
 import PhoneField, { PhoneFieldProps } from "@/components/PhoneField";
 import { Meta, StoryObj } from "@storybook/react";
-import { expect, within } from "@storybook/test";
+import { expect, fireEvent, userEvent, waitFor, within } from "@storybook/test";
 import { useRef, useState } from "react";
 
 import * as Form from "../src/components/Form";
@@ -95,7 +95,7 @@ export const Disabled: Story = {
 
 export const ShowValidStateWhenMin12Digits: Story = {
   render: (args) => {
-    const [value, setValue] = useState("12345678912");
+    const [value, setValue] = useState("");
     const isValid = value.length >= 12;
 
     return <PhoneField {...args} value={value} onChange={setValue} isValid={isValid} />;
@@ -103,12 +103,19 @@ export const ShowValidStateWhenMin12Digits: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
-    const tickIcon = await canvas.findByTestId("tick-icon");
+    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
 
     expect(input).toBeVisible();
-    expect(input).toHaveValue("+1 (234) 567-8912");
-    expect(tickIcon).toBeVisible();
+    expect(input).toHaveValue("+1 ");
+
+    userEvent.type(input, "1234567891");
+
+    await waitFor(async () => {
+      const tickIcon = await canvas.findByTestId("tick-icon");
+
+      expect(tickIcon).toBeVisible();
+      expect(input).toHaveValue("+1 (123) 456-7891");
+    });
   },
 };
 
@@ -120,6 +127,54 @@ export const CustomDefaultCountry: Story = {
   },
   args: {
     defaultCountry: "pl",
+  },
+  play: async ({ canvasElement }) => {
+    let selectViewport: Element | null = null;
+    const canvas = within(canvasElement);
+
+    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+    expect(input).toHaveValue("+48 ");
+
+    const selectButton = await canvas.getByRole("combobox");
+
+    fireEvent.click(selectButton);
+
+    await waitFor(() => {
+      selectViewport = document.body.querySelector("[data-radix-popper-content-wrapper]");
+
+      expect(selectButton).toBeVisible();
+
+      const countries = selectViewport!.querySelectorAll("li");
+
+      expect(countries).toHaveLength(213);
+
+      fireEvent.click(countries[0]);
+    });
+
+    input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+    expect(input).toHaveValue("+93 ");
+
+    fireEvent.click(selectButton);
+
+    await waitFor(() => {
+      selectViewport = document.body.querySelector("[data-radix-popper-content-wrapper]");
+
+      expect(selectButton).toBeVisible();
+
+      const countryOption = selectViewport!.querySelector(
+        'li[data-country="pl"]',
+      ) as HTMLElement;
+
+      expect(countryOption).toBeVisible();
+
+      fireEvent.click(countryOption);
+    });
+
+    input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+    expect(input).toHaveValue("+48 ");
   },
 };
 
@@ -142,6 +197,19 @@ export const FocusOnButtonClick: Story = {
         <PhoneField ref={phoneFieldRef} {...args} value={value} onChange={setValue} />
       </>
     );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const button = await canvas.getByText("Focus");
+
+    expect(button).toBeVisible();
+
+    fireEvent.click(button);
+
+    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+    expect(input).toHaveFocus();
   },
 };
 
