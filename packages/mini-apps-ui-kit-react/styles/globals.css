@@ -1,3 +1,5 @@
+@import "react-international-phone/dist/index.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

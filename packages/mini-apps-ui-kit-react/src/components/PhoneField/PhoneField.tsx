@@ -1,3 +1,5 @@
+"use client";
+
 import { DROPDOWN_CONTAINER_STYLES } from "@/lib/constants/dropdownStyles";
 import { cn } from "@/lib/utils";
 import * as RadixSelect from "@radix-ui/react-select";
