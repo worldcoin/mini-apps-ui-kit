@@ -1,4 +1,280 @@
-*, ::before, ::after {
+.react-international-phone-country-selector {
+  position: relative;
+}
+
+.react-international-phone-country-selector-button {
+  display: flex;
+  height: var(--react-international-phone-height, 36px);
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid
+    var(
+      --react-international-phone-country-selector-border-color,
+      var(--react-international-phone-border-color, gainsboro)
+    );
+  margin: 0;
+  -moz-appearance: button;
+  appearance: button;
+  -webkit-appearance: button;
+  background-color: var(
+    --react-international-phone-country-selector-background-color,
+    var(--react-international-phone-background-color, white)
+  );
+  cursor: pointer;
+  text-transform: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.react-international-phone-country-selector-button:hover {
+  background-color: var(
+    --react-international-phone-country-selector-background-color-hover,
+    whitesmoke
+  );
+}
+
+.react-international-phone-country-selector-button--hide-dropdown {
+  cursor: auto;
+}
+
+.react-international-phone-country-selector-button--hide-dropdown:hover {
+  background-color: transparent;
+}
+
+.react-international-phone-country-selector-button__button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-international-phone-country-selector-button__flag-emoji {
+  margin: 0 4px;
+}
+
+.react-international-phone-country-selector-button__flag-emoji--disabled {
+  opacity: 0.75;
+}
+
+.react-international-phone-country-selector-button__dropdown-arrow {
+  border-top: var(--react-international-phone-country-selector-arrow-size, 4px) solid
+    var(--react-international-phone-country-selector-arrow-color, #777);
+  border-right: var(--react-international-phone-country-selector-arrow-size, 4px) solid
+    transparent;
+  border-left: var(--react-international-phone-country-selector-arrow-size, 4px) solid
+    transparent;
+  margin-right: 4px;
+  transition: all 0.1s ease-out;
+}
+
+.react-international-phone-country-selector-button__dropdown-arrow--active {
+  transform: rotateX(180deg);
+}
+
+.react-international-phone-country-selector-button__dropdown-arrow--disabled {
+  border-top-color: var(
+    --react-international-phone-disabled-country-selector-arrow-color,
+    #999
+  );
+}
+
+.react-international-phone-country-selector-button--disabled {
+  background-color: var(
+    --react-international-phone-disabled-country-selector-background-color,
+    var(--react-international-phone-disabled-background-color, whitesmoke)
+  );
+  cursor: auto;
+}
+
+.react-international-phone-country-selector-button--disabled:hover {
+  background-color: var(
+    --react-international-phone-disabled-country-selector-background-color,
+    var(--react-international-phone-disabled-background-color, whitesmoke)
+  );
+}
+
+.react-international-phone-flag-emoji {
+  width: var(--react-international-phone-flag-width, 24px);
+  height: var(--react-international-phone-flag-height, 24px);
+  box-sizing: border-box;
+}
+
+.react-international-phone-country-selector-dropdown {
+  position: absolute;
+  z-index: 1;
+  top: var(--react-international-phone-dropdown-top, 44px);
+  left: var(--react-international-phone-dropdown-left, 0);
+  display: flex;
+  width: 300px;
+  max-height: 200px;
+  flex-direction: column;
+  padding: 4px 0;
+  margin: 0;
+  background-color: var(
+    --react-international-phone-dropdown-item-background-color,
+    var(--react-international-phone-background-color, white)
+  );
+  box-shadow: var(
+    --react-international-phone-dropdown-shadow,
+    2px 2px 16px rgba(0, 0, 0, 0.25)
+  );
+  color: var(
+    --react-international-phone-dropdown-item-text-color,
+    var(--react-international-phone-text-color, #222)
+  );
+  list-style: none;
+  overflow-y: scroll;
+}
+
+.react-international-phone-country-selector-dropdown__preferred-list-divider {
+  height: 1px;
+  border: none;
+  margin: var(--react-international-phone-dropdown-preferred-list-divider-margin, 0);
+  background: var(
+    --react-international-phone-dropdown-preferred-list-divider-color,
+    var(--react-international-phone-border-color, gainsboro)
+  );
+}
+
+.react-international-phone-country-selector-dropdown__list-item {
+  display: flex;
+  min-height: var(--react-international-phone-dropdown-item-height, 28px);
+  box-sizing: border-box;
+  align-items: center;
+  padding: 2px 8px;
+}
+
+.react-international-phone-country-selector-dropdown__list-item-flag-emoji {
+  margin-right: 8px;
+}
+
+.react-international-phone-country-selector-dropdown__list-item-country-name {
+  overflow: hidden;
+  margin-right: 8px;
+  font-size: var(--react-international-phone-dropdown-item-font-size, 14px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.react-international-phone-country-selector-dropdown__list-item-dial-code {
+  color: var(--react-international-phone-dropdown-item-dial-code-color, gray);
+  font-size: var(--react-international-phone-dropdown-item-font-size, 14px);
+}
+
+.react-international-phone-country-selector-dropdown__list-item:hover {
+  background-color: var(
+    --react-international-phone-selected-dropdown-item-background-color,
+    var(--react-international-phone-selected-dropdown-item-background-color, whitesmoke)
+  );
+  cursor: pointer;
+}
+
+.react-international-phone-country-selector-dropdown__list-item--selected,
+.react-international-phone-country-selector-dropdown__list-item--focused {
+  background-color: var(
+    --react-international-phone-selected-dropdown-item-background-color,
+    whitesmoke
+  );
+  color: var(
+    --react-international-phone-selected-dropdown-item-text-color,
+    var(--react-international-phone-text-color, #222)
+  );
+}
+
+.react-international-phone-country-selector-dropdown__list-item--selected
+  .react-international-phone-country-selector-dropdown__list-item-dial-code,
+.react-international-phone-country-selector-dropdown__list-item--focused
+  .react-international-phone-country-selector-dropdown__list-item-dial-code {
+  color: var(
+    --react-international-phone-selected-dropdown-item-dial-code-color,
+    var(--react-international-phone-dropdown-item-dial-code-color, gray)
+  );
+}
+
+.react-international-phone-country-selector-dropdown__list-item--focused {
+  background-color: var(
+    --react-international-phone-selected-dropdown-item-background-color,
+    var(--react-international-phone-selected-dropdown-item-background-color, whitesmoke)
+  );
+}
+
+.react-international-phone-dial-code-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  border: 1px solid
+    var(
+      --react-international-phone-dial-code-preview-border-color,
+      var(--react-international-phone-border-color, gainsboro)
+    );
+  margin-right: -1px;
+  background-color: var(
+    --react-international-phone-dial-code-preview-background-color,
+    var(--react-international-phone-background-color, white)
+  );
+  color: var(
+    --react-international-phone-dial-code-preview-text-color,
+    var(--react-international-phone-text-color, #222)
+  );
+  font-size: var(
+    --react-international-phone-dial-code-preview-font-size,
+    var(--react-international-phone-font-size, 13px)
+  );
+}
+
+.react-international-phone-dial-code-preview--disabled {
+  background-color: var(
+    --react-international-phone-dial-code-preview-disabled-background-color,
+    var(--react-international-phone-disabled-background-color, whitesmoke)
+  );
+  color: var(
+    --react-international-phone-dial-code-preview-disabled-text-color,
+    var(--react-international-phone-disabled-text-color, #666)
+  );
+}
+
+.react-international-phone-input-container {
+  display: flex;
+}
+
+.react-international-phone-input-container .react-international-phone-country-selector-button {
+  border-radius: var(--react-international-phone-border-radius, 4px);
+  margin-right: -1px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.react-international-phone-input-container .react-international-phone-input {
+  overflow: visible;
+  height: var(--react-international-phone-height, 36px);
+  box-sizing: border-box;
+  padding: 0 8px;
+  border: 1px solid var(--react-international-phone-border-color, gainsboro);
+  border-radius: var(--react-international-phone-border-radius, 4px);
+  margin: 0;
+  background-color: var(--react-international-phone-background-color, white);
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: var(--react-international-phone-text-color, #222);
+  font-family: inherit;
+  font-size: var(--react-international-phone-font-size, 13px);
+}
+
+.react-international-phone-input-container .react-international-phone-input:focus {
+  outline: none;
+}
+
+.react-international-phone-input-container .react-international-phone-input--disabled {
+  background-color: var(--react-international-phone-disabled-background-color, whitesmoke);
+  color: var(--react-international-phone-disabled-text-color, #666);
+}
+
+*,
+::before,
+::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
   --tw-translate-x: 0;
@@ -8,19 +284,19 @@
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -28,28 +304,29 @@
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
-  --tw-contain-size:  ;
-  --tw-contain-layout:  ;
-  --tw-contain-paint:  ;
-  --tw-contain-style:  ;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  --tw-contain-size: ;
+  --tw-contain-layout: ;
+  --tw-contain-paint: ;
+  --tw-contain-style:   
+;
 }
 
 ::backdrop {
@@ -62,19 +339,19 @@
   --tw-skew-y: 0;
   --tw-scale-x: 1;
   --tw-scale-y: 1;
-  --tw-pan-x:  ;
-  --tw-pan-y:  ;
-  --tw-pinch-zoom:  ;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
   --tw-scroll-snap-strictness: proximity;
-  --tw-gradient-from-position:  ;
-  --tw-gradient-via-position:  ;
-  --tw-gradient-to-position:  ;
-  --tw-ordinal:  ;
-  --tw-slashed-zero:  ;
-  --tw-numeric-figure:  ;
-  --tw-numeric-spacing:  ;
-  --tw-numeric-fraction:  ;
-  --tw-ring-inset:  ;
+  --tw-gradient-from-position: ;
+  --tw-gradient-via-position: ;
+  --tw-gradient-to-position: ;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
   --tw-ring-offset-width: 0px;
   --tw-ring-offset-color: #fff;
   --tw-ring-color: rgb(59 130 246 / 0.5);
@@ -82,28 +359,29 @@
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
   --tw-shadow-colored: 0 0 #0000;
-  --tw-blur:  ;
-  --tw-brightness:  ;
-  --tw-contrast:  ;
-  --tw-grayscale:  ;
-  --tw-hue-rotate:  ;
-  --tw-invert:  ;
-  --tw-saturate:  ;
-  --tw-sepia:  ;
-  --tw-drop-shadow:  ;
-  --tw-backdrop-blur:  ;
-  --tw-backdrop-brightness:  ;
-  --tw-backdrop-contrast:  ;
-  --tw-backdrop-grayscale:  ;
-  --tw-backdrop-hue-rotate:  ;
-  --tw-backdrop-invert:  ;
-  --tw-backdrop-opacity:  ;
-  --tw-backdrop-saturate:  ;
-  --tw-backdrop-sepia:  ;
-  --tw-contain-size:  ;
-  --tw-contain-layout:  ;
-  --tw-contain-paint:  ;
-  --tw-contain-style:  ;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  --tw-contain-size: ;
+  --tw-contain-layout: ;
+  --tw-contain-paint: ;
+  --tw-contain-style:   
+;
 }
 
 /*
@@ -130,7 +408,7 @@
 
 ::before,
 ::after {
-  --tw-content: '';
+  --tw-content: "";
 }
 
 /*
@@ -152,7 +430,7 @@ html,
   -moz-tab-size: 4;
   /* 3 */
   -o-tab-size: 4;
-     tab-size: 4;
+  tab-size: 4;
   /* 3 */
   font-family: var(--font-sans);
   /* 4 */
@@ -197,7 +475,7 @@ Add the correct text decoration in Chrome, Edge, and Safari.
 
 abbr:where([title]) {
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted;
+  text-decoration: underline dotted;
 }
 
 /*
@@ -344,9 +622,9 @@ select {
 */
 
 button,
-input:where([type='button']),
-input:where([type='reset']),
-input:where([type='submit']) {
+input:where([type="button"]),
+input:where([type="reset"]),
+input:where([type="submit"]) {
   -webkit-appearance: button;
   /* 1 */
   background-color: transparent;
@@ -393,7 +671,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 2. Correct the outline style in Safari.
 */
 
-[type='search'] {
+[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
   outline-offset: -2px;
@@ -486,7 +764,8 @@ textarea {
 2. Set the default placeholder color to the user's configured gray 400 color.
 */
 
-input::-moz-placeholder, textarea::-moz-placeholder {
+input::-moz-placeholder,
+textarea::-moz-placeholder {
   opacity: 1;
   /* 1 */
   color: var(--gray-400);
@@ -814,16 +1093,22 @@ video {
 
 .translate-x-0 {
   --tw-translate-x: 0px;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+    scaleY(var(--tw-scale-y));
 }
 
 .translate-x-4 {
   --tw-translate-x: 1rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+    scaleY(var(--tw-scale-y));
 }
 
 .transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate))
+    skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x))
+    scaleY(var(--tw-scale-y));
 }
 
 @keyframes spin {
@@ -846,8 +1131,8 @@ video {
 
 .select-none {
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
 .flex-row {
@@ -1022,7 +1307,7 @@ video {
 
 .object-cover {
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .p-2 {
@@ -1202,15 +1487,17 @@ video {
 }
 
 .shadow-card {
-  --tw-shadow: 0 0.625rem 1.875rem 0 #191C201A;
+  --tw-shadow: 0 0.625rem 1.875rem 0 #191c201a;
   --tw-shadow-colored: 0 0.625rem 1.875rem 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 
 .shadow-regular-large {
-  --tw-shadow: 0 1rem 2.5rem -0.5rem #585C5F29;
+  --tw-shadow: 0 1rem 2.5rem -0.5rem #585c5f29;
   --tw-shadow-colored: 0 1rem 2.5rem -0.5rem var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 
 .outline-none {
@@ -1219,13 +1506,39 @@ video {
 }
 
 .filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale)
+    var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia)
+    var(--tw-drop-shadow);
 }
 
 .transition {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    text-decoration-color,
+    fill,
+    stroke,
+    opacity,
+    box-shadow,
+    transform,
+    filter,
+    -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill,
+    stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    text-decoration-color,
+    fill,
+    stroke,
+    opacity,
+    box-shadow,
+    transform,
+    filter,
+    backdrop-filter,
+    -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1237,7 +1550,8 @@ video {
 }
 
 .transition-colors {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, text-decoration-color, fill,
+    stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1301,9 +1615,10 @@ video {
 }
 
 .focus\:shadow-card:focus {
-  --tw-shadow: 0 0.625rem 1.875rem 0 #191C201A;
+  --tw-shadow: 0 0.625rem 1.875rem 0 #191c201a;
   --tw-shadow-colored: 0 0.625rem 1.875rem 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 
 .focus\:outline-none:focus {
@@ -1368,7 +1683,7 @@ video {
   background-color: transparent;
 }
 
-.\[\&\>span\:first-of-type\]\:line-clamp-1>span:first-of-type {
+.\[\&\>span\:first-of-type\]\:line-clamp-1 > span:first-of-type {
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
