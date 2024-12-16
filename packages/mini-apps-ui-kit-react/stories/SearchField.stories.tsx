@@ -17,19 +17,15 @@ const meta: Meta<typeof SearchField> = {
   argTypes: {
     error: {
       control: "boolean",
-      description: "Error state",
     },
     disabled: {
       control: "boolean",
-      description: "Disabled state",
     },
     isValid: {
       control: "boolean",
-      description: "Valid state",
     },
     showPasteButton: {
       control: "boolean",
-      description: "Show paste button",
     },
   },
   decorators: [
