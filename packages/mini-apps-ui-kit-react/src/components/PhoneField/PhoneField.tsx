@@ -4,7 +4,7 @@ import { DROPDOWN_CONTAINER_STYLES } from "@/lib/constants/dropdownStyles";
 import { cn } from "@/lib/utils";
 import * as RadixSelect from "@radix-ui/react-select";
 import { cva } from "class-variance-authority";
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import {
   CountryIso2,
   CountrySelectorDropdown,
@@ -116,7 +116,9 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     },
     ref,
   ) => {
+    const contentRef = useRef<HTMLDivElement | null>(null);
     const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
+    const [shouldFocus, setShouldFocus] = useState(false);
 
     const { inputValue, country, inputRef, handlePhoneValueChange, setCountry } = usePhoneInput(
       {
@@ -140,7 +142,21 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
 
     const handleDropdownCloseAutoFocus = (event: Event) => {
       event.preventDefault();
-      inputRef.current?.focus();
+
+      if (shouldFocus) {
+        // This allow to schedule focus on the input element during the next repaint cycle
+        requestAnimationFrame(() => {
+          inputRef.current?.focus();
+        });
+      }
+
+      setShouldFocus(false);
+    };
+
+    const handlePointerDownOutside = (event: React.PointerEvent<HTMLDivElement>) => {
+      const isInsideContent = contentRef.current?.contains(event.target as Node);
+
+      setShouldFocus(!!isInsideContent);
     };
 
     const handleCountrySelect = (selectedCountry: ParsedCountry) => {
@@ -189,9 +205,11 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
 
             <RadixSelect.Portal>
               <RadixSelect.Content
+                ref={contentRef}
                 position="popper"
                 className={cn(DROPDOWN_CONTAINER_STYLES, "-ml-3 mt-5 w-auto")}
                 onCloseAutoFocus={handleDropdownCloseAutoFocus}
+                onPointerDown={handlePointerDownOutside}
               >
                 <CountrySelectorDropdown
                   show
