@@ -15,11 +15,9 @@ const meta: Meta<typeof ColorPickerGroup> = {
   argTypes: {
     value: {
       control: "color",
-      description: "The current color value",
     },
     disabled: {
       control: "boolean",
-      description: "Disabled state",
     },
   },
 };
