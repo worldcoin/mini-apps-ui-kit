@@ -1490,6 +1490,10 @@ video {
   opacity: 0.2;
 }
 
+.opacity-50 {
+  opacity: 0.5;
+}
+
 .shadow-card {
   --tw-shadow: 0 0.625rem 1.875rem 0 #191c201a;
   --tw-shadow-colored: 0 0.625rem 1.875rem 0 var(--tw-shadow-color);
