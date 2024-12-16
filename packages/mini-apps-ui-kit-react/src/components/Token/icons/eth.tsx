@@ -13,8 +13,8 @@ const ETH = (props: React.SVGProps<SVGSVGElement>) => (
     <circle cx="44" cy="44" r="44" fill="url(#paint0_radial_12_1277)" />
     <circle cx="44" cy="44" r="44" fill="url(#paint1_radial_12_1277)" />
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M43.6241 23.0001L43.6242 23V23.0003L56.7466 44.3895L43.6241 38.5258L30.5 44.3895L43.6241 23.0003V23L43.6241 23.0001ZM43.6241 64.9999V65.0001L43.6242 65L43.6242 65.0001V64.9999L56.7553 46.8331L43.6242 54.4506V54.4489L30.5 46.8331L43.6241 64.9999ZM43.6242 52.0088L56.7466 44.3895L43.6242 38.5294V38.5293L43.6241 38.5294L43.6241 38.5293V38.5294L30.5 44.3895L43.6241 52.0088V52.0089L43.6241 52.0088L43.6242 52.0089V52.0088Z"
       fill="url(#paint2_linear_12_1277)"
     />
