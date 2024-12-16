@@ -16,4 +16,5 @@ export * from "./components/Checkbox";
 export { default as Select } from "./components/Select";
 export * from "./components/Select";
 export { default as ListItem } from "./components/ListItem";
+export { default as Token } from "./components/Token";
 export { default as uiKitTailwindPlugin } from "./tailwind";
