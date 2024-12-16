@@ -161,6 +161,7 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         endAdornment={endAdornment}
         endAdornmentWidth={endAdornmentWidth}
         startAdornmentWidth={startAdornmentWidth}
+        isFocused={isCountrySelectorOpen}
         startAdornment={
           <RadixSelect.Root
             open={isCountrySelectorOpen}

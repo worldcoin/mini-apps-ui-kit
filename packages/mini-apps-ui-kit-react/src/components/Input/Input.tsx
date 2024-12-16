@@ -15,9 +15,14 @@ export const inputVariants = cva(
       error: {
         true: "border-error-700 bg-error-100 focus:border-error-700 focus:bg-error-100",
       },
+      isFocused: {
+        true: "border-gray-200 bg-gray-0 shadow-card",
+        false: "",
+      },
     },
     defaultVariants: {
       error: false,
+      isFocused: false,
     },
   },
 );
@@ -55,6 +60,11 @@ export interface InputProps
    * @default 1.25
    */
   endAdornmentWidth?: number;
+  /**
+   * If true, the input will display in a focused state with focus styling
+   * @default false
+   */
+  isFocused?: boolean;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -67,6 +77,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       isValid,
       startAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
+      isFocused = false,
       ...props
     },
     ref,
@@ -86,7 +97,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           type={type}
-          className={cn(inputVariants({ error }))}
+          className={cn(inputVariants({ error, isFocused }))}
           style={{
             ...(startAdornment && {
               paddingLeft: `${1 + startAdornmentWidth}rem`,
