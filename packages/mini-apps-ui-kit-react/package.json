@@ -17,21 +17,45 @@
       "types": "./dist/components/Button/index.d.ts",
       "default": "./dist/components/Button/index.js"
     },
+    "./Checkbox": {
+      "types": "./dist/components/Checkbox/index.d.ts",
+      "default": "./dist/components/Checkbox/index.js"
+    },
     "./Chip": {
       "types": "./dist/components/Chip/index.d.ts",
       "default": "./dist/components/Chip/index.js"
+    },
+    "./ColorPicker": {
+      "types": "./dist/components/ColorPicker/index.d.ts",
+      "default": "./dist/components/ColorPicker/index.js"
+    },
+    "./Flag": {
+      "types": "./dist/components/Flag/index.d.ts",
+      "default": "./dist/components/Flag/index.js"
     },
     "./Form": {
       "types": "./dist/components/Form/index.d.ts",
       "default": "./dist/components/Form/index.js"
     },
-    "./Typography": {
-      "types": "./dist/components/Typography/index.d.ts",
-      "default": "./dist/components/Typography/index.js"
+    "./Input": {
+      "types": "./dist/components/Input/index.d.ts",
+      "default": "./dist/components/Input/index.js"
     },
-    "./Switch": {
-      "types": "./dist/components/Switch/index.d.ts",
-      "default": "./dist/components/Switch/index.js"
+    "./ListItem": {
+      "types": "./dist/components/ListItem/index.d.ts",
+      "default": "./dist/components/ListItem/index.js"
+    },
+    "./NumberPad": {
+      "types": "./dist/components/NumberPad/index.d.ts",
+      "default": "./dist/components/NumberPad/index.js"
+    },
+    "./OTPField": {
+      "types": "./dist/components/OTPField/index.d.ts",
+      "default": "./dist/components/OTPField/index.js"
+    },
+    "./Pill": {
+      "types": "./dist/components/Pill/index.d.ts",
+      "default": "./dist/components/Pill/index.js"
     },
     "./RadioGroup": {
       "types": "./dist/components/RadioGroup/index.d.ts",
@@ -41,13 +65,21 @@
       "types": "./dist/components/RadioGroup/index.d.ts",
       "default": "./dist/components/RadioGroup/index.js"
     },
-    "./Checkbox": {
-      "types": "./dist/components/Checkbox/index.d.ts",
-      "default": "./dist/components/Checkbox/index.js"
-    },
     "./Select": {
       "types": "./dist/components/Select/index.d.ts",
       "default": "./dist/components/Select/index.js"
+    },
+    "./Switch": {
+      "types": "./dist/components/Switch/index.d.ts",
+      "default": "./dist/components/Switch/index.js"
+    },
+    "./Token": {
+      "types": "./dist/components/Token/index.d.ts",
+      "default": "./dist/components/Token/index.js"
+    },
+    "./Typography": {
+      "types": "./dist/components/Typography/index.d.ts",
+      "default": "./dist/components/Typography/index.js"
     },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
@@ -116,6 +148,7 @@
     "@radix-ui/react-switch": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "input-otp": "^1.4.1",
     "tailwind-merge": "^2.5.5"
   }
 }

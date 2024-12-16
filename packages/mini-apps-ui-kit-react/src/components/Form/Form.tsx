@@ -14,20 +14,30 @@ export const Message = forwardRef<
   React.ElementRef<typeof RadixForm.Message>,
   React.ComponentPropsWithoutRef<typeof RadixForm.Message> & {
     error?: boolean;
+    textAlign?: "left" | "center" | "right";
   }
->(({ className, error, ...props }, ref) => (
-  <RadixForm.Message
-    ref={ref}
+>(({ className, error, textAlign = "left", ...props }, ref) => (
+  <div
     className={cn(
-      "h-[1.625rem] mt-1 flex items-center px-2",
-      typographyVariants({
-        variant: "body",
-        level: 3,
-      }),
-      error ? "text-error-700" : "text-gray-500",
+      " px-2 flex items-center justify-center",
+      textAlign === "left" && "justify-start",
+      textAlign === "center" && "justify-center",
+      textAlign === "right" && "justify-end",
     )}
-    {...props}
-  />
+  >
+    <RadixForm.Message
+      ref={ref}
+      className={cn(
+        "h-[1.625rem] mt-1 flex items-center",
+        typographyVariants({
+          variant: "body",
+          level: 3,
+        }),
+        error ? "text-error-700" : "text-gray-500",
+      )}
+      {...props}
+    />
+  </div>
 ));
 export const ValidityState: typeof RadixForm.ValidityState = RadixForm.ValidityState;
 export const Submit: typeof RadixForm.Submit = RadixForm.Submit;

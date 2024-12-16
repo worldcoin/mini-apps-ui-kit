@@ -11,6 +11,7 @@ export * from "./components/Flag";
 export * from "./components/Form";
 export { default as ListItem } from "./components/ListItem";
 export { default as NumberPad } from "./components/NumberPad";
+export { default as OTPField } from "./components/OTPField";
 export { default as Pill } from "./components/Pill";
 export * from "./components/Pill";
 export { RadioGroup, RadioGroupItem } from "./components/RadioGroup";
