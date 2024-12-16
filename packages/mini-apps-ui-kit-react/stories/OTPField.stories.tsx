@@ -17,7 +17,6 @@ const meta: Meta<typeof OTPField> = {
   },
   argTypes: {
     maxLength: {
-      description: "The number of input slots to display",
       defaultValue: 6,
       control: {
         type: "number",
@@ -25,31 +24,22 @@ const meta: Meta<typeof OTPField> = {
       },
     },
     value: {
-      description: "The current value of the OTP input",
       control: false,
     },
     error: {
-      description: "Whether to show error styling",
       control: "boolean",
     },
     mode: {
-      description: "The mode of the input",
       control: "select",
       options: ["digits", "chars", "digitsAndChars"],
     },
     onChange: {
-      description: "Callback fired when the input value changes",
       control: false,
     },
     onComplete: {
-      description: "Callback fired when all slots are filled",
       control: false,
     },
-    pattern: {
-      description: "Regular expression pattern to validate input characters",
-    },
     pasteTransformer: {
-      description: "Function to transform pasted text before inserting",
       control: false,
     },
   },
