@@ -8,6 +8,7 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 import {
   CountryIso2,
   CountrySelectorDropdown,
+  DialCodePreview,
   FlagImage,
   ParsedCountry,
   defaultCountries,
@@ -28,6 +29,18 @@ export interface PhoneFieldProps
    * Callback triggered when the phone number changes.
    */
   onChange: (phone: string) => void;
+  /**
+   * If true, the dial code will be hidden.
+   * The dial code is still displayed at the start of the input and in the dropdown.
+   * @default false
+   */
+  hideDialCode?: boolean;
+  /**
+   * Disable dial code prefill on initialization.
+   * Dial code prefill works only when empty phone value have been provided.
+   * @default true
+   */
+  disableDialCodePrefill?: boolean;
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -78,6 +91,13 @@ const triggerVariants = cva(
   },
 );
 
+const startAdornmentWidthByDialCodeLength: Record<string, number> = {
+  "1": 4.4,
+  "2": 5.2,
+  "3": 5.8,
+  "4": 6.2,
+};
+
 const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
   (
     {
@@ -85,6 +105,8 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       onChange,
       placeholder = "Enter phone number",
       defaultCountry = "us",
+      hideDialCode = false,
+      disableDialCodePrefill = true,
       disabled = false,
       error = false,
       isValid,
@@ -95,9 +117,11 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     ref,
   ) => {
     const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
+
     const { inputValue, country, inputRef, handlePhoneValueChange, setCountry } = usePhoneInput(
       {
         defaultCountry,
+        disableDialCodePrefill,
         value,
         countries: defaultCountries,
         onChange: (data) => {
@@ -105,6 +129,11 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         },
       },
     );
+
+    const defaultStartAdornmentWidth = 2.8; // when dial code is disabled for button
+    const startAdornmentWidth = hideDialCode
+      ? defaultStartAdornmentWidth
+      : startAdornmentWidthByDialCodeLength[country.dialCode.length];
 
     // This allows the parent component to interact with the input element directly
     useImperativeHandle(ref, () => inputRef.current as HTMLDivElement);
@@ -131,7 +160,7 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         isValid={isValid}
         endAdornment={endAdornment}
         endAdornmentWidth={endAdornmentWidth}
-        startAdornmentWidth={2.8}
+        startAdornmentWidth={startAdornmentWidth}
         startAdornment={
           <RadixSelect.Root
             open={isCountrySelectorOpen}
@@ -142,6 +171,16 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
               <div className="relative w-6 h-6 rounded-full overflow-hidden flex items-center justify-center mr-2">
                 <FlagImage iso2={country.iso2} className="w-[150%] h-[150%] object-cover" />
               </div>
+              {!hideDialCode && (
+                <DialCodePreview
+                  prefix="+"
+                  dialCode={country.dialCode}
+                  className={cn(
+                    typographyVariants({ variant: "subtitle", level: 2 }),
+                    "p-0 mr-2 border-none bg-transparent",
+                  )}
+                />
+              )}
               <span className="w-2.5 h-1.5">
                 <ArrowDown className="text-gray-400" />
               </span>
