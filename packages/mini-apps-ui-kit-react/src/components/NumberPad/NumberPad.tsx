@@ -35,7 +35,7 @@ const buttons = [
 const NumberPad = ({ value = "", onChange, disabled = false }: NumberPadProps) => {
   // Validate that value is a valid number or empty string
   if (value !== "" && isNaN(Number(value))) {
-    throw new Error("NumberPad value must be a valid number or empty string");
+    console.error("NumberPad value must be a valid number or empty string");
   }
 
   const handleButtonClick = (buttonValue: string) => {
@@ -63,7 +63,7 @@ const NumberPad = ({ value = "", onChange, disabled = false }: NumberPadProps) =
           key={button.value}
           onClick={() => handleButtonClick(button.value)}
           disabled={disabled}
-          className="h-12 min-w-28 flex items-center justify-center text-[1.625rem] font-semibold font-display rounded-md transition-colors duration-200 tap:bg-gray-50 active:bg-gray-50 select-none disabled:text-gray-300 disabled:cursor-not-allowed disabled:tap:bg-transparent disabled:active:bg-transparent"
+          className="h-12 min-w-28 flex items-center justify-center text-[1.625rem] font-semibold font-display rounded-md transition-colors duration-200 active:bg-gray-50 select-none disabled:text-gray-300 disabled:cursor-not-allowed disabled:active:bg-transparent"
         >
           {button.label || button.value}
         </button>
