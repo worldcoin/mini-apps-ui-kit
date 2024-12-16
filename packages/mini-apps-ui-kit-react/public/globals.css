@@ -648,6 +648,10 @@ video {
   top: 0.75rem;
 }
 
+.z-10 {
+  z-index: 10;
+}
+
 .z-50 {
   z-index: 50;
 }
@@ -684,6 +688,11 @@ video {
   display: none;
 }
 
+.size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 .size-\[3\.25rem\] {
   width: 3.25rem;
   height: 3.25rem;
@@ -692,11 +701,6 @@ video {
 .size-\[3\.5rem\] {
   width: 3.5rem;
   height: 3.5rem;
-}
-
-.size-6 {
-  width: 1.5rem;
-  height: 1.5rem;
 }
 
 .h-10 {
@@ -743,6 +747,10 @@ video {
   height: 3.125rem;
 }
 
+.h-\[4\.25rem\] {
+  height: 4.25rem;
+}
+
 .h-\[var\(--radix-select-trigger-height\)\] {
   height: var(--radix-select-trigger-height);
 }
@@ -751,16 +759,16 @@ video {
   height: auto;
 }
 
-.h-\[4\.25rem\] {
-  height: 4.25rem;
-}
-
 .max-h-\[11\.75rem\] {
   max-height: 11.75rem;
 }
 
 .w-10 {
   width: 2.5rem;
+}
+
+.w-12 {
+  width: 3rem;
 }
 
 .w-4 {
@@ -803,16 +811,16 @@ video {
   min-width: 3.5rem;
 }
 
+.min-w-28 {
+  min-width: 7rem;
+}
+
 .min-w-\[6rem\] {
   min-width: 6rem;
 }
 
 .min-w-\[var\(--radix-select-trigger-width\)\] {
   min-width: var(--radix-select-trigger-width);
-}
-
-.min-w-28 {
-  min-width: 7rem;
 }
 
 .translate-x-0 {
@@ -947,6 +955,10 @@ video {
 
 .rounded-full {
   border-radius: 9999px;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .rounded-md {
@@ -1156,14 +1168,14 @@ video {
   line-height: 1.25rem;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .font-medium {
@@ -1372,16 +1384,16 @@ video {
   background-color: var(--gray-400);
 }
 
+.active\:bg-gray-50:active {
+  background-color: var(--gray-50);
+}
+
 .active\:bg-gray-500:active {
   background-color: var(--gray-500);
 }
 
 .active\:bg-transparent:active {
   background-color: transparent;
-}
-
-.active\:bg-gray-50:active {
-  background-color: var(--gray-50);
 }
 
 .disabled\:cursor-not-allowed:disabled {
@@ -1404,16 +1416,16 @@ video {
   color: transparent;
 }
 
-.disabled\:text-gray-500:disabled {
-  color: var(--gray-500);
-}
-
 .disabled\:opacity-90:disabled {
   opacity: 0.9;
 }
 
 .disabled\:active\:bg-transparent:active:disabled {
   background-color: transparent;
+}
+
+.has-\[\:disabled\]\:opacity-50:has(:disabled) {
+  opacity: 0.5;
 }
 
 .data-\[state\=checked\]\:border-gray-900[data-state="checked"] {
