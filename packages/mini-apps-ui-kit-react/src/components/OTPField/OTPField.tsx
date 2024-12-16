@@ -38,21 +38,57 @@ type OTPFieldProps = Omit<
   | "maxLength"
   | "placeholder"
 > & {
-  // The number of slots
+  /**
+   * The number of input slots/characters in the OTP field.
+   * Defaults to 6 if not specified.
+   */
   maxLength?: number;
-  // Whether the OTP field is in an error state
+
+  /**
+   * Whether the OTP field is in an error state.
+   * When true, displays error styling.
+   */
   error?: boolean;
-  // The pattern to validate the input
+
+  /**
+   * Custom regex pattern to validate the input.
+   * If not provided, uses the pattern from the selected mode.
+   */
   pattern?: string;
-  // The mode of the input
+
+  /**
+   * The input mode that determines allowed characters.
+   * - digits: Only numbers 0-9
+   * - chars: Only letters A-Z
+   * - digitsAndChars: Both numbers and letters
+   * Defaults to "digits" if not specified.
+   */
   mode?: keyof typeof patternDictionary;
-  // Value state controlling the input
+
+  /**
+   * The current value of the OTP input.
+   * Used for controlled component behavior.
+   */
   value?: string;
-  // Setter for the controlled value (or callback for uncontrolled value)
+
+  /**
+   * Callback fired when the input value changes.
+   * @param newValue The new input value
+   */
   onChange?: (newValue: string) => unknown;
-  // Callback when the input is complete
+
+  /**
+   * Callback fired when all slots are filled.
+   * Called with the complete OTP value.
+   */
   onComplete?: (...args: any[]) => unknown;
-  // Transfomer function that allows pasting, for example, "XXX-XXX" even though the input's regex/pattern doesn't allow hyphen and its max length is 6.
+
+  /**
+   * Function to transform pasted text before inserting.
+   * Useful for handling formatted strings, e.g. "123-456" -> "123456"
+   * @param pastedText The text being pasted
+   * @returns The transformed text to insert
+   */
   pasteTransformer?: (pastedText: string) => string;
 };
 
