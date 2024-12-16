@@ -325,7 +325,7 @@
   --tw-contain-size: ;
   --tw-contain-layout: ;
   --tw-contain-paint: ;
-  --tw-contain-style:   
+  --tw-contain-style:  
 ;
 }
 
@@ -380,7 +380,7 @@
   --tw-contain-size: ;
   --tw-contain-layout: ;
   --tw-contain-paint: ;
-  --tw-contain-style:   
+  --tw-contain-style:  
 ;
 }
 
@@ -1308,6 +1308,10 @@ video {
 .object-cover {
   -o-object-fit: cover;
   object-fit: cover;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .p-2 {

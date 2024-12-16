@@ -12,6 +12,9 @@ const meta: Meta<typeof PhoneField> = {
   component: PhoneField,
   argTypes: {
     endAdornment: iconControl,
+    disableDialCodePrefill: {
+      control: false,
+    },
   },
   decorators: [
     (Story) => (
@@ -36,9 +39,73 @@ export const Default: Story = {
     const canvas = within(canvasElement);
 
     const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const selectButton = await canvas.getByRole("combobox");
 
     expect(input).toBeVisible();
-    expect(input).toHaveValue("+1 ");
+    expect(input).toHaveValue("");
+    expect(selectButton).toBeVisible();
+    expect(selectButton.childNodes).toHaveLength(3);
+
+    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] = selectButton.childNodes;
+
+    expect(selectButtonFlag).toBeVisible();
+    expect(selectButtonDialCode).toBeVisible();
+    expect(selectButtonDialCode).toHaveTextContent("+1");
+    expect(selectButtonArrow).toBeVisible();
+  },
+};
+
+export const DialCodeInInputOnInitialization: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+
+    return <PhoneField {...args} value={value} onChange={setValue} />;
+  },
+  args: {
+    disableDialCodePrefill: false,
+    defaultCountry: "de",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const selectButton = await canvas.getByRole("combobox");
+
+    expect(input).toBeVisible();
+    expect(input).toHaveValue("+49 ");
+    expect(selectButton).toBeVisible();
+    expect(selectButton.childNodes).toHaveLength(3);
+
+    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] = selectButton.childNodes;
+
+    expect(selectButtonFlag).toBeVisible();
+    expect(selectButtonDialCode).toBeVisible();
+    expect(selectButtonDialCode).toHaveTextContent("+49");
+    expect(selectButtonArrow).toBeVisible();
+  },
+};
+
+export const WithoutDialCodeWithinButton: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+
+    return <PhoneField {...args} value={value} onChange={setValue} />;
+  },
+  args: {
+    hideDialCode: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    const selectButton = await canvas.getByRole("combobox");
+
+    expect(selectButton).toBeVisible();
+    expect(selectButton.childNodes).toHaveLength(2);
+
+    const [selectButtonFlag, selectButtonArrow] = selectButton.childNodes;
+
+    expect(selectButtonFlag).toBeVisible();
+    expect(selectButtonArrow).toBeVisible();
   },
 };
 
@@ -106,15 +173,15 @@ export const ShowValidStateWhenMin12Digits: Story = {
     let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
 
     expect(input).toBeVisible();
-    expect(input).toHaveValue("+1 ");
+    expect(input).toHaveValue("");
 
-    userEvent.type(input, "1234567891");
+    userEvent.type(input, "12345678912");
 
     await waitFor(async () => {
       const tickIcon = await canvas.findByTestId("tick-icon");
 
       expect(tickIcon).toBeVisible();
-      expect(input).toHaveValue("+1 (123) 456-7891");
+      expect(input).toHaveValue("+1 (234) 567-8912");
     });
   },
 };
@@ -127,6 +194,7 @@ export const CustomDefaultCountry: Story = {
   },
   args: {
     defaultCountry: "pl",
+    disableDialCodePrefill: false,
   },
   play: async ({ canvasElement }) => {
     let selectViewport: Element | null = null;
