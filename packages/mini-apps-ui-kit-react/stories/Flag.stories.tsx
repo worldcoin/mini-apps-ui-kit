@@ -18,7 +18,7 @@ const meta: Meta<typeof Flag> = {
   argTypes: {
     countryCode: {
       control: "select",
-      options: Object.keys(FlagComponents).map((key) => key.toLowerCase()),
+      options: Object.keys(FlagComponents).map((key) => key.toUpperCase()),
       description: "ISO 3166-1 alpha-2 country code (e.g. 'US', 'GB', 'FR')",
     },
     size: {
