@@ -18,6 +18,8 @@ export { RadioGroup, RadioGroupItem } from "./components/RadioGroup";
 export * from "./components/RadioGroup";
 export { default as Select } from "./components/Select";
 export * from "./components/Select";
+export { default as PhoneField } from "./components/PhoneField";
+export * from "./components/PhoneField";
 export { default as Switch } from "./components/Switch";
 export * from "./components/Switch";
 export { default as Token } from "./components/Token";
