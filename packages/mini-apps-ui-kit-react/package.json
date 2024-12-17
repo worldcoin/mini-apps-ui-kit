@@ -69,6 +69,10 @@
       "types": "./dist/components/Select/index.d.ts",
       "default": "./dist/components/Select/index.js"
     },
+    "./PhoneField": {
+      "types": "./dist/components/PhoneField/index.d.ts",
+      "default": "./dist/components/PhoneField/index.js"
+    },
     "./Switch": {
       "types": "./dist/components/Switch/index.d.ts",
       "default": "./dist/components/Switch/index.js"
@@ -148,6 +152,7 @@
     "@radix-ui/react-switch": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "react-international-phone": "^4.3.0",
     "input-otp": "^1.4.1",
     "tailwind-merge": "^2.5.5"
   }
