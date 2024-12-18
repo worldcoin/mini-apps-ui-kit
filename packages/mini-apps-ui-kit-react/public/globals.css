@@ -1664,6 +1664,10 @@ video {
   color:transparent
 }
 
+.disabled\:opacity-50:disabled{
+  opacity:0.5
+}
+
 .disabled\:opacity-90:disabled{
   opacity:0.9
 }
