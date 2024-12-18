@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { countryCodes } from "@/components/Flag/constants";
+
 import Flag from "../src/components/Flag";
 import LazyFlag from "../src/components/Flag/LazyFlag";
-import * as FlagComponents from "../src/components/Flag/flag-components";
 
 const meta: Meta<typeof Flag> = {
   title: "Components/Flag",
@@ -18,7 +19,7 @@ const meta: Meta<typeof Flag> = {
   argTypes: {
     countryCode: {
       control: "select",
-      options: Object.keys(FlagComponents).map((key) => key.toUpperCase()),
+      options: countryCodes,
       description: "ISO 3166-1 alpha-2 country code (e.g. 'US', 'GB', 'FR')",
     },
     size: {
