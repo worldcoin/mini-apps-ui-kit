@@ -50,7 +50,7 @@ export const iconVariants = cva(
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "className" | "style">,
-    Omit<VariantProps<typeof inputVariants>, "type" | "disabled"> {
+    VariantProps<typeof inputVariants> {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -90,17 +90,6 @@ export interface InputProps
    * @default false
    */
   isFocused?: boolean;
-
-  /**
-   * If true, displays a paste button as an end adornment
-   * @default false
-   */
-  showPasteButton?: boolean;
-  /**
-   * Label for the paste button
-   * @default "Paste"
-   */
-  pasteButtonLabel?: string;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
