@@ -1,7 +1,9 @@
+import { composeRefs } from "@radix-ui/react-compose-refs";
 import * as React from "react";
 
 import { Magnifier } from "../Icons/Magnifier";
 import Input, { InputProps } from "../Input";
+import PasteButton, { PASTE_BUTTON_WIDTH } from "../PasteButton/PasteButton";
 
 export interface SearchFieldProps
   extends Omit<
@@ -28,9 +30,24 @@ export interface SearchFieldProps
   pasteButtonLabel?: string;
 }
 
-const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>((props, ref) => {
-  return <Input {...props} ref={ref} startAdornment={<Magnifier />} />;
-});
+const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
+  ({ showPasteButton, pasteButtonLabel, isValid, ...props }, forwardedRef) => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
+    const ref = forwardedRef ? composeRefs(forwardedRef, inputRef) : inputRef;
+    return (
+      <Input
+        {...props}
+        ref={ref}
+        startAdornment={<Magnifier />}
+        isValid={isValid}
+        endAdornmentWidth={showPasteButton ? PASTE_BUTTON_WIDTH : undefined}
+        endAdornment={
+          showPasteButton && <PasteButton inputRef={ref} label={pasteButtonLabel} />
+        }
+      />
+    );
+  },
+);
 
 SearchField.displayName = "SearchField";
 
