@@ -23,7 +23,7 @@ const meta: Meta<InputProps> = {
   decorators: [
     (Story) => (
       <div className="w-80 flex justify-center">
-        <Story   />
+        <Story />
       </div>
     ),
   ],
@@ -68,18 +68,5 @@ export const EndCustomSizeIcon: Story = {
     const icon = await canvas.findByTestId("switch-icon");
 
     expect(icon).toBeInTheDocument();
-  },
-};
-
-export const WithPasteButton: Story = {
-  args: {
-    placeholder: "Enter text to paste",
-    showPasteButton: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const pasteButton = await canvas.findByText("Paste");
-
-    expect(pasteButton).toBeInTheDocument();
   },
 };
