@@ -22,12 +22,25 @@ const meta: Meta<typeof Typography> = {
 };
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    children: "Typography",
+  },
+  argTypes: {
+    level: {
+      control: "radio",
+      options: [1, 2, 3, 4],
+    },
+  },
+};
 
 export const Number: Story = {
   args: {
     variant: "number",
-    level: 1,
+    level: 6,
     children: "Number Display",
   },
   argTypes: {
@@ -41,7 +54,7 @@ export const Number: Story = {
 export const Heading: Story = {
   args: {
     variant: "heading",
-    level: 1,
+    level: 4,
     children: "Heading",
   },
   argTypes: {
@@ -55,7 +68,7 @@ export const Heading: Story = {
 export const Subtitle: Story = {
   args: {
     variant: "subtitle",
-    level: 1,
+    level: 2,
     children: "Subtitle",
   },
   argTypes: {
@@ -69,7 +82,7 @@ export const Subtitle: Story = {
 export const Body: Story = {
   args: {
     variant: "body",
-    level: 1,
+    level: 2,
     children: "Body",
   },
   argTypes: {
@@ -83,7 +96,7 @@ export const Body: Story = {
 export const Mono: Story = {
   args: {
     variant: "mono",
-    level: 1,
+    level: 3,
     children: "Mono",
   },
   argTypes: {
