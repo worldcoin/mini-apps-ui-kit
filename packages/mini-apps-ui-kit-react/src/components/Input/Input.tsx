@@ -5,12 +5,11 @@ import * as React from "react";
 
 import { cn } from "../../lib/utils";
 import { Tick } from "../Icons/Tick";
-import PasteButton from "../PasteButton/PasteButton";
 
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "peer h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:text-gray-400 disabled:cursor-not-allowed",
+  "peer h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder: focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled: disabled:cursor-not-allowed",
   {
     variants: {
       error: {
@@ -28,25 +27,26 @@ export const inputVariants = cva(
   },
 );
 
-export const iconVariants = cva("absolute top-3 bottom-3 flex items-center overflow-hidden", {
-  variants: {
-    error: {
-      true: "text-error-700",
+export const iconVariants = cva(
+  "absolute top-1 bottom-1 flex items-center overflow-hidden text-gray-400",
+  {
+    variants: {
+      disabled: {
+        true: "text-gray-300 cursor-not-allowed",
+      },
+      error: {
+        true: "text-error-700",
+      },
+      position: {
+        start: "left-1 justify-center",
+        end: "right-1 justify-center",
+      },
     },
-    disabled: {
-      true: "text-gray-300 cursor-not-allowed",
-      false: "text-gray-400",
-    },
-    position: {
-      start: "left-3 justify-start",
-      end: "right-3 justify-end",
+    defaultVariants: {
+      error: false,
     },
   },
-  defaultVariants: {
-    error: false,
-    disabled: false,
-  },
-});
+);
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "className" | "style">,
@@ -63,12 +63,16 @@ export interface InputProps
    * Element to be rendered at the start (left side) of the input.
    * The component passed to this prop must accept a `style` prop.
    * The component should use currentColor to match the Input's styling.
+   * To change styles based on input focus, use Tailwind's `group-*` modifiers
+   * since the input is wrapped in a group class.
    */
   startAdornment?: React.ReactNode;
   /**
    * Element to be rendered at the end (right side) of the input.
    * The component passed to this prop must accept a `style` prop.
    * The component should use currentColor to match the Input's styling.
+   * To change styles based on input focus, use Tailwind's `group-*` modifiers
+   * since the input is wrapped in a group class.
    */
   endAdornment?: React.ReactNode;
   /**
@@ -107,8 +111,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       startAdornment,
       endAdornment,
       isValid,
-      showPasteButton,
-      pasteButtonLabel,
       startAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       isFocused = false,
@@ -117,20 +119,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const internalRef = React.useRef<HTMLInputElement>(null);
-    const inputRef = React.useMemo(() => ref || internalRef, [ref]);
     return (
-      <div className="relative flex w-full items-center">
+      <div className="relative flex w-full items-center group">
         {startAdornment && (
           <div
             className={cn(iconVariants({ error, disabled, position: "start" }))}
-            style={{ width: `${startAdornmentWidth}rem` }}
+            style={{ width: `${startAdornmentWidth + 0.75}rem` }}
           >
             {startAdornment}
           </div>
         )}
         <input
-          ref={inputRef}
+          ref={ref}
           type={type}
           disabled={disabled}
           className={cn(inputVariants({ error, isFocused }))}
@@ -139,28 +139,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             ...(startAdornment && {
               paddingLeft: `${1 + startAdornmentWidth}rem`,
             }),
-            ...((endAdornment || showPasteButton) && {
+            ...(endAdornment && {
               paddingRight: `${1 + endAdornmentWidth}rem`,
             }),
-            ...(isValid &&
-              !showPasteButton && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
+            ...(isValid && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
           }}
         />
-        {showPasteButton && !isValid && (
-          <PasteButton
-            inputRef={inputRef}
-            label={pasteButtonLabel}
-            className={cn(
-              iconVariants({ error, disabled, position: "end" }),
-              "bottom-1 right-1 top-1",
-            )}
-          />
-        )}
-
-        {(isValid || (endAdornment && !showPasteButton)) && (
+        {(isValid || endAdornment) && (
           <div
             className={cn(iconVariants({ error, disabled, position: "end" }))}
-            style={{ width: `${endAdornmentWidth}rem` }}
+            style={{ width: `${endAdornmentWidth + 0.75}rem` }}
           >
             {isValid ? <Tick className="text-success-700" /> : endAdornment}
           </div>
