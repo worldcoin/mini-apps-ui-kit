@@ -28,7 +28,7 @@ export const inputVariants = cva(
 );
 
 export const iconVariants = cva(
-  "absolute top-1 bottom-1 flex items-center overflow-hidden text-gray-400",
+  "absolute top-1 bottom-1 flex items-center justify-center overflow-hidden text-gray-400",
   {
     variants: {
       disabled: {
@@ -38,8 +38,8 @@ export const iconVariants = cva(
         true: "text-error-700",
       },
       position: {
-        start: "left-1 justify-center",
-        end: "right-1 justify-center",
+        start: "left-1",
+        end: "right-1",
       },
     },
     defaultVariants: {
