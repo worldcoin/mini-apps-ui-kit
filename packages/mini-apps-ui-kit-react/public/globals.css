@@ -965,10 +965,6 @@ video {
   height:150%
 }
 
-.h-\[2\.625rem\]{
-  height:2.625rem
-}
-
 .h-\[3\.125rem\]{
   height:3.125rem
 }
@@ -983,6 +979,10 @@ video {
 
 .h-auto{
   height:auto
+}
+
+.h-full{
+  height:100%
 }
 
 .max-h-\[11\.75rem\]{
