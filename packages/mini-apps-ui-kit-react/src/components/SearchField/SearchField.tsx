@@ -31,7 +31,7 @@ export interface SearchFieldProps
 }
 
 const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
-  ({ showPasteButton, pasteButtonLabel, isValid, ...props }, forwardedRef) => {
+  ({ showPasteButton, pasteButtonLabel, isValid, disabled, ...props }, forwardedRef) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     const ref = forwardedRef ? composeRefs(forwardedRef, inputRef) : inputRef;
     return (
@@ -40,9 +40,11 @@ const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
         ref={ref}
         startAdornment={<Magnifier />}
         isValid={isValid}
+        disabled={disabled}
         endAdornmentWidth={showPasteButton ? PASTE_BUTTON_WIDTH : undefined}
         endAdornment={
-          showPasteButton && <PasteButton inputRef={ref} label={pasteButtonLabel} />
+          showPasteButton &&
+          !disabled && <PasteButton inputRef={ref} label={pasteButtonLabel} />
         }
       />
     );
