@@ -2,9 +2,14 @@ import { cn } from "@/lib/utils";
 import { Suspense, forwardRef, lazy } from "react";
 
 interface FlagProps {
-  // ISO 3166-1 alpha-2 country code (e.g. 'US', 'GB', 'FR')
+  /**
+   * ISO 3166-1 alpha-2 country code (e.g. 'US', 'GB', 'FR')
+   */
   countryCode: string;
-  // Width and height in pixels for the flag SVG. Defaults to 40px if not specified.
+  /**
+   * Width and height in pixels for the flag SVG.
+   * Defaults to 40px if not specified.
+   */
   size?: number;
 }
 
