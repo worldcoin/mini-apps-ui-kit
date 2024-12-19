@@ -96,7 +96,7 @@ export const Body: Story = {
 export const Mono: Story = {
   args: {
     variant: "mono",
-    level: 3,
+    level: 1,
     children: "Mono",
   },
   argTypes: {
