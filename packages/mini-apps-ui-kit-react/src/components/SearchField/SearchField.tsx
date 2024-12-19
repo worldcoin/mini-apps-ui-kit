@@ -1,5 +1,4 @@
-import { composeRefs } from "@radix-ui/react-compose-refs";
-import * as React from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 
 import { Magnifier } from "../Icons/Magnifier";
 import Input, { InputProps } from "../Input";
@@ -30,21 +29,21 @@ export interface SearchFieldProps
   pasteButtonLabel?: string;
 }
 
-const SearchField = React.forwardRef<HTMLInputElement, SearchFieldProps>(
+const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
   ({ showPasteButton, pasteButtonLabel, isValid, disabled, ...props }, forwardedRef) => {
-    const inputRef = React.useRef<HTMLInputElement>(null);
-    const ref = forwardedRef ? composeRefs(forwardedRef, inputRef) : inputRef;
+    const inputRef = useRef<HTMLInputElement>(null);
+    useImperativeHandle(forwardedRef, () => inputRef.current!);
     return (
       <Input
         {...props}
-        ref={ref}
+        ref={inputRef}
         startAdornment={<Magnifier />}
         isValid={isValid}
         disabled={disabled}
         endAdornmentWidth={showPasteButton ? PASTE_BUTTON_WIDTH : undefined}
         endAdornment={
           showPasteButton &&
-          !disabled && <PasteButton inputRef={ref} label={pasteButtonLabel} />
+          !disabled && <PasteButton inputRef={inputRef} label={pasteButtonLabel} />
         }
       />
     );
