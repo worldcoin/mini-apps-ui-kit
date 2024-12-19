@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import { countryCodes } from "@/components/Flag/constants";
 import PhoneField, { PhoneFieldProps } from "@/components/PhoneField";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, fireEvent, userEvent, waitFor, within } from "@storybook/test";
@@ -13,6 +14,9 @@ const meta: Meta<typeof PhoneField> = {
   argTypes: {
     endAdornment: iconControl,
     disableDialCodePrefill: {
+      control: false,
+    },
+    defaultCountryCode: {
       control: false,
     },
   },
@@ -63,7 +67,7 @@ export const DialCodeInInputOnInitialization: Story = {
   },
   args: {
     disableDialCodePrefill: false,
-    defaultCountry: "de",
+    defaultCountryCode: "DE",
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -193,7 +197,7 @@ export const CustomDefaultCountry: Story = {
     return <PhoneField {...args} value={value} onChange={setValue} />;
   },
   args: {
-    defaultCountry: "pl",
+    defaultCountryCode: "PL",
     disableDialCodePrefill: false,
   },
   play: async ({ canvasElement }) => {
@@ -213,9 +217,9 @@ export const CustomDefaultCountry: Story = {
 
       expect(selectButton).toBeVisible();
 
-      const countries = selectViewport!.querySelectorAll("li");
+      const countries = selectViewport!.querySelectorAll("[data-radix-collection-item]");
 
-      expect(countries).toHaveLength(213);
+      expect(countries).toHaveLength(countryCodes.length);
 
       fireEvent.click(countries[0]);
     });
@@ -231,9 +235,7 @@ export const CustomDefaultCountry: Story = {
 
       expect(selectButton).toBeVisible();
 
-      const countryOption = selectViewport!.querySelector(
-        'li[data-country="pl"]',
-      ) as HTMLElement;
+      const countryOption = selectViewport!.querySelector('[data-country="PL"]') as HTMLElement;
 
       expect(countryOption).toBeVisible();
 
