@@ -40,6 +40,19 @@ export const Text: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    placeholder: "Enter your name",
+    disabled: true,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = await canvas.findByPlaceholderText("Enter your name");
+
+    expect(input).toBeDisabled();
+  },
+};
+
 export const StartCustomSizeIcon: Story = {
   args: {
     placeholder: "Enter your number",
