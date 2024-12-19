@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { expect, within } from "@storybook/test";
 
-import * as Form from "../../src/components/Form";
-import Input from "../../src/components/Input";
+import * as Form from "../src/components/Form";
+import Input from "../src/components/Input";
 
 type FormStoryProps = Form.FormProps & {
   message?: string;
