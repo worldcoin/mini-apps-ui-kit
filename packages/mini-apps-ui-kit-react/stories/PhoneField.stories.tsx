@@ -48,14 +48,28 @@ export const Default: Story = {
     expect(input).toBeVisible();
     expect(input).toHaveValue("");
     expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes).toHaveLength(3);
+    expect(selectButton.childNodes[0].childNodes).toHaveLength(3);
 
-    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] = selectButton.childNodes;
+    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
+      selectButton.childNodes[0].childNodes;
 
     expect(selectButtonFlag).toBeVisible();
     expect(selectButtonDialCode).toBeVisible();
     expect(selectButtonDialCode).toHaveTextContent("+1");
     expect(selectButtonArrow).toBeVisible();
+  },
+};
+
+export const CountrySelectorAsDrawer: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+
+    return (
+      <PhoneField {...args} value={value} onChange={setValue} countrySelectorMode="drawer" />
+    );
+  },
+  play: async () => {
+    // TODO: add tests
   },
 };
 
@@ -78,9 +92,10 @@ export const DialCodeInInputOnInitialization: Story = {
     expect(input).toBeVisible();
     expect(input).toHaveValue("+49 ");
     expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes).toHaveLength(3);
+    expect(selectButton.childNodes[0].childNodes).toHaveLength(3);
 
-    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] = selectButton.childNodes;
+    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
+      selectButton.childNodes[0].childNodes;
 
     expect(selectButtonFlag).toBeVisible();
     expect(selectButtonDialCode).toBeVisible();
@@ -104,9 +119,9 @@ export const WithoutDialCodeWithinButton: Story = {
     const selectButton = await canvas.getByRole("combobox");
 
     expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes).toHaveLength(2);
+    expect(selectButton.childNodes[0].childNodes).toHaveLength(2);
 
-    const [selectButtonFlag, selectButtonArrow] = selectButton.childNodes;
+    const [selectButtonFlag, selectButtonArrow] = selectButton.childNodes[0].childNodes;
 
     expect(selectButtonFlag).toBeVisible();
     expect(selectButtonArrow).toBeVisible();
