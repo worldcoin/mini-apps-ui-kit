@@ -25,5 +25,6 @@ export * from "./components/Switch";
 export { default as Token } from "./components/Token";
 export { default as Typography } from "./components/Typography";
 export * from "./components/Typography";
+export * from "./components/Drawer";
 
 export { default as uiKitTailwindPlugin } from "./tailwind";

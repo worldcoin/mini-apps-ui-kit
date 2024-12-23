@@ -29,6 +29,10 @@
       "types": "./dist/components/ColorPicker/index.d.ts",
       "default": "./dist/components/ColorPicker/index.js"
     },
+    "./Drawer": {
+      "types": "./dist/components/Drawer/index.d.ts",
+      "default": "./dist/components/Drawer/index.js"
+    },
     "./Flag": {
       "types": "./dist/components/Flag/index.d.ts",
       "default": "./dist/components/Flag/index.js"
