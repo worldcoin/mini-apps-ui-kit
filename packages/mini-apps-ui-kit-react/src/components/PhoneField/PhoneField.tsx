@@ -199,7 +199,7 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
               </DrawerTrigger>
 
               <DrawerContent className="h-[96%]">
-                <div className="max-w-md w-full mx-auto rounded-t-[10px] flex flex-col flex-grow">
+                <div className="max-w-md w-full mx-auto flex flex-col flex-grow">
                   <Typography variant="subtitle" level={2} className="px-4 py-2">
                     Select country
                   </Typography>
