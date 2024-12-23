@@ -10,7 +10,7 @@ const BQ = (props: React.SVGProps<SVGSVGElement>) => {
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <g clip-path="url(#clip0_4_7103)">
+      <g clipPath="url(#clip0_4_7103)">
         <path
           d="M256 512C397.385 512 512 397.385 512 256C512 114.615 397.385 0 256 0C114.615 0 0 114.615 0 256C0 397.385 114.615 512 256 512Z"
           fill="#F0F0F0"
