@@ -16,10 +16,13 @@ const meta: Meta<InputProps> = {
     type: {
       control: false,
     },
+    disabled: {
+      control: "boolean",
+    },
   },
   decorators: [
     (Story) => (
-      <div className="w-[200px] flex justify-center">
+      <div className="w-80 flex justify-center">
         <Story />
       </div>
     ),

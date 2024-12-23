@@ -9,7 +9,7 @@ import { Tick } from "../Icons/Tick";
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-3 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:text-gray-400 focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  "peer h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       error: {
@@ -27,9 +27,30 @@ export const inputVariants = cva(
   },
 );
 
+export const iconVariants = cva(
+  "absolute top-1 bottom-1 flex items-center justify-center overflow-hidden text-gray-400",
+  {
+    variants: {
+      disabled: {
+        true: "text-gray-300 cursor-not-allowed",
+      },
+      error: {
+        true: "text-error-700",
+      },
+      position: {
+        start: "left-1",
+        end: "right-1",
+      },
+    },
+    defaultVariants: {
+      error: false,
+    },
+  },
+);
+
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "className" | "style">,
-    Omit<VariantProps<typeof inputVariants>, "type"> {
+    VariantProps<typeof inputVariants> {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -42,12 +63,16 @@ export interface InputProps
    * Element to be rendered at the start (left side) of the input.
    * The component passed to this prop must accept a `style` prop.
    * The component should use currentColor to match the Input's styling.
+   * To change styles based on input focus, use Tailwind's `group-*` modifiers
+   * since the input is wrapped in a group class.
    */
   startAdornment?: React.ReactNode;
   /**
    * Element to be rendered at the end (right side) of the input.
    * The component passed to this prop must accept a `style` prop.
    * The component should use currentColor to match the Input's styling.
+   * To change styles based on input focus, use Tailwind's `group-*` modifiers
+   * since the input is wrapped in a group class.
    */
   endAdornment?: React.ReactNode;
   /**
@@ -78,18 +103,17 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       startAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       isFocused = false,
+      disabled,
       ...props
     },
     ref,
   ) => {
     return (
-      <div className="relative flex w-full items-center">
+      <div className="relative flex w-full items-center group">
         {startAdornment && (
           <div
-            className="absolute bottom-3 left-3 top-3 flex items-center justify-start overflow-hidden"
-            style={{
-              width: `${startAdornmentWidth}rem`,
-            }}
+            className={cn(iconVariants({ error, disabled, position: "start" }))}
+            style={{ width: `${startAdornmentWidth + 0.75}rem` }}
           >
             {startAdornment}
           </div>
@@ -97,7 +121,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           type={type}
+          disabled={disabled}
           className={cn(inputVariants({ error, isFocused }))}
+          {...props}
           style={{
             ...(startAdornment && {
               paddingLeft: `${1 + startAdornmentWidth}rem`,
@@ -107,14 +133,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             }),
             ...(isValid && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
           }}
-          {...props}
         />
-        {(endAdornment || isValid) && (
+        {(isValid || endAdornment) && (
           <div
-            className="absolute bottom-3 right-3 top-3 flex items-center justify-end overflow-hidden"
-            style={{
-              width: `${endAdornmentWidth}rem`,
-            }}
+            className={cn(iconVariants({ error, disabled, position: "end" }))}
+            style={{ width: `${endAdornmentWidth + 0.75}rem` }}
           >
             {isValid ? <Tick className="text-success-700" /> : endAdornment}
           </div>
@@ -123,6 +146,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     );
   },
 );
+
 Input.displayName = "Input";
 
 export default Input;
