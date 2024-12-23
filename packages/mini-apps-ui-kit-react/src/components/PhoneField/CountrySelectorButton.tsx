@@ -31,7 +31,12 @@ interface CountrySelectorButtonProps extends React.HTMLAttributes<HTMLDivElement
 const CountrySelectorButton = forwardRef<HTMLDivElement, CountrySelectorButtonProps>(
   ({ disabled, className, countryCode, hideDialCode, dialCode, ...props }, ref) => {
     return (
-      <div ref={ref} {...props} className={cn(triggerVariants({ disabled, className }))}>
+      <div
+        ref={ref}
+        {...props}
+        className={cn(triggerVariants({ disabled, className }))}
+        data-testid="country-selector-button"
+      >
         <div className="w-6 h-6 mr-2">
           <Flag countryCode={countryCode} size={24} />
         </div>
