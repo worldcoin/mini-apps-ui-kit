@@ -68,8 +68,51 @@ export const CountrySelectorAsDrawer: Story = {
       <PhoneField {...args} value={value} onChange={setValue} countrySelectorMode="drawer" />
     );
   },
-  play: async () => {
-    // TODO: add tests
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    let drawer: HTMLDivElement | null = null;
+    let searchInput: HTMLInputElement | null = null;
+    let countryElements: NodeListOf<Element> | null = null;
+
+    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+    expect(input).toHaveValue("");
+
+    const selectButton = await canvas.getByTestId("country-selector-button");
+
+    fireEvent.click(selectButton);
+
+    await waitFor(async () => {
+      drawer = document.body.querySelector("[data-vaul-drawer]");
+
+      countryElements = drawer!.querySelectorAll("[data-country]");
+
+      expect(countryElements).toHaveLength(countryCodes.length);
+
+      searchInput = (await within(drawer!).getByPlaceholderText(
+        "Search name or number",
+      )) as HTMLInputElement;
+
+      expect(searchInput).toBeVisible();
+    });
+
+    userEvent.type(searchInput!, "United S");
+
+    await waitFor(() => {
+      countryElements = drawer!.querySelectorAll("[data-country]");
+
+      expect(countryElements).toHaveLength(1);
+    });
+
+    fireEvent.click(countryElements![0]);
+
+    await waitFor(async () => {
+      input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+      expect(input).toHaveValue("+1 ");
+    });
+
+    userEvent.clear(input);
   },
 };
 
