@@ -834,20 +834,20 @@ video {
   position:relative
 }
 
-.bottom-3{
-  bottom:0.75rem
+.bottom-1{
+  bottom:0.25rem
 }
 
-.left-3{
-  left:0.75rem
+.left-1{
+  left:0.25rem
 }
 
-.right-3{
-  right:0.75rem
+.right-1{
+  right:0.25rem
 }
 
-.top-3{
-  top:0.75rem
+.top-1{
+  top:0.25rem
 }
 
 .z-10{
@@ -986,6 +986,10 @@ video {
   height:auto
 }
 
+.h-full{
+  height:100%
+}
+
 .max-h-\[11\.75rem\]{
   max-height:11.75rem
 }
@@ -1014,8 +1018,8 @@ video {
   width:1.5rem
 }
 
-.w-\[200px\]{
-  width:200px
+.w-80{
+  width:20rem
 }
 
 .w-\[300px\]{
@@ -1325,6 +1329,11 @@ video {
   padding-right:0.5rem
 }
 
+.px-2\.5{
+  padding-left:0.625rem;
+  padding-right:0.625rem
+}
+
 .px-3{
   padding-left:0.75rem;
   padding-right:0.75rem
@@ -1429,6 +1438,10 @@ video {
   font-weight:600
 }
 
+.uppercase{
+  text-transform:uppercase
+}
+
 .leading-\[1\.25\]{
   line-height:1.25
 }
@@ -1463,6 +1476,10 @@ video {
 
 .text-gray-0{
   color:var(--gray-0)
+}
+
+.text-gray-300{
+  color:var(--gray-300)
 }
 
 .text-gray-400{
@@ -1564,14 +1581,6 @@ video {
   display:none
 }
 
-.placeholder\:text-gray-400::-moz-placeholder{
-  color:var(--gray-400)
-}
-
-.placeholder\:text-gray-400::placeholder{
-  color:var(--gray-400)
-}
-
 .hover\:bg-gray-100:hover{
   background-color:var(--gray-100)
 }
@@ -1592,10 +1601,6 @@ video {
   border-color:var(--error-700)
 }
 
-.focus\:border-gray-200:focus{
-  border-color:var(--gray-200)
-}
-
 .focus\:bg-error-100:focus{
   background-color:var(--error-100)
 }
@@ -1613,6 +1618,14 @@ video {
 .focus\:outline-none:focus{
   outline:2px solid transparent;
   outline-offset:2px
+}
+
+.placeholder\:focus\:border-gray-200:focus::-moz-placeholder{
+  border-color:var(--gray-200)
+}
+
+.placeholder\:focus\:border-gray-200:focus::placeholder{
+  border-color:var(--gray-200)
 }
 
 .focus-visible\:outline-none:focus-visible{
@@ -1670,6 +1683,10 @@ video {
 
 .disabled\:active\:bg-transparent:active:disabled{
   background-color:transparent
+}
+
+.group:focus-within .group-focus-within\:bg-gray-100{
+  background-color:var(--gray-100)
 }
 
 .has-\[\:disabled\]\:opacity-50:has(:disabled){
