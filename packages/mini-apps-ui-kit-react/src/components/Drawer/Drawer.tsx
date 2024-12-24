@@ -5,12 +5,10 @@ import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 
 const Drawer = DrawerPrimitive.Root;
-const DrawerTrigger = DrawerPrimitive.Trigger;
-const DrawerClose = DrawerPrimitive.Close;
-const DrawerTitle = DrawerPrimitive.Title;
-const DrawerDescription = DrawerPrimitive.Description;
+const DrawerTrigger: typeof DrawerPrimitive.Trigger = DrawerPrimitive.Trigger;
+const DrawerClose: typeof DrawerPrimitive.Close = DrawerPrimitive.Close;
 
-const DrawerContent = React.forwardRef<
+const DrawerContent: typeof DrawerPrimitive.Content = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
@@ -27,6 +25,8 @@ const DrawerContent = React.forwardRef<
       )}
       {...props}
     >
+      {/* The Drawer Title is added for accessibility purposes, ensuring that screen readers can identify the drawer's purpose. */}
+      <DrawerPrimitive.Title className="sr-only" />
       <DrawerPrimitive.Handle className="my-2" />
       {children}
     </DrawerPrimitive.Content>
@@ -35,4 +35,4 @@ const DrawerContent = React.forwardRef<
 
 DrawerContent.displayName = "DrawerContent";
 
-export { Drawer, DrawerTrigger, DrawerClose, DrawerContent, DrawerTitle, DrawerDescription };
+export { Drawer, DrawerTrigger, DrawerClose, DrawerContent };
