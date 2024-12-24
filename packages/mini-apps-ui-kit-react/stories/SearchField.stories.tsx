@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import SearchField from "@/components/SearchField";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import * as Form from "../src/components/Form";
 
