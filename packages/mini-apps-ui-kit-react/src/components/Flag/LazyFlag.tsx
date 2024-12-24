@@ -22,7 +22,7 @@ const Placeholder = (props: Pick<FlagProps, "size"> & { className?: string }) =>
 
 const LazyFlag = forwardRef<SVGSVGElement, FlagProps>(({ countryCode, size = 40 }, ref) => {
   const FlagComponent = lazy(() =>
-    import(`./flag-components/${countryCode.toLowerCase()}`).catch(() => ({
+    import(`./flag-components/${countryCode.toLowerCase()}.tsx`).catch(() => ({
       default: () => <Placeholder size={size} className="animate-none bg-gray-200" />,
     })),
   );
