@@ -1602,6 +1602,12 @@ video {
   box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 
+.shadow-none{
+  --tw-shadow:0 0 #0000;
+  --tw-shadow-colored:0 0 #0000;
+  box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}
+
 .shadow-regular-large{
   --tw-shadow:0 1rem 2.5rem -0.5rem #585C5F29;
   --tw-shadow-colored:0 1rem 2.5rem -0.5rem var(--tw-shadow-color);
