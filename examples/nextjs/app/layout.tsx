@@ -1,6 +1,5 @@
-import type { Metadata } from "next";
-
 import "@mini-apps-ui-kit/react/styles.css";
+import type { Metadata } from "next";
 
 import "./globals.css";
 
