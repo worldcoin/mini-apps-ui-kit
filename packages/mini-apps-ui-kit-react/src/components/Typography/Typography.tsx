@@ -165,7 +165,7 @@ const Typography = forwardRef<
   TypographyProps & React.ComponentPropsWithoutRef<ElementType>
 >(
   (
-    { variant = "body", level = 1, children, as: Component = "p", className, ...props },
+    { variant = "body", level = 2, children, as: Component = "p", className, ...props },
     ref,
   ) => {
     return (
