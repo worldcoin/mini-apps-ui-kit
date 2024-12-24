@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, within } from "@storybook/test";
 
-import Chip, { ChipProps } from "../../src/components/Chip";
-import { iconControl } from "../helpers/icon-control";
-import { Shield } from "../helpers/icons/Shield";
+import Chip, { ChipProps } from "../src/components/Chip";
+import { iconControl } from "./helpers/icon-control";
+import { Shield } from "./helpers/icons/Shield";
 
 const meta: Meta<ChipProps> = {
   title: "components/Chip",
