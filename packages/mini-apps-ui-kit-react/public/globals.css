@@ -826,6 +826,18 @@ video {
   }
 }
 
+.sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0, 0, 0, 0);
+  white-space:nowrap;
+  border-width:0
+}
+
 .fixed{
   position:fixed
 }
@@ -888,6 +900,11 @@ video {
 .my-2{
   margin-top:0.5rem;
   margin-bottom:0.5rem
+}
+
+.my-4{
+  margin-top:1rem;
+  margin-bottom:1rem
 }
 
 .-ml-3{

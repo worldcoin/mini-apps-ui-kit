@@ -1,12 +1,6 @@
 import Button from "@/components/Button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/Drawer";
+import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/Drawer";
+import Typography from "@/components/Typography";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Drawer> = {
@@ -16,8 +10,6 @@ const meta: Meta<typeof Drawer> = {
     DrawerTrigger: DrawerTrigger as React.ComponentType<unknown>,
     DrawerContent: DrawerContent as React.ComponentType<unknown>,
     DrawerClose: DrawerClose as React.ComponentType<unknown>,
-    DrawerTitle: DrawerTitle as React.ComponentType<unknown>,
-    DrawerDescription: DrawerDescription as React.ComponentType<unknown>,
   },
   parameters: {
     docs: {
@@ -37,10 +29,11 @@ export const Default: StoryObj<typeof Drawer> = {
       <DrawerTrigger>
         <Button>Open Drawer</Button>
       </DrawerTrigger>
-      <DrawerContent>
-        <DrawerTitle>Drawer title</DrawerTitle>
-        <DrawerDescription>Drawer description</DrawerDescription>
-        <div className="p-4">Drawer content</div>
+      <DrawerContent className="flex flex-col items-center pb-4">
+        <Typography component="h2" variant="heading" level={3}>
+          Drawer title
+        </Typography>
+        <Typography className="p-4">Drawer content</Typography>
         <DrawerClose>
           <Button>Close</Button>
         </DrawerClose>
@@ -55,12 +48,13 @@ export const LongContent: StoryObj<typeof Drawer> = {
       <DrawerTrigger>
         <Button>Open Drawer with long content</Button>
       </DrawerTrigger>
-      <DrawerContent className="h-[96%]">
-        <div className="max-w-md w-full mx-auto rounded-t-[10px] flex flex-col flex-grow">
-          <DrawerTitle>Drawer with long content</DrawerTitle>
-          <DrawerDescription>Scrollable content inside the drawer.</DrawerDescription>
+      <DrawerContent className="h-[96%] pb-4">
+        <div className="max-w-md w-full mx-auto rounded-t-[10px] flex flex-col items-center flex-grow">
+          <Typography component="h2" variant="heading" level={3}>
+            Drawer with long, scrollable content
+          </Typography>
           <div
-            className="no-scrollbar mx-auto w-full flex flex-col flex-grow flex-basis-0 overflow-auto p-2"
+            className="no-scrollbar mx-auto w-full flex flex-col flex-grow flex-basis-0 overflow-auto p-2 my-4"
             style={{
               // Explicitly setting flex-basis ensures that the remaining space in the flex container is used,
               // height issues are fixed, and proper scrolling is enabled.
