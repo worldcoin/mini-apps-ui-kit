@@ -29,6 +29,10 @@
       "types": "./dist/components/ColorPicker/index.d.ts",
       "default": "./dist/components/ColorPicker/index.js"
     },
+    "./Drawer": {
+      "types": "./dist/components/Drawer/index.d.ts",
+      "default": "./dist/components/Drawer/index.js"
+    },
     "./Flag": {
       "types": "./dist/components/Flag/index.d.ts",
       "default": "./dist/components/Flag/index.js"
@@ -155,6 +159,7 @@
     "countries-list": "^3.1.1",
     "input-otp": "^1.4.1",
     "react-international-phone": "^4.3.0",
-    "tailwind-merge": "^2.5.5"
+    "tailwind-merge": "^2.5.5",
+    "vaul": "^1.1.2"
   }
 }
