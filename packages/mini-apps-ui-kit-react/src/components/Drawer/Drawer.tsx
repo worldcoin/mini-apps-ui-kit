@@ -5,12 +5,12 @@ import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 
 const Drawer = DrawerPrimitive.Root;
-const DrawerTrigger = DrawerPrimitive.Trigger;
-const DrawerClose = DrawerPrimitive.Close;
-const DrawerTitle = DrawerPrimitive.Title;
-const DrawerDescription = DrawerPrimitive.Description;
+const DrawerTrigger: typeof DrawerPrimitive.Trigger = DrawerPrimitive.Trigger;
+const DrawerClose: typeof DrawerPrimitive.Close = DrawerPrimitive.Close;
+const DrawerTitle: typeof DrawerPrimitive.Title = DrawerPrimitive.Title;
+const DrawerDescription: typeof DrawerPrimitive.Description = DrawerPrimitive.Description;
 
-const DrawerContent = React.forwardRef<
+const DrawerContent: typeof DrawerPrimitive.Content = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
