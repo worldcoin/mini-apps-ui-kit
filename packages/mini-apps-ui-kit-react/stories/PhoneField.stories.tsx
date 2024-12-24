@@ -48,14 +48,71 @@ export const Default: Story = {
     expect(input).toBeVisible();
     expect(input).toHaveValue("");
     expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes).toHaveLength(3);
+    expect(selectButton.childNodes[0].childNodes).toHaveLength(3);
 
-    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] = selectButton.childNodes;
+    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
+      selectButton.childNodes[0].childNodes;
 
     expect(selectButtonFlag).toBeVisible();
     expect(selectButtonDialCode).toBeVisible();
     expect(selectButtonDialCode).toHaveTextContent("+1");
     expect(selectButtonArrow).toBeVisible();
+  },
+};
+
+export const CountrySelectorAsDrawer: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+
+    return (
+      <PhoneField {...args} value={value} onChange={setValue} countrySelectorMode="drawer" />
+    );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    let drawer: HTMLDivElement | null = null;
+    let searchInput: HTMLInputElement | null = null;
+    let countryElements: NodeListOf<Element> | null = null;
+
+    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+    expect(input).toHaveValue("");
+
+    const selectButton = await canvas.getByTestId("country-selector-button");
+
+    fireEvent.click(selectButton);
+
+    await waitFor(async () => {
+      drawer = document.body.querySelector("[data-vaul-drawer]");
+
+      countryElements = drawer!.querySelectorAll("[data-country]");
+
+      expect(countryElements).toHaveLength(countryCodes.length);
+
+      searchInput = (await within(drawer!).getByPlaceholderText(
+        "Search name or number",
+      )) as HTMLInputElement;
+
+      expect(searchInput).toBeVisible();
+    });
+
+    userEvent.type(searchInput!, "United S");
+
+    await waitFor(() => {
+      countryElements = drawer!.querySelectorAll("[data-country]");
+
+      expect(countryElements).toHaveLength(1);
+    });
+
+    fireEvent.click(countryElements![0]);
+
+    await waitFor(async () => {
+      input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+
+      expect(input).toHaveValue("+1 ");
+    });
+
+    userEvent.clear(input);
   },
 };
 
@@ -78,9 +135,10 @@ export const DialCodeInInputOnInitialization: Story = {
     expect(input).toBeVisible();
     expect(input).toHaveValue("+49 ");
     expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes).toHaveLength(3);
+    expect(selectButton.childNodes[0].childNodes).toHaveLength(3);
 
-    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] = selectButton.childNodes;
+    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
+      selectButton.childNodes[0].childNodes;
 
     expect(selectButtonFlag).toBeVisible();
     expect(selectButtonDialCode).toBeVisible();
@@ -104,9 +162,9 @@ export const WithoutDialCodeWithinButton: Story = {
     const selectButton = await canvas.getByRole("combobox");
 
     expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes).toHaveLength(2);
+    expect(selectButton.childNodes[0].childNodes).toHaveLength(2);
 
-    const [selectButtonFlag, selectButtonArrow] = selectButton.childNodes;
+    const [selectButtonFlag, selectButtonArrow] = selectButton.childNodes[0].childNodes;
 
     expect(selectButtonFlag).toBeVisible();
     expect(selectButtonArrow).toBeVisible();

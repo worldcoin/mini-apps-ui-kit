@@ -826,12 +826,29 @@ video {
   }
 }
 
+.fixed{
+  position:fixed
+}
+
 .absolute{
   position:absolute
 }
 
 .relative{
   position:relative
+}
+
+.inset-0{
+  inset:0px
+}
+
+.inset-x-0{
+  left:0px;
+  right:0px
+}
+
+.bottom-0{
+  bottom:0px
 }
 
 .bottom-1{
@@ -863,6 +880,16 @@ video {
   margin-right:0.5rem
 }
 
+.mx-auto{
+  margin-left:auto;
+  margin-right:auto
+}
+
+.my-2{
+  margin-top:0.5rem;
+  margin-bottom:0.5rem
+}
+
 .-ml-3{
   margin-left:-0.75rem
 }
@@ -881,6 +908,10 @@ video {
 
 .mt-1{
   margin-top:0.25rem
+}
+
+.mt-24{
+  margin-top:6rem
 }
 
 .mt-5{
@@ -978,6 +1009,10 @@ video {
   height:4.25rem
 }
 
+.h-\[96\%\]{
+  height:96%
+}
+
 .h-\[var\(--radix-select-trigger-height\)\]{
   height:var(--radix-select-trigger-height)
 }
@@ -1060,6 +1095,14 @@ video {
 
 .min-w-\[var\(--radix-select-trigger-width\)\]{
   min-width:var(--radix-select-trigger-width)
+}
+
+.max-w-md{
+  max-width:28rem
+}
+
+.flex-grow{
+  flex-grow:1
 }
 
 .translate-x-0{
@@ -1172,6 +1215,10 @@ video {
   margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))
 }
 
+.overflow-auto{
+  overflow:auto
+}
+
 .overflow-hidden{
   overflow:hidden
 }
@@ -1214,6 +1261,16 @@ video {
 
 .rounded-xl{
   border-radius:0.75rem
+}
+
+.rounded-t-2xl{
+  border-top-left-radius:1rem;
+  border-top-right-radius:1rem
+}
+
+.rounded-t-\[10px\]{
+  border-top-left-radius:10px;
+  border-top-right-radius:10px
 }
 
 .border{
@@ -1344,6 +1401,11 @@ video {
   padding-right:1rem
 }
 
+.py-2{
+  padding-top:0.5rem;
+  padding-bottom:0.5rem
+}
+
 .py-4{
   padding-top:1rem;
   padding-bottom:1rem
@@ -1353,8 +1415,20 @@ video {
   padding-bottom:0.5rem
 }
 
+.pb-4{
+  padding-bottom:1rem
+}
+
 .pr-2{
   padding-right:0.5rem
+}
+
+.pt-2{
+  padding-top:0.5rem
+}
+
+.text-center{
+  text-align:center
 }
 
 .font-display{
@@ -1516,6 +1590,10 @@ video {
 
 .opacity-25{
   opacity:0.25
+}
+
+.opacity-40{
+  opacity:0.4
 }
 
 .shadow-card{
