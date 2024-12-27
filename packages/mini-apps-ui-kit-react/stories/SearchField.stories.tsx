@@ -2,6 +2,7 @@ import SearchField from "@/components/SearchField";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import * as Form from "../src/components/Form";
+import { iconControl } from "./helpers/icon-control";
 
 const meta: Meta<typeof SearchField> = {
   title: "components/SearchField",
@@ -14,6 +15,7 @@ const meta: Meta<typeof SearchField> = {
     },
   },
   argTypes: {
+    endAdornment: iconControl,
     error: {
       control: "boolean",
     },
