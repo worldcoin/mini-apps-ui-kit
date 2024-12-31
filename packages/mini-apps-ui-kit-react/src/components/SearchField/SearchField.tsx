@@ -33,6 +33,7 @@ const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
       pasteButtonLabel,
       isValid,
       disabled,
+      type = "search",
       autoComplete = "off",
       spellCheck = "false",
       endAdornment: endAdornmentProp,
@@ -60,6 +61,7 @@ const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
         disabled={disabled}
         endAdornmentWidth={endAdornmentWidth}
         endAdornment={endAdornment}
+        type={type}
         autoComplete={autoComplete}
         spellCheck={spellCheck}
       />
