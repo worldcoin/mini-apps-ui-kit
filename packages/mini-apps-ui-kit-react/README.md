@@ -92,28 +92,7 @@ Or use the following code to load the fonts via CSS:
 
 For SF Mono, you'll need to obtain it from Apple's developer resources as it's not freely available. You can download it from [Apple's developer fonts page](https://developer.apple.com/fonts/).
 
-## Spacing System
-
-The library follows a consistent 4px-based spacing system for uniform padding, margins, and layout spacing. This ensures better scalability and alignment across different components.
-
-### Available Spacing Tokens
-
-- xs: 0.25rem (4px)
-- sm: 0.5rem (8px)
-- md: 1rem (16px)
-- lg: 1.5rem (24px)
-- xl: 2rem (32px)
-- xxl: 3rem (48px)
-
-### Usage in Tailwind CSS
-
-These spacing tokens are mapped in the Tailwind configuration and can be used directly in your components, such as `p-md` and `m-sm`.
-
-```html
-<div className="p-md">Content with 16px padding</div>
-```
-
-### Spacing Recommendations
+## Spacing Recommendations
 
 - **Main paddings**: It is recommended to use a default padding of `24px `to ensure ample breathing room around elements and maintain a clean, structured appearance.
 
