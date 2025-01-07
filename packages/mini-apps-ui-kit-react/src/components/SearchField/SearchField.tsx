@@ -5,10 +5,7 @@ import Input, { InputProps } from "../Input";
 import PasteButton, { PASTE_BUTTON_WIDTH } from "../PasteButton/PasteButton";
 
 export interface SearchFieldProps
-  extends Omit<
-    InputProps,
-    "startAdornment" | "endAdornment" | "startAdornmentWidth" | "endAdornmentWidth"
-  > {
+  extends Omit<InputProps, "startAdornment" | "startAdornmentWidth"> {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -30,9 +27,31 @@ export interface SearchFieldProps
 }
 
 const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
-  ({ showPasteButton, pasteButtonLabel, isValid, disabled, ...props }, forwardedRef) => {
+  (
+    {
+      showPasteButton,
+      pasteButtonLabel,
+      isValid,
+      disabled,
+      type = "search",
+      autoComplete = "off",
+      spellCheck = "false",
+      endAdornment: endAdornmentProp,
+      endAdornmentWidth: endAdornmentWidthProp,
+      ...props
+    },
+    forwardedRef,
+  ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(forwardedRef, () => inputRef.current!);
+
+    let endAdornment = endAdornmentProp;
+    let endAdornmentWidth = endAdornmentWidthProp;
+    if (showPasteButton && !disabled) {
+      endAdornment = <PasteButton inputRef={inputRef} label={pasteButtonLabel} />;
+      endAdornmentWidth = PASTE_BUTTON_WIDTH;
+    }
+
     return (
       <Input
         {...props}
@@ -40,11 +59,11 @@ const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
         startAdornment={<Magnifier />}
         isValid={isValid}
         disabled={disabled}
-        endAdornmentWidth={showPasteButton ? PASTE_BUTTON_WIDTH : undefined}
-        endAdornment={
-          showPasteButton &&
-          !disabled && <PasteButton inputRef={inputRef} label={pasteButtonLabel} />
-        }
+        endAdornmentWidth={endAdornmentWidth}
+        endAdornment={endAdornment}
+        type={type}
+        autoComplete={autoComplete}
+        spellCheck={spellCheck}
       />
     );
   },
