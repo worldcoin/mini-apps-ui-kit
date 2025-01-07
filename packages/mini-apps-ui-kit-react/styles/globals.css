@@ -1,5 +1,43 @@
 @import "react-international-phone/dist/index.css";
 
+/* Hide pseudo-elements for search inputs */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* Hide clear button for all supported input types */
+input::-webkit-clear-button {
+  display: none;
+}
+
+/* Hide spin buttons for number inputs */
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  display: none;
+}
+
+/* Hide calendar picker for date inputs */
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Hide pseudo-elements for datetime inputs */
+input::-webkit-datetime-edit,
+input::-webkit-datetime-edit-fields-wrapper,
+input::-webkit-datetime-edit-text,
+input::-webkit-datetime-edit-year-field,
+input::-webkit-datetime-edit-month-field,
+input::-webkit-datetime-edit-day-field,
+input::-webkit-datetime-edit-hour-field,
+input::-webkit-datetime-edit-minute-field,
+input::-webkit-datetime-edit-second-field,
+input::-webkit-datetime-edit-ampm-field {
+  display: none;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
