@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { ColorPickerGroup, ColorPickerItem } from "@/components/ColorPicker";
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof ColorPickerGroup> = {
   title: "components/ColorPicker",
