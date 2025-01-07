@@ -58,35 +58,21 @@ export default tseslint.config({
 ## Font Configuration
 
 The library uses three fonts:
-- **Rubik** as the sans-serif font for body text and subtitles `(--font-sans)`
-- **Sora** as the display font for headings and numbers `(--font-display)`
-- **SF Mono** as the monospace font `(--font-mono)`
 
-You can override any of these fonts by setting the CSS variables in your application:
+- **[Rubik](https://fonts.google.com/specimen/Rubik)** as the sans-serif font for body text and subtitles `(--font-sans)`
+- **[Sora](https://fonts.google.com/specimen/Sora)** as the display font for headings and numbers `(--font-display)`
+- **[DM Mono](https://fonts.google.com/specimen/DM+Mono)** as the monospace font `(--font-mono)`
 
-```css
-:root {
-  --font-sans: "Font", sans-serif;
-  --font-display: "Font", sans-serif;
-  --font-mono: "Font", monospace;
-}
-```
-
-Embed the following code in the `<head>` of your html to load Sora and Rubik:
+Embed the following code in the `<head>` of your html to load the fonts:
 
 ```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap"
-  rel="stylesheet"
-/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@600&display=swap" rel="stylesheet">
 ```
 
 Or use the following code to load the fonts via CSS:
 
 ```css
-@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap');
 ```
-
-For SF Mono, you'll need to obtain it from Apple's developer resources as it's not freely available. You can download it from [Apple's developer fonts page](https://developer.apple.com/fonts/).
