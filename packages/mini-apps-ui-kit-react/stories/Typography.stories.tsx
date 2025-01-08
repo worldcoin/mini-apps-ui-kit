@@ -92,7 +92,6 @@ export const Body: Story = {
     },
   },
 };
-
 export const Mono: Story = {
   args: {
     variant: "mono",
