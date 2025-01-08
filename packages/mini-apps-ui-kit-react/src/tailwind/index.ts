@@ -6,7 +6,7 @@ const uiKitTailwindPlugin = plugin(
       ":root": {
         "--font-sans": "Rubik",
         "--font-display": "Sora",
-        "--font-mono": "SF Mono",
+        "--font-mono": "DM Mono",
 
         "--gray-900": "#191c20",
         "--gray-700": "#3c424b",
