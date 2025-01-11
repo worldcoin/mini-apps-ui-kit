@@ -1,7 +1,7 @@
 {
   "name": "mini-apps-ui-kit-monorepo",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
     "build": "turbo build --filter=@worldcoin/mini-apps-ui-kit-react",
     "dev": "turbo dev",
