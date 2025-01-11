@@ -1,4 +1,5 @@
 import type { VariantProps } from "class-variance-authority";
+
 import { cva } from "class-variance-authority";
 import * as React from "react";
 
@@ -8,7 +9,7 @@ import { Tick } from "../Icons/Tick";
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "peer h-[3.125rem] w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  "peer h-[3.125rem] font-sans w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       error: {
@@ -91,7 +92,7 @@ export interface InputProps
   isFocused?: boolean;
 }
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       type = "text",

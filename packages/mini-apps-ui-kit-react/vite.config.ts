@@ -26,7 +26,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       formats: ["es"],
-      name: "@mini-apps-ui-kit/react",
+      name: "@worldcoin/mini-apps-ui-kit-react",
     },
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime", "tailwindcss"],

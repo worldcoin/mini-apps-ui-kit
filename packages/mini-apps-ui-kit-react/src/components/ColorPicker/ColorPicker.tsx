@@ -16,7 +16,7 @@ interface ColorPickerGroupProps
   onChange: (value: string) => void;
 }
 
-const ColorPickerItem = forwardRef<HTMLButtonElement, ColorPickerItemProps>(
+export const ColorPickerItem = forwardRef<HTMLButtonElement, ColorPickerItemProps>(
   ({ value, ...props }, ref) => {
     return (
       <RadioGroup.Item
@@ -37,7 +37,7 @@ const ColorPickerItem = forwardRef<HTMLButtonElement, ColorPickerItemProps>(
   },
 );
 
-const ColorPickerGroup = forwardRef<HTMLDivElement, ColorPickerGroupProps>(
+export const ColorPickerGroup = forwardRef<HTMLDivElement, ColorPickerGroupProps>(
   ({ value, onChange, children, ...props }, ref) => {
     return (
       <RadioGroup.Root
@@ -53,5 +53,4 @@ const ColorPickerGroup = forwardRef<HTMLDivElement, ColorPickerGroupProps>(
   },
 );
 
-export { ColorPickerGroup, ColorPickerItem };
 export default ColorPickerGroup;

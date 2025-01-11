@@ -1,7 +1,7 @@
 import { forwardRef, useImperativeHandle, useRef } from "react";
 
 import { Magnifier } from "../Icons/Magnifier";
-import Input, { InputProps } from "../Input";
+import { Input, InputProps } from "../Input";
 import PasteButton, { PASTE_BUTTON_WIDTH } from "../PasteButton/PasteButton";
 
 export interface SearchFieldProps
@@ -26,7 +26,7 @@ export interface SearchFieldProps
   pasteButtonLabel?: string;
 }
 
-const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
+export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
   (
     {
       showPasteButton,

@@ -44,7 +44,7 @@ const checkboxClasses = cva(
   },
 );
 
-const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
+export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
   ({ checked = false, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
     return (
       <RadixCheckbox.Root

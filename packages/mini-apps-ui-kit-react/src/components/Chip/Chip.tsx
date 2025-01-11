@@ -41,7 +41,7 @@ const chipVariants = cva(
   },
 );
 
-const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof chipVariants>>(
+export const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof chipVariants>>(
   ({ className = "", icon, label, variant = "default" }, ref) => {
     return (
       <div ref={ref} className={chipVariants({ variant, className })}>
