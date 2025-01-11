@@ -75,16 +75,12 @@ export interface SelectProps
 }
 
 const triggerVariants = cva(
-  "text-base flex h-[3.125rem] w-full min-w-[6rem] cursor-pointer items-center justify-between whitespace-nowrap rounded-xl border-2 px-3 py-4 font-sans outline-none transition-all transition-transform [&>span:first-of-type]:line-clamp-1",
+  "text-base flex h-[3.125rem] w-full min-w-[6rem] text-gray-900 cursor-pointer items-center justify-between whitespace-nowrap rounded-xl border-2 px-3 py-4 font-sans outline-none transition-all [&>span:first-of-type]:line-clamp-1 data-[placeholder]:text-gray-400",
   {
     variants: {
       isOpen: {
         true: "border-gray-200 bg-gray-0 shadow-card",
         false: "border-gray-100 bg-gray-100",
-      },
-      value: {
-        true: "border-gray-200 bg-gray-0 text-gray-900",
-        false: "text-gray-400",
       },
       defaultValue: {
         true: "border-gray-200 bg-gray-0 text-gray-900",
@@ -102,7 +98,6 @@ const triggerVariants = cva(
     defaultVariants: {
       isOpen: false,
       defaultValue: false,
-      value: false,
       error: false,
       disabled: false,
     },
@@ -162,7 +157,6 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
             typographyVariants({ variant: "body", level: 3 }),
             triggerVariants({
               isOpen,
-              value: !!value,
               error,
               disabled,
               defaultValue: !!defaultValue,
