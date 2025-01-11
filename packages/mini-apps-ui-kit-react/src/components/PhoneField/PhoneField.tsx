@@ -25,11 +25,11 @@ export interface PhoneFieldProps
   /**
    * Current phone number value.
    */
-  value: string;
+  value?: string;
   /**
    * Callback triggered when the phone number changes.
    */
-  onChange: (phone: string) => void;
+  onChange?: (phone: string) => void;
   /**
    * If true, the dial code will be hidden.
    * The dial code is still displayed at the start of the input and in the dropdown.
