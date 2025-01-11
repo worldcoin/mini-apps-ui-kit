@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { expect, within } from "@storybook/test";
 
-import Input, { InputProps } from "../src/components/Input";
+import { Input, InputProps } from "../src/components/Input";
 import { iconControl } from "./helpers/icon-control";
 import { CountryCode } from "./helpers/icons/CountryCode";
 import { Switch } from "./helpers/icons/Switch";

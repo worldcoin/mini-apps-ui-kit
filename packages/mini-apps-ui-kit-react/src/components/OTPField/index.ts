@@ -1,1 +1,1 @@
-export { default } from "./OTPField";
+export * from "./OTPField";

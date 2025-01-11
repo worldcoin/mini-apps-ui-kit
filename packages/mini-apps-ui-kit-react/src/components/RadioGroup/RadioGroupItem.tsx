@@ -31,7 +31,7 @@ const radioGroupItemVariants = cva(
   },
 );
 
-const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>(
+export const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>(
   ({ value, disabled, ...rest }, ref) => {
     return (
       <RadioGroupPrimitive.Item

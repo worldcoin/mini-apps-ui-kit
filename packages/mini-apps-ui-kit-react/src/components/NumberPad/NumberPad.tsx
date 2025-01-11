@@ -32,7 +32,7 @@ const buttons = [
   { value: "del", label: <Delete className="size-6" /> },
 ];
 
-const NumberPad = ({ value = "", onChange, disabled = false }: NumberPadProps) => {
+export const NumberPad = ({ value = "", onChange, disabled = false }: NumberPadProps) => {
   // Validate that value is a valid number or empty string
   if (value !== "" && isNaN(Number(value))) {
     console.error("NumberPad value must be a valid number or empty string");

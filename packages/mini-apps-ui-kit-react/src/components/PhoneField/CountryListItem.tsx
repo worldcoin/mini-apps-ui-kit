@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
-import Flag, { CountryCode } from "../Flag";
-import Typography from "../Typography";
+import { CountryCode, Flag } from "../Flag";
+import { Typography } from "../Typography";
 
 interface CountryListItemProps {
   countryCode: CountryCode;

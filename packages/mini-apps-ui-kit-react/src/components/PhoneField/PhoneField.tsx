@@ -8,9 +8,9 @@ import { parseCountry, usePhoneInput } from "react-international-phone";
 
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "../Drawer";
 import { CountryCode } from "../Flag/Flag";
-import Input, { InputProps } from "../Input";
-import SearchField from "../SearchField";
-import Typography from "../Typography";
+import { Input, InputProps } from "../Input";
+import { SearchField } from "../SearchField";
+import { Typography } from "../Typography";
 import CountryListItem from "./CountryListItem";
 import CountrySelectorButton from "./CountrySelectorButton";
 import {
@@ -82,7 +82,7 @@ export interface PhoneFieldProps
   countrySelectorMode?: "dropdown" | "drawer";
 }
 
-const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
+export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
   (
     {
       value,

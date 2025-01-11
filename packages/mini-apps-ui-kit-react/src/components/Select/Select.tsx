@@ -109,7 +109,7 @@ const triggerVariants = cva(
   },
 );
 
-const Select = forwardRef<HTMLButtonElement, SelectProps>(
+export const Select = forwardRef<HTMLButtonElement, SelectProps>(
   (
     {
       options = [],

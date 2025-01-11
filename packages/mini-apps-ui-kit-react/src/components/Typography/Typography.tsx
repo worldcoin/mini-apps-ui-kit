@@ -160,7 +160,7 @@ export const typographyVariants = cva("", {
   },
 });
 
-const Typography = forwardRef<
+export const Typography = forwardRef<
   HTMLElement,
   TypographyProps & React.ComponentPropsWithoutRef<ElementType>
 >(

@@ -1,6 +1,6 @@
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/Drawer";
-import Typography from "@/components/Typography";
+import { Typography } from "@/components/Typography";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Drawer> = {

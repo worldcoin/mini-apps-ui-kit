@@ -1,5 +1,5 @@
 {
-  "name": "@mini-apps-ui-kit/react",
+  "name": "@worldcoin/mini-apps-ui-kit-react",
   "version": "0.0.1",
   "type": "module",
   "main": "dist/index.js",
@@ -72,6 +72,10 @@
     "./Select": {
       "types": "./dist/components/Select/index.d.ts",
       "default": "./dist/components/Select/index.js"
+    },
+    "./SearchField": {
+      "types": "./dist/components/SearchField/index.d.ts",
+      "default": "./dist/components/SearchField/index.js"
     },
     "./PhoneField": {
       "types": "./dist/components/PhoneField/index.d.ts",
@@ -161,5 +165,8 @@
     "react-international-phone": "^4.3.0",
     "tailwind-merge": "^2.5.5",
     "vaul": "^1.1.2"
-  }
+  },
+  "description": "React components UI Kit library for Mini Apps",
+  "author": "",
+  "license": "ISC"
 }

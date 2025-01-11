@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { expect, within } from "@storybook/test";
 import { useState } from "react";
 
-import NumberPad from "../src/components/NumberPad/NumberPad";
+import { NumberPad } from "../src/components/NumberPad";
 
 const meta: Meta<typeof NumberPad> = {
   title: "components/NumberPad",

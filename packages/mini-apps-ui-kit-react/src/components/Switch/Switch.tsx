@@ -59,7 +59,7 @@ const thumbClasses = cva(
   },
 );
 
-const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
+export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   ({ checked = false, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
     return (
       <RadixSwitch.Root

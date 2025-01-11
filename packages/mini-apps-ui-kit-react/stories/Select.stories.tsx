@@ -2,9 +2,9 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, fireEvent, waitFor, within } from "@storybook/test";
 import { useState } from "react";
 
-import Button from "../src/components/Button";
-import * as Form from "../src/components/Form";
-import Select, { SelectOption, SelectProps } from "../src/components/Select";
+import { Button } from "../src/components/Button";
+import { Form } from "../src/components/Form";
+import { Select, SelectOption, SelectProps } from "../src/components/Select";
 
 const meta: Meta<typeof Select> = {
   title: "components/Select",

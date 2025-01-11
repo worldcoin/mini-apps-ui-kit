@@ -12,7 +12,7 @@ interface TokenProps {
   size?: number;
 }
 
-const Token: React.FC<TokenProps> = ({ value, size = 40 }) => {
+export const Token: React.FC<TokenProps> = ({ value, size = 40 }) => {
   const Icon = tokens[value];
   return <Icon width={size} height={size} />;
 };

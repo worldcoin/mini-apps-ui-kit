@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import { expect, within } from "@storybook/test";
 
-import * as Form from "../src/components/Form";
-import OTPField from "../src/components/OTPField";
+import { Form } from "../src/components/Form";
+import { OTPField } from "../src/components/OTPField";
 
 const meta: Meta<typeof OTPField> = {
   title: "components/OTPField",
