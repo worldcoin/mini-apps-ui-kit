@@ -6,7 +6,7 @@ interface NumberPadProps {
   /**
    * The current value displayed in the number pad
    */
-  value: string;
+  value?: string;
   /**
    * Whether the number pad is disabled
    */
