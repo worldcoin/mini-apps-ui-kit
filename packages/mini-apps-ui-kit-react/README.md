@@ -1,4 +1,4 @@
-# @mini-apps-ui-kit/react
+# @worldcoin/mini-apps-ui-kit-react
 
 React components UI Kit library for Mini Apps
 

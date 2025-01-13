@@ -1,11 +1,11 @@
-import Button from "@/components/Button";
+import { Button } from "@/components/Button";
 import { countryCodes } from "@/components/Flag/constants";
-import PhoneField, { PhoneFieldProps } from "@/components/PhoneField";
+import { PhoneField, PhoneFieldProps } from "@/components/PhoneField";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, fireEvent, userEvent, waitFor, within } from "@storybook/test";
 import { useRef, useState } from "react";
 
-import * as Form from "../src/components/Form";
+import { Form } from "../src/components/Form";
 import { iconControl } from "./helpers/icon-control";
 
 const meta: Meta<typeof PhoneField> = {

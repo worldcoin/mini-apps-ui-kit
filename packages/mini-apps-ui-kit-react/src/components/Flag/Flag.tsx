@@ -35,7 +35,7 @@ interface FlagProps {
   size?: number;
 }
 
-const Flag = forwardRef<SVGSVGElement, FlagProps>(({ countryCode, size = 40 }, ref) => {
+export const Flag = forwardRef<SVGSVGElement, FlagProps>(({ countryCode, size = 40 }, ref) => {
   const Component = FlagComponents[countryCode];
 
   return <Component ref={ref} width={size} height={size} />;

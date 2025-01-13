@@ -1,8 +1,9 @@
 import type { Meta, StoryFn, StoryObj } from "@storybook/react";
+
 import { expect, within } from "@storybook/test";
 import { useEffect, useState } from "react";
 
-import Checkbox from "../src/components/Checkbox";
+import { Checkbox } from "../src/components/Checkbox";
 
 const meta: Meta<typeof Checkbox> = {
   title: "components/Checkbox",

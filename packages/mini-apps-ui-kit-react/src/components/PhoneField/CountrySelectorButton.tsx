@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
-import Flag, { CountryCode } from "../Flag";
-import Typography from "../Typography";
+import { CountryCode, Flag } from "../Flag";
+import { Typography } from "../Typography";
 import { ArrowDown } from "./ArrowDown";
 
 const triggerVariants = cva(

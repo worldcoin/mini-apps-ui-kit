@@ -8,9 +8,9 @@ import { parseCountry, usePhoneInput } from "react-international-phone";
 
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "../Drawer";
 import { CountryCode } from "../Flag/Flag";
-import Input, { InputProps } from "../Input";
-import SearchField from "../SearchField";
-import Typography from "../Typography";
+import { Input, InputProps } from "../Input";
+import { SearchField } from "../SearchField";
+import { Typography } from "../Typography";
 import CountryListItem from "./CountryListItem";
 import CountrySelectorButton from "./CountrySelectorButton";
 import {
@@ -25,11 +25,11 @@ export interface PhoneFieldProps
   /**
    * Current phone number value.
    */
-  value: string;
+  value?: string;
   /**
    * Callback triggered when the phone number changes.
    */
-  onChange: (phone: string) => void;
+  onChange?: (phone: string) => void;
   /**
    * If true, the dial code will be hidden.
    * The dial code is still displayed at the start of the input and in the dropdown.
@@ -82,7 +82,7 @@ export interface PhoneFieldProps
   countrySelectorMode?: "dropdown" | "drawer";
 }
 
-const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
+export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
   (
     {
       value,

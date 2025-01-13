@@ -1,14 +1,14 @@
 {
   "name": "mini-apps-ui-kit-monorepo",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
-    "build": "turbo build --filter=@mini-apps-ui-kit/react",
+    "build": "turbo build --filter=@worldcoin/mini-apps-ui-kit-react",
     "dev": "turbo dev",
     "dev:sb": "turbo dev:sb",
     "lint": "turbo lint",
-    "build:sb": "turbo build:sb --filter=@mini-apps-ui-kit/react",
-    "sb:move": "turbo sb:move --filter=@mini-apps-ui-kit/react",
+    "build:sb": "turbo build:sb --filter=@worldcoin/mini-apps-ui-kit-react",
+    "sb:move": "turbo sb:move --filter=@worldcoin/mini-apps-ui-kit-react",
     "preview:sb": "pnpm dlx http-server ./packages/mini-apps-ui-kit-react/storybook-static",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },

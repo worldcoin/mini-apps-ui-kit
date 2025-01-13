@@ -1,7 +1,27 @@
-import "@mini-apps-ui-kit/react/styles.css";
+import "@worldcoin/mini-apps-ui-kit-react/styles.css";
 import type { Metadata } from "next";
+import { DM_Mono, Rubik, Sora } from "next/font/google";
 
 import "./globals.css";
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  variable: "--font-sans",
+});
+
+const sora = Sora({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+  variable: "--font-display",
+});
+
+const dmMono = DM_Mono({
+  weight: ["300", "400", "500"],
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${rubik.className} ${sora.className} ${dmMono.className}`}>
       <body>{children}</body>
     </html>
   );

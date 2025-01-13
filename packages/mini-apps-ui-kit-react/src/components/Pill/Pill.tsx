@@ -38,7 +38,7 @@ export interface PillProps
   asChild?: boolean;
 }
 
-const Pill = forwardRef<HTMLButtonElement, PillProps>(
+export const Pill = forwardRef<HTMLButtonElement, PillProps>(
   ({ checked, children, asChild, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (

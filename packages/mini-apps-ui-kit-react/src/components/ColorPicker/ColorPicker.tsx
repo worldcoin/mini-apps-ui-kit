@@ -9,14 +9,14 @@ interface ColorPickerItemProps extends Omit<RadioGroup.RadioGroupItemProps, "val
 interface ColorPickerGroupProps
   extends Omit<RadixRadioGroupProps, "value" | "onValueChange" | "onChange"> {
   /** The currently selected color value */
-  value: string;
+  value?: string;
   /** ColorPickerItem components to render as options */
   children: React.ReactNode;
   /** Callback fired when the selected color changes */
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 }
 
-const ColorPickerItem = forwardRef<HTMLButtonElement, ColorPickerItemProps>(
+export const ColorPickerItem = forwardRef<HTMLButtonElement, ColorPickerItemProps>(
   ({ value, ...props }, ref) => {
     return (
       <RadioGroup.Item
@@ -37,7 +37,7 @@ const ColorPickerItem = forwardRef<HTMLButtonElement, ColorPickerItemProps>(
   },
 );
 
-const ColorPickerGroup = forwardRef<HTMLDivElement, ColorPickerGroupProps>(
+export const ColorPickerGroup = forwardRef<HTMLDivElement, ColorPickerGroupProps>(
   ({ value, onChange, children, ...props }, ref) => {
     return (
       <RadioGroup.Root
@@ -53,5 +53,4 @@ const ColorPickerGroup = forwardRef<HTMLDivElement, ColorPickerGroupProps>(
   },
 );
 
-export { ColorPickerGroup, ColorPickerItem };
 export default ColorPickerGroup;

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import Token from "../src/components/Token";
+import { Token } from "../src/components/Token";
 
 const meta: Meta<typeof Token> = {
   title: "Components/Token",
