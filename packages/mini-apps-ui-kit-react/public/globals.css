@@ -1815,6 +1815,10 @@ video {
   color:transparent
 }
 
+.disabled\:opacity-20:disabled{
+  opacity:0.2
+}
+
 .disabled\:opacity-50:disabled{
   opacity:0.5
 }
@@ -1835,8 +1839,22 @@ video {
   opacity:0.5
 }
 
+.data-\[state\=checked\]\:translate-x-4[data-state="checked"]{
+  --tw-translate-x:1rem;
+  transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
+.data-\[state\=unchecked\]\:translate-x-0[data-state="unchecked"]{
+  --tw-translate-x:0px;
+  transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+}
+
 .data-\[state\=checked\]\:border-gray-900[data-state="checked"]{
   border-color:var(--gray-900)
+}
+
+.data-\[state\=unchecked\]\:border-gray-300[data-state="unchecked"]{
+  border-color:var(--gray-300)
 }
 
 .data-\[state\=unchecked\]\:border-gray-400[data-state="unchecked"]{
@@ -1847,8 +1865,16 @@ video {
   background-color:var(--gray-900)
 }
 
+.data-\[state\=unchecked\]\:bg-gray-300[data-state="unchecked"]{
+  background-color:var(--gray-300)
+}
+
 .data-\[state\=unchecked\]\:bg-transparent[data-state="unchecked"]{
   background-color:transparent
+}
+
+.data-\[placeholder\]\:text-gray-400[data-placeholder]{
+  color:var(--gray-400)
 }
 
 .\[\&\>span\:first-of-type\]\:line-clamp-1>span:first-of-type{

@@ -23,7 +23,7 @@ interface ListItemProps
   children?: React.ReactNode;
 }
 
-const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
+export const ListItem = forwardRef<HTMLDivElement, ListItemProps>(
   ({ children, variant, ...props }, ref) => {
     return (
       <div ref={ref} className={listItemStyles({ variant })} {...props}>

@@ -1,7 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import type { OTPInputProps } from "input-otp";
+
+import { cn } from "@/lib/utils";
 import {
   OTPInput,
   REGEXP_ONLY_CHARS,
@@ -91,7 +92,7 @@ type OTPFieldProps = Omit<
   pasteTransformer?: (pastedText: string) => string;
 };
 
-const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldProps>(
+export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldProps>(
   ({ maxLength = 6, error, children, mode = "digits", pattern, ...props }, ref) => {
     return (
       <OTPInput

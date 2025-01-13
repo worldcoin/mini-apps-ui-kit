@@ -1,13 +1,11 @@
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import { CheckboxProps as RadixCheckboxProps } from "@radix-ui/react-checkbox";
-import { type VariantProps, cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
 import { Tick } from "../Icons/Tick";
 
 export interface CheckboxProps
-  extends Omit<RadixCheckboxProps, "onCheckedChange" | "onChange" | "className">,
-    VariantProps<typeof checkboxClasses> {
+  extends Omit<RadixCheckboxProps, "onCheckedChange" | "onChange" | "className"> {
   /**
    * The checked state of the checkbox.
    * @default false
@@ -24,35 +22,15 @@ export interface CheckboxProps
   disabled?: boolean;
 }
 
-const checkboxClasses = cva(
-  "flex h-6 w-6 items-center justify-center rounded-md border-[0.09375rem] transition-all",
-  {
-    variants: {
-      checked: {
-        true: "border-gray-900 bg-gray-900",
-        false: "border-gray-400 bg-transparent",
-      },
-      disabled: {
-        true: "cursor-not-allowed opacity-20", // TODO: rework opacity to match design when it's provided
-        false: "",
-      },
-    },
-    defaultVariants: {
-      checked: false,
-      disabled: false,
-    },
-  },
-);
-
-const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
-  ({ checked = false, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
+export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
+  ({ checked, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
     return (
       <RadixCheckbox.Root
         ref={ref}
         checked={checked}
         onCheckedChange={onCheckedChange}
         disabled={disabled}
-        className={checkboxClasses({ checked, disabled })}
+        className="flex h-6 w-6 items-center justify-center rounded-md border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=checked]:bg-gray-900 data-[state=unchecked]:border-gray-400 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-20"
         {...rest}
       >
         <RadixCheckbox.Indicator>

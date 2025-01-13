@@ -53,7 +53,7 @@ const radioGroupVariants = cva(`flex`, {
   },
 });
 
-const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
+export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
   (
     {
       defaultValue,

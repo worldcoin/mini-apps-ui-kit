@@ -1,8 +1,9 @@
 import type { ButtonHTMLAttributes } from "react";
+
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
-import Typography from "../Typography";
+import { Typography } from "../Typography";
 
 interface PasteButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**

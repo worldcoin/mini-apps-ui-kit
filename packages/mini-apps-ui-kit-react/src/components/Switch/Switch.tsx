@@ -2,12 +2,10 @@
 
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
-import { type VariantProps, cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
 export interface SwitchProps
-  extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange" | "className">,
-    VariantProps<typeof switchClasses> {
+  extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange" | "className"> {
   /**
    * The checked state of the switch.
    * @default false
@@ -24,53 +22,18 @@ export interface SwitchProps
   disabled?: boolean;
 }
 
-const switchClasses = cva(
-  "relative inline-flex h-auto w-10 items-center rounded-full border-2 transition-all",
-  {
-    variants: {
-      checked: {
-        true: "border-gray-900 bg-gray-900",
-        false: "border-gray-300 bg-gray-300",
-      },
-      disabled: {
-        true: "cursor-not-allowed opacity-20", // TODO: rework opacity to match design when it's provided
-        false: "",
-      },
-    },
-    defaultVariants: {
-      checked: false,
-      disabled: false,
-    },
-  },
-);
-
-const thumbClasses = cva(
-  "bg-gray-0 block h-5 w-5 transform rounded-full transition-transform",
-  {
-    variants: {
-      checked: {
-        true: "translate-x-4",
-        false: "translate-x-0",
-      },
-    },
-    defaultVariants: {
-      checked: false,
-    },
-  },
-);
-
-const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ checked = false, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
+export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
+  ({ checked, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
     return (
       <RadixSwitch.Root
         ref={ref}
         checked={checked}
         onCheckedChange={onCheckedChange}
         disabled={disabled}
-        className={switchClasses({ checked, disabled })}
+        className="relative inline-flex h-auto w-10 items-center rounded-full border-2 transition-all data-[state=checked]:border-gray-900 data-[state=checked]:bg-gray-900 data-[state=unchecked]:border-gray-300 data-[state=unchecked]:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-20"
         {...rest}
       >
-        <RadixSwitch.Thumb className={thumbClasses({ checked })} />
+        <RadixSwitch.Thumb className="bg-gray-0 block h-5 w-5 transform rounded-full transition-transform data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0" />
       </RadixSwitch.Root>
     );
   },
