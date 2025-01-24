@@ -2,6 +2,8 @@
 
 React components UI Kit library for Mini Apps
 
+> **⚠️ Security Notice**: This library has not been reviewed for security vulnerabilities. Use in production environments is discouraged until a security audit has been completed.
+
 ## Getting Started
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
@@ -78,4 +80,12 @@ Or use the following code to load the fonts via CSS:
 
 ```css
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap");
+```
+
+## Importing Styles
+
+To use the UI Kit components with their proper styling, you need to import the styles in your application. Add the following import statement to your application's entry point (e.g., `app/layout.tsx` for Next.js or `main.tsx` for Vite):
+
+```typescript
+import "@worldcoin/mini-apps-ui-kit-react/styles.css";
 ```
