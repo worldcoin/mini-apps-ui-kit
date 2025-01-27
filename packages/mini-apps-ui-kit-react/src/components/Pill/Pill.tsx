@@ -8,7 +8,6 @@ import { cn } from "../../lib/utils";
 import { typographyVariants } from "../Typography";
 
 const pillVariants = cva(
-  // TODO: Add disabled classes
   "inline-flex h-9 items-center rounded-full px-4 transition-colors duration-200",
   {
     variants: {
