@@ -36,20 +36,15 @@ export interface RadioGroupProps
   name?: string;
 }
 
-const radioGroupVariants = cva(`flex`, {
+const radioGroupVariants = cva(`flex disabled:cursor-not-allowed disabled:opacity-20`, {
   variants: {
     orientation: {
       vertical: "flex-col",
       horizontal: "flex-row",
     },
-    disabled: {
-      true: "cursor-not-allowed opacity-20", // TODO: rework opacity to match design when it's provided
-      false: "",
-    },
   },
   defaultVariants: {
     orientation: "vertical",
-    disabled: false,
   },
 });
 
@@ -70,7 +65,7 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         ref={ref}
         defaultValue={defaultValue}
         onValueChange={onValueChange}
-        className={radioGroupVariants({ orientation, disabled })}
+        className={radioGroupVariants({ orientation })}
         disabled={disabled}
         orientation={orientation}
         name={name}

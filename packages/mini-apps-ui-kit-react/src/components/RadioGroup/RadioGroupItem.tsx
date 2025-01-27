@@ -1,6 +1,5 @@
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { RadioGroupItemProps as RadixRadioGroupItemProps } from "@radix-ui/react-radio-group";
-import { cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
 import { Tick } from "../Icons/Tick";
@@ -16,28 +15,13 @@ export interface RadioGroupItemProps extends Omit<RadixRadioGroupItemProps, "cla
   disabled?: boolean;
 }
 
-const radioGroupItemVariants = cva(
-  `h-6 w-6 rounded-full border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-400 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent`,
-  {
-    variants: {
-      disabled: {
-        true: "cursor-not-allowed opacity-20", // TODO: rework opacity to match design when it's provided
-        false: "",
-      },
-    },
-    defaultVariants: {
-      disabled: false,
-    },
-  },
-);
-
 export const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>(
   ({ value, disabled, ...rest }, ref) => {
     return (
       <RadioGroupPrimitive.Item
         ref={ref}
         value={value}
-        className={radioGroupItemVariants({ disabled })}
+        className="h-6 w-6 rounded-full border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-400 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-20"
         disabled={disabled}
         {...rest}
       >
