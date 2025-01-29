@@ -32,10 +32,10 @@ export interface TypographyProps<T extends ElementType = "p">
 export const typographyVariants = cva("", {
   variants: {
     variant: {
-      number: "font-display font-semibold leading-[1.2] tracking-normal",
-      heading: "font-display font-semibold leading-[1.2] tracking-[-0.01em]",
-      subtitle: "font-sans font-medium leading-[1.2] tracking-normal",
-      body: "font-sans font-normal leading-[1.3] tracking-normal",
+      number: "font-display font-semibold leading-narrow tracking-normal",
+      heading: "font-display font-semibold tracking-[-0.01em] leading-narrow",
+      subtitle: "font-sans font-medium leading-narrow tracking-normal",
+      body: "font-sans font-normal leading-compact tracking-normal",
       mono: "font-mono font-normal tracking-normal",
     },
     level: {
@@ -136,22 +136,22 @@ export const typographyVariants = cva("", {
     {
       variant: "mono",
       level: 1,
-      className: "text-sm leading-[1]",
+      className: "text-sm leading-none",
     },
     {
       variant: "mono",
       level: 2,
-      className: "text-xs leading-[1.25]",
+      className: "text-xs leading-narrow",
     },
     {
       variant: "mono",
       level: 3,
-      className: "text-2xs leading-[1.25]",
+      className: "text-2xs leading-narrow",
     },
     {
       variant: "mono",
       level: 4,
-      className: "text-[0.5rem] leading-[1.3]",
+      className: "text-[0.5rem] leading-compact",
     },
   ],
   defaultVariants: {
