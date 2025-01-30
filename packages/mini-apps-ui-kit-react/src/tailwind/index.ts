@@ -96,6 +96,11 @@ const uiKitTailwindPlugin = plugin(
           100: "var(--info-100)",
         },
       },
+      lineHeight: {
+        none: "1",
+        narrow: "1.2",
+        compact: "1.3",
+      },
       extend: {
         boxShadow: {
           card: "0 0.625rem 1.875rem 0 #191C201A",

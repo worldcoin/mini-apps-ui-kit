@@ -1574,20 +1574,16 @@ video {
   text-transform:uppercase
 }
 
-.leading-\[1\.25\]{
-  line-height:1.25
-}
-
 .leading-\[1\.2\]{
   line-height:1.2
 }
 
-.leading-\[1\.3\]{
+.leading-compact{
   line-height:1.3
 }
 
-.leading-\[1\]{
-  line-height:1
+.leading-narrow{
+  line-height:1.2
 }
 
 .leading-none{
