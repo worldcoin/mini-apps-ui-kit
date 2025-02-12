@@ -104,7 +104,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "sb:move": "mv ./storybook-static ../../storybook-static",
     "dev:sb": "concurrently \"tailwindcss -i ./styles/globals.css -o ./public/globals.css --watch\" \"pnpm storybook\"",
-    "build:tailwind": "tailwindcss -i ./styles/globals.css -o ./public/globals.css",
+    "build:tailwind": "tailwindcss -i ./styles/globals.css -o ./public/globals.css --minify",
     "build:sb": "pnpm build:tailwind && storybook build",
     "build": "pnpm build:tailwind && tsc -b ./tsconfig.lib.json && vite build",
     "lint": "eslint ."
