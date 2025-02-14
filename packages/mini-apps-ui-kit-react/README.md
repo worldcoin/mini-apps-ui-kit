@@ -89,3 +89,27 @@ To use the UI Kit components with their proper styling, you need to import the s
 ```typescript
 import "@worldcoin/mini-apps-ui-kit-react/styles.css";
 ```
+
+## Import Methods
+
+The library supports two different import methods:
+
+### Default Import
+
+Import components from the main entry point:
+
+```typescript
+import { Button } from "@worldcoin/mini-apps-ui-kit-react";
+```
+
+This method is simpler but includes all components in your bundle, even if you're not using them.
+
+### Component-Level Import
+
+Import components directly from their individual modules:
+
+```typescript
+import { Button } from "@worldcoin/mini-apps-ui-kit-react/Button";
+```
+
+This method enables tree-shaking and reduces your final bundle size by only including the components you actually use. Recommended for production applications where bundle size is a concern.
