@@ -1,6 +1,8 @@
 import type { Preview } from "@storybook/react";
 
 import "../public/globals.css";
+import "./preview.css";
+import theme from "./theme";
 
 const preview: Preview = {
   parameters: {
@@ -11,6 +13,9 @@ const preview: Preview = {
       },
     },
     layout: "centered",
+    docs: {
+      theme,
+    },
   },
   tags: ["autodocs"],
 };
