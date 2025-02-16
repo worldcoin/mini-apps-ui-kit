@@ -29,7 +29,7 @@ export interface PhoneFieldProps
   /**
    * Callback triggered when the phone number changes.
    */
-  onChange?: (phone: string) => void;
+  onChange?: (phone: string, countryCode: CountryCode) => void;
   /**
    * If true, the dial code will be hidden.
    * The dial code is still displayed at the start of the input and in the dropdown.
@@ -113,7 +113,10 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         value,
         countries: extendedCountries,
         onChange: (data) => {
-          onChange?.(data.phone);
+          onChange?.(
+            data.phone,
+            getValidatedCountryCode(data.country.iso2, defaultCountryCode),
+          );
         },
       },
     );
