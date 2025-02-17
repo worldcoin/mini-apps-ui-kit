@@ -4,13 +4,17 @@ import { CountryCode } from "../Flag";
 import { isSupportedCountryCode } from "../Flag/utils";
 import { DIAL_CODE_PREFIX } from "./constants";
 
+export const getCountryCodeOrUndefined = (code: string): CountryCode | undefined => {
+  const upperCaseCode = code.toUpperCase() as CountryCode;
+
+  return isSupportedCountryCode(upperCaseCode) ? upperCaseCode : undefined;
+};
+
 export const getValidatedCountryCode = (
   code: string,
   defaultCountryCode: CountryCode,
 ): CountryCode => {
-  const upperCaseCode = code.toUpperCase() as CountryCode;
-
-  return isSupportedCountryCode(upperCaseCode) ? upperCaseCode : defaultCountryCode;
+  return getCountryCodeOrUndefined(code) || defaultCountryCode;
 };
 
 export const filterCountries = (countries: CountryData[], searchText: string) => {

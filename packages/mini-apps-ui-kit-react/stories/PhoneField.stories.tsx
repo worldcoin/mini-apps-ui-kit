@@ -116,6 +116,54 @@ export const CountrySelectorAsDrawer: Story = {
   },
 };
 
+export const AllowedCountryCodesProvided: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+
+    return <PhoneField {...args} value={value} onChange={setValue} />;
+  },
+  args: {
+    countrySelectorMode: "drawer",
+    disableDialCodePrefill: false,
+    defaultCountryCode: "DE",
+    countries: ["DE", "PL"],
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    let drawer: HTMLDivElement | null = null;
+    let searchInput: HTMLInputElement | null = null;
+    let countryElements: NodeListOf<Element> | null = null;
+
+    const selectButton = await canvas.getByTestId("country-selector-button");
+
+    fireEvent.click(selectButton);
+
+    await waitFor(async () => {
+      drawer = document.body.querySelector("[data-vaul-drawer]");
+
+      countryElements = drawer!.querySelectorAll("[data-country]");
+
+      expect(countryElements).toHaveLength(2);
+
+      searchInput = (await within(drawer!).getByPlaceholderText(
+        "Search name or number",
+      )) as HTMLInputElement;
+
+      expect(searchInput).toBeVisible();
+    });
+
+    userEvent.type(searchInput!, "Germany");
+
+    await waitFor(() => {
+      countryElements = drawer!.querySelectorAll("[data-country]");
+
+      expect(countryElements).toHaveLength(1);
+    });
+
+    fireEvent.click(countryElements![0]);
+  },
+};
+
 export const DialCodeInInputOnInitialization: Story = {
   render: (args) => {
     const [value, setValue] = useState("");

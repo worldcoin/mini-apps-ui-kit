@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react";
-
 import { countryCodes } from "@/components/Flag/constants";
+import type { Meta, StoryObj } from "@storybook/react";
 
 import { Flag, LazyFlag } from "../src/components/Flag";
 

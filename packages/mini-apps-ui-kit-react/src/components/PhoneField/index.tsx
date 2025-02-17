@@ -1,2 +1,2 @@
 export * from "./PhoneField";
-export { getValidatedCountryCode } from "./utils";
+export { getValidatedCountryCode, getCountryCodeOrUndefined } from "./utils";
