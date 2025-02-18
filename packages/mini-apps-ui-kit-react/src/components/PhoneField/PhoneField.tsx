@@ -112,7 +112,7 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     const [shouldFocus, setShouldFocus] = useState(false);
     const [searchText, setSearchText] = useState("");
 
-    const filteredExtendedCountries = useMemo(() => {
+    const formattedCountries = useMemo(() => {
       if (!availableCountries) return extendedCountries;
 
       return extendedCountries.filter((country) => {
@@ -122,14 +122,14 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
 
         return availableCountries.includes(countryCode);
       });
-    }, [availableCountries, extendedCountries]);
+    }, [availableCountries]);
 
     const { inputValue, country, inputRef, handlePhoneValueChange, setCountry } = usePhoneInput(
       {
         defaultCountry: defaultCountryCode.toLowerCase(),
         disableDialCodePrefill,
         value,
-        countries: filteredExtendedCountries,
+        countries: formattedCountries,
         onChange: (data) => {
           onChange?.(
             data.phone,
@@ -178,8 +178,8 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     };
 
     const filteredCountries = useMemo(
-      () => filterCountries(filteredExtendedCountries, searchText),
-      [filteredExtendedCountries, searchText],
+      () => filterCountries(formattedCountries, searchText),
+      [formattedCountries, searchText],
     );
 
     const handleDrawerAnimationEnd = (open: boolean) => {
@@ -304,7 +304,7 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
                   onPointerDown={handlePointerDownOutside}
                 >
                   <RadixSelect.Viewport className="h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] p-2">
-                    {filteredExtendedCountries.map((country) => {
+                    {formattedCountries.map((country) => {
                       const parsedCountry = parseCountry(country);
                       const countryCode = getValidatedCountryCode(
                         parsedCountry.iso2,
