@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { expect, fn, within } from "@storybook/test";
 
 import { Button } from "../src/components/Button";

@@ -27,7 +27,7 @@ const customCountries: CountryData[] = Object.entries(countries)
     return [name, iso2Lower, dialCode]; // CountryData is [name, iso2, dialCode, format, priority, areaCodes]
   });
 
-export const extendedCountries: CountryData[] = [
+export const extendedCountryDataList: CountryData[] = [
   ...supportedDefaultCountryCodes,
   ...customCountries,
 ].sort((a, b) => a[0].localeCompare(b[0])); // sorted by country name
