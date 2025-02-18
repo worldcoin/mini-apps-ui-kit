@@ -13,12 +13,8 @@ import { SearchField } from "../SearchField";
 import { Typography } from "../Typography";
 import CountryListItem from "./CountryListItem";
 import CountrySelectorButton from "./CountrySelectorButton";
-import {
-  DIAL_CODE_PREFIX,
-  extendedCountries,
-  startAdornmentWidthByDialCodeLength,
-} from "./constants";
-import { filterCountries, getCountryCodeOrUndefined, getValidatedCountryCode } from "./utils";
+import { DIAL_CODE_PREFIX, startAdornmentWidthByDialCodeLength } from "./constants";
+import { filterCountries, getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
 
 export interface PhoneFieldProps
   extends Omit<InputProps, "onChange" | "startAdornment" | "startAdornmentWidth"> {
@@ -92,7 +88,7 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     {
       value,
       onChange,
-      countries: availableCountries,
+      countries,
       placeholder = "Enter phone number",
       defaultCountryCode = "US",
       hideDialCode = false,
@@ -112,24 +108,14 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     const [shouldFocus, setShouldFocus] = useState(false);
     const [searchText, setSearchText] = useState("");
 
-    const formattedCountries = useMemo(() => {
-      if (!availableCountries) return extendedCountries;
-
-      return extendedCountries.filter((country) => {
-        const countryCode = getCountryCodeOrUndefined(parseCountry(country).iso2);
-
-        if (!countryCode) return false;
-
-        return availableCountries.includes(countryCode);
-      });
-    }, [availableCountries]);
+    const countryDataList = useMemo(() => getCountryDataListByCodes(countries), [countries]);
 
     const { inputValue, country, inputRef, handlePhoneValueChange, setCountry } = usePhoneInput(
       {
         defaultCountry: defaultCountryCode.toLowerCase(),
         disableDialCodePrefill,
         value,
-        countries: formattedCountries,
+        countries: countryDataList,
         onChange: (data) => {
           onChange?.(
             data.phone,
@@ -178,8 +164,8 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     };
 
     const filteredCountries = useMemo(
-      () => filterCountries(formattedCountries, searchText),
-      [formattedCountries, searchText],
+      () => filterCountries(countryDataList, searchText),
+      [countryDataList, searchText],
     );
 
     const handleDrawerAnimationEnd = (open: boolean) => {
@@ -304,7 +290,7 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
                   onPointerDown={handlePointerDownOutside}
                 >
                   <RadixSelect.Viewport className="h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] p-2">
-                    {formattedCountries.map((country) => {
+                    {countryDataList.map((country) => {
                       const parsedCountry = parseCountry(country);
                       const countryCode = getValidatedCountryCode(
                         parsedCountry.iso2,
