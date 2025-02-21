@@ -8,13 +8,13 @@ function Section({
   title: string;
 }) {
   return (
-    <div>
-      <h2>{title}</h2>
-      <div style={{ display: "flex", gap: "24px" }}>
-        <div style={{ flex: 1 }}>{children}</div>
-        <div style={{ flex: 1 }}>
-          <img src={image} alt={title} />
-        </div>
+    <div className="py-12 grid gap-12 md:grid-cols-[1fr_2fr] ">
+      <div>
+        <h2>{title}</h2>
+        {children}
+      </div>
+      <div>
+        <img src={image} alt={title} className="w-full" />
       </div>
     </div>
   );
