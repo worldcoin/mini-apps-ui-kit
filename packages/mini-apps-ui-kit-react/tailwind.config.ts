@@ -7,6 +7,7 @@ const config: Config = {
     "./src/**/*.{html,js,ts,jsx,tsx}",
     "./stories/**/*.{html,js,ts,jsx,tsx}",
     "./.storybook/**/*.{js,ts,jsx,tsx}",
+    "./stories/**/*.{mdx,md}",
   ],
   plugins: [uiKitTailwindPlugin],
 };

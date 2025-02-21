@@ -1,0 +1,41 @@
+import { gray, success, error, warning, info } from "../../src/tailwind/index";
+import { Color } from "./components/Color";
+
+# Colors
+
+## Gray
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(gray).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+## Success
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(success).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+## Error 
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(error).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+## Warning
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(warning).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+## Info
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(info).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+

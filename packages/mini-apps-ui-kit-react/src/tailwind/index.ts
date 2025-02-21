@@ -1,5 +1,50 @@
 import plugin from "tailwindcss/plugin";
 
+export const gray = {
+  "--gray-900": "#191c20",
+  "--gray-700": "#3c424b",
+  "--gray-500": "#657080",
+  "--gray-400": "#9ba3ae",
+  "--gray-300": "#d6d9dd",
+  "--gray-200": "#ebecef",
+  "--gray-100": "#f3f4f5",
+  "--gray-50": "#f9fafb",
+  "--gray-25": "#fbfbfc",
+  "--gray-0": "#ffffff",
+};
+
+export const success = {
+  "--success-900": "#18964f",
+  "--success-800": "#00ab11",
+  "--success-700": "#00c313",
+  "--success-300": "#d6f6de",
+  "--success-100": "#f5fdf7",
+};
+
+export const error = {
+  "--error-900": "#b71b58",
+  "--error-800": "#dc0025",
+  "--error-700": "#ff5a76",
+  "--error-300": "#ffd7df",
+  "--error-100": "#fff5f7",
+};
+
+export const warning = {
+  "--warning-900": "#b47500",
+  "--warning-800": "#dc8f00",
+  "--warning-700": "#ffb11b",
+  "--warning-300": "#ffeece",
+  "--warning-100": "#fff9ef",
+};
+
+export const info = {
+  "--info-900": "#054cb7",
+  "--info-800": "#0025dc",
+  "--info-700": "#5a9cff",
+  "--info-300": "#cee2ff",
+  "--info-100": "#f3f8ff",
+};
+
 const uiKitTailwindPlugin = plugin(
   function ({ addBase }) {
     addBase({
@@ -7,41 +52,11 @@ const uiKitTailwindPlugin = plugin(
         "--font-sans": "Rubik",
         "--font-display": "Sora",
         "--font-mono": "DM Mono",
-
-        "--gray-900": "#191c20",
-        "--gray-700": "#3c424b",
-        "--gray-500": "#657080",
-        "--gray-400": "#9ba3ae",
-        "--gray-300": "#d6d9dd",
-        "--gray-200": "#ebecef",
-        "--gray-100": "#f3f4f5",
-        "--gray-50": "#f9fafb",
-        "--gray-25": "#fbfbfc",
-        "--gray-0": "#ffffff",
-
-        "--success-900": "#18964f",
-        "--success-800": "#00ab11",
-        "--success-700": "#00c313",
-        "--success-300": "#d6f6de",
-        "--success-100": "#f5fdf7",
-
-        "--error-900": "#b71b58",
-        "--error-800": "#dc0025",
-        "--error-700": "#ff5a76",
-        "--error-300": "#ffd7df",
-        "--error-100": "#fff5f7",
-
-        "--warning-900": "#b47500",
-        "--warning-800": "#dc8f00",
-        "--warning-700": "#ffb11b",
-        "--warning-300": "#ffeece",
-        "--warning-100": "#fff9ef",
-
-        "--info-900": "#054cb7",
-        "--info-800": "#0025dc",
-        "--info-700": "#5a9cff",
-        "--info-300": "#cee2ff",
-        "--info-100": "#f3f8ff",
+        ...gray,
+        ...success,
+        ...error,
+        ...warning,
+        ...info,
       },
     });
   },
