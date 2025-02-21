@@ -18,6 +18,15 @@ const meta: Meta<InputProps> = {
     disabled: {
       control: "boolean",
     },
+    value: {
+      control: "text",
+      description: "The input's value. Follows standard HTML input behavior.",
+    },
+    onChange: {
+      control: false,
+      description:
+        "Callback fired when the input's value changes. Follows standard HTML input behavior.",
+    },
   },
   decorators: [
     (Story) => (
