@@ -11,7 +11,7 @@ function getAbsolutePath(value: string): any {
 
 const config: StorybookConfig = {
   stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(ts|tsx)"],
-  staticDirs: ["../public"],
+  staticDirs: ["../public", "../stories/documentation/static"],
   addons: [
     getAbsolutePath("@storybook/addon-essentials"),
     getAbsolutePath("@chromatic-com/storybook"),
