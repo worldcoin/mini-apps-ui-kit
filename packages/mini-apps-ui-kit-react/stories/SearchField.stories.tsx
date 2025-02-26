@@ -15,18 +15,50 @@ const meta: Meta<typeof SearchField> = {
     },
   },
   argTypes: {
-    endAdornment: iconControl,
+    endAdornment: {
+      ...iconControl,
+      description: "Optional icon or element to display at the end of the input",
+    },
     error: {
       control: "boolean",
+      description: "If true, displays the input in an error state with error styling",
     },
     disabled: {
       control: "boolean",
+      description: "The input's `disabled` attribute.",
     },
     isValid: {
       control: "boolean",
+      description: "If true, displays the input in a valid state with success styling",
     },
     showPasteButton: {
       control: "boolean",
+      description: "If true, displays a paste button as an end adornment",
+    },
+    type: {
+      control: "text",
+      description: "The input's `type` attribute.",
+    },
+    autoComplete: {
+      control: "text",
+      description: "The input's `autocomplete` attribute.",
+    },
+    spellCheck: {
+      control: "text",
+      description: "The input's `spellcheck` attribute.",
+    },
+    pasteButtonLabel: {
+      control: "text",
+      description: "Label for the paste button.",
+    },
+    value: {
+      control: "text",
+      description: "The input's value. Follows standard HTML input behavior.",
+    },
+    onChange: {
+      control: false,
+      description:
+        "Callback fired when the input's value changes. Follows standard HTML input behavior.",
     },
   },
   decorators: [
