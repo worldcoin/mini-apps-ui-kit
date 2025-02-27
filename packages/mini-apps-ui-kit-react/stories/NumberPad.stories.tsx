@@ -65,3 +65,34 @@ export const Controlled: Story = {
     );
   },
 };
+
+export const ClearOnLongDeletePress: Story = {
+  args: {
+    value: "",
+    longPressOptions: {
+      threshold: 1500,
+    },
+  },
+  render: (args) => {
+    const [value, setValue] = useState(args.value);
+
+    const handleLongDeletePress = () => {
+      setValue("");
+    };
+
+    return (
+      <div className="flex flex-col gap-4 items-center w-[400px]">
+        <div className="font-display font-semibold flex items-center gap-2 h-[4.25rem]">
+          <span className="text-xl">$</span>
+          <span className="text-[3.5rem]">{value}</span>
+        </div>
+        <NumberPad
+          {...args}
+          value={value}
+          onChange={setValue}
+          onLongDeletePress={handleLongDeletePress}
+        />
+      </div>
+    );
+  },
+};

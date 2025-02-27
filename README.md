@@ -57,6 +57,7 @@ We use [changesets](https://github.com/changesets/changesets) to manage our vers
 7. Open a Pull Request
 
 Make sure to:
+
 - Follow the existing code style
 - Update documentation as needed
 - Add tests if applicable
