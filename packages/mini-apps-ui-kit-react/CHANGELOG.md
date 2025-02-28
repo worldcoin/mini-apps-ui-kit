@@ -1,5 +1,12 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 0.0.4
+
+### Patch Changes
+
+- Added `onLongDeletePress` prop to `NumberPad` component to handle long press on the delete button.
+- Added `longPressOptions` prop to `NumberPad` component to customize long press behavior.
+
 ## 0.0.3
 
 ### Patch Changes

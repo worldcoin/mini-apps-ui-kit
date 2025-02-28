@@ -1,5 +1,7 @@
 "use client";
 
+import { LongPressOptions, useLongPress } from "@uidotdev/usehooks";
+
 import { Delete } from "./Delete";
 
 interface NumberPadProps {
@@ -15,6 +17,20 @@ interface NumberPadProps {
    * Callback fired when the value changes
    */
   onChange?: (value: string) => void;
+  /**
+   * Callback fired on long press of the delete button
+   */
+  onLongDeletePress?: () => void;
+  /**
+   * Options for the long press
+   * @type LongPressOptions
+   * @property { number } threshold - The time in milliseconds before the long press is triggered
+   * @property { (e: Event) => void } onStart - Callback fired when the long press starts
+   * @property { (e: Event) => void } onFinish - Callback fired when the long press finishes
+   * @property { (e: Event) => void } onCancel - Callback fired when the long press is cancelled
+   * @default { threshold: 1500 }
+   */
+  longPressOptions?: LongPressOptions;
 }
 
 const buttons = [
@@ -32,7 +48,15 @@ const buttons = [
   { value: "del", label: <Delete className="size-6" /> },
 ];
 
-export const NumberPad = ({ value = "", onChange, disabled = false }: NumberPadProps) => {
+export const NumberPad = ({
+  value = "",
+  onChange,
+  disabled = false,
+  onLongDeletePress = () => {},
+  longPressOptions = {
+    threshold: 1500,
+  },
+}: NumberPadProps) => {
   // Validate that value is a valid number or empty string
   if (value !== "" && isNaN(Number(value))) {
     console.error("NumberPad value must be a valid number or empty string");
@@ -55,6 +79,8 @@ export const NumberPad = ({ value = "", onChange, disabled = false }: NumberPadP
     }
   };
 
+  const longPressAttributes = useLongPress(onLongDeletePress, longPressOptions);
+
   return (
     <div className="grid grid-cols-3 grid-rows-4 gap-1 w-full">
       {buttons.map((button) => (
@@ -64,6 +90,7 @@ export const NumberPad = ({ value = "", onChange, disabled = false }: NumberPadP
           onClick={() => handleButtonClick(button.value)}
           disabled={disabled}
           className="h-12 min-w-28 flex items-center justify-center text-[1.625rem] font-semibold font-display rounded-md transition-colors duration-200 active:bg-gray-50 select-none disabled:text-gray-300 disabled:cursor-not-allowed disabled:active:bg-transparent"
+          {...(button.value === "del" ? longPressAttributes : {})}
         >
           {button.label || button.value}
         </button>
