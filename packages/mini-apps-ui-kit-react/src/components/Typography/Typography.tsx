@@ -1,33 +1,47 @@
-import { type VariantProps, cva } from "class-variance-authority";
-import { ElementType, forwardRef } from "react";
+import { cva } from "class-variance-authority";
+import { PropsWithChildren, forwardRef } from "react";
 
 import { cn } from "../../lib/utils";
 
-export interface TypographyProps<T extends ElementType = "p">
-  extends Omit<VariantProps<typeof typographyVariants>, "variant" | "level"> {
+export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * The HTML element to render the typography as
    * @default "p"
    */
-  as?: T;
-  /**
-   * The variant and level combinations for typography
-   * @default "body"
-   */
-  variant?:
-    | {
-        variant: "number";
-        level: 1 | 2 | 3 | 4 | 5 | 6;
-      }
-    | {
-        variant: "subtitle" | "body" | "mono";
-        level: 1 | 2 | 3 | 4;
-      }
-    | {
-        variant: "heading";
-        level: 1 | 2 | 3;
-      };
+  as?:
+    | "p"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "span"
+    | "small"
+    | "strong"
+    | "div"
+    | "em";
 }
+
+export interface TypographyNumberProps extends TypographyProps {
+  variant: "number";
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
+export interface TypographySubtitleBodyMonoProps extends TypographyProps {
+  variant: "subtitle" | "body" | "mono";
+  level: 1 | 2 | 3 | 4;
+}
+
+export interface TypographyHeadingProps extends TypographyProps {
+  variant: "heading";
+  level: 1 | 2 | 3;
+}
+
+export type TypographyComponentProps =
+  | TypographyNumberProps
+  | TypographySubtitleBodyMonoProps
+  | TypographyHeadingProps;
 
 export const typographyVariants = cva("", {
   variants: {
@@ -160,10 +174,7 @@ export const typographyVariants = cva("", {
   },
 });
 
-export const Typography = forwardRef<
-  HTMLElement,
-  TypographyProps & React.ComponentPropsWithoutRef<ElementType>
->(
+export const Typography = forwardRef<HTMLElement, PropsWithChildren<TypographyComponentProps>>(
   (
     { variant = "body", level = 2, children, as: Component = "p", className, ...props },
     ref,
@@ -171,7 +182,7 @@ export const Typography = forwardRef<
     return (
       <Component
         className={cn(typographyVariants({ variant, level, className }))}
-        ref={ref}
+        ref={ref as never}
         {...props}
       >
         {children}
