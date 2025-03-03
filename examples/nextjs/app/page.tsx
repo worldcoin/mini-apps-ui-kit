@@ -29,14 +29,16 @@ import {
 export default function Home() {
   return (
     <div className="min-h-screen p-8">
-      <Typography variant="h1" className="mb-8">
+      <Typography variant="heading" level={1} className="mb-8">
         Mini Apps UI Kit Components
       </Typography>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Buttons Section */}
         <section className="space-y-4">
-          <Typography variant="h2">Buttons</Typography>
+          <Typography variant="heading" level={2}>
+            Buttons
+          </Typography>
           <div className="space-y-2">
             <Button>Default Button</Button>
             <Button variant="ghost">Ghost Button</Button>
@@ -45,7 +47,9 @@ export default function Home() {
 
         {/* Input Fields Section */}
         <section className="space-y-4">
-          <Typography variant="h2">Input Fields</Typography>
+          <Typography variant="heading" level={2}>
+            Input Fields
+          </Typography>
           <Input />
           <SearchField placeholder="Search..." />
           <PhoneField />
@@ -53,7 +57,9 @@ export default function Home() {
 
         {/* Form Elements Section */}
         <section className="space-y-4">
-          <Typography variant="h2">Form Elements</Typography>
+          <Typography variant="heading" level={2}>
+            Form Elements
+          </Typography>
           <Switch />
           <RadioGroup>
             <RadioGroupItem value="1">Option 1</RadioGroupItem>
@@ -64,14 +70,18 @@ export default function Home() {
 
         {/* Interactive Elements */}
         <section className="space-y-4">
-          <Typography variant="h2">Interactive Elements</Typography>
+          <Typography variant="heading" level={2}>
+            Interactive Elements
+          </Typography>
           <OTPField maxLength={6} />
           <NumberPad />
         </section>
 
         {/* Display Elements */}
         <section className="space-y-4">
-          <Typography variant="h2">Display Elements</Typography>
+          <Typography variant="heading" level={2}>
+            Display Elements
+          </Typography>
           <div className="flex gap-2 flex-wrap">
             <Pill>Default Pill</Pill>
             <Chip label="Sample Chip" />
@@ -84,7 +94,9 @@ export default function Home() {
 
         {/* Color and Selection */}
         <section className="space-y-4">
-          <Typography variant="h2">Color & Selection</Typography>
+          <Typography variant="heading" level={2}>
+            Color & Selection
+          </Typography>
           <ColorPickerGroup>
             <ColorPickerItem value="#FF0000" />
             <ColorPickerItem value="#000" />
