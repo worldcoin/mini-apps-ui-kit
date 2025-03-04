@@ -99,6 +99,11 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       endAdornment,
       endAdornmentWidth,
       countrySelectorMode = "dropdown",
+      type = "tel",
+      inputMode = "tel",
+      autoComplete = "tel",
+      autoCapitalize = "off",
+      autoCorrect = "off",
       ...props
     },
     ref,
@@ -178,6 +183,11 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       <Input
         {...props}
         ref={inputRef}
+        type={type}
+        inputMode={inputMode}
+        autoComplete={autoComplete}
+        autoCapitalize={autoCapitalize}
+        autoCorrect={autoCorrect}
         value={inputValue}
         onChange={handlePhoneValueChange}
         placeholder={placeholder}

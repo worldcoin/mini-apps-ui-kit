@@ -1,5 +1,12 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 0.0.6
+
+### Patch Changes
+
+- Set default input type for PhoneField to `tel`
+- Fix type for optional props in `Typography`
+
 ## 0.0.5
 
 ### Patch Changes
