@@ -24,18 +24,18 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 export interface TypographyNumberProps extends TypographyProps {
-  variant: "number";
-  level: 1 | 2 | 3 | 4 | 5 | 6;
+  variant?: "number";
+  level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export interface TypographySubtitleBodyMonoProps extends TypographyProps {
-  variant: "subtitle" | "body" | "mono";
-  level: 1 | 2 | 3 | 4;
+  variant?: "subtitle" | "body" | "mono";
+  level?: 1 | 2 | 3 | 4;
 }
 
 export interface TypographyHeadingProps extends TypographyProps {
-  variant: "heading";
-  level: 1 | 2 | 3;
+  variant?: "heading";
+  level?: 1 | 2 | 3;
 }
 
 export type TypographyComponentProps =
