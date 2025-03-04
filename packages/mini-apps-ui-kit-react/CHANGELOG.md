@@ -4,8 +4,8 @@
 
 ### Patch Changes
 
-- d22211f: Set detault input type for PhoneField to `tel`
-- d22211f: Fix type for optional props in `Typography`
+- Set default input type for PhoneField to `tel`
+- Fix type for optional props in `Typography`
 
 ## 0.0.5
 
