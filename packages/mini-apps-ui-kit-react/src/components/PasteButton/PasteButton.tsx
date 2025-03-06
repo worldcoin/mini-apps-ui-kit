@@ -17,7 +17,7 @@ interface PasteButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Optional callback function that will be called after a successful paste
    */
-  onPaste?: () => void;
+  onPaste?: (value: string) => void;
 }
 
 export const PASTE_BUTTON_WIDTH = 3.875;
@@ -29,7 +29,7 @@ const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
         if (inputRef && "current" in inputRef && inputRef.current) {
           const text = await navigator.clipboard.readText();
           inputRef.current.value = text;
-          onPaste?.();
+          onPaste?.(text);
         }
       } catch (error) {
         console.error("Failed to read clipboard:", error);

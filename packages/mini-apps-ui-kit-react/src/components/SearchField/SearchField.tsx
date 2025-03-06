@@ -1,4 +1,5 @@
-import { ChangeEvent, forwardRef, useImperativeHandle, useRef, useState } from "react";
+import { createChangeEvent } from "@/lib/utils";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
 import ClearButton from "../ClearButton";
 import { Magnifier } from "../Icons/Magnifier";
@@ -55,11 +56,10 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           inputRef={inputRef}
           label={pasteButtonLabel}
           onPaste={() => {
-            const event = {
-              target: inputRef.current,
-              currentTarget: inputRef.current,
-            } as ChangeEvent<HTMLInputElement>;
-            props.onChange?.(event);
+            if (inputRef.current) {
+              const event = createChangeEvent(inputRef.current);
+              props.onChange?.(event);
+            }
           }}
         />
       );
@@ -69,11 +69,10 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
         <ClearButton
           inputRef={inputRef}
           onClear={() => {
-            const event = {
-              target: inputRef.current,
-              currentTarget: inputRef.current,
-            } as ChangeEvent<HTMLInputElement>;
-            props.onChange?.(event);
+            if (inputRef.current) {
+              const event = createChangeEvent(inputRef.current);
+              props.onChange?.(event);
+            }
           }}
         />
       );
