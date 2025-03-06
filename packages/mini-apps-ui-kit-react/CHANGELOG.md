@@ -1,5 +1,12 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 0.0.7
+
+### Patch Changes
+
+- Set correct color in Select chevron icon
+- Add clear button to SearchField
+
 ## 0.0.6
 
 ### Patch Changes
