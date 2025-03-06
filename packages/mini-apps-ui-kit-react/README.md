@@ -113,3 +113,35 @@ import { Button } from "@worldcoin/mini-apps-ui-kit-react/Button";
 ```
 
 This method enables tree-shaking and reduces your final bundle size by only including the components you actually use. Recommended for production applications where bundle size is a concern.
+
+## Icons
+
+The library uses [Hugeicons](https://hugeicons.com/) for its icon system. To use icons in your project, you'll need to install the [React package](https://www.npmjs.com/package/@hugeicons/react):
+
+```bash
+npm install @hugeicons/react
+# or
+yarn add @hugeicons/react
+```
+
+Then you can import and use icons in your components:
+
+```jsx
+import { HomeIcon } from '@hugeicons/react';
+
+function MyComponent() {
+  return <HomeIcon size={24} />;
+}
+```
+
+Hugeicons provides a comprehensive set of icons across various categories including:
+- Navigation & UI elements
+- Social media
+- Business & Finance
+- Communication
+- Technology
+- And many more...
+
+You can browse the complete icon set at [hugeicons.com](https://hugeicons.com/).
+
+Hugeicons is available under various license options. Please refer to their [website](https://hugeicons.com/) for detailed licensing information. 

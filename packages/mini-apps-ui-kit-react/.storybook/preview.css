@@ -8,3 +8,8 @@ strong,
 b {
   font-weight: 500 !important;
 }
+
+.sbdocs-content a,
+.docs-story a {
+  text-decoration: underline;
+}
