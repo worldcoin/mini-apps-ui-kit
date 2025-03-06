@@ -1,5 +1,6 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import { ChangeEvent, forwardRef, useImperativeHandle, useRef, useState } from "react";
 
+import ClearButton from "../ClearButton";
 import { Magnifier } from "../Icons/Magnifier";
 import { Input, InputProps } from "../Input";
 import PasteButton, { PASTE_BUTTON_WIDTH } from "../PasteButton/PasteButton";
@@ -43,13 +44,40 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
     forwardedRef,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
+    const [isFocused, setIsFocused] = useState(false);
     useImperativeHandle(forwardedRef, () => inputRef.current!);
 
     let endAdornment = endAdornmentProp;
     let endAdornmentWidth = endAdornmentWidthProp;
     if (showPasteButton && !disabled) {
-      endAdornment = <PasteButton inputRef={inputRef} label={pasteButtonLabel} />;
+      endAdornment = (
+        <PasteButton
+          inputRef={inputRef}
+          label={pasteButtonLabel}
+          onPaste={() => {
+            const event = {
+              target: inputRef.current,
+              currentTarget: inputRef.current,
+            } as ChangeEvent<HTMLInputElement>;
+            props.onChange?.(event);
+          }}
+        />
+      );
       endAdornmentWidth = PASTE_BUTTON_WIDTH;
+    } else if (isFocused && !disabled) {
+      endAdornment = (
+        <ClearButton
+          inputRef={inputRef}
+          onClear={() => {
+            const event = {
+              target: inputRef.current,
+              currentTarget: inputRef.current,
+            } as ChangeEvent<HTMLInputElement>;
+            props.onChange?.(event);
+          }}
+        />
+      );
+      endAdornmentWidth = 1.25;
     }
 
     return (
@@ -64,6 +92,14 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
         type={type}
         autoComplete={autoComplete}
         spellCheck={spellCheck}
+        onFocus={(e) => {
+          setIsFocused(true);
+          props.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          setIsFocused(false);
+          props.onBlur?.(e);
+        }}
       />
     );
   },
