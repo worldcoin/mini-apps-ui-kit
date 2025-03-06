@@ -165,7 +165,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         >
           <RadixSelect.Value placeholder={placeholder} />
           <RadixSelect.Icon className="h-5 w-5">
-            <ArrowDown className="text-gray-900" />
+            <ArrowDown className="text-gray-500" />
           </RadixSelect.Icon>
         </RadixSelect.Trigger>
 
