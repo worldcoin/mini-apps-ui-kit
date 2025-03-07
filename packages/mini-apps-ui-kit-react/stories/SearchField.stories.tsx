@@ -1,5 +1,6 @@
 import { SearchField } from "@/components/SearchField";
 import type { Meta, StoryObj } from "@storybook/react";
+import { fn } from "@storybook/test";
 
 import { Form } from "../src/components/Form";
 import { iconControl } from "./helpers/icon-control";
@@ -68,6 +69,9 @@ const meta: Meta<typeof SearchField> = {
       </div>
     ),
   ],
+  args: {
+    onChange: fn(),
+  },
 };
 
 export default meta;
