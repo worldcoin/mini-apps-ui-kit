@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Typography } from "../src/components/Typography";
+import {
+  Typography,
+  TypographyDisplayProps,
+  TypographyHeadingProps,
+  TypographyNumberProps,
+  TypographySubtitleBodyMonoProps,
+} from "../src/components/Typography";
 
 const meta: Meta<typeof Typography> = {
   title: "components/Typography",
@@ -34,38 +40,61 @@ export const Default: Story = {
       control: "radio",
       options: [1, 2, 3, 4],
     },
+    variant: {
+      control: "radio",
+      options: [1],
+      table: {
+        disable: true,
+      },
+    },
   },
 };
-
-export const Number: Story = {
+export const Display: StoryObj<TypographyDisplayProps> = {
   args: {
-    variant: "number",
-    level: 6,
-    children: "Number Display",
+    variant: "display",
+    level: 1,
+    children: "Display",
   },
   argTypes: {
     level: {
       control: "radio",
-      options: [1, 2, 3, 4, 5, 6],
+      options: [1],
+      table: {
+        disable: true,
+      },
+    },
+    variant: {
+      control: "radio",
+      options: [1],
+      table: {
+        disable: true,
+      },
     },
   },
 };
 
-export const Heading: Story = {
+export const Heading: StoryObj<TypographyHeadingProps> = {
   args: {
     variant: "heading",
-    level: 4,
+    level: 3,
     children: "Heading",
   },
   argTypes: {
     level: {
       control: "radio",
-      options: [1, 2, 3, 4],
+      options: [1, 2, 3],
+    },
+    variant: {
+      control: "radio",
+      options: [1],
+      table: {
+        disable: true,
+      },
     },
   },
 };
 
-export const Subtitle: Story = {
+export const Subtitle: StoryObj<TypographySubtitleBodyMonoProps> = {
   args: {
     variant: "subtitle",
     level: 2,
@@ -76,10 +105,17 @@ export const Subtitle: Story = {
       control: "radio",
       options: [1, 2, 3, 4],
     },
+    variant: {
+      control: "radio",
+      options: [1],
+      table: {
+        disable: true,
+      },
+    },
   },
 };
 
-export const Body: Story = {
+export const Body: StoryObj<TypographySubtitleBodyMonoProps> = {
   args: {
     variant: "body",
     level: 2,
@@ -90,9 +126,38 @@ export const Body: Story = {
       control: "radio",
       options: [1, 2, 3, 4],
     },
+    variant: {
+      control: "radio",
+      options: [1],
+      table: {
+        disable: true,
+      },
+    },
   },
 };
-export const Mono: Story = {
+
+export const Number: StoryObj<TypographyNumberProps> = {
+  args: {
+    variant: "number",
+    level: 6,
+    children: "Number Display",
+  },
+  argTypes: {
+    level: {
+      control: "radio",
+      options: [1, 2, 3, 4, 5, 6],
+    },
+    variant: {
+      control: "radio",
+      options: [1],
+      table: {
+        disable: true,
+      },
+    },
+  },
+};
+
+export const Mono: StoryObj<TypographySubtitleBodyMonoProps> = {
   args: {
     variant: "mono",
     level: 1,
@@ -102,6 +167,13 @@ export const Mono: Story = {
     level: {
       control: "radio",
       options: [1, 2, 3, 4],
+    },
+    variant: {
+      control: "radio",
+      options: [1],
+      table: {
+        disable: true,
+      },
     },
   },
 };

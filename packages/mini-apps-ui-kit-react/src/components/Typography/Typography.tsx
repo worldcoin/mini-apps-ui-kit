@@ -38,10 +38,16 @@ export interface TypographyHeadingProps extends TypographyProps {
   level?: 1 | 2 | 3;
 }
 
+export interface TypographyDisplayProps extends TypographyProps {
+  variant?: "display";
+  level?: 1;
+}
+
 export type TypographyComponentProps =
   | TypographyNumberProps
   | TypographySubtitleBodyMonoProps
-  | TypographyHeadingProps;
+  | TypographyHeadingProps
+  | TypographyDisplayProps;
 
 export const typographyVariants = cva("", {
   variants: {
@@ -51,6 +57,7 @@ export const typographyVariants = cva("", {
       subtitle: "font-sans font-medium leading-narrow tracking-normal",
       body: "font-sans font-normal leading-compact tracking-normal",
       mono: "font-mono font-normal tracking-normal",
+      display: "font-display font-semibold",
     },
     level: {
       1: "",
@@ -166,6 +173,11 @@ export const typographyVariants = cva("", {
       variant: "mono",
       level: 4,
       className: "text-[0.5rem] leading-compact",
+    },
+    {
+      variant: "display",
+      level: 1,
+      className: "text-[3.5rem] leading-narrow",
     },
   ],
   defaultVariants: {
