@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
@@ -41,16 +42,6 @@ const buttonVariants = cva(
     },
   },
 );
-const iconContainerStyles = {
-  sm: {
-    width: "1rem",
-    height: "1rem",
-  },
-  lg: {
-    width: "1.5rem",
-    height: "1.5rem",
-  },
-};
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -108,25 +99,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         })}
         {...props}
       >
-        {icon && (
-          <Slot
-            style={{
-              ...iconContainerStyles[size],
-              opacity: isState ? 0 : 1,
-            }}
-          >
-            {icon}
-          </Slot>
-        )}
+        {icon && <Slot className={cn("size-6", isState && "opacity-0")}>{icon}</Slot>}
+
         {children && (
           <Typography variant="label" level={size === "lg" ? 1 : 2}>
             {children}
           </Typography>
         )}
 
-        {state === "pending" && <Spinner className="absolute" />}
-        {state === "success" && <SuccessIcon className="absolute" />}
-        {state === "failed" && <FailIcon className="absolute" />}
+        {state === "pending" && <Spinner className="absolute size-6" />}
+        {state === "success" && <SuccessIcon className="absolute size-6" />}
+        {state === "failed" && <FailIcon className="absolute size-6" />}
       </Comp>
     );
   },

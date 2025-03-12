@@ -23,9 +23,9 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
       defaultValue: false,
     },
-    isLoading: {
-      control: "boolean",
-      defaultValue: false,
+    state: {
+      control: "radio",
+      options: [undefined, "pending", "success", "failed"],
     },
     icon: iconControl,
   },
