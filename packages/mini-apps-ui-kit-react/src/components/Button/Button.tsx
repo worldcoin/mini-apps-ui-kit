@@ -4,33 +4,24 @@ import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
+import { Typography } from "../Typography";
 import Spinner from "./Spinner";
 
 const buttonVariants = cva(
-  "flex items-center justify-center gap-1 font-display font-semibold leading-[1.2] tracking-normal transition-colors",
+  "flex items-center justify-center rounded-full gap-1 font-display leading-[1.2] tracking-normal transition-colors",
   {
     variants: {
       variant: {
         primary:
-          "bg-gray-900 text-gray-0 hover:bg-gray-700 active:bg-gray-500 disabled:bg-gray-100 disabled:text-gray-300",
+          "bg-gray-900 text-gray-0 hover:bg-gray-700 active:bg-gray-700 disabled:bg-gray-100 disabled:text-gray-300",
         secondary:
-          "bg-gray-200 text-gray-900 hover:bg-gray-300 active:bg-gray-400 disabled:bg-gray-100 disabled:text-gray-300",
+          "bg-transparent text-gray-900 border border-gray-200 hover:bg-gray-50 active:bg-gray-50 disabled:text-gray-300 disabled:border-gray-100",
         tertiary:
-          "border border-gray-200 bg-transparent text-gray-500 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
-        ghost:
-          "bg-transparent text-gray-500 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
+          "bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-200 disabled:text-gray-300 disabled:bg-gray-50",
       },
       size: {
-        sm: "h-10 min-w-10 px-2 text-sm",
-        md: "h-12 min-w-12 px-3 text-base",
-        lg: "h-14 min-w-14 px-4 text-base",
-      },
-      radius: {
-        none: "rounded-none",
-        sm: "rounded",
-        md: "rounded-xl",
-        lg: "rounded-2xl",
-        full: "rounded-full",
+        sm: "h-10 min-w-10 px-2",
+        lg: "h-14 min-w-14 px-4",
       },
       isLoading: {
         true: "border-none bg-transparent fill-transparent text-transparent hover:bg-transparent active:bg-transparent disabled:bg-transparent disabled:text-transparent",
@@ -44,7 +35,6 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "primary",
       size: "lg",
-      radius: "md",
       fullWidth: false,
     },
   },
@@ -53,10 +43,6 @@ const iconContainerStyles = {
   sm: {
     width: "1rem",
     height: "1rem",
-  },
-  md: {
-    width: "1.25rem",
-    height: "1.25rem",
   },
   lg: {
     width: "1.5rem",
@@ -71,17 +57,12 @@ export interface ButtonProps
    * The variant style to use
    * @default "primary"
    */
-  variant?: "primary" | "secondary" | "tertiary" | "ghost";
+  variant?: "primary" | "secondary" | "tertiary";
   /**
    * The size of the button
    * @default "md"
    */
-  size?: "sm" | "md" | "lg";
-  /**
-   * The border radius of the button
-   * @default "md"
-   */
-  radius?: "none" | "sm" | "md" | "lg" | "full";
+  size?: "sm" | "lg";
   /**
    * Whether the button is in a loading state
    * @default false
@@ -110,7 +91,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       variant,
       size = "lg",
-      radius,
       className,
       isLoading,
       children,
@@ -128,7 +108,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={buttonVariants({
           variant,
           size,
-          radius,
           isLoading,
           fullWidth,
         })}
@@ -144,7 +123,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             {icon}
           </Slot>
         )}
-        {children && <span>{children}</span>}
+        {children && (
+          <Typography variant="label" level={size === "lg" ? 1 : 2}>
+            {children}
+          </Typography>
+        )}
 
         {isLoading && <Spinner className="absolute" />}
       </Comp>
