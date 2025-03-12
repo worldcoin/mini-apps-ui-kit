@@ -6,6 +6,8 @@ import { ButtonHTMLAttributes, forwardRef } from "react";
 
 import { Spinner } from "../Spinner";
 import { Typography } from "../Typography";
+import { FailIcon } from "./FailIcon";
+import { SuccessIcon } from "./SuccessIcon";
 
 const buttonVariants = cva(
   "flex items-center justify-center rounded-full gap-1 font-display leading-[1.2] tracking-normal transition-colors",
@@ -23,7 +25,7 @@ const buttonVariants = cva(
         sm: "h-10 min-w-10 px-2",
         lg: "h-14 min-w-14 px-4",
       },
-      isLoading: {
+      isState: {
         true: "border-none bg-transparent fill-transparent text-transparent hover:bg-transparent active:bg-transparent disabled:bg-transparent disabled:text-transparent",
         false: "",
       },
@@ -64,10 +66,10 @@ export interface ButtonProps
    */
   size?: "sm" | "lg";
   /**
-   * Whether the button is in a loading state
-   * @default false
+   * The state of the button
+   * @default undefined
    */
-  isLoading?: boolean;
+  state?: "pending" | "success" | "failed";
   /**
    * Optional icon to display in the button.
    * The component passed to this prop must accept a `style` prop.
@@ -88,27 +90,20 @@ export interface ButtonProps
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    {
-      variant,
-      size = "lg",
-      className,
-      isLoading,
-      children,
-      icon,
-      fullWidth,
-      asChild,
-      ...props
-    },
+    { variant, size = "lg", className, children, icon, fullWidth, asChild, state, ...props },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
+
+    const isState = !!state;
+
     return (
       <Comp
         ref={ref}
         className={buttonVariants({
           variant,
           size,
-          isLoading,
+          isState,
           fullWidth,
         })}
         {...props}
@@ -117,7 +112,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           <Slot
             style={{
               ...iconContainerStyles[size],
-              opacity: isLoading ? 0 : 1,
+              opacity: isState ? 0 : 1,
             }}
           >
             {icon}
@@ -129,7 +124,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </Typography>
         )}
 
-        {isLoading && <Spinner className="absolute" />}
+        {state === "pending" && <Spinner className="absolute" />}
+        {state === "success" && <SuccessIcon className="absolute" />}
+        {state === "failed" && <FailIcon className="absolute" />}
       </Comp>
     );
   },
