@@ -13,6 +13,7 @@ export * from "./components/RadioGroup";
 export * from "./components/Select";
 export * from "./components/SearchField";
 export * from "./components/PhoneField";
+export * from "./components/Spinner";
 export * from "./components/Switch";
 export * from "./components/Token";
 export * from "./components/Typography";
