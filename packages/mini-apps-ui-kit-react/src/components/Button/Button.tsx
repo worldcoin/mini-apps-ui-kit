@@ -7,8 +7,7 @@ import { ButtonHTMLAttributes, forwardRef } from "react";
 
 import { Spinner } from "../Spinner";
 import { Typography } from "../Typography";
-import { FailIcon } from "./FailIcon";
-import { SuccessIcon } from "./SuccessIcon";
+import { Fail, Success } from "./icons";
 
 const buttonVariants = cva(
   "flex items-center justify-center rounded-full gap-1 font-display leading-[1.2] tracking-normal transition-colors",
@@ -26,7 +25,7 @@ const buttonVariants = cva(
         sm: "h-10 min-w-10 px-2",
         lg: "h-14 min-w-14 px-4",
       },
-      isState: {
+      stateful: {
         true: "border-none bg-transparent fill-transparent text-transparent hover:bg-transparent active:bg-transparent disabled:bg-transparent disabled:text-transparent",
         false: "",
       },
@@ -86,7 +85,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : "button";
 
-    const isState = !!state;
+    const stateful = !!state;
 
     return (
       <Comp
@@ -94,12 +93,12 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={buttonVariants({
           variant,
           size,
-          isState,
+          stateful,
           fullWidth,
         })}
         {...props}
       >
-        {icon && <Slot className={cn("size-6", isState && "opacity-0")}>{icon}</Slot>}
+        {icon && <Slot className={cn("size-6", stateful && "opacity-0")}>{icon}</Slot>}
 
         {children && (
           <Typography variant="label" level={size === "lg" ? 1 : 2}>
@@ -108,8 +107,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
 
         {state === "pending" && <Spinner className="absolute size-6" />}
-        {state === "success" && <SuccessIcon className="absolute size-6" />}
-        {state === "failed" && <FailIcon className="absolute size-6" />}
+        {state === "success" && <Success className="absolute size-6" />}
+        {state === "failed" && <Fail className="absolute size-6" />}
       </Comp>
     );
   },

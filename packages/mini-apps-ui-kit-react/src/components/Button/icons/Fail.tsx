@@ -1,13 +1,13 @@
-import { cn } from "../../lib/utils";
+import { cn } from "../../../lib/utils";
 
-interface FailIconProps {
+interface FailProps {
   /**
    * Additional CSS classes to apply to the spinner
    */
   className?: string;
 }
 
-export const FailIcon = ({ className }: FailIconProps) => {
+export const Fail = ({ className }: FailProps) => {
   return (
     <svg
       width="25"
@@ -15,9 +15,9 @@ export const FailIcon = ({ className }: FailIconProps) => {
       viewBox="0 0 25 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn("h-6 w-6", className)}
+      className={cn("size-6 text-error-600", className)}
     >
-      <rect x="0.5" width="24" height="24" rx="12" fill="#F2280D" />
+      <rect x="0.5" width="24" height="24" rx="12" fill="currentColor" />
       <rect
         opacity="0.2"
         x="0.5"
@@ -33,12 +33,12 @@ export const FailIcon = ({ className }: FailIconProps) => {
         height="23.7273"
         rx="11.8636"
         stroke="url(#paint1_linear_578_338)"
-        stroke-width="0.272727"
+        strokeWidth="0.272727"
       />
       <path
         d="M9.50403 14.7233L12.3637 11.8636M15.2233 9.00403L12.3637 11.8636M12.3637 11.8636L9.50403 9.00403M12.3637 11.8636L15.2233 14.7233"
         stroke="white"
-        stroke-width="1.5"
+        strokeWidth="1.5"
       />
       <defs>
         <radialGradient
@@ -49,8 +49,8 @@ export const FailIcon = ({ className }: FailIconProps) => {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(5.95455) rotate(63.4349) scale(26.8328 26.7171)"
         >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </radialGradient>
         <linearGradient
           id="paint1_linear_578_338"
@@ -60,8 +60,8 @@ export const FailIcon = ({ className }: FailIconProps) => {
           y2="24"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="white" stop-opacity="0.3" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+          <stop stopColor="white" stopOpacity="0.3" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>
