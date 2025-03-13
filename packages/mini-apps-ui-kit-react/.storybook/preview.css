@@ -51,10 +51,6 @@ b {
   font-weight: 600 !important;
 }
 
-* {
-  font-family: "TWK Lausanne", sans-serif !important;
-}
-
 .sbdocs-content a,
 .docs-story a {
   text-decoration: underline;

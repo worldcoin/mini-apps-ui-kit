@@ -40,7 +40,7 @@ export const Display: StoryObj<TypographyDisplayProps> = {
   args: {
     variant: "display",
     level: 1,
-    children: "Display",
+    children: "The real human network",
   },
   argTypes: {
     level: {
@@ -54,7 +54,7 @@ export const Heading: StoryObj<TypographyCommonProps> = {
   args: {
     variant: "heading",
     level: 1,
-    children: "Heading",
+    children: "Identity, finance and community for every human.",
   },
   argTypes: {
     level: {
@@ -68,7 +68,8 @@ export const Subtitle: StoryObj<TypographyCommonProps> = {
   args: {
     variant: "subtitle",
     level: 1,
-    children: "Subtitle",
+    children:
+      "In the age of AI, World is a network of real humans built on an anonymous proof of human and a globally inclusive financial network.",
   },
   argTypes: {
     level: {
@@ -82,7 +83,7 @@ export const Label: StoryObj<TypographyLabelProps> = {
   args: {
     variant: "label",
     level: 1,
-    children: "Label",
+    children: "Unique humans",
   },
   argTypes: {
     level: {
@@ -96,7 +97,8 @@ export const Body: StoryObj<TypographyCommonProps> = {
   args: {
     variant: "body",
     level: 1,
-    children: "Body",
+    children:
+      "World ID allows you to anonymously and securely verify that you are a real and unique human (and not a bot) for easy online verification like signing into social apps and ensuring fair online activities like voting or buying concert tickets.",
   },
   tags: ["!autodocs"],
   argTypes: {
