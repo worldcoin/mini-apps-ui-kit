@@ -2,7 +2,7 @@ import { cn } from "../../../lib/utils";
 
 interface FailProps {
   /**
-   * Additional CSS classes to apply to the spinner
+   * Additional CSS classes to apply to the icon
    */
   className?: string;
 }

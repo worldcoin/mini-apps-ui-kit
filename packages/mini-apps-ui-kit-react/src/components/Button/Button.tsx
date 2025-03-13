@@ -43,7 +43,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className">,
     VariantProps<typeof buttonVariants> {
   /**
    * The variant style to use
@@ -79,10 +79,7 @@ export interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    { variant, size = "lg", className, children, icon, fullWidth, asChild, state, ...props },
-    ref,
-  ) => {
+  ({ variant, size = "lg", children, icon, fullWidth, asChild, state, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
 
     const stateful = !!state;
