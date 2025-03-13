@@ -25,32 +25,39 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
 
 export interface TypographyNumberProps extends TypographyProps {
   variant?: "number";
-  level?: 1 | 2 | 3 | 4 | 5 | 6;
+  level?: 1 | 2 | 3 | 4 | 5;
 }
 
-export interface TypographySubtitleBodyMonoProps extends TypographyProps {
-  variant?: "subtitle" | "body" | "mono";
+export interface TypographyCommonProps extends TypographyProps {
+  variant?: "heading" | "subtitle" | "body";
   level?: 1 | 2 | 3 | 4;
 }
 
-export interface TypographyHeadingProps extends TypographyProps {
-  variant?: "heading";
-  level?: 1 | 2 | 3;
+export interface TypographyLabelProps extends TypographyProps {
+  variant?: "label";
+  level?: 1 | 2;
+}
+
+export interface TypographyDisplayProps extends TypographyProps {
+  variant?: "display";
+  level?: 1;
 }
 
 export type TypographyComponentProps =
   | TypographyNumberProps
-  | TypographySubtitleBodyMonoProps
-  | TypographyHeadingProps;
+  | TypographyCommonProps
+  | TypographyLabelProps
+  | TypographyDisplayProps;
 
 export const typographyVariants = cva("", {
   variants: {
     variant: {
-      number: "font-display font-semibold leading-narrow tracking-normal",
-      heading: "font-display font-semibold tracking-[-0.01em] leading-narrow",
-      subtitle: "font-sans font-medium leading-narrow tracking-normal",
-      body: "font-sans font-normal leading-compact tracking-normal",
-      mono: "font-mono font-normal tracking-normal",
+      display: "font-display font-semibold leading-narrow tracking-[-0.02em]",
+      heading: "font-display font-semibold leading-narrow tracking-[-0.01em]",
+      subtitle: "font-sans font-medium leading-narrow",
+      label: "font-sans font-semibold leading-narrow",
+      body: "font-sans font-normal leading-compact",
+      number: "font-display font-semibold",
     },
     level: {
       1: "",
@@ -62,55 +69,38 @@ export const typographyVariants = cva("", {
     },
   },
   compoundVariants: [
+    // Display
     {
-      variant: "number",
+      variant: "display",
       level: 1,
-      className: "text-[3.5rem]",
+      className: "text-7xl",
+    },
+    // Heading
+    {
+      variant: "heading",
+      level: 1,
+      className: "text-4xl",
     },
     {
-      variant: "number",
+      variant: "heading",
       level: 2,
-      className: "text-[2.75rem]",
+      className: "text-3xl",
     },
     {
-      variant: "number",
+      variant: "heading",
       level: 3,
-      className: "text-[2.125rem]",
+      className: "text-2xl",
     },
     {
-      variant: "number",
+      variant: "heading",
       level: 4,
-      className: "text-[1.875rem]",
+      className: "text-[1.375rem]",
     },
-    {
-      variant: "number",
-      level: 5,
-      className: "text-[1.625rem]",
-    },
-    {
-      variant: "number",
-      level: 6,
-      className: "text-[1.25rem]",
-    },
-    {
-      variant: "heading",
-      level: 1,
-      className: "text-[1.875rem]",
-    },
-    {
-      variant: "heading",
-      level: 2,
-      className: "text-[1.625rem]",
-    },
-    {
-      variant: "heading",
-      level: 3,
-      className: "text-[1.25rem]",
-    },
+    // Subtitle
     {
       variant: "subtitle",
       level: 1,
-      className: "text-[1.125rem]",
+      className: "text-lg",
     },
     {
       variant: "subtitle",
@@ -127,6 +117,18 @@ export const typographyVariants = cva("", {
       level: 4,
       className: "text-xs",
     },
+    // Label
+    {
+      variant: "label",
+      level: 1,
+      className: "text-base",
+    },
+    {
+      variant: "label",
+      level: 2,
+      className: "text-sm",
+    },
+    // Body
     {
       variant: "body",
       level: 1,
@@ -147,25 +149,31 @@ export const typographyVariants = cva("", {
       level: 4,
       className: "text-xs",
     },
+    // Number
     {
-      variant: "mono",
+      variant: "number",
       level: 1,
-      className: "text-sm leading-none",
+      className: "text-6xl tracking-[-0.01em]",
     },
     {
-      variant: "mono",
+      variant: "number",
       level: 2,
-      className: "text-xs leading-narrow",
+      className: "text-5xl tracking-[-0.02em]",
     },
     {
-      variant: "mono",
+      variant: "number",
       level: 3,
-      className: "text-2xs leading-narrow",
+      className: "text-3xl tracking-[-0.01em]",
     },
     {
-      variant: "mono",
+      variant: "number",
       level: 4,
-      className: "text-[0.5rem] leading-compact",
+      className: "text-xl tracking-[-0.02em]",
+    },
+    {
+      variant: "number",
+      level: 5,
+      className: "text-base tracking-[-0.02em]",
     },
   ],
   defaultVariants: {
