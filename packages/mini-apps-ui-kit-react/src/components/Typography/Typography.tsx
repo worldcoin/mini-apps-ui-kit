@@ -48,6 +48,11 @@ export interface TypographyLabelProps extends TypographyProps {
   level?: 1 | 2;
 }
 
+export interface TypographyLabelProps extends TypographyProps {
+  variant?: "label";
+  level?: 1 | 2;
+}
+
 export type TypographyComponentProps =
   | TypographyNumberProps
   | TypographyCommonProps
@@ -179,6 +184,16 @@ export const typographyVariants = cva("", {
       variant: "number",
       level: 5,
       className: "text-base tracking-[-0.02em]",
+    },
+    {
+      variant: "label",
+      level: 1,
+      className: "text-[17px]",
+    },
+    {
+      variant: "label",
+      level: 2,
+      className: "text-[15px]",
     },
     {
       variant: "label",
