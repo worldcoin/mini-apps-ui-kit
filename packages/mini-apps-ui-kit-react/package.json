@@ -97,6 +97,10 @@
       "types": "./dist/components/Spinner/index.d.ts",
       "default": "./dist/components/Spinner/index.js"
     },
+    "./Toast": {
+      "types": "./dist/components/Toast/index.d.ts",
+      "default": "./dist/components/Toast/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "default": "./dist/tailwind/index.js"
@@ -171,6 +175,7 @@
     "countries-list": "^3.1.1",
     "input-otp": "^1.4.1",
     "react-international-phone": "^4.3.0",
+    "sonner": "^2.0.1",
     "tailwind-merge": "^2.5.5",
     "vaul": "^1.1.2"
   },
