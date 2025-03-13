@@ -15,9 +15,6 @@ const meta: Meta<typeof Button> = {
     size: {
       control: "radio",
     },
-    radius: {
-      control: "radio",
-    },
     fullWidth: {
       control: "boolean",
       defaultValue: false,
@@ -26,9 +23,9 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
       defaultValue: false,
     },
-    isLoading: {
-      control: "boolean",
-      defaultValue: false,
+    state: {
+      control: "radio",
+      options: [undefined, "pending", "success", "failed"],
     },
     icon: iconControl,
   },
@@ -49,8 +46,7 @@ export const Text: Story = {
   args: {
     children: "Button",
     variant: "primary",
-    size: "md",
-    radius: "md",
+    size: "lg",
     fullWidth: false,
   },
   play: async ({ canvasElement }) => {
@@ -66,8 +62,7 @@ export const TextWithIcon: Story = {
     icon: <Star />,
     children: "Button",
     variant: "primary",
-    size: "md",
-    radius: "md",
+    size: "lg",
     fullWidth: false,
   },
   play: async ({ canvasElement }) => {
@@ -84,8 +79,7 @@ export const Icon: Story = {
   args: {
     icon: <Star />,
     variant: "primary",
-    size: "md",
-    radius: "md",
+    size: "lg",
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
