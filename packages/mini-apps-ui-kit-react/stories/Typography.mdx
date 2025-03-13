@@ -1,0 +1,102 @@
+import { Meta, Story, Canvas } from '@storybook/blocks';
+import { Typography } from '../src/components/Typography';
+import * as TypographyStories from './Typography.stories';
+import { TypographyListItem } from "./documentation/components/TypographyListItem";
+
+<Meta of={TypographyStories}/>
+
+# Typography
+
+Our typography system uses [TWK Lausanne](https://weltkern.com/typefaces/lausanne) font and consists of several text styles optimized for different use cases. Each style is carefully crafted to maintain readability and visual hierarchy across our applications. Please ensure you have the proper license to use [TWK Lausanne](https://weltkern.com/typefaces/lausanne) before implementing these typography styles.
+
+<br/>
+
+## Display
+
+<div style={{
+  marginTop: 20,
+  marginBottom: 80,
+}}>
+  <TypographyListItem>
+    <Story of={TypographyStories.Display1} />
+  </TypographyListItem>
+</div>
+
+
+## Headings
+
+<div style={{
+  marginTop: 20,
+  marginBottom: 80,
+}}>
+  <TypographyListItem>
+    <Story of={TypographyStories.Heading1} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Heading2} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Heading3} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Heading4} />
+  </TypographyListItem>
+</div>
+
+
+
+## Subtitles
+
+<div style={{
+  marginTop: 20,
+  marginBottom: 80,
+}}>
+  <TypographyListItem>
+    <Story of={TypographyStories.Subtitle1} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Subtitle2} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Subtitle3} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Subtitle4} />
+  </TypographyListItem>
+</div>
+
+
+## Labels
+
+<div style={{
+  marginTop: 20,
+  marginBottom: 80,
+}}>
+  <TypographyListItem>
+    <Story of={TypographyStories.Label1} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Label2} />
+  </TypographyListItem>
+</div>
+
+
+## Body
+
+<div style={{
+  marginTop: 20,
+  marginBottom: 80,
+}}>
+  <TypographyListItem>
+    <Story of={TypographyStories.Body1} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Body2} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Body3} />
+  </TypographyListItem>
+  <TypographyListItem>
+    <Story of={TypographyStories.Body4} />
+  </TypographyListItem>
+</div>

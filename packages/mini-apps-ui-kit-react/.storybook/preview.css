@@ -1,14 +1,14 @@
 @font-face {
   font-family: "TWK Lausanne";
   src: url("../public/fonts/TWKLausanne-350.woff") format("woff");
-  font-weight: 350;
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "TWK Lausanne";
   src: url("../public/fonts/TWKLausanne-350Italic.woff") format("woff");
-  font-weight: 350;
+  font-weight: 400;
   font-style: italic;
 }
 
@@ -48,7 +48,11 @@ h5,
 h6,
 strong,
 b {
-  font-weight: 500 !important;
+  font-weight: 600 !important;
+}
+
+* {
+  font-family: "TWK Lausanne", sans-serif !important;
 }
 
 .sbdocs-content a,
