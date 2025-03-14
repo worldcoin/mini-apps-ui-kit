@@ -190,16 +190,6 @@ export const typographyVariants = cva("", {
       level: 2,
       className: "text-[15px]",
     },
-    {
-      variant: "label",
-      level: 1,
-      className: "text-[17px]",
-    },
-    {
-      variant: "label",
-      level: 2,
-      className: "text-[15px]",
-    },
   ],
   defaultVariants: {
     variant: "body",
