@@ -1,7 +1,4 @@
-import { ComponentProps } from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
-
-type PointerDownOutsideEvent = ComponentProps<typeof DrawerPrimitive.Content>;
 
 export interface WithFadeFromProps {
   /**
@@ -25,7 +22,6 @@ export interface WithoutFadeFromProps {
   snapPoints?: (number | string)[];
   fadeFromIndex?: never;
 }
-
 type BaseDrawerProps = {
   /** Whether the drawer should take up the full page */
   fullPage?: boolean;
@@ -44,19 +40,6 @@ type BaseDrawerProps = {
    */
   closeThreshold?: number;
   /**
-   * When `true` the `body` doesn't get any styles assigned from Vaul
-   */
-  noBodyStyles?: boolean;
-  /** Callback when the open state changes */
-  onOpenChange?: (open: boolean) => void;
-  /** Whether the background should scale when the drawer opens */
-  shouldScaleBackground?: boolean;
-  /**
-   * When `false` we don't change body's background color when the drawer is open.
-   * @default true
-   */
-  setBackgroundColorOnScale?: boolean;
-  /**
    * Duration for which the drawer is not draggable after scrolling content inside of the drawer.
    * @default 500ms
    */
@@ -66,29 +49,16 @@ type BaseDrawerProps = {
    */
   fixed?: boolean;
   /**
-   * When `true` only allows the drawer to be dragged by the `<Drawer.Handle />` component.
-   * @default false
-   */
-  handleOnly?: boolean;
-  /**
    * When `false` dragging, clicking outside, pressing esc, etc. will not close the drawer.
    * Use this in comination with the `open` prop, otherwise you won't be able to open/close the drawer.
    * @default true
    */
   dismissible?: boolean;
-  /** Callback when dragging */
-  onDrag?: (event: React.PointerEvent<HTMLDivElement>, percentageDragged: number) => void;
-  /** Callback when releasing */
-  onRelease?: (event: React.PointerEvent<HTMLDivElement>, open: boolean) => void;
   /**
    * When `false` it allows to interact with elements outside of the drawer without closing it.
    * @default true
    */
   modal?: boolean;
-  /** Whether the drawer is nested */
-  nested?: boolean;
-  /** Callback when closing */
-  onClose?: () => void;
   /**
    * Direction of the drawer. Can be `top` or `bottom`, `left`, `right`.
    * @default 'bottom'
@@ -119,15 +89,23 @@ type BaseDrawerProps = {
   snapToSequentialPoint?: boolean;
   /** The container element to render the drawer into */
   container?: HTMLElement | null;
+  /** Whether to prevent scroll restoration */
+  preventScrollRestoration?: boolean;
+  /** Whether to auto focus the drawer when opened */
+  autoFocus?: boolean;
+  /** Callback when the open state changes */
+  onOpenChange?: (open: boolean) => void;
+  /** Callback when dragging */
+  onDrag?: (event: React.PointerEvent<HTMLDivElement>, percentageDragged: number) => void;
+  /** Callback when releasing */
+  onRelease?: (event: React.PointerEvent<HTMLDivElement>, open: boolean) => void;
+  /** Callback when closing */
+  onClose?: () => void;
   /**
    * Gets triggered after the open or close animation ends, it receives an `open` argument with the `open` state of the drawer by the time the function was triggered.
    * Useful to revert any state changes for example.
    */
   onAnimationEnd?: (open: boolean) => void;
-  /** Whether to prevent scroll restoration */
-  preventScrollRestoration?: boolean;
-  /** Whether to auto focus the drawer when opened */
-  autoFocus?: boolean;
 };
 
 /**
@@ -142,8 +120,6 @@ export interface DrawerContentProps
   extends React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> {
   /** The content of the drawer */
   children?: React.ReactNode;
-  /** Additional CSS classes to apply */
-  className?: string;
   /** Whether to render the trigger without default styling */
   asChild?: boolean;
   /** Whether to close the drawer when clicking outside */
@@ -151,9 +127,9 @@ export interface DrawerContentProps
   /** Called when the escape key is pressed */
   onEscapeKeyDown?: (event: KeyboardEvent) => void;
   /** Called when pointer down occurs outside drawer */
-  onPointerDownOutside?: (event: PointerDownOutsideEvent) => void;
+  onPointerDownOutside?: (event: Event) => void;
   /** Called when drawer starts to close */
-  onInteractOutside?: (event: React.FocusEvent | MouseEvent | TouchEvent) => void;
+  onInteractOutside?: (event: Event) => void;
 }
 
 /**

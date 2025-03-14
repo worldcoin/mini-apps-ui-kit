@@ -34,7 +34,7 @@ const Drawer = ({
     <DrawerPrimitive.Root
       shouldScaleBackground={false}
       dismissible={dismissible}
-      modal
+      modal={modal}
       direction="bottom"
       {...props}
     />
@@ -57,12 +57,8 @@ const DrawerClose = React.forwardRef<
 const DrawerOverlay = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Overlay
-    ref={ref}
-    className={cn("fixed inset-0 z-50 bg-gray-900/40", className)}
-    {...props}
-  />
+>((props, ref) => (
+  <DrawerPrimitive.Overlay ref={ref} className="fixed inset-0 z-50 bg-gray-900/40" {...props} />
 ));
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
@@ -72,7 +68,7 @@ DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   DrawerContentProps
->(({ className, children = false, ...props }, ref) => {
+>((props, ref) => {
   const { fullPage } = useDrawer();
   return (
     <DrawerPrimitive.Portal>
@@ -85,12 +81,9 @@ const DrawerContent = React.forwardRef<
         className={cn(
           "fixed inset-x-0 bottom-0 z-50 mt-24 bg-gray-0 outline-none p-8",
           fullPage ? "h-screen rounded-none" : "h-auto rounded-t-2xl",
-          className,
         )}
         {...props}
-      >
-        {children}
-      </DrawerPrimitive.Content>
+      />
     </DrawerPrimitive.Portal>
   );
 });

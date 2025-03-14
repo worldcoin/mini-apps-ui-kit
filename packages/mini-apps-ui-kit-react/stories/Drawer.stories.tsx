@@ -12,18 +12,6 @@ import { Meta, StoryObj } from "@storybook/react";
 const meta: Meta<typeof Drawer> = {
   title: "components/Drawer",
   component: Drawer,
-  argTypes: {
-    dismissible: {
-      control: "boolean",
-      description: "Whether the drawer can be dismissed",
-      defaultValue: true,
-    },
-    fullPage: {
-      control: "boolean",
-      description: "Whether the drawer should take up the full page",
-      defaultValue: false,
-    },
-  },
   subcomponents: {
     DrawerTrigger,
     DrawerContent,

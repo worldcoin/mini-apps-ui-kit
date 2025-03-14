@@ -19,15 +19,12 @@ import {
 } from "./types";
 import { AlertDialogContext, useAlertDialog } from "./use-alert-dialog";
 
-const AlertDialog = ({
-  shouldScaleBackground = true,
-  dismissible = true,
-  ...props
-}: AlertDialogProps) => (
+const AlertDialog = ({ dismissible = true, modal = true, ...props }: AlertDialogProps) => (
   <AlertDialogContext.Provider value={{ dismissible }}>
     <DrawerPrimitive.Root
-      shouldScaleBackground={shouldScaleBackground}
+      shouldScaleBackground={false}
       dismissible={dismissible}
+      modal={modal}
       {...props}
     />
   </AlertDialogContext.Provider>
