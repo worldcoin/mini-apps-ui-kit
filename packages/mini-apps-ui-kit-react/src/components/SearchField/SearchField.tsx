@@ -1,3 +1,5 @@
+"use client";
+
 import { createChangeEvent } from "@/lib/utils";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 

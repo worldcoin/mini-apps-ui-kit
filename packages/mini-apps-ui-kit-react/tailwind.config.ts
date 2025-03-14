@@ -9,7 +9,7 @@ const config: Config = {
     "./.storybook/**/*.{js,ts,jsx,tsx}",
     "./stories/**/*.{mdx,md}",
   ],
-  plugins: [uiKitTailwindPlugin],
+  plugins: [uiKitTailwindPlugin, require("tailwindcss-animate")],
 };
 
 export default config;

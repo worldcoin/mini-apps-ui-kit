@@ -4,7 +4,7 @@ import * as React from "react";
 import { cn } from "../../lib/utils";
 import { Typography } from "../Typography";
 
-interface PasteButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface PasteButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onPaste"> {
   /**
    * Reference to an input element that will receive the pasted text
    */
