@@ -5,9 +5,10 @@ import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
+import { Fail } from "../Icons/Fail";
+import { Success } from "../Icons/Success";
 import { Spinner } from "../Spinner";
 import { Typography } from "../Typography";
-import { Fail, Success } from "./icons";
 
 const buttonVariants = cva(
   "flex items-center justify-center rounded-full gap-1 font-display leading-[1.2] tracking-normal transition-colors",
