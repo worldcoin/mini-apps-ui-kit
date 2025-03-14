@@ -1,5 +1,12 @@
 import { Button } from "@/components/Button";
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/Drawer";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/Drawer";
 import { Typography } from "@/components/Typography";
 import { Meta, StoryObj } from "@storybook/react";
 
@@ -30,10 +37,9 @@ export const Default: StoryObj<typeof Drawer> = {
         <Button>Open Drawer</Button>
       </DrawerTrigger>
       <DrawerContent className="flex flex-col items-center pb-4">
-        <Typography component="h2" variant="heading" level={3}>
-          Drawer title
-        </Typography>
-        <Typography className="p-4">Drawer content</Typography>
+        <DrawerHeader>
+          <DrawerTitle>Drawer title</DrawerTitle>
+        </DrawerHeader>
         <DrawerClose>
           <Button>Close</Button>
         </DrawerClose>
@@ -50,7 +56,7 @@ export const LongContent: StoryObj<typeof Drawer> = {
       </DrawerTrigger>
       <DrawerContent className="h-[96%] pb-4">
         <div className="max-w-md w-full mx-auto rounded-t-[10px] flex flex-col items-center flex-grow">
-          <Typography component="h2" variant="heading" level={3}>
+          <Typography variant="heading" level={3}>
             Drawer with long, scrollable content
           </Typography>
           <div

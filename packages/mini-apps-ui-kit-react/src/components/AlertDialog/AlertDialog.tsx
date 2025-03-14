@@ -82,7 +82,7 @@ const AlertDialogHeader = ({
 }) => {
   const { dismissible } = useAlertDialog();
   return (
-    <div className="flex justify-between items-center gap-4 mb-4" {...props}>
+    <div className="flex justify-between items-center gap-4 mb-4 w-full" {...props}>
       <div className="flex flex-col gap-6">
         {icon}
         {children}
