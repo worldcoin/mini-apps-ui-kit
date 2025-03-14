@@ -19,5 +19,7 @@ export * from "./components/Token";
 export * from "./components/Toast";
 export * from "./components/Typography";
 export * from "./components/Drawer";
+export * from "./components/AlertDialog";
+export * from "./components/BottomBar";
 
 export { default as uiKitTailwindPlugin } from "./tailwind";
