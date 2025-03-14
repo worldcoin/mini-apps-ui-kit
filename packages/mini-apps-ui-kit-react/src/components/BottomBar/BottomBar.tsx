@@ -3,7 +3,7 @@
 import { type VariantProps, cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
-const bottomBarVariants = cva("gap-4", {
+const bottomBarVariants = cva("w-full gap-4", {
   variants: {
     direction: {
       horizontal: "grid grid-cols-2",
