@@ -47,18 +47,17 @@ export type TypographyComponentProps =
   | TypographyNumberProps
   | TypographyCommonProps
   | TypographyLabelProps
-  | TypographyDisplayProps
-  | TypographyLabelProps;
+  | TypographyDisplayProps;
 
 export const typographyVariants = cva("", {
   variants: {
     variant: {
       display: "font-display font-semibold leading-narrow tracking-[-0.02em]",
-      heading: "font-display font-semibold tracking-[-0.01em] leading-narrow",
-      subtitle: "font-sans font-medium leading-narrow tracking-normal",
-      body: "font-sans font-normal leading-compact tracking-normal",
-      mono: "font-mono font-normal tracking-normal",
-      label: "font-sans font-semibold leading-narrow tracking-normal",
+      heading: "font-display font-semibold leading-narrow tracking-[-0.01em]",
+      subtitle: "font-sans font-medium leading-narrow",
+      label: "font-sans font-semibold leading-narrow",
+      body: "font-sans font-normal leading-compact",
+      number: "font-display font-semibold",
     },
     level: {
       1: "",
@@ -175,16 +174,6 @@ export const typographyVariants = cva("", {
       variant: "number",
       level: 5,
       className: "text-base tracking-[-0.02em]",
-    },
-    {
-      variant: "label",
-      level: 1,
-      className: "text-[17px]",
-    },
-    {
-      variant: "label",
-      level: 2,
-      className: "text-[15px]",
     },
     {
       variant: "label",
