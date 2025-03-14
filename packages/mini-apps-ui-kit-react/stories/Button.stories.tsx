@@ -111,6 +111,13 @@ export const Icon: Story = {
       },
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "A button that displays an icon only.",
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const icon = await canvas.findByTestId("star-icon");
