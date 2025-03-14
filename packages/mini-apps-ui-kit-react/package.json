@@ -177,7 +177,6 @@
     "countries-list": "^3.1.1",
     "input-otp": "^1.4.1",
     "react-international-phone": "^4.3.0",
-    "sonner": "^2.0.1",
     "tailwind-merge": "^2.5.5",
     "vaul": "^1.1.2"
   },
