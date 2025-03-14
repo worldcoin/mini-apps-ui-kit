@@ -17,7 +17,7 @@ const ToastViewport = React.forwardRef<
   <ToastPrimitives.Viewport
     ref={ref}
     className={cn(
-      "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+      "fixed top-0 z-[100] flex max-h-screen w-full p-4 right-0 left-0 flex-col",
       className,
     )}
     {...props}
@@ -43,15 +43,14 @@ const Toast = React.forwardRef<
         "data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]",
         "data-[swipe=move]:transition-none",
         "data-[state=closed]:animate-out",
-        "data-[state=closed]:fade-out-80",
         "data-[state=closed]:slide-out-to-top-full",
+        "data-[state=closed]:fade-out-50",
         "data-[state=open]:animate-in",
         "data-[state=open]:slide-in-from-top-full",
-        "data-[state=open]:sm:slide-in-from-top-full",
       )}
       {...props}
     >
-      <div className="grid grid-cols-[auto_1fr] items-center gap-2 rounded-full bg-gray-0 h-9 pl-2 pr-3 border border-gray-200 shrink-0">
+      <div className="grid grid-cols-[auto_1fr] items-center gap-2 rounded-full bg-gray-0 h-9 pl-2 pr-3 border border-gray-200 shrink-0 text-gray-900">
         {variant === "success" ? <Success /> : <Fail />}
         <div className="flex flex-1 items-center">
           <Typography variant="subtitle" level={3}>

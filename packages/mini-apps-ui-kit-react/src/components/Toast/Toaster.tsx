@@ -3,11 +3,11 @@
 import { Toast, ToastProvider, ToastViewport } from "./Toast";
 import { useToast } from "./use-toast";
 
-export function Toaster() {
+export function Toaster({ duration }: { duration?: number }) {
   const { toasts } = useToast();
 
   return (
-    <ToastProvider>
+    <ToastProvider duration={duration}>
       {toasts.map(({ id, ...props }) => (
         <Toast key={id} {...props} />
       ))}

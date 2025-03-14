@@ -1,32 +1,41 @@
+import { Button } from "@/index";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Toaster, useToast } from "../src/components/Toast";
 
 const ToastDemo = ({
   variant,
-  message,
+  title,
   duration,
 }: {
   variant: "success" | "error";
-  message: string;
+  title: string;
   duration: number;
 }) => {
-  const defaultMessage = variant === "success" ? "Something went good" : "Something went wrong";
+  const defaultTitle = variant === "success" ? "Something went good" : "Something went wrong";
   const { toast } = useToast();
   return (
-    <div>
-      <button
+    <div
+      style={{
+        position: "relative",
+        height: 400,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Button
+        variant="secondary"
+        size="sm"
         onClick={() =>
-          toast({
-            variant,
-            title: message || defaultMessage,
+          toast[variant]({
+            title: title || defaultTitle,
             duration,
           })
         }
-        className="px-4 py-2 bg-primary text-primary-foreground rounded-md w-full"
       >
         Show Toast
-      </button>
+      </Button>
       <Toaster />
     </div>
   );
@@ -37,6 +46,12 @@ const meta: Meta<typeof ToastDemo> = {
   component: ToastDemo,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Toast component for displaying temporary notifications. Supports success and error variants with customizable duration and title content.",
+      },
+    },
   },
   argTypes: {
     variant: {
@@ -48,7 +63,7 @@ const meta: Meta<typeof ToastDemo> = {
       control: "number",
       description: "Duration of the toast",
     },
-    message: {
+    title: {
       control: "text",
       description: "Message to display in the toast",
     },
@@ -62,7 +77,7 @@ type Story = StoryObj<typeof ToastDemo>;
 export const Default: Story = {
   args: {
     variant: "success",
-    message: "",
+    title: "",
     duration: 3000,
   },
 };

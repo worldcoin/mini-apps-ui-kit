@@ -24,10 +24,11 @@ import {
   Switch,
   Token,
   Typography,
-  toast,
+  useToast,
 } from "@worldcoin/mini-apps-ui-kit-react";
 
 export default function Home() {
+  const { toast } = useToast();
   return (
     <div className="min-h-screen p-8">
       <Typography variant="heading" level={1} className="mb-8">
@@ -134,7 +135,15 @@ export default function Home() {
       </Drawer>
 
       {/* Toast Example */}
-      <Button onClick={() => toast.success("Hello, World!")}>Show toast</Button>
+      <Button
+        onClick={() =>
+          toast.success({
+            title: '"Hello, World!"',
+          })
+        }
+      >
+        Show toast
+      </Button>
     </div>
   );
 }

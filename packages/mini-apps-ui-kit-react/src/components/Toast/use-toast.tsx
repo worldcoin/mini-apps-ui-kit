@@ -9,7 +9,6 @@ const TOAST_REMOVE_DELAY = 1000000;
 
 type ToasterToast = ToastProps & {
   id: string;
-  title?: React.ReactNode;
 };
 
 const actionTypes = {
@@ -136,7 +135,7 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">;
 
-function toast({ ...props }: Toast) {
+const toast = ({ ...props }: Toast) => {
   const id = genId();
 
   const update = (props: ToasterToast) =>
@@ -163,7 +162,7 @@ function toast({ ...props }: Toast) {
     dismiss,
     update,
   };
-}
+};
 
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState);
@@ -180,7 +179,10 @@ function useToast() {
 
   return {
     ...state,
-    toast,
+    toast: {
+      success: (props: Omit<Toast, "variant">) => toast({ ...props, variant: "success" }),
+      error: (props: Omit<Toast, "variant">) => toast({ ...props, variant: "error" }),
+    },
     dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
   };
 }
