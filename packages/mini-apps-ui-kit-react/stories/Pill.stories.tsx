@@ -7,6 +7,12 @@ const meta: Meta<typeof Pill> = {
   component: Pill,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "A pill-shaped component that can be used as a toggle or label with a rounded appearance.",
+      },
+    },
   },
   tags: ["autodocs"],
   argTypes: {

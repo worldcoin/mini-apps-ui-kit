@@ -8,6 +8,14 @@ import { Shield } from "./helpers/icons/Shield";
 const meta: Meta<ChipProps> = {
   title: "components/Chip",
   component: Chip,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A chip component that displays labels with optional icons and different variants including success, warning, error, and important states.",
+      },
+    },
+  },
   argTypes: {
     icon: iconControl,
   },
@@ -21,6 +29,13 @@ export const Default: Story = {
   args: {
     label: "Default",
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "The default chip variant without any icon or special styling.",
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Default");
@@ -33,6 +48,13 @@ export const DefaultWithIcon: Story = {
   args: {
     label: "Default with icon",
     icon: <Shield />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "A chip that includes an icon alongside the label text.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -49,6 +71,13 @@ export const SuccessWithIcon: Story = {
     label: "Success with icon",
     variant: "success",
     icon: <Shield variant="success" />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "A success-themed chip with green styling and a matching icon.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -67,6 +96,13 @@ export const WarningWithIcon: Story = {
     variant: "warning",
     icon: <Shield variant="warning" />,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "A warning-themed chip with amber styling and a matching icon.",
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Warning with icon");
@@ -83,6 +119,13 @@ export const ErrorWithIcon: Story = {
     label: "Error with icon",
     variant: "error",
     icon: <Shield variant="error" />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "An error-themed chip with red styling and a matching icon.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -101,6 +144,13 @@ export const ImportantWithIcon: Story = {
     variant: "important",
     icon: <Shield variant="important" />,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "An important-themed chip with blue styling and a matching icon.",
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const chip = await canvas.findByText("Important with icon");
@@ -118,6 +168,14 @@ export const DifferentColors: Story = {
     variant: "important",
     className: "bg-success-100 text-primary-pink",
     icon: <Shield variant="important" color="#9D50FF" />,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A chip demonstrating custom color combinations using className and color props.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
