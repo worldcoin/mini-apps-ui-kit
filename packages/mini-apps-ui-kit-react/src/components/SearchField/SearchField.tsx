@@ -28,6 +28,11 @@ export interface SearchFieldProps
    * @default "Paste"
    */
   pasteButtonLabel?: string;
+  /**
+   * Placeholder text for the input
+   * @default "Search"
+   */
+  placeholder?: string;
 }
 
 export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
@@ -42,17 +47,19 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
       spellCheck = "false",
       endAdornment: endAdornmentProp,
       endAdornmentWidth: endAdornmentWidthProp,
+      placeholder = "Search",
       ...props
     },
     forwardedRef,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = useState(false);
+    const [isPasted, setIsPasted] = useState(false);
     useImperativeHandle(forwardedRef, () => inputRef.current!);
 
     let endAdornment = endAdornmentProp;
     let endAdornmentWidth = endAdornmentWidthProp;
-    if (showPasteButton && !disabled) {
+    if (showPasteButton && !disabled && !isPasted) {
       endAdornment = (
         <PasteButton
           inputRef={inputRef}
@@ -61,6 +68,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
             if (inputRef.current) {
               const event = createChangeEvent(inputRef.current);
               props.onChange?.(event);
+              setIsPasted(true);
             }
           }}
         />
@@ -78,7 +86,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           }}
         />
       );
-      endAdornmentWidth = 1.25;
+      endAdornmentWidth = 2.3;
     }
 
     return (
@@ -88,6 +96,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
         startAdornment={<Magnifier />}
         isValid={isValid}
         disabled={disabled}
+        startAdornmentWidth={2.3}
         endAdornmentWidth={endAdornmentWidth}
         endAdornment={endAdornment}
         type={type}
@@ -97,10 +106,12 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           setIsFocused(true);
           props.onFocus?.(e);
         }}
+        placeholder={placeholder}
         onBlur={(e) => {
           setIsFocused(false);
           props.onBlur?.(e);
         }}
+        className="rounded-full"
       />
     );
   },
