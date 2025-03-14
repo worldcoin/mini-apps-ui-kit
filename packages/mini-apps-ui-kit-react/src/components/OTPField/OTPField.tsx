@@ -100,7 +100,7 @@ export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPF
         maxLength={maxLength}
         inputMode={inputModeDictionary[mode]}
         pattern={pattern || patternDictionary[mode]}
-        containerClassName="flex items-center gap-1 has-[:disabled]:opacity-50"
+        containerClassName="flex items-center gap-2 has-[:disabled]:opacity-50"
         render={({ slots }) => (
           <>
             {slots.map(({ isActive, char }, idx) => (
@@ -112,7 +112,7 @@ export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPF
                   inputVariants({ error }),
                   typographyVariants({ variant: "body", level: 2 }),
                   "w-12 h-[4.25rem] rounded-lg flex items-center justify-center",
-                  isActive && "z-10 bg-gray-0 shadow-card",
+                  (isActive || error) && "z-10 bg-gray-0",
                 )}
               >
                 {char}
