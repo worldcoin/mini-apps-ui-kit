@@ -8,26 +8,22 @@ import { BottomBar, BottomBarProps } from "../BottomBar";
 import { Button } from "../Button";
 import { XMark } from "../Icons/XMark";
 import { Typography } from "../Typography";
-
-interface AlertDialogContextValue {
-  dismissible?: boolean;
-}
-
-const AlertDialogContext = React.createContext<AlertDialogContextValue | undefined>(undefined);
-
-const useAlertDialog = () => {
-  const context = React.useContext(AlertDialogContext);
-  if (context === undefined) {
-    throw new Error("useAlertDialog must be used within an AlertDialog");
-  }
-  return context;
-};
+import {
+  AlertDialogCloseProps,
+  AlertDialogContentProps,
+  AlertDialogDescriptionProps,
+  AlertDialogHeaderProps,
+  AlertDialogProps,
+  AlertDialogTitleProps,
+  AlertDialogTriggerProps,
+} from "./types";
+import { AlertDialogContext, useAlertDialog } from "./use-alert-dialog";
 
 const AlertDialog = ({
   shouldScaleBackground = true,
   dismissible = true,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Root> & { dismissible?: boolean }) => (
+}: AlertDialogProps) => (
   <AlertDialogContext.Provider value={{ dismissible }}>
     <DrawerPrimitive.Root
       shouldScaleBackground={shouldScaleBackground}
@@ -36,13 +32,21 @@ const AlertDialog = ({
     />
   </AlertDialogContext.Provider>
 );
-AlertDialog.displayName = "Drawer";
+AlertDialog.displayName = "AlertDialog";
 
-const AlertDialogTrigger = DrawerPrimitive.Trigger;
+const AlertDialogTrigger = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Trigger>,
+  AlertDialogTriggerProps
+>((props, ref) => <DrawerPrimitive.Trigger ref={ref} {...props} />);
+AlertDialogTrigger.displayName = "AlertDialogTrigger";
 
 const AlertDialogPortal = DrawerPrimitive.Portal;
 
-const AlertDialogClose = DrawerPrimitive.Close;
+const AlertDialogClose = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Close>,
+  AlertDialogCloseProps
+>((props, ref) => <DrawerPrimitive.Close ref={ref} {...props} />);
+AlertDialogClose.displayName = "AlertDialogClose";
 
 const AlertDialogOverlay = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Overlay>,
@@ -54,11 +58,11 @@ const AlertDialogOverlay = React.forwardRef<
     {...props}
   />
 ));
-AlertDialogOverlay.displayName = DrawerPrimitive.Overlay.displayName;
+AlertDialogOverlay.displayName = "AlertDialogOverlay";
 
 const AlertDialogContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
+  AlertDialogContentProps
 >(({ className, children, ...props }, ref) => (
   <AlertDialogPortal>
     <AlertDialogOverlay />
@@ -71,15 +75,9 @@ const AlertDialogContent = React.forwardRef<
     </DrawerPrimitive.Content>
   </AlertDialogPortal>
 ));
-AlertDialogContent.displayName = "DrawerContent";
+AlertDialogContent.displayName = "AlertDialogContent";
 
-const AlertDialogHeader = ({
-  icon,
-  children,
-  ...props
-}: Omit<React.HTMLAttributes<HTMLDivElement>, "className"> & {
-  icon?: React.ReactNode;
-}) => {
+const AlertDialogHeader = ({ icon, children, ...props }: AlertDialogHeaderProps) => {
   const { dismissible } = useAlertDialog();
   return (
     <div className="flex justify-between items-center gap-4 mb-4 w-full" {...props}>
@@ -97,14 +95,14 @@ const AlertDialogHeader = ({
     </div>
   );
 };
-AlertDialogHeader.displayName = "DrawerHeader";
+AlertDialogHeader.displayName = "AlertDialogHeader";
 
 const AlertDialogFooter = (props: BottomBarProps) => <BottomBar {...props} />;
-AlertDialogFooter.displayName = "DrawerFooter";
+AlertDialogFooter.displayName = "AlertDialogFooter";
 
 const AlertDialogTitle = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>
+  AlertDialogTitleProps
 >(({ className, children, ...props }, ref) => (
   <DrawerPrimitive.Title ref={ref} {...props} asChild>
     <Typography variant="heading" level={2}>
@@ -112,17 +110,22 @@ const AlertDialogTitle = React.forwardRef<
     </Typography>
   </DrawerPrimitive.Title>
 ));
-AlertDialogTitle.displayName = DrawerPrimitive.Title.displayName;
+AlertDialogTitle.displayName = "AlertDialogTitle";
 
 const AlertDialogDescription = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
+  AlertDialogDescriptionProps
 >(({ className, children, ...props }, ref) => (
-  <DrawerPrimitive.Description ref={ref} className="text-gray-500 mb-8" {...props} asChild>
+  <DrawerPrimitive.Description
+    ref={ref}
+    className={cn("text-gray-500 mb-8", className)}
+    {...props}
+    asChild
+  >
     <Typography>{children}</Typography>
   </DrawerPrimitive.Description>
 ));
-AlertDialogDescription.displayName = DrawerPrimitive.Description.displayName;
+AlertDialogDescription.displayName = "AlertDialogDescription";
 
 export {
   AlertDialog,
