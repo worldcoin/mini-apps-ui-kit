@@ -2,8 +2,7 @@ import { create } from "@storybook/theming/create";
 
 export default create({
   base: "light",
-  fontBase: "'Rubik', sans-serif",
-  fontCode: "'DM Mono', monospace",
+  fontBase: "'TWK Lausanne', sans-serif",
 
   brandTitle: "Mini App UI Kit",
   brandUrl: "https://docs.world.org",

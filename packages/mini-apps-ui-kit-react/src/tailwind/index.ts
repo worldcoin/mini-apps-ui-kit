@@ -65,9 +65,7 @@ const uiKitTailwindPlugin = plugin(
   function ({ addBase }) {
     addBase({
       ":root": {
-        "--font-sans": "Rubik",
-        "--font-display": "Sora",
-        "--font-mono": "DM Mono",
+        "--font-sans": "TWK Lausanne",
         ...gray,
         ...success,
         ...error,
@@ -80,8 +78,6 @@ const uiKitTailwindPlugin = plugin(
     theme: {
       fontFamily: {
         sans: "var(--font-sans)",
-        display: "var(--font-display)",
-        mono: "var(--font-mono)",
       },
       colors: {
         transparent: "transparent",
@@ -148,6 +144,19 @@ const uiKitTailwindPlugin = plugin(
         none: "1",
         narrow: "1.2",
         compact: "1.3",
+      },
+      fontSize: {
+        xs: "0.8125rem",
+        sm: "0.9375rem",
+        base: "1.0625rem",
+        lg: "1.1875rem",
+        xl: "1.3125rem",
+        "2xl": "1.625rem",
+        "3xl": "1.875rem",
+        "4xl": "2.125rem",
+        "5xl": "2.5rem",
+        "6xl": "2.75rem",
+        "7xl": "3.5rem",
       },
       extend: {
         boxShadow: {
