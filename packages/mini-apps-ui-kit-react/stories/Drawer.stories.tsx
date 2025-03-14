@@ -1,21 +1,29 @@
 import { Button } from "@/components/Button";
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/Drawer";
-import { Typography } from "@/components/Typography";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/Drawer";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Drawer> = {
   title: "components/Drawer",
   component: Drawer,
   subcomponents: {
-    DrawerTrigger: DrawerTrigger as React.ComponentType<unknown>,
-    DrawerContent: DrawerContent as React.ComponentType<unknown>,
-    DrawerClose: DrawerClose as React.ComponentType<unknown>,
+    DrawerTrigger,
+    DrawerContent,
+    DrawerClose,
+    DrawerHeader,
+    DrawerTitle,
   },
   parameters: {
     docs: {
       description: {
         component:
-          "A drawer component that slides up from the bottom of the screen, utilizing the Vaul library.",
+          "A drawer component that slides up from the bottom of the screen.  This component is built on top of [Vaul](https://vaul.emilkowal.ski/getting-started) and the Dialog component from [Radix UI](https://www.radix-ui.com/primitives/docs/components/dialog).",
       },
     },
   },
@@ -24,16 +32,17 @@ const meta: Meta<typeof Drawer> = {
 export default meta;
 
 export const Default: StoryObj<typeof Drawer> = {
-  render: () => (
-    <Drawer>
+  render: (props) => (
+    <Drawer {...props}>
       <DrawerTrigger>
-        <Button>Open Drawer</Button>
+        <Button variant="secondary" size="sm">
+          Open
+        </Button>
       </DrawerTrigger>
       <DrawerContent className="flex flex-col items-center pb-4">
-        <Typography component="h2" variant="heading" level={3}>
-          Drawer title
-        </Typography>
-        <Typography className="p-4">Drawer content</Typography>
+        <DrawerHeader>
+          <DrawerTitle>Drawer title</DrawerTitle>
+        </DrawerHeader>
         <DrawerClose>
           <Button>Close</Button>
         </DrawerClose>
@@ -42,22 +51,22 @@ export const Default: StoryObj<typeof Drawer> = {
   ),
 };
 
-export const LongContent: StoryObj<typeof Drawer> = {
+export const FullPage: StoryObj<typeof Drawer> = {
   render: () => (
-    <Drawer>
+    <Drawer fullPage>
       <DrawerTrigger>
-        <Button>Open Drawer with long content</Button>
+        <Button variant="secondary" size="sm">
+          Open
+        </Button>
       </DrawerTrigger>
-      <DrawerContent className="h-[96%] pb-4">
-        <div className="max-w-md w-full mx-auto rounded-t-[10px] flex flex-col items-center flex-grow">
-          <Typography component="h2" variant="heading" level={3}>
-            Drawer with long, scrollable content
-          </Typography>
+      <DrawerContent className="pb-4">
+        <DrawerHeader>
+          <DrawerTitle>Drawer with scrollable content</DrawerTitle>
+        </DrawerHeader>
+        <div className="max-w-md w-full mx-auto flex flex-col items-center flex-grow">
           <div
-            className="no-scrollbar mx-auto w-full flex flex-col flex-grow flex-basis-0 overflow-auto p-2 my-4"
+            className="no-scrollbar w-full flex flex-col flex-grow flex-basis-0 overflow-auto p-2 my-4"
             style={{
-              // Explicitly setting flex-basis ensures that the remaining space in the flex container is used,
-              // height issues are fixed, and proper scrolling is enabled.
               flexBasis: 0,
             }}
           >
