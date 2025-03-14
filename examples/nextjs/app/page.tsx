@@ -24,6 +24,7 @@ import {
   Switch,
   Token,
   Typography,
+  toast,
 } from "@worldcoin/mini-apps-ui-kit-react";
 
 export default function Home() {
@@ -41,7 +42,7 @@ export default function Home() {
           </Typography>
           <div className="space-y-2">
             <Button>Default Button</Button>
-            <Button variant="ghost">Ghost Button</Button>
+            <Button variant="tertiary">Ghost Button</Button>
           </div>
         </section>
 
@@ -119,18 +120,21 @@ export default function Home() {
           <Button>Open Drawer</Button>
         </DrawerTrigger>
         <DrawerContent className="flex flex-col items-center pb-4">
-          <Typography component="h2" variant="heading" level={3}>
+          <Typography variant="heading" level={3}>
             Drawer title
           </Typography>
           <Typography className="p-4">Drawer content</Typography>
           <DrawerClose>
             <div className="p-4">
-              <Typography variant="h2">Drawer Content</Typography>
+              <Typography>Drawer Content</Typography>
               <ListItem>List Item Example</ListItem>
             </div>
           </DrawerClose>
         </DrawerContent>
       </Drawer>
+
+      {/* Toast Example */}
+      <Button onClick={() => toast.success("Hello, World!")}>Show toast</Button>
     </div>
   );
 }

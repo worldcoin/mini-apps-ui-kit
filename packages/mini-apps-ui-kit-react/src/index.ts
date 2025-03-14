@@ -16,6 +16,7 @@ export * from "./components/PhoneField";
 export * from "./components/Spinner";
 export * from "./components/Switch";
 export * from "./components/Token";
+export * from "./components/Toast";
 export * from "./components/Typography";
 export * from "./components/Drawer";
 
