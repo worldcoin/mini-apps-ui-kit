@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 0.0.8
+
+### Patch Changes
+
+- e30fd26: Add client directive to SearchField
+
 ## 0.0.7
 
 ### Patch Changes
