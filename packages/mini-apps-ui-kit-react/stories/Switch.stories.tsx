@@ -7,6 +7,14 @@ import { Switch, SwitchProps } from "../src/components/Switch";
 const meta: Meta<SwitchProps> = {
   title: "components/Switch",
   component: Switch,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A toggle switch component that provides a visual way to turn an option on or off.",
+      },
+    },
+  },
 };
 
 export default meta;
@@ -26,6 +34,14 @@ const Template: StoryFn<SwitchProps> = (args) => {
 
 export const Unchecked: Story = Template.bind({});
 
+Unchecked.parameters = {
+  docs: {
+    description: {
+      story: "Switch component in its default unchecked state.",
+    },
+  },
+};
+
 Unchecked.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);
   const switchElement = await canvas.findByRole("switch");
@@ -39,6 +55,14 @@ Unchecked.play = async ({ canvasElement }) => {
 };
 
 export const Checked: Story = Template.bind({});
+
+Checked.parameters = {
+  docs: {
+    description: {
+      story: "Switch component in its checked state.",
+    },
+  },
+};
 
 Checked.args = {
   checked: true,
@@ -59,6 +83,14 @@ Checked.play = async ({ canvasElement }) => {
 
 export const Disabled: Story = Template.bind({});
 
+Disabled.parameters = {
+  docs: {
+    description: {
+      story: "Switch component in a disabled state where user interaction is prevented.",
+    },
+  },
+};
+
 Disabled.args = {
   disabled: true,
 };
@@ -77,6 +109,14 @@ Disabled.play = async ({ canvasElement }) => {
 };
 
 export const ToggleSwitchTesting: Story = Template.bind({});
+
+ToggleSwitchTesting.parameters = {
+  docs: {
+    description: {
+      story: "Interactive demonstration of switch toggling behavior.",
+    },
+  },
+};
 
 ToggleSwitchTesting.play = async ({ canvasElement }) => {
   const canvas = within(canvasElement);

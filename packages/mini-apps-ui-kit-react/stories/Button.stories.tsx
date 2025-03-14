@@ -8,6 +8,14 @@ import { Star } from "./helpers/icons/Star";
 const meta: Meta<typeof Button> = {
   title: "components/Button",
   component: Button,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A versatile button component that supports different variants, sizes, and states with optional icon support.",
+      },
+    },
+  },
   argTypes: {
     variant: {
       control: "radio",
@@ -53,6 +61,13 @@ export const Text: Story = {
     radius: "md",
     fullWidth: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "A basic button with text content only.",
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByText("Button");
@@ -70,6 +85,14 @@ export const TextWithIcon: Story = {
     radius: "md",
     fullWidth: false,
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "A button that combines text and an icon, demonstrating how to use both elements together.",
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = await canvas.findByText("Button");
@@ -86,6 +109,13 @@ export const Icon: Story = {
     variant: "primary",
     size: "md",
     radius: "md",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "A button that displays an icon only.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

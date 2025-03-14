@@ -11,6 +11,14 @@ type FormStoryProps = FormProps & {
 const meta: Meta<FormStoryProps> = {
   title: "components/Form",
   component: Form.Root,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A form component that provides form validation and submission handling functionality.",
+      },
+    },
+  },
 };
 
 export default meta;
