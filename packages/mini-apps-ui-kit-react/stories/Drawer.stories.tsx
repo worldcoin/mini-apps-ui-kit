@@ -35,7 +35,7 @@ const meta: Meta<typeof Drawer> = {
     docs: {
       description: {
         component:
-          "A drawer component that slides up from the bottom of the screen, utilizing the Vaul library.",
+          "A drawer component that slides up from the bottom of the screen.  This component is built on top of [Vaul](https://vaul.emilkowal.ski/getting-started) and the Dialog component from [Radix UI](https://www.radix-ui.com/primitives/docs/components/dialog).",
       },
     },
   },
@@ -47,7 +47,9 @@ export const Default: StoryObj<typeof Drawer> = {
   render: (props) => (
     <Drawer {...props}>
       <DrawerTrigger>
-        <Button>Open Drawer</Button>
+        <Button variant="secondary" size="sm">
+          Open
+        </Button>
       </DrawerTrigger>
       <DrawerContent className="flex flex-col items-center pb-4">
         <DrawerHeader>
@@ -65,7 +67,9 @@ export const FullPage: StoryObj<typeof Drawer> = {
   render: () => (
     <Drawer fullPage>
       <DrawerTrigger>
-        <Button>Open Full Page Drawer</Button>
+        <Button variant="secondary" size="sm">
+          Open
+        </Button>
       </DrawerTrigger>
       <DrawerContent className="pb-4">
         <DrawerHeader>

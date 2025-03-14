@@ -2,10 +2,13 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import {
   AlertDialog,
+  AlertDialogClose,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
+  AlertDialogOverlay,
+  AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../src/components/AlertDialog/AlertDialog";
@@ -16,11 +19,34 @@ const meta: Meta<typeof AlertDialog> = {
   title: "Components/AlertDialog",
   component: AlertDialog,
   tags: ["autodocs"],
+  argTypes: {
+    dismissible: {
+      control: "boolean",
+      description: "Whether the dialog can be dismissed",
+      defaultValue: true,
+    },
+    shouldScaleBackground: {
+      control: "boolean",
+      description: "Whether the background should scale when the dialog opens",
+      defaultValue: true,
+    },
+  },
+  subcomponents: {
+    AlertDialogTrigger,
+    AlertDialogContent,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogClose,
+    AlertDialogOverlay,
+    AlertDialogPortal,
+  },
   parameters: {
     docs: {
       description: {
         component:
-          "AlertDialog is a modal dialog that interrupts the user with important content and expects a response. This component is built on top of the native dialog element and follows WAI-ARIA guidelines for modal dialogs.",
+          "AlertDialog is a modal dialog that interrupts the user with important content and expects a response.  This component is built on top of [Vaul](https://vaul.emilkowal.ski/getting-started) and the Dialog component from [Radix UI](https://www.radix-ui.com/primitives/docs/components/dialog).",
       },
     },
   },
@@ -54,7 +80,9 @@ export const Default: Story = {
           your data from our servers.
         </AlertDialogDescription>
         <AlertDialogFooter>
-          <Button variant="secondary">Cancel</Button>
+          <AlertDialogClose asChild>
+            <Button variant="secondary">Cancel</Button>
+          </AlertDialogClose>
           <Button>Continue</Button>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -78,16 +106,18 @@ export const WithIcon: Story = {
           Delete Account
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="bg-red-50">
+      <AlertDialogContent>
         <AlertDialogHeader icon={<CircleSpark />}>
-          <AlertDialogTitle className="text-red-600">Delete Account</AlertDialogTitle>
+          <AlertDialogTitle>Delete Account</AlertDialogTitle>
         </AlertDialogHeader>
-        <AlertDialogDescription className="text-red-700">
+        <AlertDialogDescription>
           This action cannot be undone. This will permanently delete your account and remove
           your data from our servers.
         </AlertDialogDescription>
         <AlertDialogFooter>
-          <Button variant="secondary">Cancel</Button>
+          <AlertDialogClose asChild>
+            <Button variant="secondary">Cancel</Button>
+          </AlertDialogClose>
           <Button>Delete Account</Button>
         </AlertDialogFooter>
       </AlertDialogContent>
@@ -115,7 +145,7 @@ export const WithLongContent: Story = {
         <AlertDialogHeader>
           <AlertDialogTitle>Terms and Conditions</AlertDialogTitle>
         </AlertDialogHeader>
-        <AlertDialogDescription className="max-h-[300px] overflow-y-auto">
+        <AlertDialogDescription>
           <p className="mb-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -133,7 +163,9 @@ export const WithLongContent: Story = {
           </p>
         </AlertDialogDescription>
         <AlertDialogFooter>
-          <Button variant="secondary">Decline</Button>
+          <AlertDialogClose asChild>
+            <Button variant="secondary">Decline</Button>
+          </AlertDialogClose>
           <Button>Accept</Button>
         </AlertDialogFooter>
       </AlertDialogContent>
