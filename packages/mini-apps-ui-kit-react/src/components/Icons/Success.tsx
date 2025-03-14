@@ -1,13 +1,13 @@
-import { cn } from "../../../lib/utils";
+import { cn } from "../../lib/utils";
 
-interface FailProps {
+interface SuccessProps {
   /**
    * Additional CSS classes to apply to the icon
    */
   className?: string;
 }
 
-export const Fail = ({ className }: FailProps) => {
+export const Success = ({ className }: SuccessProps) => {
   return (
     <svg
       width="25"
@@ -15,7 +15,7 @@ export const Fail = ({ className }: FailProps) => {
       viewBox="0 0 25 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn("size-6 text-error-600", className)}
+      className={cn("size-6 text-success-600", className)}
     >
       <rect x="0.5" width="24" height="24" rx="12" fill="currentColor" />
       <rect
@@ -24,7 +24,7 @@ export const Fail = ({ className }: FailProps) => {
         width="24"
         height="24"
         rx="12"
-        fill="url(#paint0_radial_578_338)"
+        fill="url(#paint0_radial_578_332)"
       />
       <rect
         x="0.636364"
@@ -32,17 +32,17 @@ export const Fail = ({ className }: FailProps) => {
         width="23.7273"
         height="23.7273"
         rx="11.8636"
-        stroke="url(#paint1_linear_578_338)"
+        stroke="url(#paint1_linear_578_332)"
         strokeWidth="0.272727"
       />
       <path
-        d="M9.50403 14.7233L12.3637 11.8636M15.2233 9.00403L12.3637 11.8636M12.3637 11.8636L9.50403 9.00403M12.3637 11.8636L15.2233 14.7233"
+        d="M8.54541 12.4091L10.7272 14.5909L16.1818 9.13633"
         stroke="white"
         strokeWidth="1.5"
       />
       <defs>
         <radialGradient
-          id="paint0_radial_578_338"
+          id="paint0_radial_578_332"
           cx="0"
           cy="0"
           r="1"
@@ -53,7 +53,7 @@ export const Fail = ({ className }: FailProps) => {
           <stop offset="1" stopColor="white" stopOpacity="0" />
         </radialGradient>
         <linearGradient
-          id="paint1_linear_578_338"
+          id="paint1_linear_578_332"
           x1="12.5"
           y1="0"
           x2="12.5"
