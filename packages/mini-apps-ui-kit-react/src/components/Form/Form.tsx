@@ -32,7 +32,7 @@ export const Message = forwardRef<
           variant: "body",
           level: 3,
         }),
-        error ? "text-error-700" : "text-gray-500",
+        error ? "text-error-600" : "text-gray-500",
       )}
       {...props}
     />
