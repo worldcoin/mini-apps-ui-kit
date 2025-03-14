@@ -13,8 +13,8 @@ export const Color = ({ name, color }: ColorProps) => {
     >
       <div className="w-32 h-16" style={{ backgroundColor: color }} />
       <div className="flex flex-col h-16 p-2">
-        <span className="font-display">{nameWithoutPrefix}</span>
-        <span className="text-gray-500 font-mono">{color.toUpperCase()}</span>
+        <strong>{nameWithoutPrefix}</strong>
+        <span className="text-gray-500 text-sm">{color.toUpperCase()}</span>
       </div>
     </div>
   );

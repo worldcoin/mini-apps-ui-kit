@@ -59,28 +59,19 @@ export default tseslint.config({
 
 ## Font Configuration
 
-The library uses three fonts:
+The library uses the following font **[TWK Lausanne](https://weltkern.com/typefaces/lausanne)** as the sans-serif font for all text `(--font-sans)`. 
 
-- **[Rubik](https://fonts.google.com/specimen/Rubik)** as the sans-serif font for body text and subtitles `(--font-sans)`
-- **[Sora](https://fonts.google.com/specimen/Sora)** as the display font for headings and numbers `(--font-display)`
-- **[DM Mono](https://fonts.google.com/specimen/DM+Mono)** as the monospace font `(--font-mono)`
+> **⚠️ License Notice**: TWK Lausanne is a commercial font that requires a license. Make sure you have obtained the appropriate license from [Weltkern](https://weltkern.com/typefaces/lausanne) before using it in your project.
 
-Embed the following code in the `<head>` of your html to load the fonts:
-
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@600&display=swap"
-  rel="stylesheet"
-/>
-```
-
-Or use the following code to load the fonts via CSS:
+By default, the library sets `--font-sans` to **TWK Lausanne**, but you can override this CSS variable to use any other font of your choice:
 
 ```css
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap");
+:root {
+  --font-sans: 'Your Font Name', sans-serif;
+}
 ```
+
+You must import the font in your application before using it. The library does not include the font files - you need to handle the font loading yourself according to your license agreement.
 
 ## Importing Styles
 
