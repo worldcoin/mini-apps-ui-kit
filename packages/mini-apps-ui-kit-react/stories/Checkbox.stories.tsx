@@ -7,6 +7,14 @@ import { Checkbox } from "../src/components/Checkbox";
 const meta: Meta<typeof Checkbox> = {
   title: "components/Checkbox",
   component: Checkbox,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A customizable checkbox component that supports checked, unchecked, and disabled states.",
+      },
+    },
+  },
 };
 
 export default meta;

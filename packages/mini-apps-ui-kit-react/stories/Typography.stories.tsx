@@ -5,6 +5,14 @@ import { Typography } from "../src/components/Typography";
 const meta: Meta<typeof Typography> = {
   title: "components/Typography",
   component: Typography,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A versatile typography component that supports various text styles including headings, body text, numbers, and monospace with different size levels.",
+      },
+    },
+  },
   argTypes: {
     as: {
       table: {

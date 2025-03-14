@@ -9,6 +9,14 @@ import { Switch } from "./helpers/icons/Switch";
 const meta: Meta<InputProps> = {
   title: "components/Input",
   component: Input,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A customizable text input component that supports adornments and various states.",
+      },
+    },
+  },
   argTypes: {
     startAdornment: iconControl,
     endAdornment: iconControl,
@@ -43,6 +51,13 @@ export const Text: Story = {
   args: {
     placeholder: "Enter your name",
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Basic text input with placeholder text.",
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const input = await canvas.findByPlaceholderText("Enter your name");
@@ -55,6 +70,13 @@ export const Disabled: Story = {
   args: {
     placeholder: "Enter your name",
     disabled: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Input in a disabled state where user interaction is prevented.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -70,6 +92,13 @@ export const StartCustomSizeIcon: Story = {
     startAdornment: <CountryCode />,
     startAdornmentWidth: 4.5,
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Input with a custom-sized icon at the start position.",
+      },
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const icon = await canvas.findByTestId("country-code-icon");
@@ -83,6 +112,13 @@ export const EndCustomSizeIcon: Story = {
     placeholder: "Enter your number",
     endAdornment: <Switch />,
     endAdornmentWidth: 2,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Input with a custom-sized icon at the end position.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
