@@ -9,7 +9,7 @@ import { typographyVariants } from "../Typography";
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-300 bg-gray-100 px-4 py-4 outline-none transition duration-300 file:hidden placeholder:focus:border-gray-200 focus:bg-gray-0 focus focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  "peer h-[3.5rem] w-full rounded-[0.625rem] border border-transparent bg-gray-100 px-4 py-4 outline-none transition duration-300 file:hidden placeholder:focus:border-gray-200 focus:bg-gray-0 focus:border-gray-300 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       error: {
