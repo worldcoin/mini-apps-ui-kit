@@ -101,6 +101,10 @@
       "types": "./dist/components/Toast/index.d.ts",
       "default": "./dist/components/Toast/index.js"
     },
+    "./WalletAddressField": {
+      "types": "./dist/components/WalletAddressField/index.d.ts",
+      "default": "./dist/components/WalletAddressField/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "default": "./dist/tailwind/index.js"
