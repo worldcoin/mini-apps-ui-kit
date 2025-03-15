@@ -19,11 +19,10 @@ export function Tick({ className }: TickProps) {
       data-testid="tick-icon"
     >
       <path
-        d="M3.33301 8.6665L5.68396 10.5473C6.2355 10.9885 7.03544 10.9231 7.50794 10.3981L12.6663 4.6665"
+        d="M3.33334 8.66669L6.00001 11.3334L12.6667 4.66669"
         stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="square"
       />
     </svg>
   );
