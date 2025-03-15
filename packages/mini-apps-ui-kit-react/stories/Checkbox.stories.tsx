@@ -7,6 +7,14 @@ import { Checkbox } from "../src/components/Checkbox";
 const meta: Meta<typeof Checkbox> = {
   title: "components/Checkbox",
   component: Checkbox,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A checkbox component that allows users to select one or multiple options. Built on top of [Radix UI's Checkbox](https://www.radix-ui.com/primitives/docs/components/checkbox) primitive for accessibility and customization.",
+      },
+    },
+  },
 };
 
 export default meta;
