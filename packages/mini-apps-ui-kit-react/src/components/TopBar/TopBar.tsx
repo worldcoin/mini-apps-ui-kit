@@ -42,5 +42,3 @@ export function TopBar({ title, startAdornment, endAdornment }: TopBarProps) {
     </div>
   );
 }
-
-export default TopBar;
