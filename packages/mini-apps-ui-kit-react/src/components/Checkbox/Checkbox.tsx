@@ -7,31 +7,58 @@ import { Tick } from "../Icons/Tick";
 export interface CheckboxProps
   extends Omit<RadixCheckboxProps, "onCheckedChange" | "onChange" | "className"> {
   /**
-   * The checked state of the checkbox.
+   * Whether to forward the root element
    * @default false
+   */
+  asChild?: boolean;
+
+  /**
+   * The initial checked state when the checkbox is uncontrolled
+   */
+  defaultChecked?: boolean;
+
+  /**
+   * The controlled checked state of the checkbox
    */
   checked?: boolean;
+
   /**
-   * Callback function that is triggered when the checked state changes.
+   * Event handler called when the checked state changes
    */
   onChange?: (checked: boolean) => void;
+
   /**
-   * The disabled state of the checkbox.
-   * @default false
+   * Whether the checkbox is disabled
    */
   disabled?: boolean;
+
+  /**
+   * Whether the checkbox is required
+   */
+  required?: boolean;
+
+  /**
+   * The name of the checkbox
+   */
+  name?: string;
+
+  /**
+   * The value of the checkbox
+   * @default ""
+   */
+  value?: string;
 }
 
 export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
-  ({ checked, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
+  ({ checked, onChange: onCheckedChange, disabled = false, ...props }, ref) => {
     return (
       <RadixCheckbox.Root
         ref={ref}
         checked={checked}
         onCheckedChange={onCheckedChange}
         disabled={disabled}
-        className="flex h-6 w-6 items-center justify-center rounded-md border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=checked]:bg-gray-900 data-[state=unchecked]:border-gray-400 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-20"
-        {...rest}
+        className="flex size-6 items-center justify-center rounded-md border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=checked]:bg-gray-900 data-[state=unchecked]:border-gray-200 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-20"
+        {...props}
       >
         <RadixCheckbox.Indicator>
           <Tick className="text-gray-0" />
