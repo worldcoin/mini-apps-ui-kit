@@ -26,5 +26,5 @@ export * from "./components/TextArea";
 export * from "./components/AlertDialog";
 export * from "./components/BottomBar";
 export * from "./components/Marble";
-
+export * from "./components/TopBar";
 export { default as uiKitTailwindPlugin } from "./tailwind";

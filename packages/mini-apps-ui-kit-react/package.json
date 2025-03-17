@@ -121,6 +121,14 @@
       "types": "./dist/components/BottomBar/index.d.ts",
       "default": "./dist/components/BottomBar/index.js"
     },
+    "./TopBar": {
+      "types": "./dist/components/TopBar/index.d.ts",
+      "default": "./dist/components/TopBar/index.js"
+    },
+    "./Marble": {
+      "types": "./dist/components/Marble/index.d.ts",
+      "default": "./dist/components/Marble/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "default": "./dist/tailwind/index.js"
