@@ -40,7 +40,7 @@ export const TopBar: React.FC<TopBarProps> = ({
       <Typography
         variant={hasStartAdornment ? "subtitle" : "heading"}
         level={hasStartAdornment ? 1 : 3}
-        className={cn("flex-1 grow", textAlignment)}
+        className={cn("flex-1 grow truncate", textAlignment)}
       >
         {title}
       </Typography>

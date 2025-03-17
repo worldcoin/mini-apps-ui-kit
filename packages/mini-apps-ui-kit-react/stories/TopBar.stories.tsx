@@ -3,51 +3,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 import { TopBar } from "../src/components/TopBar/TopBar";
 
-const meta: Meta<typeof TopBar> = {
-  title: "Components/TopBar",
-  component: TopBar,
-  tags: ["autodocs"],
-  parameters: {
-    layout: "centered",
-    docs: {
-      description: {
-        component:
-          "A navigation bar component that displays a title with optional start and end elements. Commonly used at the top of pages or modals to show the current section and navigation controls.",
-      },
-    },
-  },
-  decorators: [
-    (Story) => (
-      <div
-        style={{
-          backgroundColor: "#000",
-          width: 400,
-          height: 140,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "end",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#fff",
-            width: "100%",
-            height: 72,
-            borderTopLeftRadius: 24,
-            borderTopRightRadius: 24,
-          }}
-        >
-          <Story />
-        </div>
-      </div>
-    ),
-  ],
-};
-
-export default meta;
-type Story = StoryObj<typeof TopBar>;
-
-// Example back button and clock icons for the stories
 const BackButton = () => (
   <Button
     variant="tertiary"
@@ -90,6 +45,68 @@ const ClockIcon = () => (
     }
   />
 );
+
+const meta: Meta<typeof TopBar> = {
+  title: "Components/TopBar",
+  component: TopBar,
+  tags: ["autodocs"],
+  parameters: {
+    layout: "centered",
+    docs: {
+      description: {
+        component:
+          "A navigation bar component that displays a title with optional start and end elements. Commonly used at the top of pages or modals to show the current section and navigation controls.",
+      },
+    },
+  },
+  argTypes: {
+    startAdornment: {
+      control: "select",
+      options: ["None", "Back"],
+      mapping: {
+        None: null,
+        Back: <BackButton />,
+      },
+    },
+    endAdornment: {
+      control: "select",
+      options: ["None", "Clock"],
+      mapping: {
+        None: null,
+        Clock: <ClockIcon />,
+      },
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          backgroundColor: "#000",
+          width: 400,
+          height: 140,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "end",
+        }}
+      >
+        <div
+          style={{
+            backgroundColor: "#fff",
+            width: "100%",
+            height: 72,
+            borderTopLeftRadius: 24,
+            borderTopRightRadius: 24,
+          }}
+        >
+          <Story />
+        </div>
+      </div>
+    ),
+  ],
+};
+
+export default meta;
+type Story = StoryObj<typeof TopBar>;
 
 export const Default: Story = {
   args: {
