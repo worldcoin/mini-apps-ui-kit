@@ -39,7 +39,7 @@ export const Default: StoryObj<typeof Drawer> = {
           Open
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="flex flex-col items-center pb-4">
+      <DrawerContent>
         <DrawerHeader>
           <DrawerTitle>Drawer title</DrawerTitle>
         </DrawerHeader>
