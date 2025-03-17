@@ -141,6 +141,14 @@
       "types": "./dist/components/ToggleGroup/index.d.ts",
       "default": "./dist/components/ToggleGroup/index.js"
     },
+    "./Tabs": {
+      "types": "./dist/components/Tabs/index.d.ts",
+      "default": "./dist/components/Tabs/index.js"
+    },
+    "./TabItem": {
+      "types": "./dist/components/TabItem/index.d.ts",
+      "default": "./dist/components/TabItem/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "default": "./dist/tailwind/index.js"
