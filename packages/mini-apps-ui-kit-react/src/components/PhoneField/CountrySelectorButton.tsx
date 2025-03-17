@@ -40,7 +40,7 @@ const CountrySelectorButton = forwardRef<HTMLDivElement, CountrySelectorButtonPr
         className={cn(triggerVariants({ disabled, className, error }))}
         data-testid="country-selector-button"
       >
-        <div className="w-6 h-6 mr-2">
+        <div className="mr-2">
           <Flag countryCode={value} size={24} />
         </div>
         <Typography variant="subtitle" level={3} className="mr-2">

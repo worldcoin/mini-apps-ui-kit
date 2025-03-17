@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button";
 import { countryCodes } from "@/components/Flag/constants";
 import { PhoneField, PhoneFieldProps } from "@/components/PhoneField";
+import { getCountryDataListByCodes } from "@/components/PhoneField/utils";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, fireEvent, userEvent, waitFor, within } from "@storybook/test";
 import { useRef, useState } from "react";
@@ -63,14 +64,14 @@ export const Default: Story = {
     expect(input).toBeVisible();
     expect(input).toHaveValue("");
     expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes[0].childNodes).toHaveLength(3);
+    expect(selectButton.childNodes).toHaveLength(3);
 
     const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
       selectButton.childNodes[0].childNodes;
 
     expect(selectButtonFlag).toBeVisible();
-    expect(selectButtonDialCode).toBeVisible();
-    expect(selectButtonDialCode).toHaveTextContent("+1");
+    expect(selectButtonDialCode.childNodes[0]).toBeVisible();
+    expect(selectButtonDialCode.childNodes[0]).toHaveTextContent("+1");
     expect(selectButtonArrow).toBeVisible();
   },
 };
@@ -159,7 +160,7 @@ export const WithErrorLabel: Story = {
 
     const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveClass("border-error-700 bg-error-100");
+    expect(input).toHaveClass("border-error-600");
 
     const errorMessage = await canvas.getByText("Error message");
 
@@ -224,7 +225,7 @@ export const CustomDefaultCountry: Story = {
 
     let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveValue("+48 ");
+    expect(input).toHaveValue("");
 
     const selectButton = await canvas.getByTestId("country-selector-button");
 
@@ -235,14 +236,15 @@ export const CustomDefaultCountry: Story = {
       expect(drawer).toBeVisible();
 
       const countries = drawer!.querySelectorAll("[data-country]");
-      expect(countries).toHaveLength(countryCodes.length);
+      const countryList = getCountryDataListByCodes(countryCodes);
+      expect(countries).toHaveLength(countryList.length);
 
       fireEvent.click(countries[0]);
     });
 
     input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveValue("+93 ");
+    expect(input).toHaveValue("");
 
     fireEvent.click(selectButton);
 
@@ -258,7 +260,7 @@ export const CustomDefaultCountry: Story = {
 
     input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveValue("+48 ");
+    expect(input).toHaveValue("");
   },
 };
 
@@ -272,14 +274,12 @@ export const FocusOnButtonClick: Story = {
     };
 
     return (
-      <>
-        <div className="mb-2">
-          <Button fullWidth onClick={handleButtonClick}>
-            Focus
-          </Button>
-        </div>
+      <div className="flex flex-col gap-2">
         <PhoneField ref={phoneFieldRef} {...args} value={value} onChange={setValue} />
-      </>
+        <Button fullWidth onClick={handleButtonClick} size="sm" variant="secondary">
+          Focus
+        </Button>
+      </div>
     );
   },
   play: async ({ canvasElement }) => {
@@ -312,14 +312,12 @@ export const RandomNumber: Story = {
     };
 
     return (
-      <>
-        <div className="mb-2">
-          <Button fullWidth onClick={handleButtonClick}>
-            Generate Random Number
-          </Button>
-        </div>
+      <div className="flex flex-col gap-2">
         <PhoneField {...args} value={value} onChange={setValue} />
-      </>
+        <Button fullWidth onClick={handleButtonClick} size="sm" variant="secondary">
+          Generate Random Number
+        </Button>
+      </div>
     );
   },
 };
