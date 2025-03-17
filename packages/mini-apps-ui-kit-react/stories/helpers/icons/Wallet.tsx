@@ -2,27 +2,59 @@ import React from "react";
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   size?: number;
+  solid?: boolean;
 }
 
-export const Wallet: React.FC<IconProps> = ({ size = 24, ...props }) => {
+export const Wallet: React.FC<IconProps> = ({ size = 24, solid = false, ...props }) => {
+  if (solid) {
+    return (
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 27 26"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+      >
+        <rect
+          x="3.16046"
+          y="4.64273"
+          width="20.4286"
+          height="16.7143"
+          fill="currentColor"
+          stroke="currentColor"
+          strokeWidth="1.9"
+        />
+        <rect
+          x="16.625"
+          y="10.8333"
+          width="6.5"
+          height="4.33333"
+          fill="white"
+          stroke="currentColor"
+          strokeWidth="1.89583"
+        />
+      </svg>
+    );
+  }
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
+      width="26"
+      height="26"
+      viewBox="0 0 29 28"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path
-        d="M18 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V6C20 4.89543 19.1046 4 18 4Z"
+      <rect x="3.375" y="5" width="22" height="18" stroke="currentColor" strokeWidth="2" />
+      <rect
+        x="17.875"
+        y="11.6667"
+        width="7"
+        height="4.66667"
+        fill="white"
         stroke="currentColor"
         strokeWidth="2"
-        fill="none"
-      />
-      <path
-        d="M15 12C15 13.1046 15.8954 14 17 14C18.1046 14 19 13.1046 19 12C19 10.8954 18.1046 10 17 10C15.8954 10 15 10.8954 15 12Z"
-        fill="currentColor"
       />
     </svg>
   );

@@ -11,44 +11,59 @@ import { TabItemProps, TabsProps } from "./types";
  * A tab navigation component that allows users to switch between different views
  */
 const Tabs = React.forwardRef<React.ElementRef<typeof ToggleGroup.Root>, TabsProps>(
-  ({ className, children, ...props }, ref) => (
-    <ToggleGroup.Root
-      ref={ref}
-      type="single"
-      className={cn("flex w-full justify-between px-5 py-2", className)}
-      {...props}
-    >
-      {children}
-    </ToggleGroup.Root>
-  ),
+  ({ children, ...props }, ref) => {
+    return (
+      <ToggleGroup.Root
+        ref={ref}
+        type="single"
+        className="flex w-full justify-between px-5 items-center"
+        {...props}
+      >
+        <div className="flex w-full">{children}</div>
+      </ToggleGroup.Root>
+    );
+  },
 );
 Tabs.displayName = "Tabs";
 
 /**
  * Individual tab item that can be selected
  */
-const TabItem = React.forwardRef<
-  React.ElementRef<typeof ToggleGroup.Item>,
-  Omit<TabItemProps, "children">
->(({ className, icon, label, ...props }, ref) => (
-  <ToggleGroup.Item
-    ref={ref}
-    className={cn(
-      "h-10 flex flex-col items-center gap-1 relative",
-      "focus:outline-none transition-colors duration-200",
-      "text-gray-350 hover:text-gray-500 data-[state=on]:text-gray-900",
-      className,
-    )}
-    {...props}
-  >
-    {icon && <div className="w-6 h-6">{icon}</div>}
-    {label && (
-      <Typography as="span" variant="subtitle" className="text-2xs truncate w-full">
-        {label}
-      </Typography>
-    )}
-  </ToggleGroup.Item>
-));
+const TabItem = React.forwardRef<React.ElementRef<typeof ToggleGroup.Item>, TabItemProps>(
+  ({ icon, label, activeIcon, ...props }, ref) => (
+    <ToggleGroup.Item
+      ref={ref}
+      className={cn(
+        "flex-1 flex flex-col items-center gap-1 relative min-w-0 group",
+        "focus:outline-none transition-colors duration-200",
+        "text-gray-350 hover:text-gray-500 data-[state=on]:text-gray-900",
+      )}
+      {...props}
+    >
+      {/* Only show the outline icon when NOT active */}
+      <div
+        className={cn("h-[1.625rem] shrink-0", activeIcon && "group-data-[state=on]:hidden")}
+      >
+        {icon}
+      </div>
+      {/* Only show the solid icon when active */}
+      {activeIcon && (
+        <div className="h-[1.625rem] shrink-0 hidden group-data-[state=on]:block">
+          {activeIcon}
+        </div>
+      )}
+      {label && (
+        <Typography
+          as="span"
+          variant="subtitle"
+          className="text-2xs truncate w-full text-center px-1 leading-none"
+        >
+          {label}
+        </Typography>
+      )}
+    </ToggleGroup.Item>
+  ),
+);
 TabItem.displayName = "TabItem";
 
 export { Tabs, TabItem };
