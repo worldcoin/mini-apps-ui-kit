@@ -11,7 +11,7 @@ export const Marble = forwardRef<HTMLDivElement, MarbleProps>(
       <div
         ref={ref}
         className={cn(
-          "rounded-full overflow-hidden border-2 border-gray-100 p-[3px] aspect-square w-[120px]",
+          "rounded-full overflow-hidden border-2 border-gray-100 p-[3px] aspect-square w-[7.5rem]",
           className,
         )}
         {...props}
