@@ -98,6 +98,7 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         defaultCountry: defaultCountryCode.toLowerCase(),
         disableDialCodePrefill,
         disableDialCodeAndPrefix: true,
+        value,
         countries: countryDataList,
         onChange: (data) => {
           onChange?.(

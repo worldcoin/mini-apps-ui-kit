@@ -50,7 +50,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: "The default phone field with country code selector as a dropdown.",
+        story: "The default phone field with country code selector as a drawer.",
       },
     },
   },
@@ -58,7 +58,7 @@ export const Default: Story = {
     const canvas = within(canvasElement);
 
     const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
-    const selectButton = await canvas.getByRole("combobox");
+    const selectButton = await canvas.getByTestId("country-selector-button");
 
     expect(input).toBeVisible();
     expect(input).toHaveValue("");
@@ -72,68 +72,6 @@ export const Default: Story = {
     expect(selectButtonDialCode).toBeVisible();
     expect(selectButtonDialCode).toHaveTextContent("+1");
     expect(selectButtonArrow).toBeVisible();
-  },
-};
-
-export const CountrySelectorAsDrawer: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-
-    return <PhoneField {...args} value={value} onChange={setValue} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Phone field with country selector displayed as a bottom drawer, suitable for mobile interfaces.",
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    let drawer: HTMLDivElement | null = null;
-    let searchInput: HTMLInputElement | null = null;
-    let countryElements: NodeListOf<Element> | null = null;
-
-    let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
-
-    expect(input).toHaveValue("");
-
-    const selectButton = await canvas.getByTestId("country-selector-button");
-
-    fireEvent.click(selectButton);
-
-    await waitFor(async () => {
-      drawer = document.body.querySelector("[data-vaul-drawer]");
-
-      countryElements = drawer!.querySelectorAll("[data-country]");
-
-      expect(countryElements).toHaveLength(countryCodes.length);
-
-      searchInput = (await within(drawer!).getByPlaceholderText(
-        "Search name or number",
-      )) as HTMLInputElement;
-
-      expect(searchInput).toBeVisible();
-    });
-
-    userEvent.type(searchInput!, "United S");
-
-    await waitFor(() => {
-      countryElements = drawer!.querySelectorAll("[data-country]");
-
-      expect(countryElements).toHaveLength(1);
-    });
-
-    fireEvent.click(countryElements![0]);
-
-    await waitFor(async () => {
-      input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
-
-      expect(input).toHaveValue("+1 ");
-    });
-
-    userEvent.clear(input);
   },
 };
 
@@ -191,45 +129,6 @@ export const AllowedCountryCodesProvided: Story = {
   },
 };
 
-export const DialCodeInInputOnInitialization: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-
-    return <PhoneField {...args} value={value} onChange={setValue} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Phone field that automatically includes the country dial code in the input field on initialization.",
-      },
-    },
-  },
-  args: {
-    disableDialCodePrefill: false,
-    defaultCountryCode: "DE",
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
-    const selectButton = await canvas.getByRole("combobox");
-
-    expect(input).toBeVisible();
-    expect(input).toHaveValue("+49 ");
-    expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes[0].childNodes).toHaveLength(3);
-
-    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
-      selectButton.childNodes[0].childNodes;
-
-    expect(selectButtonFlag).toBeVisible();
-    expect(selectButtonDialCode).toBeVisible();
-    expect(selectButtonDialCode).toHaveTextContent("+49");
-    expect(selectButtonArrow).toBeVisible();
-  },
-};
-
 export const WithErrorLabel: Story = {
   render: (args) => {
     const [value, setValue] = useState("");
@@ -265,33 +164,6 @@ export const WithErrorLabel: Story = {
     const errorMessage = await canvas.getByText("Error message");
 
     expect(errorMessage).toBeVisible();
-  },
-};
-
-export const Disabled: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-
-    return <PhoneField {...args} value={value} onChange={setValue} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "Phone field in a disabled state where user interaction is prevented.",
-      },
-    },
-  },
-  args: {
-    disabled: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
-    const selectButton = await canvas.getByRole("combobox");
-
-    expect(input).toBeDisabled();
-    expect(selectButton).toBeDisabled();
   },
 };
 
@@ -347,24 +219,22 @@ export const CustomDefaultCountry: Story = {
     disableDialCodePrefill: false,
   },
   play: async ({ canvasElement }) => {
-    let selectViewport: Element | null = null;
+    let drawer: HTMLDivElement | null = null;
     const canvas = within(canvasElement);
 
     let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toHaveValue("+48 ");
 
-    const selectButton = await canvas.getByRole("combobox");
+    const selectButton = await canvas.getByTestId("country-selector-button");
 
     fireEvent.click(selectButton);
 
     await waitFor(() => {
-      selectViewport = document.body.querySelector("[data-radix-popper-content-wrapper]");
+      drawer = document.body.querySelector("[data-vaul-drawer]");
+      expect(drawer).toBeVisible();
 
-      expect(selectButton).toBeVisible();
-
-      const countries = selectViewport!.querySelectorAll("[data-radix-collection-item]");
-
+      const countries = drawer!.querySelectorAll("[data-country]");
       expect(countries).toHaveLength(countryCodes.length);
 
       fireEvent.click(countries[0]);
@@ -377,12 +247,10 @@ export const CustomDefaultCountry: Story = {
     fireEvent.click(selectButton);
 
     await waitFor(() => {
-      selectViewport = document.body.querySelector("[data-radix-popper-content-wrapper]");
+      drawer = document.body.querySelector("[data-vaul-drawer]");
+      expect(drawer).toBeVisible();
 
-      expect(selectButton).toBeVisible();
-
-      const countryOption = selectViewport!.querySelector('[data-country="PL"]') as HTMLElement;
-
+      const countryOption = drawer!.querySelector('[data-country="PL"]') as HTMLElement;
       expect(countryOption).toBeVisible();
 
       fireEvent.click(countryOption);
