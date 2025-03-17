@@ -20,4 +20,6 @@ export * from "./components/Toast";
 export * from "./components/Typography";
 export * from "./components/Drawer";
 export * from "./components/TextArea";
+export * from "./components/WalletAddressField";
+
 export { default as uiKitTailwindPlugin } from "./tailwind";
