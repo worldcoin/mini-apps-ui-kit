@@ -7,7 +7,7 @@ import { Tick } from "../Icons/Tick";
 export interface CheckboxProps
   extends Omit<RadixCheckboxProps, "onCheckedChange" | "onChange" | "className"> {
   /**
-   * Whether the checkbox is checked by default
+   * Whether to forward the root element
    * @default false
    */
   asChild?: boolean;
