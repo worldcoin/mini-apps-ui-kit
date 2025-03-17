@@ -10,7 +10,7 @@ const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
   cn(
-    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 py-4 outline-none transition duration-300",
+    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
     "file:hidden",
     "invalid:border-error-600 invalid:focus:border-error-600 invalid:bg-gray-0",
     "placeholder:text-gray-500",
@@ -24,6 +24,10 @@ export const inputVariants = cva(
       },
       isFocused: {
         true: "border-gray-200 bg-gray-0",
+        false: "",
+      },
+      isLabel: {
+        true: "pt-6 pb-2 placeholder:text-transparent",
         false: "",
       },
     },
@@ -56,7 +60,10 @@ export const iconVariants = cva(
 );
 
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "className" | "style">,
+  extends Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "className" | "style" | "placeholder"
+    >,
     VariantProps<typeof inputVariants> {
   /**
    * If true, the input will display in an error state with error styling
@@ -101,6 +108,15 @@ export interface InputProps
    * Additional class name for the input
    */
   className?: string;
+  /**
+   * Label text to be displayed above the input
+   */
+  label?: string;
+  /**
+   * Variant of the input
+   * @default "default"
+   */
+  variant?: "default" | "floating-label";
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -116,10 +132,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       isFocused = false,
       disabled,
       className,
+      label,
+      id,
+      variant = "default",
       ...props
     },
     ref,
   ) => {
+    const isPersistLabel = variant === "floating-label";
+
     return (
       <div className="relative flex w-full items-center group">
         {startAdornment && (
@@ -132,10 +153,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
         <input
           ref={ref}
+          id={id}
           type={type}
+          placeholder={label}
           disabled={disabled}
           className={cn(
-            inputVariants({ error, isFocused }),
+            inputVariants({ error, isFocused, isLabel: isPersistLabel }),
             typographyVariants({ variant: "body", level: 3 }),
             className,
           )}
@@ -157,6 +180,29 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           >
             {isValid ? <Tick className="text-success-700" /> : endAdornment}
           </div>
+        )}
+        {isPersistLabel && (
+          <label
+            htmlFor={id}
+            className={cn(
+              typographyVariants({ variant: "body", level: 3 }),
+              cn(
+                // Initial state
+                "peer-placeholder-shown:text-sm peer-placeholder-shown:translate-y-0",
+                "peer-focus:-translate-y-[0.6rem] peer-focus:text-xs",
+                // End state
+                "absolute text-gray-500 duration-300 transform text-xs",
+                "-translate-y-[0.6rem] z-10 pl-4",
+              ),
+            )}
+            style={{
+              ...(startAdornment && {
+                paddingLeft: `${1 + startAdornmentWidth}rem`,
+              }),
+            }}
+          >
+            {label}
+          </label>
         )}
       </div>
     );
