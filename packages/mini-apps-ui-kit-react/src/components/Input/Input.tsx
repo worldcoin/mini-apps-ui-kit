@@ -9,7 +9,14 @@ import { typographyVariants } from "../Typography";
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "peer h-[3.5rem] w-full rounded-[0.625rem] border border-transparent bg-gray-100 px-4 py-4 outline-none transition duration-300 file:hidden placeholder:focus:border-gray-200 focus:bg-gray-0 focus:border-gray-300 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  cn(
+    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 py-4 outline-none transition duration-300",
+    "file:hidden",
+    "invalid:border-error-600 invalid:focus:border-error-600 invalid:bg-gray-0",
+    "placeholder:text-gray-500",
+    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none ",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+  ),
   {
     variants: {
       error: {
@@ -90,6 +97,10 @@ export interface InputProps
    * @default false
    */
   isFocused?: boolean;
+  /**
+   * Additional class name for the input
+   */
+  className?: string;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -104,6 +115,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       isFocused = false,
       disabled,
+      className,
       ...props
     },
     ref,
@@ -125,6 +137,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={cn(
             inputVariants({ error, isFocused }),
             typographyVariants({ variant: "body", level: 3 }),
+            className,
           )}
           {...props}
           style={{
