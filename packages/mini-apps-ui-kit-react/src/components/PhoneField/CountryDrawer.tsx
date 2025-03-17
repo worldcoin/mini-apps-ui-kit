@@ -16,7 +16,6 @@ interface CountryDrawerProps {
   countries: CountryData[];
   disabled?: boolean;
   defaultCountryCode?: CountryCode;
-  error?: boolean;
   dialCode: string;
   onSelect: (countryCode: string) => void;
   onAnimationEnd?: (open: boolean) => void;
@@ -37,7 +36,6 @@ export function CountryDrawer({
   disabled = false,
   dialCode,
   defaultCountryCode = "US",
-  error,
 }: CountryDrawerProps) {
   const [searchText, setSearchText] = useState("");
   const [open, setOpen] = useState(false);
@@ -80,12 +78,7 @@ export function CountryDrawer({
   return (
     <Drawer open={open} onOpenChange={setOpen} onAnimationEnd={onAnimationEnd} fullPage>
       <DrawerTrigger asChild className="outline-none">
-        <CountrySelectorButton
-          disabled={disabled}
-          value={value}
-          dialCode={dialCode}
-          error={error}
-        />
+        <CountrySelectorButton disabled={disabled} value={value} dialCode={dialCode} />
       </DrawerTrigger>
 
       <DrawerContent className="px-0">

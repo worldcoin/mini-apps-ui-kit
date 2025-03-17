@@ -147,13 +147,13 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         endAdornment={endAdornment}
         endAdornmentWidth={endAdornmentWidth}
         startAdornmentWidth={startAdornmentWidth}
+        showStartDivider
         startAdornment={
           <CountryDrawer
             onSelect={handleCountrySelect}
             value={selectedCountryCode}
             countries={countryDataList}
             onAnimationEnd={handleDrawerAnimationEnd}
-            error={error}
             dialCode={currentDialCode}
           />
         }

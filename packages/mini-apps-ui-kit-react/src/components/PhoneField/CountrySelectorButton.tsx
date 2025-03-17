@@ -7,15 +7,12 @@ import { ArrowDown } from "../Icons/ArrowDown";
 import { Typography } from "../Typography";
 
 const triggerVariants = cva(
-  "flex items-center bg-transparent focus:outline-none cursor-pointer border-r border-gray-300 pr-3 text-gray-900",
+  "flex items-center bg-transparent focus:outline-none cursor-pointer text-gray-900",
   {
     variants: {
       disabled: {
         true: "cursor-not-allowed opacity-20",
         false: "",
-      },
-      error: {
-        true: "border-error-500",
       },
     },
     defaultVariants: {
@@ -28,16 +25,15 @@ interface CountrySelectorButtonProps extends React.HTMLAttributes<HTMLDivElement
   disabled: boolean;
   value: CountryCode;
   dialCode: string;
-  error?: boolean;
 }
 
 const CountrySelectorButton = forwardRef<HTMLDivElement, CountrySelectorButtonProps>(
-  ({ disabled, className, value, dialCode, error, ...props }, ref) => {
+  ({ disabled, className, value, dialCode, ...props }, ref) => {
     return (
       <div
         ref={ref}
         {...props}
-        className={cn(triggerVariants({ disabled, className, error }))}
+        className={cn(triggerVariants({ disabled, className }))}
         data-testid="country-selector-button"
       >
         <div className="mr-2">

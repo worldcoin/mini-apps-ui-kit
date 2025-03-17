@@ -44,8 +44,8 @@ export const iconVariants = cva(
         true: "text-error-600",
       },
       position: {
-        start: "left-1",
-        end: "right-1",
+        start: "left-0",
+        end: "right-0",
       },
     },
     defaultVariants: {
@@ -53,6 +53,22 @@ export const iconVariants = cva(
     },
   },
 );
+
+const dividerVariants = cva("border-r  h-[1.625rem] absolute", {
+  variants: {
+    position: {
+      start: "left-0",
+      end: "right-0",
+    },
+    error: {
+      true: "border-error-600",
+      false: "border-gray-300",
+    },
+  },
+  defaultVariants: {
+    error: false,
+  },
+});
 
 export interface InputProps
   extends Omit<
@@ -112,6 +128,16 @@ export interface InputProps
    * @default "default"
    */
   variant?: "default" | "floating-label";
+  /**
+   * If true, the dividers will be shown
+   * @default true
+   */
+  showStartDivider?: boolean;
+  /**
+   * If true, the end divider will be shown
+   * @default true
+   */
+  showEndDivider?: boolean;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -128,6 +154,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       className,
       label,
       id,
+      showStartDivider,
+      showEndDivider,
       variant = "default",
       ...props
     },
@@ -140,9 +168,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {startAdornment && (
           <div
             className={cn(iconVariants({ error, disabled, position: "start" }))}
-            style={{ width: `${startAdornmentWidth + 0.75}rem` }}
+            style={{ width: `${startAdornmentWidth + 1}rem` }}
           >
             {startAdornment}
+            {showStartDivider && (
+              <div className={dividerVariants({ position: "end", error })} />
+            )}
           </div>
         )}
         <input
@@ -159,10 +190,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...props}
           style={{
             ...(startAdornment && {
-              paddingLeft: `${1 + startAdornmentWidth}rem`,
+              paddingLeft: `${(showStartDivider ? 1.6 : 1) + startAdornmentWidth}rem`,
             }),
             ...(endAdornment && {
-              paddingRight: `${1 + endAdornmentWidth}rem`,
+              paddingRight: `${(showEndDivider ? 1.6 : 1) + endAdornmentWidth}rem`,
             }),
             ...(isValid && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
           }}
@@ -170,9 +201,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {(isValid || endAdornment) && (
           <div
             className={cn(iconVariants({ error, disabled, position: "end" }))}
-            style={{ width: `${endAdornmentWidth + 0.75}rem` }}
+            style={{ width: `${endAdornmentWidth + 1}rem` }}
           >
             {isValid ? <Tick className="text-success-700" /> : endAdornment}
+            {showEndDivider && (
+              <div className={dividerVariants({ position: "start", error })} />
+            )}
           </div>
         )}
         {isPersistLabel && (

@@ -35,8 +35,8 @@ export const extendedCountryDataList: CountryData[] = [
 export const DIAL_CODE_PREFIX = "+";
 
 export const startAdornmentWidthByDialCodeLength: Record<string, number> = {
-  "1": 6.5,
-  "2": 7,
-  "3": 7.5,
-  "4": 8,
+  "1": 5.5,
+  "2": 6,
+  "3": 6.5,
+  "4": 7,
 };
