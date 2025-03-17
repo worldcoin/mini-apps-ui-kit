@@ -1,5 +1,6 @@
 "use client";
 
+import { Slot } from "@radix-ui/react-slot";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import * as React from "react";
 
@@ -41,16 +42,16 @@ const TabItem = React.forwardRef<React.ElementRef<typeof ToggleGroup.Item>, TabI
       {...props}
     >
       {/* Only show the outline icon when NOT active */}
-      <div
+      <Slot
         className={cn("h-[1.625rem] shrink-0", activeIcon && "group-data-[state=on]:hidden")}
       >
         {icon}
-      </div>
+      </Slot>
       {/* Only show the solid icon when active */}
       {activeIcon && (
-        <div className="h-[1.625rem] shrink-0 hidden group-data-[state=on]:block">
+        <Slot className="h-[1.625rem] shrink-0 hidden group-data-[state=on]:block">
           {activeIcon}
-        </div>
+        </Slot>
       )}
       {label && (
         <Typography

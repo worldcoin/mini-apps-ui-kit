@@ -18,7 +18,7 @@ const meta: Meta<typeof Tabs> = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: "300px" }}>
+      <div style={{ width: "360px" }}>
         <Story />
       </div>
     ),
