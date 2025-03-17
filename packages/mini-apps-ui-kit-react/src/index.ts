@@ -23,4 +23,7 @@ export * from "./components/Progress";
 export * from "./components/TextArea";
 export * from "./components/WalletAddressField";
 export * from "./components/TextArea";
+export * from "./components/AlertDialog";
+export * from "./components/BottomBar";
+
 export { default as uiKitTailwindPlugin } from "./tailwind";
