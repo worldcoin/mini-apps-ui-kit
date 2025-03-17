@@ -1,18 +1,12 @@
 "use client";
 
-import { DROPDOWN_CONTAINER_STYLES } from "@/lib/constants/dropdownStyles";
-import { cn } from "@/lib/utils";
-import * as RadixSelect from "@radix-ui/react-select";
 import { forwardRef, useImperativeHandle, useMemo, useRef, useState } from "react";
-import { parseCountry, usePhoneInput } from "react-international-phone";
+import { usePhoneInput } from "react-international-phone";
 
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "../Drawer";
 import { CountryCode } from "../Flag/Flag";
 import { Input, InputProps } from "../Input";
-import { SearchField } from "../SearchField";
-import { Typography } from "../Typography";
-import CountryListItem from "./CountryListItem";
-import CountrySelectorButton from "./CountrySelectorButton";
+import { CountryDrawer } from "./CountryDrawer";
+import { CountrySelect } from "./CountrySelect";
 import { DIAL_CODE_PREFIX, startAdornmentWidthByDialCodeLength } from "./constants";
 import { filterCountries, getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
 
@@ -200,132 +194,30 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         isFocused={isCountrySelectorOpen}
         startAdornment={
           countrySelectorMode === "drawer" ? (
-            <Drawer
+            <CountryDrawer
               open={isCountrySelectorOpen}
               onOpenChange={setIsCountrySelectorOpen}
-              onClose={handleCountrySelectorClose}
-              onAnimationEnd={handleDrawerAnimationEnd}
-            >
-              <DrawerTrigger asChild className="outline-none">
-                <CountrySelectorButton
-                  disabled={disabled}
-                  countryCode={selectedCountryCode}
-                  hideDialCode={hideDialCode}
-                  dialCode={currentDialCode}
-                />
-              </DrawerTrigger>
-
-              <DrawerContent className="h-[96%]">
-                <div className="max-w-md w-full mx-auto flex flex-col flex-grow">
-                  <Typography variant="subtitle" level={2} className="px-4 py-2">
-                    Select country
-                  </Typography>
-
-                  <div className="px-4 pt-2 pb-4">
-                    <SearchField
-                      placeholder="Search name or number"
-                      value={searchText}
-                      onChange={handleSearchChange}
-                    />
-                  </div>
-
-                  <div
-                    className="no-scrollbar mx-auto w-full flex flex-col flex-grow flex-basis-0 overflow-auto p-2"
-                    style={{
-                      // Explicitly setting flex-basis ensures that the remaining space in the flex container is used,
-                      // height issues are fixed, and proper scrolling is enabled.
-                      flexBasis: 0,
-                    }}
-                  >
-                    {filteredCountries.map((country) => {
-                      const parsedCountry = parseCountry(country);
-                      const countryCode = getValidatedCountryCode(
-                        parsedCountry.iso2,
-                        defaultCountryCode,
-                      );
-
-                      return (
-                        <DrawerClose key={countryCode} className="block w-full">
-                          <CountryListItem
-                            countryCode={countryCode}
-                            countryName={parsedCountry.name}
-                            dialCode={`${DIAL_CODE_PREFIX}${parsedCountry.dialCode}`}
-                            onClick={() => {
-                              handleCountrySelect(countryCode);
-                              setSearchText("");
-                            }}
-                            isSelected={selectedCountryCode === countryCode}
-                          />
-                        </DrawerClose>
-                      );
-                    })}
-                    {filteredCountries.length === 0 && (
-                      <Typography variant="body" level={2} className="text-center">
-                        No countries found
-                      </Typography>
-                    )}
-                  </div>
-                </div>
-              </DrawerContent>
-            </Drawer>
-          ) : (
-            <RadixSelect.Root
+              onSelect={handleCountrySelect}
               value={selectedCountryCode}
+              countries={filteredCountries}
+              searchText={searchText}
+              onSearchChange={handleSearchChange}
+              onAnimationEnd={handleDrawerAnimationEnd}
+              error={error}
+            />
+          ) : (
+            <CountrySelect
+              disabled={disabled}
+              value={selectedCountryCode}
+              hideDialCode={hideDialCode}
+              dialCode={currentDialCode}
+              onSelect={handleCountrySelect}
               open={isCountrySelectorOpen}
               onOpenChange={setIsCountrySelectorOpen}
-              onValueChange={handleCountrySelect}
-              disabled={disabled}
-            >
-              <RadixSelect.Trigger>
-                <CountrySelectorButton
-                  disabled={disabled}
-                  countryCode={selectedCountryCode}
-                  hideDialCode={hideDialCode}
-                  dialCode={currentDialCode}
-                />
-              </RadixSelect.Trigger>
-
-              <RadixSelect.Portal>
-                <RadixSelect.Content
-                  ref={(contentElRef) => {
-                    contentRef.current = contentElRef;
-
-                    if (contentElRef && inputRef.current) {
-                      contentElRef.style.width = `${inputRef.current.offsetWidth}px`;
-                    }
-                  }}
-                  position="popper"
-                  className={cn(DROPDOWN_CONTAINER_STYLES, "-ml-3 mt-5 w-auto")}
-                  onCloseAutoFocus={handleCountrySelectorClose}
-                  onPointerDown={handlePointerDownOutside}
-                >
-                  <RadixSelect.Viewport className="h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] p-2">
-                    {countryDataList.map((country) => {
-                      const parsedCountry = parseCountry(country);
-                      const countryCode = getValidatedCountryCode(
-                        parsedCountry.iso2,
-                        defaultCountryCode,
-                      );
-
-                      return (
-                        <RadixSelect.Item
-                          key={countryCode}
-                          value={countryCode}
-                          className="outline-none"
-                        >
-                          <CountryListItem
-                            countryCode={countryCode}
-                            countryName={parsedCountry.name}
-                            dialCode={`${DIAL_CODE_PREFIX}${parsedCountry.dialCode}`}
-                            isSelected={selectedCountryCode === countryCode}
-                          />
-                        </RadixSelect.Item>
-                      );
-                    })}
-                  </RadixSelect.Viewport>
-                </RadixSelect.Content>
-              </RadixSelect.Portal>
-            </RadixSelect.Root>
+              countries={countries}
+              defaultCountryCode={defaultCountryCode}
+              error={error}
+            />
           )
         }
       />
