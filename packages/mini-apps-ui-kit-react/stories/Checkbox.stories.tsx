@@ -11,7 +11,7 @@ const meta: Meta<typeof Checkbox> = {
     docs: {
       description: {
         component:
-          "A customizable checkbox component that supports checked, unchecked, and disabled states.",
+          "A checkbox component that allows users to select one or multiple options. Built on top of [Radix UI's Checkbox](https://www.radix-ui.com/primitives/docs/components/checkbox) primitive for accessibility and customization.",
       },
     },
   },
