@@ -14,7 +14,7 @@ export const inputVariants = cva(
     "file:hidden",
     "invalid:border-error-600 invalid:focus:border-error-600 invalid:bg-gray-0",
     "placeholder:text-gray-500",
-    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none ",
+    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
     "disabled:cursor-not-allowed disabled:opacity-50",
   ),
   {
@@ -23,7 +23,7 @@ export const inputVariants = cva(
         true: "border-error-600 focus:border-error-600 bg-gray-0",
       },
       isFocused: {
-        true: "border-gray-200 bg-gray-0",
+        true: "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
         false: "",
       },
       isLabel: {

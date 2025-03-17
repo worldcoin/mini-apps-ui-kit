@@ -2,12 +2,12 @@
 
 import { DROPDOWN_CONTAINER_STYLES } from "@/lib/constants/dropdownStyles";
 import * as RadixSelect from "@radix-ui/react-select";
-import { cva } from "class-variance-authority";
 import { forwardRef, useEffect, useState } from "react";
 
 import { cn } from "../../lib/utils";
+import { inputVariants } from "../Input";
 import { typographyVariants } from "../Typography";
-import { ArrowDown } from "./ArrowDown";
+import { ArrowRight } from "./ArrowRight";
 
 export interface SelectOption {
   /**
@@ -74,36 +74,6 @@ export interface SelectProps
   name?: string;
 }
 
-const triggerVariants = cva(
-  "text-base flex h-[3.125rem] w-full min-w-[6rem] text-gray-900 cursor-pointer items-center justify-between whitespace-nowrap rounded-xl border-2 px-3 py-4 font-sans outline-none transition-all [&>span:first-of-type]:line-clamp-1 data-[placeholder]:text-gray-400",
-  {
-    variants: {
-      isOpen: {
-        true: "border-gray-200 bg-gray-0 shadow-card",
-        false: "border-gray-100 bg-gray-100",
-      },
-      defaultValue: {
-        true: "border-gray-200 bg-gray-0 text-gray-900",
-        false: "",
-      },
-      error: {
-        true: "shadow-none border-error-700 bg-error-100",
-        false: "",
-      },
-      disabled: {
-        true: "cursor-not-allowed opacity-20",
-        false: "",
-      },
-    },
-    defaultVariants: {
-      isOpen: false,
-      defaultValue: false,
-      error: false,
-      disabled: false,
-    },
-  },
-);
-
 export const Select = forwardRef<HTMLButtonElement, SelectProps>(
   (
     {
@@ -155,17 +125,15 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           ref={ref}
           className={cn(
             typographyVariants({ variant: "body", level: 3 }),
-            triggerVariants({
-              isOpen,
-              error,
-              disabled,
-              defaultValue: !!defaultValue,
-            }),
+            inputVariants({ error, isFocused: isOpen }),
+            "flex items-center justify-between whitespace-nowrap [&>span:first-of-type]:line-clamp-1",
+            "data-[placeholder]:text-gray-500",
+            "data-[state=closed]:bg-gray-100 data-[state=closed]:border-gray-100",
           )}
         >
           <RadixSelect.Value placeholder={placeholder} />
-          <RadixSelect.Icon className="h-5 w-5">
-            <ArrowDown className="text-gray-500" />
+          <RadixSelect.Icon>
+            <ArrowRight className="text-gray-400" />
           </RadixSelect.Icon>
         </RadixSelect.Trigger>
 
@@ -182,8 +150,8 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                   key={`${option.value}/${option.label}`}
                   value={option.value}
                   className={cn(
-                    "w-full cursor-pointer select-none rounded-md p-2 font-sans outline-none hover:bg-gray-100",
-                    value === option.value && "bg-gray-200",
+                    "w-full cursor-pointer select-none rounded-md p-2 font-sans outline-none hover:bg-gray-50",
+                    value === option.value && "bg-gray-100",
                     typographyVariants({ variant: "body", level: 2 }),
                   )}
                 >
