@@ -60,7 +60,7 @@ export function CountrySelect({
       <RadixSelect.Trigger>
         <CountrySelectorButton
           disabled={disabled}
-          countryCode={value}
+          value={value}
           hideDialCode={hideDialCode}
           dialCode={dialCode}
           error={error}
@@ -95,12 +95,7 @@ export function CountrySelect({
                   value={countryCode}
                   className="outline-none"
                 >
-                  <CountryListItem
-                    countryCode={countryCode}
-                    countryName={parsedCountry.name}
-                    dialCode={`${DIAL_CODE_PREFIX}${parsedCountry.dialCode}`}
-                    isSelected={countryCode === value}
-                  />
+                  <CountryListItem countryCode={countryCode} countryName={parsedCountry.name} />
                 </RadixSelect.Item>
               );
             })}

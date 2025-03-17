@@ -11,7 +11,10 @@ import { DIAL_CODE_PREFIX, startAdornmentWidthByDialCodeLength } from "./constan
 import { filterCountries, getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
 
 export interface PhoneFieldProps
-  extends Omit<InputProps, "onChange" | "startAdornment" | "startAdornmentWidth"> {
+  extends Omit<
+    InputProps,
+    "onChange" | "startAdornment" | "startAdornmentWidth" | "placeholder"
+  > {
   /**
    * Current phone number value.
    */
@@ -46,9 +49,9 @@ export interface PhoneFieldProps
    */
   isValid?: boolean;
   /**
-   * The placeholder text to display when no value is selected.
+   * The label text to display
    */
-  placeholder?: string;
+  label?: string;
   /**
    * When true, prevents the user from interacting with phone field.
    * @default false
@@ -83,7 +86,7 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       value,
       onChange,
       countries,
-      placeholder = "Enter phone number",
+      label = "Phone",
       defaultCountryCode = "US",
       hideDialCode = false,
       disableDialCodePrefill = true,
@@ -92,7 +95,7 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       isValid,
       endAdornment,
       endAdornmentWidth,
-      countrySelectorMode = "dropdown",
+      countrySelectorMode = "drawer",
       type = "tel",
       inputMode = "tel",
       autoComplete = "tel",
@@ -103,9 +106,8 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     ref,
   ) => {
     const contentRef = useRef<HTMLDivElement | null>(null);
-    const [isCountrySelectorOpen, setIsCountrySelectorOpen] = useState(false);
+
     const [shouldFocus, setShouldFocus] = useState(false);
-    const [searchText, setSearchText] = useState("");
 
     const countryDataList = useMemo(() => getCountryDataListByCodes(countries), [countries]);
 
@@ -155,17 +157,7 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
 
     const handleCountrySelect = (selectedCountry: string) => {
       setCountry(selectedCountry.toLowerCase());
-      setIsCountrySelectorOpen(false);
     };
-
-    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchText(event.target.value);
-    };
-
-    const filteredCountries = useMemo(
-      () => filterCountries(countryDataList, searchText),
-      [countryDataList, searchText],
-    );
 
     const handleDrawerAnimationEnd = (open: boolean) => {
       if (open) {
@@ -184,41 +176,24 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         autoCorrect={autoCorrect}
         value={inputValue}
         onChange={handlePhoneValueChange}
-        placeholder={placeholder}
+        label={label}
         disabled={disabled}
         error={error}
         isValid={isValid}
         endAdornment={endAdornment}
         endAdornmentWidth={endAdornmentWidth}
         startAdornmentWidth={startAdornmentWidth}
-        isFocused={isCountrySelectorOpen}
+        // isFocused={isCountrySelectorOpen}
         startAdornment={
-          countrySelectorMode === "drawer" ? (
-            <CountryDrawer
-              open={isCountrySelectorOpen}
-              onOpenChange={setIsCountrySelectorOpen}
-              onSelect={handleCountrySelect}
-              value={selectedCountryCode}
-              countries={filteredCountries}
-              searchText={searchText}
-              onSearchChange={handleSearchChange}
-              onAnimationEnd={handleDrawerAnimationEnd}
-              error={error}
-            />
-          ) : (
-            <CountrySelect
-              disabled={disabled}
-              value={selectedCountryCode}
-              hideDialCode={hideDialCode}
-              dialCode={currentDialCode}
-              onSelect={handleCountrySelect}
-              open={isCountrySelectorOpen}
-              onOpenChange={setIsCountrySelectorOpen}
-              countries={countries}
-              defaultCountryCode={defaultCountryCode}
-              error={error}
-            />
-          )
+          <CountryDrawer
+            onSelect={handleCountrySelect}
+            value={selectedCountryCode}
+            countries={countryDataList}
+            onAnimationEnd={handleDrawerAnimationEnd}
+            error={error}
+            hideDialCode={hideDialCode}
+            dialCode={currentDialCode}
+          />
         }
       />
     );
