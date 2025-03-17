@@ -4,35 +4,143 @@ import { cn } from "@/lib/utils";
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 
-const Drawer = DrawerPrimitive.Root;
-const DrawerTrigger: typeof DrawerPrimitive.Trigger = DrawerPrimitive.Trigger;
-const DrawerClose: typeof DrawerPrimitive.Close = DrawerPrimitive.Close;
+import { BottomBarProps } from "../BottomBar";
+import { BottomBar } from "../BottomBar";
+import { Button } from "../Button";
+import { XMark } from "../Icons/XMark";
+import { Typography } from "../Typography";
+import {
+  DrawerCloseProps,
+  DrawerContentProps,
+  DrawerDescriptionProps,
+  DrawerHeaderProps,
+  DrawerProps,
+  DrawerTitleProps,
+  DrawerTriggerProps,
+} from "./types";
+import { DrawerContext, useDrawer } from "./use-drawer";
 
-const DrawerContent: typeof DrawerPrimitive.Content = React.forwardRef<
-  React.ElementRef<typeof DrawerPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DrawerPrimitive.Portal>
-    <DrawerPrimitive.Overlay className="fixed inset-0 z-50">
-      <div className="w-full h-full bg-gray-900 opacity-40" />
-    </DrawerPrimitive.Overlay>
-
-    <DrawerPrimitive.Content
-      ref={ref}
-      className={cn(
-        "fixed inset-x-0 bottom-0 z-50 mt-24 h-auto flex flex-col rounded-t-2xl bg-gray-0 outline-none",
-        className,
-      )}
+/**
+ * A drawer component that slides up from the bottom of the screen
+ * @param props DrawerProps
+ */
+const Drawer = ({
+  dismissible = true,
+  fullPage = false,
+  modal = true,
+  ...props
+}: DrawerProps) => (
+  <DrawerContext.Provider value={{ dismissible, fullPage }}>
+    <DrawerPrimitive.Root
+      shouldScaleBackground={false}
+      dismissible={dismissible}
+      modal={modal}
+      direction="bottom"
       {...props}
-    >
-      {/* The Drawer Title is added for accessibility purposes, ensuring that screen readers can identify the drawer's purpose. */}
-      <DrawerPrimitive.Title className="sr-only" />
-      <DrawerPrimitive.Handle className="my-2" />
-      {children}
-    </DrawerPrimitive.Content>
-  </DrawerPrimitive.Portal>
-));
+    />
+  </DrawerContext.Provider>
+);
+Drawer.displayName = "Drawer";
 
+const DrawerTrigger = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Trigger>,
+  DrawerTriggerProps
+>((props, ref) => <DrawerPrimitive.Trigger ref={ref} {...props} />);
+
+DrawerTrigger.displayName = DrawerPrimitive.Trigger.displayName;
+
+const DrawerClose = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Close>,
+  DrawerCloseProps
+>((props, ref) => <DrawerPrimitive.Close ref={ref} {...props} />);
+
+const DrawerOverlay = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
+>((props, ref) => (
+  <DrawerPrimitive.Overlay ref={ref} className="fixed inset-0 z-50 bg-gray-900/40" {...props} />
+));
+DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
+
+/**
+ * The content container of the drawer
+ */
+const DrawerContent = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Content>,
+  DrawerContentProps
+>((props, ref) => {
+  const { fullPage } = useDrawer();
+  return (
+    <DrawerPrimitive.Portal>
+      <DrawerPrimitive.Overlay className="fixed inset-0 z-50">
+        <div className="w-full h-full bg-gray-900 opacity-40" />
+      </DrawerPrimitive.Overlay>
+
+      <DrawerPrimitive.Content
+        ref={ref}
+        className={cn(
+          "fixed inset-x-0 bottom-0 z-50 mt-24 bg-gray-0 outline-none p-8",
+          fullPage ? "h-screen rounded-none" : "h-auto rounded-t-2xl",
+        )}
+        {...props}
+      />
+    </DrawerPrimitive.Portal>
+  );
+});
 DrawerContent.displayName = "DrawerContent";
 
-export { Drawer, DrawerTrigger, DrawerClose, DrawerContent };
+/**
+ * The header section of the drawer
+ */
+const DrawerHeader = ({ icon, children, ...props }: DrawerHeaderProps) => {
+  const { dismissible } = useDrawer();
+  return (
+    <div className="flex justify-between items-center gap-4 mb-2 w-full" {...props}>
+      {dismissible && (
+        <div className="shrink-0">
+          <DrawerClose asChild>
+            <Button variant="tertiary" size="sm" icon={<XMark />}></Button>
+          </DrawerClose>
+        </div>
+      )}
+      <div className="flex flex-col gap-6">{children}</div>
+      {dismissible && <div className="shrink-0 size-10" />}
+    </div>
+  );
+};
+DrawerHeader.displayName = "DrawerHeader";
+
+const DrawerFooter = (props: BottomBarProps) => <BottomBar {...props} />;
+DrawerFooter.displayName = "DrawerFooter";
+
+/**
+ * The title component of the drawer
+ */
+const DrawerTitle = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Title>,
+  DrawerTitleProps
+>(({ className, ...props }, ref) => (
+  <DrawerPrimitive.Title ref={ref} {...props} asChild>
+    <Typography variant="subtitle" level={1}>
+      {props.children}
+    </Typography>
+  </DrawerPrimitive.Title>
+));
+DrawerTitle.displayName = DrawerPrimitive.Title.displayName;
+
+/**
+ * The description component of the drawer
+ */
+const DrawerDescription = React.forwardRef<
+  React.ElementRef<typeof DrawerPrimitive.Description>,
+  DrawerDescriptionProps
+>(({ className, ...props }, ref) => (
+  <DrawerPrimitive.Description ref={ref} className="text-gray-500" {...props} asChild>
+    <Typography variant="body" level={2}>
+      {props.children}
+    </Typography>
+  </DrawerPrimitive.Description>
+));
+DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
+
+export { Drawer, DrawerTrigger, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle };
