@@ -57,7 +57,7 @@ export const Default: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
     const selectButton = await canvas.getByRole("combobox");
 
     expect(input).toBeVisible();
@@ -79,9 +79,7 @@ export const CountrySelectorAsDrawer: Story = {
   render: (args) => {
     const [value, setValue] = useState("");
 
-    return (
-      <PhoneField {...args} value={value} onChange={setValue} countrySelectorMode="drawer" />
-    );
+    return <PhoneField {...args} value={value} onChange={setValue} />;
   },
   parameters: {
     docs: {
@@ -97,7 +95,7 @@ export const CountrySelectorAsDrawer: Story = {
     let searchInput: HTMLInputElement | null = null;
     let countryElements: NodeListOf<Element> | null = null;
 
-    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toHaveValue("");
 
@@ -130,7 +128,7 @@ export const CountrySelectorAsDrawer: Story = {
     fireEvent.click(countryElements![0]);
 
     await waitFor(async () => {
-      input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+      input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
       expect(input).toHaveValue("+1 ");
     });
@@ -153,7 +151,6 @@ export const AllowedCountryCodesProvided: Story = {
     },
   },
   args: {
-    countrySelectorMode: "drawer",
     disableDialCodePrefill: false,
     defaultCountryCode: "DE",
     countries: ["DE", "PL"],
@@ -215,7 +212,7 @@ export const DialCodeInInputOnInitialization: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
     const selectButton = await canvas.getByRole("combobox");
 
     expect(input).toBeVisible();
@@ -229,38 +226,6 @@ export const DialCodeInInputOnInitialization: Story = {
     expect(selectButtonFlag).toBeVisible();
     expect(selectButtonDialCode).toBeVisible();
     expect(selectButtonDialCode).toHaveTextContent("+49");
-    expect(selectButtonArrow).toBeVisible();
-  },
-};
-
-export const WithoutDialCodeWithinButton: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-
-    return <PhoneField {...args} value={value} onChange={setValue} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Phone field with hidden dial code in the country selector button for a cleaner look.",
-      },
-    },
-  },
-  args: {
-    hideDialCode: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    const selectButton = await canvas.getByRole("combobox");
-
-    expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes[0].childNodes).toHaveLength(2);
-
-    const [selectButtonFlag, selectButtonArrow] = selectButton.childNodes[0].childNodes;
-
-    expect(selectButtonFlag).toBeVisible();
     expect(selectButtonArrow).toBeVisible();
   },
 };
@@ -293,7 +258,7 @@ export const WithErrorLabel: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toHaveClass("border-error-700 bg-error-100");
 
@@ -322,7 +287,7 @@ export const Disabled: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
     const selectButton = await canvas.getByRole("combobox");
 
     expect(input).toBeDisabled();
@@ -348,7 +313,7 @@ export const ShowValidStateWhenMin12Digits: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toBeVisible();
     expect(input).toHaveValue("");
@@ -385,7 +350,7 @@ export const CustomDefaultCountry: Story = {
     let selectViewport: Element | null = null;
     const canvas = within(canvasElement);
 
-    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toHaveValue("+48 ");
 
@@ -405,7 +370,7 @@ export const CustomDefaultCountry: Story = {
       fireEvent.click(countries[0]);
     });
 
-    input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toHaveValue("+93 ");
 
@@ -423,7 +388,7 @@ export const CustomDefaultCountry: Story = {
       fireEvent.click(countryOption);
     });
 
-    input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toHaveValue("+48 ");
   },
@@ -458,7 +423,7 @@ export const FocusOnButtonClick: Story = {
 
     fireEvent.click(button);
 
-    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toHaveFocus();
   },
