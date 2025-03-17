@@ -21,5 +21,5 @@ export * from "./components/Typography";
 export * from "./components/Drawer";
 export * from "./components/TextArea";
 export * from "./components/WalletAddressField";
-
+export * from "./components/TextArea";
 export { default as uiKitTailwindPlugin } from "./tailwind";
