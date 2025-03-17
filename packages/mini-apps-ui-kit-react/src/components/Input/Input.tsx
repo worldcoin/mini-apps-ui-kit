@@ -10,11 +10,11 @@ const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
   cn(
-    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-300 bg-gray-100 px-4 py-4 outline-none transition duration-300",
+    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 py-4 outline-none transition duration-300",
     "file:hidden",
     "invalid:border-error-600 invalid:focus:border-error-600 invalid:bg-gray-0",
-    "placeholder:text-gray-500 placeholder:focus:border-gray-200",
-    "focus:bg-gray-0 focus-visible:outline-none ",
+    "placeholder:text-gray-500",
+    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none ",
     "disabled:cursor-not-allowed disabled:opacity-50",
   ),
   {
