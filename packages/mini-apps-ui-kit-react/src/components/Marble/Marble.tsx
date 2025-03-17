@@ -1,26 +1,21 @@
 import { cn } from "@/lib/utils";
 import { ComponentProps, forwardRef } from "react";
 
-interface MarbleProps extends ComponentProps<"div"> {
-  imageUrl: string;
-}
+export const Marble = forwardRef<HTMLImageElement, ComponentProps<"img">>((props, ref) => {
+  const { className, ...rest } = props;
 
-export const Marble = forwardRef<HTMLDivElement, MarbleProps>(
-  ({ imageUrl, className, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          "rounded-full overflow-hidden border-2 border-gray-100 p-[3px] aspect-square w-[7.5rem]",
-          className,
-        )}
-        {...props}
-      >
-        <img src={imageUrl} alt="Marble" className="object-cover size-full rounded-full" />
-      </div>
-    );
-  },
-);
+  return (
+    <img
+      ref={ref}
+      alt="Marble"
+      className={cn(
+        "rounded-full border-2 border-gray-100 p-[3px] aspect-square w-[7.5rem] object-cover",
+        className,
+      )}
+      {...rest}
+    />
+  );
+});
 
 Marble.displayName = "Marble";
 

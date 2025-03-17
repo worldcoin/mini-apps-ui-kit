@@ -30,26 +30,26 @@ type Story = StoryObj<typeof Marble>;
 
 export const Default: Story = {
   args: {
-    imageUrl: marble1,
+    src: marble1,
   },
 };
 
 export const MultipleMarbles: Story = {
   render: () => (
-    <div className="flex gap-4">
-      <Marble imageUrl={marble1} />
-      <Marble imageUrl={marble2} />
-      <Marble imageUrl={marble3} />
+    <div className="flex gap-x-4">
+      <Marble src={marble1} />
+      <Marble src={marble2} />
+      <Marble src={marble3} />
     </div>
   ),
 };
 
 export const DifferentSizes: Story = {
   render: () => (
-    <div className="flex gap-4 items-center">
-      <Marble imageUrl={marble1} className="size-32" />
-      <Marble imageUrl={marble2} className="size-24" />
-      <Marble imageUrl={marble3} className="size-16" />
+    <div className="flex gap-x-4 items-center">
+      <Marble src={marble1} className="w-32" />
+      <Marble src={marble2} className="w-24" />
+      <Marble src={marble3} className="w-16" />
     </div>
   ),
 };
