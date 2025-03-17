@@ -43,11 +43,6 @@ export interface TypographyDisplayProps extends TypographyProps {
   level?: 1;
 }
 
-export interface TypographyLabelProps extends TypographyProps {
-  variant?: "label";
-  level?: 1 | 2;
-}
-
 export type TypographyComponentProps =
   | TypographyNumberProps
   | TypographyCommonProps
