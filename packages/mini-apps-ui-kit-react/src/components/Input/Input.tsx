@@ -22,10 +22,6 @@ export const inputVariants = cva(
       error: {
         true: "border-error-600 focus:border-error-600 bg-gray-0",
       },
-      isFocused: {
-        true: "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
-        false: "",
-      },
       isLabel: {
         true: "pt-6 pb-2 placeholder:text-transparent",
         false: "",
@@ -33,7 +29,6 @@ export const inputVariants = cva(
     },
     defaultVariants: {
       error: false,
-      isFocused: false,
     },
   },
 );
@@ -129,7 +124,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       isValid,
       startAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
-      isFocused = false,
       disabled,
       className,
       label,
@@ -158,7 +152,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           placeholder={label}
           disabled={disabled}
           className={cn(
-            inputVariants({ error, isFocused, isLabel: isPersistLabel }),
+            inputVariants({ error, isLabel: isPersistLabel }),
             typographyVariants({ variant: "body", level: 3 }),
             className,
           )}

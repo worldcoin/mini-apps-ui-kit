@@ -7,21 +7,26 @@ import { CountryCode } from "../Flag";
 import { XMark } from "../Icons/XMark";
 import { SearchField } from "../SearchField";
 import { TopBar } from "../TopBar";
-import { Typography } from "../Typography";
-import CountryListItem from "./CountryListItem";
 import CountrySelectorButton from "./CountrySelectorButton";
+import { GroupedCountryList } from "./GroupedCountryList";
 import { filterCountries, getValidatedCountryCode } from "./utils";
 
 interface CountryDrawerProps {
   value: CountryCode;
   countries: CountryData[];
   disabled?: boolean;
-  hideDialCode?: boolean;
   defaultCountryCode?: CountryCode;
   error?: boolean;
   dialCode: string;
   onSelect: (countryCode: string) => void;
   onAnimationEnd?: (open: boolean) => void;
+}
+
+interface GroupedCountries {
+  [key: string]: {
+    countryCode: CountryCode;
+    name: string;
+  }[];
 }
 
 export function CountryDrawer({
@@ -30,7 +35,6 @@ export function CountryDrawer({
   countries,
   onAnimationEnd,
   disabled = false,
-  hideDialCode = false,
   dialCode,
   defaultCountryCode = "US",
   error,
@@ -51,6 +55,22 @@ export function CountryDrawer({
 
   const filteredCountries = filterCountries(countries, searchText);
 
+  const groupedCountries = filteredCountries.reduce<GroupedCountries>((acc, country) => {
+    const parsedCountry = parseCountry(country);
+    const firstLetter = parsedCountry.name.charAt(0).toUpperCase();
+
+    if (!acc[firstLetter]) {
+      acc[firstLetter] = [];
+    }
+
+    acc[firstLetter].push({
+      countryCode: getValidatedCountryCode(parsedCountry.iso2, defaultCountryCode),
+      name: parsedCountry.name,
+    });
+
+    return acc;
+  }, {});
+
   const handleCountrySelect = (countryCode: CountryCode) => {
     onSelect(countryCode);
     setSearchText("");
@@ -63,7 +83,6 @@ export function CountryDrawer({
         <CountrySelectorButton
           disabled={disabled}
           value={value}
-          hideDialCode={hideDialCode}
           dialCode={dialCode}
           error={error}
         />
@@ -79,7 +98,7 @@ export function CountryDrawer({
           }
         />
 
-        <div className="px-4 py-4">
+        <div className="p-6">
           <SearchField
             ref={searchRef}
             placeholder="Search name or number"
@@ -88,27 +107,12 @@ export function CountryDrawer({
           />
         </div>
 
-        <div className="no-scrollbar w-full overflow-auto px-4 h-full">
-          {filteredCountries.map((country) => {
-            const parsedCountry = parseCountry(country);
-            const countryCode = getValidatedCountryCode(parsedCountry.iso2, defaultCountryCode);
-
-            return (
-              <DrawerClose key={countryCode} asChild>
-                <CountryListItem
-                  countryCode={countryCode}
-                  countryName={parsedCountry.name}
-                  onClick={handleCountrySelect}
-                />
-              </DrawerClose>
-            );
-          })}
-
-          {filteredCountries.length === 0 && (
-            <Typography variant="body" level={2} className="text-center">
-              No countries found
-            </Typography>
-          )}
+        <div className="no-scrollbar w-full overflow-auto px-6 h-full">
+          <GroupedCountryList
+            groupedCountries={groupedCountries}
+            onSelect={handleCountrySelect}
+            showEmptyState={filteredCountries.length === 0}
+          />
         </div>
       </DrawerContent>
     </Drawer>

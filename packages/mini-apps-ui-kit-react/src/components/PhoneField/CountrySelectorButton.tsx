@@ -27,13 +27,12 @@ const triggerVariants = cva(
 interface CountrySelectorButtonProps extends React.HTMLAttributes<HTMLDivElement> {
   disabled: boolean;
   value: CountryCode;
-  hideDialCode: boolean;
   dialCode: string;
   error?: boolean;
 }
 
 const CountrySelectorButton = forwardRef<HTMLDivElement, CountrySelectorButtonProps>(
-  ({ disabled, className, value, hideDialCode, dialCode, error, ...props }, ref) => {
+  ({ disabled, className, value, dialCode, error, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -44,11 +43,9 @@ const CountrySelectorButton = forwardRef<HTMLDivElement, CountrySelectorButtonPr
         <div className="w-6 h-6 mr-2">
           <Flag countryCode={value} size={24} />
         </div>
-        {!hideDialCode && (
-          <Typography variant="subtitle" level={3} className="mr-2">
-            {dialCode}
-          </Typography>
-        )}
+        <Typography variant="subtitle" level={3} className="mr-2">
+          {dialCode}
+        </Typography>
         <ArrowDown />
       </div>
     );

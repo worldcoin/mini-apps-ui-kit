@@ -1,14 +1,13 @@
 "use client";
 
-import { forwardRef, useImperativeHandle, useMemo, useRef, useState } from "react";
+import { forwardRef, useImperativeHandle, useMemo } from "react";
 import { usePhoneInput } from "react-international-phone";
 
 import { CountryCode } from "../Flag/Flag";
 import { Input, InputProps } from "../Input";
 import { CountryDrawer } from "./CountryDrawer";
-import { CountrySelect } from "./CountrySelect";
 import { DIAL_CODE_PREFIX, startAdornmentWidthByDialCodeLength } from "./constants";
-import { filterCountries, getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
+import { getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
 
 export interface PhoneFieldProps
   extends Omit<
@@ -28,12 +27,6 @@ export interface PhoneFieldProps
    * If not provided, all countries will be displayed.
    */
   countries?: CountryCode[];
-  /**
-   * If true, the dial code will be hidden.
-   * The dial code is still displayed at the start of the input and in the dropdown.
-   * @default false
-   */
-  hideDialCode?: boolean;
   /**
    * Disable dial code prefill on initialization.
    * Dial code prefill works only when empty phone value have been provided.
@@ -73,11 +66,6 @@ export interface PhoneFieldProps
    * @default 1.25
    */
   endAdornmentWidth?: number;
-  /**
-   * Display mode for the country selector: "dropdown" for desktop or "drawer" for mobile.
-   * @default "dropdown"
-   */
-  countrySelectorMode?: "dropdown" | "drawer";
 }
 
 export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
@@ -88,14 +76,12 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       countries,
       label = "Phone",
       defaultCountryCode = "US",
-      hideDialCode = false,
       disableDialCodePrefill = true,
       disabled = false,
       error = false,
       isValid,
       endAdornment,
       endAdornmentWidth,
-      countrySelectorMode = "drawer",
       type = "tel",
       inputMode = "tel",
       autoComplete = "tel",
@@ -105,17 +91,13 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     },
     ref,
   ) => {
-    const contentRef = useRef<HTMLDivElement | null>(null);
-
-    const [shouldFocus, setShouldFocus] = useState(false);
-
     const countryDataList = useMemo(() => getCountryDataListByCodes(countries), [countries]);
 
     const { inputValue, country, inputRef, handlePhoneValueChange, setCountry } = usePhoneInput(
       {
         defaultCountry: defaultCountryCode.toLowerCase(),
         disableDialCodePrefill,
-        value,
+        disableDialCodeAndPrefix: true,
         countries: countryDataList,
         onChange: (data) => {
           onChange?.(
@@ -127,41 +109,22 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     );
 
     const selectedCountryCode = getValidatedCountryCode(country.iso2, defaultCountryCode);
-    const defaultStartAdornmentWidth = 2.8; // when dial code is disabled for button
     const currentDialCode = `${DIAL_CODE_PREFIX}${country.dialCode}`;
-    const startAdornmentWidth = hideDialCode
-      ? defaultStartAdornmentWidth
-      : startAdornmentWidthByDialCodeLength[country.dialCode.length];
+    const startAdornmentWidth = startAdornmentWidthByDialCodeLength[country.dialCode.length];
 
     // This allows the parent component to interact with the input element directly
     useImperativeHandle(ref, () => inputRef.current as HTMLDivElement);
-
-    const handleCountrySelectorClose = (event?: Event) => {
-      event?.preventDefault();
-
-      if (shouldFocus) {
-        // This allow to schedule focus on the input element during the next repaint cycle
-        requestAnimationFrame(() => {
-          inputRef.current?.focus();
-        });
-      }
-
-      setShouldFocus(false);
-    };
-
-    const handlePointerDownOutside = (event: React.PointerEvent<HTMLDivElement>) => {
-      const isInsideContent = contentRef.current?.contains(event.target as Node);
-
-      setShouldFocus(!!isInsideContent);
-    };
 
     const handleCountrySelect = (selectedCountry: string) => {
       setCountry(selectedCountry.toLowerCase());
     };
 
     const handleDrawerAnimationEnd = (open: boolean) => {
-      if (open) {
-        setShouldFocus(true);
+      if (!open) {
+        // This allow to schedule focus on the input element during the next repaint cycle
+        requestAnimationFrame(() => {
+          inputRef.current?.focus();
+        });
       }
     };
 
@@ -183,7 +146,6 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         endAdornment={endAdornment}
         endAdornmentWidth={endAdornmentWidth}
         startAdornmentWidth={startAdornmentWidth}
-        // isFocused={isCountrySelectorOpen}
         startAdornment={
           <CountryDrawer
             onSelect={handleCountrySelect}
@@ -191,7 +153,6 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
             countries={countryDataList}
             onAnimationEnd={handleDrawerAnimationEnd}
             error={error}
-            hideDialCode={hideDialCode}
             dialCode={currentDialCode}
           />
         }
