@@ -4,12 +4,14 @@ import { createChangeEvent } from "@/lib/utils";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
 import ClearButton from "../ClearButton";
-import { Magnifier } from "../Icons/Magnifier";
 import { Input, InputProps } from "../Input";
 import PasteButton, { PASTE_BUTTON_WIDTH } from "../PasteButton/PasteButton";
 
-export interface SearchFieldProps
-  extends Omit<InputProps, "startAdornment" | "startAdornmentWidth"> {
+export interface WalletAddressFieldProps
+  extends Omit<
+    InputProps,
+    "startAdornment" | "startAdornmentWidth" | "endAdornment" | "endAdornmentWidth"
+  > {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -19,47 +21,40 @@ export interface SearchFieldProps
    */
   isValid?: boolean;
   /**
-   * If true, displays a paste button as an end adornment
-   * @default false
+   * Placeholder text for the input
+   * @default "Enter wallet address"
    */
-  showPasteButton?: boolean;
+  placeholder?: string;
   /**
    * Label for the paste button
    * @default "Paste"
    */
   pasteButtonLabel?: string;
-  /**
-   * Placeholder text for the input
-   * @default "Search"
-   */
-  placeholder?: string;
 }
 
-export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
+export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFieldProps>(
   (
     {
-      showPasteButton,
-      pasteButtonLabel,
       isValid,
       disabled,
-      type = "search",
+      type = "text",
       autoComplete = "off",
       spellCheck = "false",
-      endAdornment: endAdornmentProp,
-      endAdornmentWidth: endAdornmentWidthProp,
-      placeholder = "Search",
+      placeholder = "Wallet address",
+      pasteButtonLabel = "Paste",
       ...props
     },
     forwardedRef,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const [isFocused, setIsFocused] = useState(false);
     const [isPasted, setIsPasted] = useState(false);
+    const [value, setValue] = useState("");
+    const [isFocused, setIsFocused] = useState(false);
     useImperativeHandle(forwardedRef, () => inputRef.current!);
 
-    let endAdornment = endAdornmentProp;
-    let endAdornmentWidth = endAdornmentWidthProp;
-    if (showPasteButton && !disabled && !isPasted) {
+    let endAdornment;
+    let endAdornmentWidth;
+    if (!disabled && !isPasted && !value) {
       endAdornment = (
         <PasteButton
           inputRef={inputRef}
@@ -82,6 +77,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
             if (inputRef.current) {
               const event = createChangeEvent(inputRef.current);
               props.onChange?.(event);
+              setValue("");
             }
           }}
         />
@@ -93,7 +89,6 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
       <Input
         {...props}
         ref={inputRef}
-        startAdornment={<Magnifier />}
         isValid={isValid}
         disabled={disabled}
         startAdornmentWidth={2.3}
@@ -102,21 +97,24 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
         type={type}
         autoComplete={autoComplete}
         spellCheck={spellCheck}
+        placeholder={placeholder}
         onFocus={(e) => {
           setIsFocused(true);
           props.onFocus?.(e);
         }}
-        placeholder={placeholder}
         onBlur={(e) => {
           setIsFocused(false);
           props.onBlur?.(e);
         }}
-        className="rounded-full"
+        onChange={(e) => {
+          props.onChange?.(e);
+          setValue(e.target.value);
+        }}
       />
     );
   },
 );
 
-SearchField.displayName = "SearchField";
+WalletAddressField.displayName = "WalletAddressField";
 
-export default SearchField;
+export default WalletAddressField;
