@@ -1,6 +1,8 @@
+import BulletPoint from "@/components/BulletPoint/BulletPoint";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { BulletListItem } from "../src/components/BulletListItem";
+import { SparkIcon } from "./helpers/icons/SparkIcon";
 
 const meta: Meta<typeof BulletListItem> = {
   title: "components/BulletListItem",
@@ -8,8 +10,7 @@ const meta: Meta<typeof BulletListItem> = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A list item component with a decorative bullet point that uses a spark icon.",
+        component: "A list item component with a decorative bullet point.",
       },
     },
   },
@@ -34,16 +35,48 @@ export const Default: Story = {
 export const MultipleItems: Story = {
   render: () => (
     <div className="space-y-4">
-      <BulletListItem>First bullet point with spark icon</BulletListItem>
-      <BulletListItem>Second bullet point with spark icon</BulletListItem>
-      <BulletListItem>Third bullet point with spark icon</BulletListItem>
+      <BulletListItem
+        bulletPoint={
+          <BulletPoint>
+            <SparkIcon className="text-gray-0" />
+          </BulletPoint>
+        }
+      >
+        First bullet point with spark icon
+      </BulletListItem>
+
+      <BulletListItem
+        bulletPoint={
+          <BulletPoint>
+            <SparkIcon className="text-gray-0" />
+          </BulletPoint>
+        }
+      >
+        Second bullet point with spark icon
+      </BulletListItem>
+
+      <BulletListItem
+        bulletPoint={
+          <BulletPoint>
+            <SparkIcon className="text-gray-0" />
+          </BulletPoint>
+        }
+      >
+        Third bullet point with spark icon
+      </BulletListItem>
     </div>
   ),
 };
 
 export const WithComplexContent: Story = {
   render: () => (
-    <BulletListItem>
+    <BulletListItem
+      bulletPoint={
+        <BulletPoint>
+          <SparkIcon className="text-gray-0" />
+        </BulletPoint>
+      }
+    >
       <p className="flex items-center gap-x-2">
         <span>✅</span>
         <strong>With custom content</strong>
@@ -53,8 +86,18 @@ export const WithComplexContent: Story = {
 };
 
 export const WithLongText: Story = {
-  args: {
-    children:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nam soluta, est a nemo commodi illum repudiandae praesentium tempora vel fuga quam laudantium ut nostrum rem, perspiciatis consequatur quibusdam culpa sunt molestias cupiditate autem necessitatibus obcaecati. Doloribus saepe mollitia sapiente amet hic optio modi officia voluptas nam? Alias accusantium doloremque harum commodi veritatis quasi excepturi assumenda rerum? Veniam ex corporis animi aliquid autem beatae harum libero quos, rem dolore numquam deleniti reprehenderit impedit eaque nam. Minima debitis laudantium quos perferendis aliquam suscipit ex. Esse earum atque exercitationem et hic ipsum cupiditate, odit illo nihil. Voluptatum magni velit sint maiores accusamus.",
-  },
+  render: () => (
+    <BulletListItem
+      bulletPoint={
+        <BulletPoint>
+          <SparkIcon className="text-gray-0" />
+        </BulletPoint>
+      }
+    >
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nam soluta, est a nemo
+      commodi illum repudiandae praesentium tempora vel fuga quam laudantium ut nostrum rem,
+      perspiciatis consequatur quibusdam culpa sunt molestias cupiditate autem necessitatibus
+      obcaecati.
+    </BulletListItem>
+  ),
 };
