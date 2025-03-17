@@ -25,5 +25,6 @@ export * from "./components/WalletAddressField";
 export * from "./components/TextArea";
 export * from "./components/AlertDialog";
 export * from "./components/BottomBar";
+export * from "./components/Marble";
 
 export { default as uiKitTailwindPlugin } from "./tailwind";
