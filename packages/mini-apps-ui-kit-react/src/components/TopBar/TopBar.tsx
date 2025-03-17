@@ -4,21 +4,13 @@ import React from "react";
 import { Typography } from "../Typography";
 
 interface TopBarProps {
-  /**
-   * The title to be displayed in the center
-   */
+  /** Title displayed in the center */
   title: string;
-  /**
-   * Optional element to be rendered at the start (left side)
-   */
+  /** Element rendered on the left side */
   startAdornment?: React.ReactNode;
-  /**
-   * Optional element to be rendered at the end (right side)
-   */
+  /** Element rendered on the right side */
   endAdornment?: React.ReactNode;
-  /**
-   * Optional className for additional styling
-   */
+  /** Additional CSS classes */
   className?: string;
 }
 
@@ -26,24 +18,40 @@ export const TopBar: React.FC<TopBarProps> = ({
   title,
   startAdornment,
   endAdornment,
-  className = "",
+  className,
 }) => {
+  const hasStartAdornment = Boolean(startAdornment);
+  const hasEndAdornment = Boolean(endAdornment);
+
+  const textAlignment = hasStartAdornment ? "text-center" : "text-left";
+  const justifyContent =
+    hasStartAdornment || hasEndAdornment ? "justify-between" : "justify-start";
+
   return (
     <div
       className={cn(
-        "flex items-center justify-between px-6 pt-6 pb-2 w-full h-[4.5rem]",
+        "flex items-center px-6 pt-6 pb-2 w-full h-[4.5rem]",
+        justifyContent,
         className,
       )}
     >
       {startAdornment && <div className="shrink-0">{startAdornment}</div>}
+
       <Typography
-        variant={startAdornment ? "subtitle" : "heading"}
-        level={startAdornment ? 1 : 3}
-        className={cn("flex-1 grow text-center", !startAdornment && "text-left")}
+        variant={hasStartAdornment ? "subtitle" : "heading"}
+        level={hasStartAdornment ? 1 : 3}
+        className={cn("flex-1 grow", textAlignment)}
       >
         {title}
       </Typography>
+
       {endAdornment && <div className="shrink-0">{endAdornment}</div>}
+
+      {!endAdornment && hasStartAdornment && (
+        <div className="shrink-0 invisible" aria-hidden="true">
+          {startAdornment}
+        </div>
+      )}
     </div>
   );
 };
