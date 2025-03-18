@@ -82,7 +82,6 @@ export function CountryDrawer({
           <GroupedCountryList
             groupedCountries={groupedCountries}
             onSelect={handleCountrySelect}
-            showEmptyState={filteredCountries.length === 0}
             value={value}
           />
         </div>
