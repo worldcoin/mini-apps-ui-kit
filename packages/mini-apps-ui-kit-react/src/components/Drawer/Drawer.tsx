@@ -26,11 +26,11 @@ import { DrawerContext, useDrawer } from "./use-drawer";
  */
 const Drawer = ({
   dismissible = true,
-  fullPage = false,
+  height = "full",
   modal = true,
   ...props
 }: DrawerProps) => (
-  <DrawerContext.Provider value={{ dismissible, fullPage }}>
+  <DrawerContext.Provider value={{ dismissible, height }}>
     <DrawerPrimitive.Root
       shouldScaleBackground={false}
       dismissible={dismissible}
@@ -69,7 +69,7 @@ const DrawerContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   DrawerContentProps
 >((props, ref) => {
-  const { fullPage } = useDrawer();
+  const { height } = useDrawer();
   return (
     <DrawerPrimitive.Portal>
       <DrawerPrimitive.Overlay className="fixed inset-0 z-50">
@@ -81,7 +81,7 @@ const DrawerContent = React.forwardRef<
         {...props}
         className={cn(
           "fixed inset-x-0 bottom-0 z-50 mt-24 bg-gray-0 outline-none",
-          fullPage ? "h-screen rounded-none" : "h-auto rounded-t-[1.75rem]",
+          height === "full" ? "h-screen rounded-none" : "h-auto rounded-t-[1.75rem]",
           props.className,
         )}
       />

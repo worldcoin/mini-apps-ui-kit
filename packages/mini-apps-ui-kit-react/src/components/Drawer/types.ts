@@ -24,7 +24,7 @@ export interface WithoutFadeFromProps {
 }
 type BaseDrawerProps = {
   /** Whether the drawer should take up the full page */
-  fullPage?: boolean;
+  height?: "full" | "fit";
   /** The active snap point */
   activeSnapPoint?: number | string | null;
   /** Callback when the active snap point changes */

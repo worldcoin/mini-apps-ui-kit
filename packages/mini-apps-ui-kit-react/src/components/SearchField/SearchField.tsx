@@ -9,7 +9,7 @@ import { Input, InputProps } from "../Input";
 import PasteButton, { PASTE_BUTTON_WIDTH } from "../PasteButton/PasteButton";
 
 export interface SearchFieldProps
-  extends Omit<InputProps, "startAdornment" | "startAdornmentWidth"> {
+  extends Omit<InputProps, "startAdornment" | "startAdornmentWidth" | "placeholder"> {
   /**
    * If true, the input will display in an error state with error styling
    */

@@ -1,8 +1,10 @@
 import { createContext, useContext } from "react";
 
+import { DrawerProps } from "./types";
+
 interface DrawerContextValue {
-  dismissible?: boolean;
-  fullPage?: boolean;
+  dismissible?: DrawerProps["dismissible"];
+  height?: DrawerProps["height"];
 }
 
 const DrawerContext = createContext<DrawerContextValue | undefined>(undefined);
