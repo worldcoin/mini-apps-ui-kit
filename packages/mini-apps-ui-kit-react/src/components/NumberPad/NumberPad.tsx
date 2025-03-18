@@ -1,7 +1,10 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { LongPressOptions, useLongPress } from "@uidotdev/usehooks";
 
+import { inputVariants } from "../Input";
+import { typographyVariants } from "../Typography";
 import { Delete } from "./Delete";
 
 interface NumberPadProps {
@@ -89,7 +92,11 @@ export const NumberPad = ({
           key={button.value}
           onClick={() => handleButtonClick(button.value)}
           disabled={disabled}
-          className="h-12 min-w-28 flex items-center justify-center text-[1.625rem] font-semibold font-display rounded-md transition-colors duration-200 active:bg-gray-50 select-none disabled:text-gray-300 disabled:cursor-not-allowed disabled:active:bg-transparent"
+          className={cn(
+            typographyVariants({ variant: "heading", level: 3 }),
+            "h-12 min-w-28 flex items-center justify-center  rounded-md transition-colors duration-200",
+            "active:bg-gray-50 select-none disabled:text-gray-300 disabled:cursor-not-allowed disabled:active:bg-transparent",
+          )}
           {...(button.value === "del" ? longPressAttributes : {})}
         >
           {button.label || button.value}
