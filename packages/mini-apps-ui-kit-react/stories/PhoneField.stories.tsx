@@ -66,12 +66,11 @@ export const Default: Story = {
     expect(selectButton).toBeVisible();
     expect(selectButton.childNodes).toHaveLength(3);
 
-    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
-      selectButton.childNodes[0].childNodes;
+    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] = selectButton.childNodes;
 
     expect(selectButtonFlag).toBeVisible();
-    expect(selectButtonDialCode.childNodes[0]).toBeVisible();
-    expect(selectButtonDialCode.childNodes[0]).toHaveTextContent("+1");
+    expect(selectButtonDialCode).toBeVisible();
+    expect(selectButtonDialCode).toHaveTextContent("+1");
     expect(selectButtonArrow).toBeVisible();
   },
 };
