@@ -66,13 +66,6 @@ export const Text: Story = {
       },
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        story: "Basic text input with placeholder text.",
-      },
-    },
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const input = await canvas.findByPlaceholderText("Name");

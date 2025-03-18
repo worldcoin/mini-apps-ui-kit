@@ -44,16 +44,10 @@ export const iconVariants = cva(
       disabled: {
         true: "text-gray-300 cursor-not-allowed",
       },
-      error: {
-        true: "text-error-600",
-      },
       position: {
         start: "left-0",
         end: "right-0",
       },
-    },
-    defaultVariants: {
-      error: false,
     },
   },
 );
@@ -171,7 +165,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className="relative flex w-full items-center group">
         {startAdornment && (
           <div
-            className={cn(iconVariants({ error, disabled, position: "start" }))}
+            className={cn(iconVariants({ disabled, position: "start" }))}
             style={{ width: `${startAdornmentWidth + 1}rem` }}
           >
             {startAdornment}
@@ -204,7 +198,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         />
         {(isValid || endAdornment) && (
           <div
-            className={cn(iconVariants({ error, disabled, position: "end" }))}
+            className={cn(iconVariants({ disabled, position: "end" }))}
             style={{ width: `${endAdornmentWidth + 1}rem` }}
           >
             {isValid ? <Tick className="text-success-700" /> : endAdornment}
