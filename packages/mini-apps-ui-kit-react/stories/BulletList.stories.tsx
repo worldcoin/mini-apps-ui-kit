@@ -25,6 +25,7 @@ const meta: Meta<typeof BulletList> = {
       </div>
     ),
   ],
+  subcomponents: { BulletListItem },
 };
 
 export default meta;
