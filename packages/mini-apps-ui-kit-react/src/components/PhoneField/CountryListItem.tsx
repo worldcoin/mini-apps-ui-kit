@@ -1,46 +1,29 @@
-import { cn } from "@/lib/utils";
-
-import { CountryCode, Flag } from "../Flag";
+import { CountryCode, LazyFlag } from "../Flag";
 import { Typography } from "../Typography";
 
 interface CountryListItemProps {
   countryCode: CountryCode;
   countryName: string;
-  dialCode: string;
-  isSelected: boolean;
-  onClick?: () => void;
+  onClick?: (value: CountryCode) => void;
 }
 
-const CountryListItem = ({
-  countryCode,
-  countryName,
-  dialCode,
-  isSelected,
-  onClick,
-}: CountryListItemProps) => {
+const CountryListItem = ({ countryCode, countryName, onClick }: CountryListItemProps) => {
   return (
-    <div
+    <button
+      type="button"
       data-country={countryCode}
-      className={cn(
-        "flex items-center w-full cursor-pointer rounded-md p-2 hover:bg-gray-100",
-        isSelected && "bg-gray-200",
-      )}
-      onClick={onClick}
+      className="h-[3.75rem] flex items-center w-full gap-2 cursor-pointer"
+      onClick={() => onClick?.(countryCode)}
     >
-      <span className="w-6 h-6">
-        <Flag countryCode={countryCode} size={24} />
-      </span>
+      <LazyFlag countryCode={countryCode} size={32} />
       <Typography
-        variant="body"
+        variant="subtitle"
         level={2}
         className="mx-2 overflow-hidden text-ellipsis whitespace-nowrap"
       >
         {countryName}
       </Typography>
-      <Typography variant="body" level={2} className="ml-auto">
-        {dialCode}
-      </Typography>
-    </div>
+    </button>
   );
 };
 

@@ -6,7 +6,6 @@ interface ColorProps {
 
 export const Color = ({ name, color }: ColorProps) => {
   const nameWithoutPrefix = name.split("-").pop() || "";
-  console.log(color);
   return (
     <div
       className="flex flex-col rounded-2xl overflow-hidden"

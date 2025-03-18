@@ -29,14 +29,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    placeholder: "Enter wallet address",
+    label: "Enter wallet address",
   },
 };
 
 export const WithValue: Story = {
   args: {
     value: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
-    placeholder: "Enter wallet address",
+    label: "Enter wallet address",
   },
 };
 
@@ -44,7 +44,7 @@ export const WithError: Story = {
   args: {
     value: "invalid-address",
     error: true,
-    placeholder: "Enter wallet address",
+    label: "Enter wallet address",
   },
 };
 
@@ -52,7 +52,7 @@ export const WithSuccess: Story = {
   args: {
     value: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
     isValid: true,
-    placeholder: "Enter wallet address",
+    label: "Enter wallet address",
   },
 };
 
@@ -60,13 +60,13 @@ export const Disabled: Story = {
   args: {
     value: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
     disabled: true,
-    placeholder: "Enter wallet address",
+    label: "Enter wallet address",
   },
 };
 
 export const CustomPlaceholder: Story = {
   args: {
-    placeholder: "Paste your ETH address here",
+    label: "Paste your ETH address here",
   },
 };
 
@@ -92,7 +92,7 @@ export const Interactive: Story = {
         onChange={handleChange}
         isValid={isValid}
         error={error}
-        placeholder="Enter ETH wallet address"
+        label="Enter ETH wallet address"
       />
     );
   },
