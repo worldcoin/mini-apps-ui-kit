@@ -45,7 +45,7 @@ const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className">,
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   /**
    * The variant style to use
@@ -75,7 +75,10 @@ export interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size = "lg", fullWidth, asChild, state, children, ...props }, ref) => {
+  (
+    { variant = "primary", size = "lg", fullWidth, asChild, state, children, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
 
     const stateful = !!state;
@@ -83,6 +86,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         ref={ref}
+        {...props}
         className={cn(
           buttonVariants({
             variant,
@@ -94,8 +98,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             variant: "label",
             level: size === "lg" ? 1 : 2,
           }),
+          props.className,
         )}
-        {...props}
       >
         {!state && children}
         {state === "pending" && <Spinner className="absolute size-6" />}
