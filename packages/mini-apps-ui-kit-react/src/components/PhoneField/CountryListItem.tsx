@@ -22,6 +22,7 @@ const CountryListItem = ({
       data-country={countryCode}
       className="h-[3.75rem] flex items-center w-full gap-2 cursor-pointer"
       onClick={() => onClick?.(countryCode)}
+      {...(isSelected && { "data-selected": true })}
     >
       <LazyFlag countryCode={countryCode} size={32} />
       <Typography
