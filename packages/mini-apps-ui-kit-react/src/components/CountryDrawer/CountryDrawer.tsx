@@ -64,7 +64,9 @@ export function CountryDrawer({
           title="Country"
           startAdornment={
             <DrawerClose asChild>
-              <Button variant="tertiary" size="sm" icon={<XMark />} />
+              <Button variant="tertiary" size="icon">
+                <XMark />
+              </Button>
             </DrawerClose>
           }
         />

@@ -100,7 +100,9 @@ const DrawerHeader = ({ icon, children, ...props }: DrawerHeaderProps) => {
       {dismissible && (
         <div className="shrink-0">
           <DrawerClose asChild>
-            <Button variant="tertiary" size="sm" icon={<XMark />}></Button>
+            <Button variant="tertiary" size="icon">
+              <XMark />
+            </Button>
           </DrawerClose>
         </div>
       )}

@@ -91,7 +91,9 @@ const AlertDialogHeader = ({ icon, children, ...props }: AlertDialogHeaderProps)
       {dismissible && (
         <div className="shrink-0">
           <AlertDialogClose asChild>
-            <Button variant="tertiary" size="sm" icon={<XMark />}></Button>
+            <Button variant="tertiary" size="icon">
+              <XMark />
+            </Button>
           </AlertDialogClose>
         </div>
       )}
