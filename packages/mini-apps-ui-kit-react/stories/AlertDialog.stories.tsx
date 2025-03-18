@@ -7,7 +7,6 @@ import {
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
-  AlertDialogOverlay,
   AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
@@ -25,11 +24,6 @@ const meta: Meta<typeof AlertDialog> = {
       description: "Whether the dialog can be dismissed",
       defaultValue: true,
     },
-    shouldScaleBackground: {
-      control: "boolean",
-      description: "Whether the background should scale when the dialog opens",
-      defaultValue: true,
-    },
   },
   subcomponents: {
     AlertDialogTrigger,
@@ -39,7 +33,6 @@ const meta: Meta<typeof AlertDialog> = {
     AlertDialogDescription,
     AlertDialogFooter,
     AlertDialogClose,
-    AlertDialogOverlay,
     AlertDialogPortal,
   },
   parameters: {

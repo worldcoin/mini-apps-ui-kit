@@ -45,24 +45,16 @@ const AlertDialogClose = React.forwardRef<
 >((props, ref) => <DrawerPrimitive.Close ref={ref} {...props} />);
 AlertDialogClose.displayName = "AlertDialogClose";
 
-const AlertDialogOverlay = React.forwardRef<
-  React.ElementRef<typeof DrawerPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DrawerPrimitive.Overlay
-    ref={ref}
-    className={cn("fixed inset-0 z-50 bg-gray-900/40", className)}
-    {...props}
-  />
-));
-AlertDialogOverlay.displayName = "AlertDialogOverlay";
-
 const AlertDialogContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   AlertDialogContentProps
 >(({ className, children, ...props }, ref) => (
   <AlertDialogPortal>
-    <AlertDialogOverlay />
+    <DrawerPrimitive.Overlay
+      ref={ref}
+      className={cn("fixed inset-0 z-50 bg-gray-900/40", className)}
+      {...props}
+    />
     <DrawerPrimitive.Content
       ref={ref}
       className={cn("fixed inset-x-0 bottom-0 z-50 mt-24 h-auto", className)}
@@ -135,7 +127,6 @@ AlertDialogDescription.displayName = "AlertDialogDescription";
 export {
   AlertDialog,
   AlertDialogPortal,
-  AlertDialogOverlay,
   AlertDialogTrigger,
   AlertDialogClose,
   AlertDialogContent,
