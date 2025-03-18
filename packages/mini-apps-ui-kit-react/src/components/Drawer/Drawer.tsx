@@ -80,7 +80,7 @@ const DrawerContent = React.forwardRef<
         ref={ref}
         {...props}
         className={cn(
-          "fixed inset-x-0 bottom-0 z-50 mt-24 bg-gray-0 outline-none p-8",
+          "fixed inset-x-0 bottom-0 z-50 mt-24 bg-gray-0 outline-none",
           fullPage ? "h-screen rounded-none" : "h-auto rounded-t-[1.75rem]",
           props.className,
         )}
