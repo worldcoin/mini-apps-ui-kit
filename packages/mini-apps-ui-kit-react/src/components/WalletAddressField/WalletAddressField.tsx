@@ -21,10 +21,10 @@ export interface WalletAddressFieldProps
    */
   isValid?: boolean;
   /**
-   * Placeholder text for the input
+   * Label for the input
    * @default "Enter wallet address"
    */
-  placeholder?: string;
+  label?: string;
   /**
    * Label for the paste button
    * @default "Paste"
@@ -40,7 +40,7 @@ export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFiel
       type = "text",
       autoComplete = "off",
       spellCheck = "false",
-      placeholder = "Wallet address",
+      label = "Wallet address",
       pasteButtonLabel = "Paste",
       ...props
     },
@@ -97,7 +97,7 @@ export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFiel
         type={type}
         autoComplete={autoComplete}
         spellCheck={spellCheck}
-        placeholder={placeholder}
+        label={label}
         onFocus={(e) => {
           setIsFocused(true);
           props.onFocus?.(e);

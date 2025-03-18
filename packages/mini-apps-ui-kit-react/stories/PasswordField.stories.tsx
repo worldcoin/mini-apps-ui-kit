@@ -14,7 +14,7 @@ const meta: Meta<typeof PasswordField> = {
     },
   },
   args: {
-    placeholder: "Enter password",
+    label: "Enter password",
   },
   decorators: [
     (Story) => (

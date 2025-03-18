@@ -53,7 +53,7 @@ export default function Home() {
             Input Fields
           </Typography>
           <Input />
-          <SearchField placeholder="Search..." />
+          <SearchField label="Search..." />
           <PhoneField />
         </section>
 

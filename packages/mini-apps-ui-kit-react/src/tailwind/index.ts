@@ -146,6 +146,7 @@ const uiKitTailwindPlugin = plugin(
         compact: "1.3",
       },
       fontSize: {
+        "2xs": "0.6875rem",
         xs: "0.8125rem",
         sm: "0.9375rem",
         base: "1.0625rem",
