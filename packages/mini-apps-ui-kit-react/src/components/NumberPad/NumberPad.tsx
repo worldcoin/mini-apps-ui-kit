@@ -74,9 +74,9 @@ export const NumberPad = ({
       // Don't add another decimal point if one already exists
       return;
     } else {
-      // Validate that the new value would still be a valid number
       const newValue = value + buttonValue;
-      if (!isNaN(Number(newValue))) {
+      // Allow trailing decimal point for partial number input
+      if (buttonValue === "." || !isNaN(Number(newValue))) {
         onChange(newValue);
       }
     }
