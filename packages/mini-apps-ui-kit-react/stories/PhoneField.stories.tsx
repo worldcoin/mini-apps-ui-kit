@@ -11,6 +11,14 @@ import { iconControl } from "./helpers/icon-control";
 const meta: Meta<typeof PhoneField> = {
   title: "components/PhoneField",
   component: PhoneField,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A phone number input field with country code selection and formatting support.",
+      },
+    },
+  },
   argTypes: {
     endAdornment: iconControl,
     disableDialCodePrefill: {
@@ -38,6 +46,13 @@ export const Default: Story = {
     const [value, setValue] = useState("");
 
     return <PhoneField {...args} value={value} onChange={setValue} />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "The default phone field with country code selector as a dropdown.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -67,6 +82,14 @@ export const CountrySelectorAsDrawer: Story = {
     return (
       <PhoneField {...args} value={value} onChange={setValue} countrySelectorMode="drawer" />
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Phone field with country selector displayed as a bottom drawer, suitable for mobile interfaces.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -122,6 +145,13 @@ export const AllowedCountryCodesProvided: Story = {
 
     return <PhoneField {...args} value={value} onChange={setValue} />;
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Phone field with a restricted list of available country codes.",
+      },
+    },
+  },
   args: {
     countrySelectorMode: "drawer",
     disableDialCodePrefill: false,
@@ -170,6 +200,14 @@ export const DialCodeInInputOnInitialization: Story = {
 
     return <PhoneField {...args} value={value} onChange={setValue} />;
   },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Phone field that automatically includes the country dial code in the input field on initialization.",
+      },
+    },
+  },
   args: {
     disableDialCodePrefill: false,
     defaultCountryCode: "DE",
@@ -200,6 +238,14 @@ export const WithoutDialCodeWithinButton: Story = {
     const [value, setValue] = useState("");
 
     return <PhoneField {...args} value={value} onChange={setValue} />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Phone field with hidden dial code in the country selector button for a cleaner look.",
+      },
+    },
   },
   args: {
     hideDialCode: true,
@@ -234,6 +280,13 @@ export const WithErrorLabel: Story = {
       </Form.Root>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Phone field in an error state with error message display.",
+      },
+    },
+  },
   args: {
     error: true,
   },
@@ -256,6 +309,13 @@ export const Disabled: Story = {
 
     return <PhoneField {...args} value={value} onChange={setValue} />;
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Phone field in a disabled state where user interaction is prevented.",
+      },
+    },
+  },
   args: {
     disabled: true,
   },
@@ -276,6 +336,14 @@ export const ShowValidStateWhenMin12Digits: Story = {
     const isValid = value.length >= 12;
 
     return <PhoneField {...args} value={value} onChange={setValue} isValid={isValid} />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Phone field that shows a success state when the input reaches a minimum length of 12 digits.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
@@ -299,8 +367,15 @@ export const ShowValidStateWhenMin12Digits: Story = {
 export const CustomDefaultCountry: Story = {
   render: (args) => {
     const [value, setValue] = useState("");
-
     return <PhoneField {...args} value={value} onChange={setValue} />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Phone field initialized with a specific country code and the ability to change it.",
+      },
+    },
   },
   args: {
     defaultCountryCode: "PL",

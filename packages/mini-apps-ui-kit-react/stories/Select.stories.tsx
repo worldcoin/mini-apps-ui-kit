@@ -9,6 +9,14 @@ import { Select, SelectOption, SelectProps } from "../src/components/Select";
 const meta: Meta<typeof Select> = {
   title: "components/Select",
   component: Select,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A select component that provides a dropdown list of options with support for default values, disabled state, and error handling.",
+      },
+    },
+  },
   argTypes: {
     value: {
       control: false,
@@ -40,6 +48,13 @@ export const Default: Story = {
 
     return <Select {...args} value={selectedValue} onChange={setSelectedValue} />;
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Basic select component with placeholder and dropdown options.",
+      },
+    },
+  },
   args: {
     options,
     placeholder: "Value",
@@ -60,6 +75,13 @@ export const Default: Story = {
 export const WithDefaultValue: Story = {
   render: (args) => {
     return <Select {...args} />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Select component initialized with a pre-selected value.",
+      },
+    },
   },
   args: {
     options,
@@ -120,6 +142,13 @@ export const Disabled: Story = {
   render: (args) => {
     return <Select {...args} />;
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Select component in a disabled state where user interaction is prevented.",
+      },
+    },
+  },
   args: {
     options,
     placeholder: "Value",
@@ -149,6 +178,13 @@ export const WithErrorLabel: Story = {
       </Form.Root>
     );
   },
+  parameters: {
+    docs: {
+      description: {
+        story: "Select component in an error state with error message display.",
+      },
+    },
+  },
   args: {
     options,
     placeholder: "Value",
@@ -172,6 +208,13 @@ export const WithDefaultOpen: Story = {
     const [selectedValue, setSelectedValue] = useState<string | undefined>();
 
     return <Select {...args} value={selectedValue} onChange={setSelectedValue} />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Select component that opens its dropdown automatically on mount.",
+      },
+    },
   },
   args: {
     options,
@@ -197,6 +240,13 @@ export const LongList: Story = {
     const [selectedValue, setSelectedValue] = useState<string | undefined>();
 
     return <Select {...args} value={selectedValue} onChange={setSelectedValue} />;
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Select component with a scrollable list of many options.",
+      },
+    },
   },
   args: {
     options: longListOptions,
@@ -247,6 +297,13 @@ export const ControlledOpen: Story = {
         />
       </>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Select component with externally controlled open state via a toggle button.",
+      },
+    },
   },
   args: {
     options,

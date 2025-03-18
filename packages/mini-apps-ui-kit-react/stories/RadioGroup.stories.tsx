@@ -8,6 +8,14 @@ import { cn } from "../src/lib/utils";
 const meta: Meta<typeof RadioGroup> = {
   title: "components/RadioGroup",
   component: RadioGroup,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          "A radio group component that allows users to select a single option from a list of choices.",
+      },
+    },
+  },
   subcomponents: {
     RadioGroupItem: RadioGroupItem as React.ComponentType<unknown>,
   },
@@ -53,6 +61,13 @@ export const Default: Story = {
       ))}
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Basic radio group with vertical orientation and unlabeled options.",
+      },
+    },
+  },
   args: {
     defaultValue: "option1",
     orientation: "vertical",
@@ -94,6 +109,13 @@ export const WithLabels: Story = {
       })}
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Radio group with labeled options for better accessibility and user experience.",
+      },
+    },
+  },
   args: {
     defaultValue: "option2",
     orientation: "vertical",
@@ -141,6 +163,13 @@ export const DisabledItems: Story = {
       })}
     </RadioGroup>
   ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Radio group demonstrating disabled state for specific options.",
+      },
+    },
+  },
   args: {
     defaultValue: "option1",
     orientation: "vertical",
@@ -175,6 +204,13 @@ export const Controlled: Story = {
         ))}
       </RadioGroup>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Radio group as a controlled component with external state management.",
+      },
+    },
   },
   args: {
     defaultValue: "option3",
@@ -216,6 +252,14 @@ export const OneControlledRadioElement: Story = {
         <RadioGroupItem value={option1} />
       </RadioGroup>
     );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Radio group with a single controlled radio element that can be toggled on and off.",
+      },
+    },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

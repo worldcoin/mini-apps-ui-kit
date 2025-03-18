@@ -1,6 +1,6 @@
 {
   "name": "@worldcoin/mini-apps-ui-kit-react",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -132,6 +132,14 @@
     "./BottomBar": {
       "types": "./dist/components/BottomBar/index.d.ts",
       "default": "./dist/components/BottomBar/index.js"
+    },
+    "./TopBar": {
+      "types": "./dist/components/TopBar/index.d.ts",
+      "default": "./dist/components/TopBar/index.js"
+    },
+    "./Marble": {
+      "types": "./dist/components/Marble/index.d.ts",
+      "default": "./dist/components/Marble/index.js"
     },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",

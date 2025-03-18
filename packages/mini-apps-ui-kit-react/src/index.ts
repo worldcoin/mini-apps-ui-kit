@@ -28,5 +28,7 @@ export * from "./components/BottomBar";
 export * from "./components/BulletList";
 export * from "./components/BulletListItem";
 export * from "./components/BulletPoint";
+export * from "./components/Marble";
+export * from "./components/TopBar";
 
 export { default as uiKitTailwindPlugin } from "./tailwind";
