@@ -92,12 +92,7 @@ export function CountryDrawer({
         />
 
         <div className="p-6">
-          <SearchField
-            ref={searchRef}
-            placeholder="Search name or number"
-            value={searchText}
-            onChange={handleSearchChange}
-          />
+          <SearchField ref={searchRef} value={searchText} onChange={handleSearchChange} />
         </div>
 
         <div className="no-scrollbar w-full overflow-auto px-6 h-full">

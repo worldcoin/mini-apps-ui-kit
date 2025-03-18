@@ -26,6 +26,10 @@ export const inputVariants = cva(
         true: "pt-6 pb-2 placeholder:text-transparent",
         false: "",
       },
+      isFocused: {
+        true: "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
+        false: "",
+      },
     },
     defaultVariants: {
       error: false,

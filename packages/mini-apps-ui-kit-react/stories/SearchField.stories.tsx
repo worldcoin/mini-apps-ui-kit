@@ -78,14 +78,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args) => <SearchField placeholder="Name, Address or ENS" {...args} />,
+  render: (args) => <SearchField label="Name, Address or ENS" {...args} />,
 };
 
 export const Error: Story = {
   render: (args) => (
     <Form.Root className="w-full">
       <Form.Field name="search">
-        <SearchField placeholder="Name, Address or ENS" error {...args} />
+        <SearchField label="Name, Address or ENS" error {...args} />
         <Form.Message error>This is an error message</Form.Message>
       </Form.Field>
     </Form.Root>
@@ -93,7 +93,5 @@ export const Error: Story = {
 };
 
 export const WithPasteButton: Story = {
-  render: (args) => (
-    <SearchField placeholder="Name, Address or ENS" showPasteButton {...args} />
-  ),
+  render: (args) => <SearchField label="Name, Address or ENS" showPasteButton {...args} />,
 };

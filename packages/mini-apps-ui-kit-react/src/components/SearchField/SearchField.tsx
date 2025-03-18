@@ -29,10 +29,10 @@ export interface SearchFieldProps
    */
   pasteButtonLabel?: string;
   /**
-   * Placeholder text for the input
+   * Label for the input
    * @default "Search"
    */
-  placeholder?: string;
+  label?: string;
 }
 
 export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
@@ -47,7 +47,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
       spellCheck = "false",
       endAdornment: endAdornmentProp,
       endAdornmentWidth: endAdornmentWidthProp,
-      placeholder = "Search",
+      label = "Search",
       ...props
     },
     forwardedRef,
@@ -106,7 +106,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           setIsFocused(true);
           props.onFocus?.(e);
         }}
-        placeholder={placeholder}
+        label={label}
         onBlur={(e) => {
           setIsFocused(false);
           props.onBlur?.(e);
