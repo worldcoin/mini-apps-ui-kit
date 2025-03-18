@@ -17,6 +17,18 @@
       "types": "./dist/components/Button/index.d.ts",
       "default": "./dist/components/Button/index.js"
     },
+    "./BulletList": {
+      "types": "./dist/components/BulletList/index.d.ts",
+      "default": "./dist/components/BulletList/index.js"
+    },
+    "./BulletListItem": {
+      "types": "./dist/components/BulletListItem/index.d.ts",
+      "default": "./dist/components/BulletListItem/index.js"
+    },
+    "./BulletPoint": {
+      "types": "./dist/components/BulletPoint/index.d.ts",
+      "default": "./dist/components/BulletPoint/index.js"
+    },
     "./Checkbox": {
       "types": "./dist/components/Checkbox/index.d.ts",
       "default": "./dist/components/Checkbox/index.js"
