@@ -59,7 +59,7 @@ export function CountryDrawer({
         {children}
       </DrawerTrigger>
 
-      <DrawerContent className="p-0">
+      <DrawerContent>
         <TopBar
           title="Country"
           startAdornment={
