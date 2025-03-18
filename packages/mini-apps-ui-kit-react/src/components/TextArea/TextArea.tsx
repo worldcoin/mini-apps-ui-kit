@@ -64,10 +64,9 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
               cn(
                 // Initial state
                 "peer-placeholder-shown:text-sm",
-                "peer-focus:text-xs",
+                "peer-focus:text-xs peer-focus:border-gray-300 peer-focus:bg-gray-0",
                 // End state
-                "absolute text-gray-500 duration-300 transform text-xs top-4",
-                "z-10 pl-4",
+                "absolute text-gray-500 duration-300 transform text-xs top-0 pt-4 z-10 pl-4 w-full bg-gray-100 rounded-t-[0.625rem] border-t border-x border-gray-100",
               ),
             )}
           >
