@@ -111,7 +111,7 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           setIsFocused(false);
           props.onBlur?.(e);
         }}
-        className="rounded-full"
+        className="rounded-full h-[3.125rem]"
       />
     );
   },

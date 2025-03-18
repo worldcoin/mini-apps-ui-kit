@@ -1,4 +1,4 @@
-import { Chip, Token } from "@/index";
+import { Chip, Pill, Token } from "@/index";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ListItem } from "../src/components/ListItem";
@@ -74,6 +74,6 @@ export const WithEndAdornment: Story = {
   args: {
     label: "List Item with Action",
     description: "This list item has an end adornment",
-    endAdornment: <Chip label="Action" variant="warning" />,
+    endAdornment: <Pill checked>Suggested</Pill>,
   },
 };

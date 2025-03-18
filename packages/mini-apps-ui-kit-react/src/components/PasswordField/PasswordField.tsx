@@ -3,6 +3,7 @@
 import { forwardRef, useState } from "react";
 
 import { Eye } from "../Icons/Eye";
+import { EyeClosed } from "../Icons/EyeClosed";
 import { Input, InputProps } from "../Input";
 
 export interface PasswordFieldProps
@@ -44,7 +45,7 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
         endAdornmentWidth={2.4}
         endAdornment={
           <button type="button" onClick={() => setShowPassword(!showPassword)}>
-            <Eye />
+            {showPassword ? <EyeClosed /> : <Eye />}
           </button>
         }
         type={showPassword ? "text" : "password"}

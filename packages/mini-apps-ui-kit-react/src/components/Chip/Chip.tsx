@@ -26,7 +26,7 @@ export interface ChipProps {
 }
 
 const chipVariants = cva(
-  "inline-flex h-7 items-center gap-2 rounded-full px-2 font-sans text-sm font-medium leading-none",
+  "inline-flex h-7 items-center gap-2 rounded-full px-4 font-sans text-sm font-medium leading-none",
   {
     variants: {
       variant: {
@@ -36,9 +36,14 @@ const chipVariants = cva(
         error: "bg-error-100 text-error-700",
         important: "bg-info-100 text-info-700",
       },
+      isIcon: {
+        true: "pl-3",
+        false: "",
+      },
     },
     defaultVariants: {
       variant: "default",
+      isIcon: false,
     },
   },
 );
@@ -46,9 +51,9 @@ const chipVariants = cva(
 export const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof chipVariants>>(
   ({ className = "", icon, label, variant = "default" }, ref) => {
     return (
-      <div ref={ref} className={chipVariants({ variant, className })}>
+      <div ref={ref} className={chipVariants({ variant, className, isIcon: !!icon })}>
         {icon && <Slot style={{ width: "1rem", height: "1rem" }}>{icon}</Slot>}
-        <Typography variant="subtitle" level={3}>
+        <Typography variant="subtitle" level={4}>
           {label}
         </Typography>
       </div>

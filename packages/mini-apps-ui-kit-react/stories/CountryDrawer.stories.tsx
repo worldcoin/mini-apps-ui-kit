@@ -37,7 +37,9 @@ const CountryDrawerDemo = () => {
 
   return (
     <CountryDrawer value={country} onChange={(code) => setCountry(code as CountryCode)}>
-      <Button variant="secondary" icon={<Flag countryCode={country} />} />
+      <Button variant="secondary" size="icon">
+        <Flag countryCode={country} />
+      </Button>
     </CountryDrawer>
   );
 };
@@ -49,7 +51,9 @@ export const Default: Story = {
 export const Disabled: Story = {
   render: () => (
     <CountryDrawer value="US" onChange={() => {}} disabled>
-      <Button variant="secondary" icon={<Flag countryCode="US" />} />
+      <Button variant="secondary" size="icon">
+        <Flag countryCode="US" />
+      </Button>
     </CountryDrawer>
   ),
 };
@@ -64,7 +68,9 @@ export const LimitedCountries: Story = {
         countries={["US", "CA", "GB", "FR", "DE"]}
         onChange={(code) => setCountry(code as CountryCode)}
       >
-        <Button variant="secondary" icon={<Flag countryCode={country} />} />
+        <Button variant="secondary" size="icon">
+          <Flag countryCode={country} />
+        </Button>
       </CountryDrawer>
     );
   },

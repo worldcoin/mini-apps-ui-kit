@@ -1,5 +1,6 @@
 import { DrawerClose } from "../Drawer";
 import { CountryCode } from "../Flag";
+import { Magnifier } from "../Icons/Magnifier";
 import { Typography } from "../Typography";
 import CountryListItem from "./CountryListItem";
 
@@ -12,7 +13,6 @@ interface GroupedCountries {
 
 interface GroupedCountryListProps {
   groupedCountries: GroupedCountries;
-  showEmptyState?: boolean;
   value: CountryCode;
   onSelect: (countryCode: CountryCode) => void;
 }
@@ -20,14 +20,16 @@ interface GroupedCountryListProps {
 export function GroupedCountryList({
   groupedCountries,
   onSelect,
-  showEmptyState,
   value,
 }: GroupedCountryListProps) {
-  if (showEmptyState) {
+  if (Object.keys(groupedCountries).length === 0) {
     return (
-      <Typography variant="body" level={2} className="text-center">
-        No countries found
-      </Typography>
+      <div className="flex flex-col items-center justify-center grow text-gray-400 gap-2 h-full">
+        <Magnifier className="size-8" />
+        <Typography variant="body" level={3}>
+          No search results
+        </Typography>
+      </div>
     );
   }
 

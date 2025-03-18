@@ -59,12 +59,14 @@ export function CountryDrawer({
         {children}
       </DrawerTrigger>
 
-      <DrawerContent className="p-0">
+      <DrawerContent>
         <TopBar
           title="Country"
           startAdornment={
             <DrawerClose asChild>
-              <Button variant="tertiary" size="sm" icon={<XMark />} />
+              <Button variant="tertiary" size="icon">
+                <XMark />
+              </Button>
             </DrawerClose>
           }
         />
@@ -82,7 +84,6 @@ export function CountryDrawer({
           <GroupedCountryList
             groupedCountries={groupedCountries}
             onSelect={handleCountrySelect}
-            showEmptyState={filteredCountries.length === 0}
             value={value}
           />
         </div>

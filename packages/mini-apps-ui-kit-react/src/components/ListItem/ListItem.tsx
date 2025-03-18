@@ -32,7 +32,7 @@ export const ListItem = forwardRef<HTMLButtonElement, ListItemProps>(
   ({ children, label, description, startAdornment, endAdornment, disabled, ...props }, ref) => {
     return (
       <button ref={ref} className={listItemStyles()} {...props} disabled={disabled}>
-        {startAdornment && <div className="mr-4 flex-shrink-0">{startAdornment}</div>}
+        {startAdornment && <div className="mr-3 flex-shrink-0">{startAdornment}</div>}
         <div className="flex flex-col flex-grow min-w-0 items-start gap-0.5">
           {label && (
             <Typography variant="subtitle" level={2} className="truncate grow w-full text-left">

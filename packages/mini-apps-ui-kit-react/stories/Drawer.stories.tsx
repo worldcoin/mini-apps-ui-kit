@@ -59,7 +59,7 @@ export const FullPage: StoryObj<typeof Drawer> = {
           Open
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="pb-4">
+      <DrawerContent className="p-6">
         <DrawerHeader>
           <DrawerTitle>Drawer with scrollable content</DrawerTitle>
         </DrawerHeader>
