@@ -1,23 +1,26 @@
 import { useEffect, useRef, useState } from "react";
-import { CountryData, parseCountry } from "react-international-phone";
+import { defaultCountries, parseCountry } from "react-international-phone";
 
 import { Button } from "../Button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "../Drawer";
 import { CountryCode } from "../Flag";
 import { XMark } from "../Icons/XMark";
+import { GroupedCountryList } from "../PhoneField/GroupedCountryList";
+import {
+  filterCountries,
+  getCountryDataListByCodes,
+  getValidatedCountryCode,
+} from "../PhoneField/utils";
 import { SearchField } from "../SearchField";
 import { TopBar } from "../TopBar";
-import CountrySelectorButton from "./CountrySelectorButton";
-import { GroupedCountryList } from "./GroupedCountryList";
-import { filterCountries, getValidatedCountryCode } from "./utils";
 
 interface CountryDrawerProps {
   value: CountryCode;
-  countries: CountryData[];
+  countries?: CountryCode[];
   disabled?: boolean;
-  defaultCountryCode?: CountryCode;
-  dialCode: string;
-  onSelect: (countryCode: string) => void;
+  defaultValue?: CountryCode;
+  children: React.ReactNode;
+  onChange: (countryCode: string) => void;
   onAnimationEnd?: (open: boolean) => void;
 }
 
@@ -29,13 +32,13 @@ interface GroupedCountries {
 }
 
 export function CountryDrawer({
-  onSelect,
+  onChange,
   value,
   countries,
   onAnimationEnd,
   disabled = false,
-  dialCode,
-  defaultCountryCode = "US",
+  children,
+  defaultValue = "US",
 }: CountryDrawerProps) {
   const [searchText, setSearchText] = useState("");
   const [open, setOpen] = useState(false);
@@ -51,7 +54,9 @@ export function CountryDrawer({
     }
   }, [open]);
 
-  const filteredCountries = filterCountries(countries, searchText);
+  const richCountries = countries ? getCountryDataListByCodes(countries) : defaultCountries;
+
+  const filteredCountries = filterCountries(richCountries, searchText);
 
   const groupedCountries = filteredCountries.reduce<GroupedCountries>((acc, country) => {
     const parsedCountry = parseCountry(country);
@@ -62,7 +67,7 @@ export function CountryDrawer({
     }
 
     acc[firstLetter].push({
-      countryCode: getValidatedCountryCode(parsedCountry.iso2, defaultCountryCode),
+      countryCode: getValidatedCountryCode(parsedCountry.iso2, defaultValue),
       name: parsedCountry.name,
     });
 
@@ -70,18 +75,18 @@ export function CountryDrawer({
   }, {});
 
   const handleCountrySelect = (countryCode: CountryCode) => {
-    onSelect(countryCode);
+    onChange(countryCode);
     setSearchText("");
     setOpen(false);
   };
 
   return (
     <Drawer open={open} onOpenChange={setOpen} onAnimationEnd={onAnimationEnd} fullPage>
-      <DrawerTrigger asChild className="outline-none">
-        <CountrySelectorButton disabled={disabled} value={value} dialCode={dialCode} />
+      <DrawerTrigger asChild className="outline-none" disabled={disabled}>
+        {children}
       </DrawerTrigger>
 
-      <DrawerContent className="px-0">
+      <DrawerContent className="p-0">
         <TopBar
           title="Country"
           startAdornment={
@@ -106,3 +111,5 @@ export function CountryDrawer({
     </Drawer>
   );
 }
+
+// TODO: Export all countries.

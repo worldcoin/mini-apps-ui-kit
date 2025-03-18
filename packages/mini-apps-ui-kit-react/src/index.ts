@@ -27,4 +27,5 @@ export * from "./components/AlertDialog";
 export * from "./components/BottomBar";
 export * from "./components/Marble";
 export * from "./components/TopBar";
+export * from "./components/CountryDrawer";
 export { default as uiKitTailwindPlugin } from "./tailwind";

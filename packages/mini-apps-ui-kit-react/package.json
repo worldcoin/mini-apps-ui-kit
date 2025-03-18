@@ -129,6 +129,10 @@
       "types": "./dist/components/Marble/index.d.ts",
       "default": "./dist/components/Marble/index.js"
     },
+    "./CountryDrawer": {
+      "types": "./dist/components/CountryDrawer/index.d.ts",
+      "default": "./dist/components/CountryDrawer/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "default": "./dist/tailwind/index.js"

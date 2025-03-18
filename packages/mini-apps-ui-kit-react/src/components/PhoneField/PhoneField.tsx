@@ -3,9 +3,10 @@
 import { forwardRef, useImperativeHandle, useMemo } from "react";
 import { usePhoneInput } from "react-international-phone";
 
+import { CountryDrawer } from "../CountryDrawer/CountryDrawer";
 import { CountryCode } from "../Flag/Flag";
 import { Input, InputProps } from "../Input";
-import { CountryDrawer } from "./CountryDrawer";
+import CountrySelectorButton from "./CountrySelectorButton";
 import { DIAL_CODE_PREFIX, startAdornmentWidthByDialCodeLength } from "./constants";
 import { getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
 
@@ -150,12 +151,15 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         showStartDivider
         startAdornment={
           <CountryDrawer
-            onSelect={handleCountrySelect}
             value={selectedCountryCode}
-            countries={countryDataList}
+            defaultValue={defaultCountryCode}
+            countries={countries}
             onAnimationEnd={handleDrawerAnimationEnd}
-            dialCode={currentDialCode}
-          />
+            onChange={handleCountrySelect}
+            disabled={disabled}
+          >
+            <CountrySelectorButton value={selectedCountryCode} label={currentDialCode} />
+          </CountryDrawer>
         }
       />
     );
