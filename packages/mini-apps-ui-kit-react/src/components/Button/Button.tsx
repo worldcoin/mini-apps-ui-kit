@@ -11,7 +11,7 @@ import { Spinner } from "../Spinner";
 import { typographyVariants } from "../Typography";
 
 const buttonVariants = cva(
-  "flex items-center justify-center rounded-full gap-2 font-display leading-[1.2] tracking-normal transition-colors",
+  "flex items-center justify-center rounded-full gap-2 font-sans leading-[1.2] tracking-normal transition-colors",
   {
     variants: {
       variant: {
