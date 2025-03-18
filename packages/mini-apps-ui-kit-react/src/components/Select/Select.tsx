@@ -5,9 +5,9 @@ import * as RadixSelect from "@radix-ui/react-select";
 import { forwardRef, useEffect, useState } from "react";
 
 import { cn } from "../../lib/utils";
+import { ArrowDown } from "../Icons/ArrowDown";
 import { inputVariants } from "../Input";
 import { typographyVariants } from "../Typography";
-import { ArrowRight } from "./ArrowRight";
 
 export interface SelectOption {
   /**
@@ -133,7 +133,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         >
           <RadixSelect.Value placeholder={placeholder} />
           <RadixSelect.Icon>
-            <ArrowRight className="text-gray-400" />
+            <ArrowDown className="text-gray-400 size-6" />
           </RadixSelect.Icon>
         </RadixSelect.Trigger>
 
