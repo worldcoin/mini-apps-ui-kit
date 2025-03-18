@@ -8,10 +8,10 @@ import { ButtonHTMLAttributes, forwardRef } from "react";
 import { Fail } from "../Icons/Fail";
 import { Success } from "../Icons/Success";
 import { Spinner } from "../Spinner";
-import { Typography } from "../Typography";
+import { typographyVariants } from "../Typography";
 
 const buttonVariants = cva(
-  "flex items-center justify-center rounded-full gap-1 font-display leading-[1.2] tracking-normal transition-colors",
+  "flex items-center justify-center rounded-full gap-2 font-display leading-[1.2] tracking-normal transition-colors",
   {
     variants: {
       variant: {
@@ -23,8 +23,9 @@ const buttonVariants = cva(
           "bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-200 disabled:text-gray-300 disabled:bg-gray-50",
       },
       size: {
-        sm: "h-10 min-w-10 px-2",
+        sm: "h-10 min-w-10 px-4",
         lg: "h-14 min-w-14 px-4",
+        icon: "size-10",
       },
       stateful: {
         true: "border-none bg-transparent fill-transparent text-transparent hover:bg-transparent active:bg-transparent disabled:bg-transparent disabled:text-transparent",
@@ -53,20 +54,14 @@ export interface ButtonProps
   variant?: "primary" | "secondary" | "tertiary";
   /**
    * The size of the button
-   * @default "md"
+   * @default "lg"
    */
-  size?: "sm" | "lg";
+  size?: "sm" | "lg" | "icon";
   /**
    * The state of the button
    * @default undefined
    */
   state?: "pending" | "success" | "failed";
-  /**
-   * Optional icon to display in the button.
-   * The component passed to this prop must accept a `style` prop.
-   * The component should use currentColor to match the Input's styling.
-   */
-  icon?: React.ReactNode;
   /**
    * Whether the button should take up the full width of its container
    * @default false
@@ -80,7 +75,7 @@ export interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant, size = "lg", children, icon, fullWidth, asChild, state, ...props }, ref) => {
+  ({ variant, size = "lg", fullWidth, asChild, state, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
 
     const stateful = !!state;
@@ -88,22 +83,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         ref={ref}
-        className={buttonVariants({
-          variant,
-          size,
-          stateful,
-          fullWidth,
-        })}
+        className={cn(
+          buttonVariants({
+            variant,
+            size,
+            stateful,
+            fullWidth,
+          }),
+          typographyVariants({
+            variant: "label",
+            level: size === "lg" ? 1 : 2,
+          }),
+        )}
         {...props}
       >
-        {icon && <Slot className={cn("size-6", stateful && "opacity-0")}>{icon}</Slot>}
-
-        {children && (
-          <Typography variant="label" level={size === "lg" ? 1 : 2}>
-            {children}
-          </Typography>
-        )}
-
+        {!state && children}
         {state === "pending" && <Spinner className="absolute size-6" />}
         {state === "success" && <Success className="absolute size-6" />}
         {state === "failed" && <Fail className="absolute size-6" />}
