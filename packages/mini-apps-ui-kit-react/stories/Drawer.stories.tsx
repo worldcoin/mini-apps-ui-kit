@@ -7,6 +7,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/Drawer";
+import { Typography } from "@/index";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Drawer> = {
@@ -39,13 +40,20 @@ export const Default: StoryObj<typeof Drawer> = {
           Open
         </Button>
       </DrawerTrigger>
-      <DrawerContent>
+      <DrawerContent className="p-6">
         <DrawerHeader>
           <DrawerTitle>Drawer title</DrawerTitle>
         </DrawerHeader>
-        <DrawerClose>
-          <Button>Close</Button>
-        </DrawerClose>
+        <div className="my-8">
+          <Typography className="text-gray-500">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+            deserunt mollit anim id est laborum.
+          </Typography>
+        </div>
       </DrawerContent>
     </Drawer>
   ),

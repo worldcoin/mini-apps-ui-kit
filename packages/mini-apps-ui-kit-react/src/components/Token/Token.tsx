@@ -10,11 +10,20 @@ interface TokenProps {
   value: keyof typeof tokens;
   /** Width and height in pixels of the token icon (default: 40) */
   size?: number;
+  /** Variant of the token icon (default: "default") */
+  variant?: "color" | "monochrome";
+  /** Whether the token is disabled */
+  disabled?: boolean;
 }
 
-export const Token: React.FC<TokenProps> = ({ value, size = 40 }) => {
+export const Token: React.FC<TokenProps> = ({
+  value,
+  size = 40,
+  variant = "color",
+  disabled = false,
+}) => {
   const Icon = tokens[value];
-  return <Icon width={size} height={size} />;
+  return <Icon width={size} height={size} disabled={disabled} variant={variant} />;
 };
 
 export default Token;
