@@ -12,14 +12,16 @@ interface GroupedCountries {
 
 interface GroupedCountryListProps {
   groupedCountries: GroupedCountries;
-  onSelect: (countryCode: CountryCode) => void;
   showEmptyState?: boolean;
+  value: CountryCode;
+  onSelect: (countryCode: CountryCode) => void;
 }
 
 export function GroupedCountryList({
   groupedCountries,
   onSelect,
   showEmptyState,
+  value,
 }: GroupedCountryListProps) {
   if (showEmptyState) {
     return (
@@ -44,6 +46,7 @@ export function GroupedCountryList({
                   countryCode={country.countryCode}
                   countryName={country.name}
                   onClick={onSelect}
+                  isSelected={value === country.countryCode}
                 />
               </DrawerClose>
             ))}

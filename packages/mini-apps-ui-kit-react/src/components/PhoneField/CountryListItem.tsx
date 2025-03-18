@@ -4,10 +4,18 @@ import { Typography } from "../Typography";
 interface CountryListItemProps {
   countryCode: CountryCode;
   countryName: string;
+  isSelected?: boolean;
   onClick?: (value: CountryCode) => void;
 }
 
-const CountryListItem = ({ countryCode, countryName, onClick }: CountryListItemProps) => {
+// TODO: Implement selected state
+
+const CountryListItem = ({
+  countryCode,
+  countryName,
+  onClick,
+  isSelected,
+}: CountryListItemProps) => {
   return (
     <button
       type="button"

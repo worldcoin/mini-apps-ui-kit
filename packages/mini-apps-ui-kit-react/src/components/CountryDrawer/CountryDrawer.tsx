@@ -1,41 +1,33 @@
-import { useEffect, useRef, useState } from "react";
-import { CountryData, parseCountry } from "react-international-phone";
+import { useRef, useState } from "react";
 
 import { Button } from "../Button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "../Drawer";
 import { CountryCode } from "../Flag";
 import { XMark } from "../Icons/XMark";
+import { GroupedCountryList } from "../PhoneField/GroupedCountryList";
 import { SearchField } from "../SearchField";
 import { TopBar } from "../TopBar";
-import CountrySelectorButton from "./CountrySelectorButton";
-import { GroupedCountryList } from "./GroupedCountryList";
-import { filterCountries, getValidatedCountryCode } from "./utils";
+import { useCountryFiltering } from "./useCountryFiltering";
+import { useCountryGrouping } from "./useCountryGrouping";
 
 interface CountryDrawerProps {
   value: CountryCode;
-  countries: CountryData[];
+  countries?: CountryCode[];
   disabled?: boolean;
-  defaultCountryCode?: CountryCode;
-  dialCode: string;
-  onSelect: (countryCode: string) => void;
+  defaultValue?: CountryCode;
+  children: React.ReactNode;
+  onChange: (countryCode: string) => void;
   onAnimationEnd?: (open: boolean) => void;
 }
 
-interface GroupedCountries {
-  [key: string]: {
-    countryCode: CountryCode;
-    name: string;
-  }[];
-}
-
 export function CountryDrawer({
-  onSelect,
+  onChange,
   value,
   countries,
   onAnimationEnd,
   disabled = false,
-  dialCode,
-  defaultCountryCode = "US",
+  children,
+  defaultValue = "US",
 }: CountryDrawerProps) {
   const [searchText, setSearchText] = useState("");
   const [open, setOpen] = useState(false);
@@ -45,43 +37,29 @@ export function CountryDrawer({
     setSearchText(event.target.value);
   };
 
-  useEffect(() => {
-    if (open && searchRef.current) {
-      searchRef.current.focus();
-    }
-  }, [open]);
+  const filteredCountries = useCountryFiltering({
+    countries,
+    searchText,
+  });
 
-  const filteredCountries = filterCountries(countries, searchText);
-
-  const groupedCountries = filteredCountries.reduce<GroupedCountries>((acc, country) => {
-    const parsedCountry = parseCountry(country);
-    const firstLetter = parsedCountry.name.charAt(0).toUpperCase();
-
-    if (!acc[firstLetter]) {
-      acc[firstLetter] = [];
-    }
-
-    acc[firstLetter].push({
-      countryCode: getValidatedCountryCode(parsedCountry.iso2, defaultCountryCode),
-      name: parsedCountry.name,
-    });
-
-    return acc;
-  }, {});
+  const groupedCountries = useCountryGrouping({
+    countries: filteredCountries,
+    defaultValue,
+  });
 
   const handleCountrySelect = (countryCode: CountryCode) => {
-    onSelect(countryCode);
+    onChange(countryCode);
     setSearchText("");
     setOpen(false);
   };
 
   return (
     <Drawer open={open} onOpenChange={setOpen} onAnimationEnd={onAnimationEnd} fullPage>
-      <DrawerTrigger asChild className="outline-none">
-        <CountrySelectorButton disabled={disabled} value={value} dialCode={dialCode} />
+      <DrawerTrigger asChild className="outline-none" disabled={disabled}>
+        {children}
       </DrawerTrigger>
 
-      <DrawerContent className="px-0">
+      <DrawerContent className="p-0">
         <TopBar
           title="Country"
           startAdornment={
@@ -92,7 +70,12 @@ export function CountryDrawer({
         />
 
         <div className="p-6">
-          <SearchField ref={searchRef} value={searchText} onChange={handleSearchChange} />
+          <SearchField
+            ref={searchRef}
+            value={searchText}
+            onChange={handleSearchChange}
+            autoFocus={open}
+          />
         </div>
 
         <div className="no-scrollbar w-full overflow-auto px-6 h-full">
@@ -100,6 +83,7 @@ export function CountryDrawer({
             groupedCountries={groupedCountries}
             onSelect={handleCountrySelect}
             showEmptyState={filteredCountries.length === 0}
+            value={value}
           />
         </div>
       </DrawerContent>
