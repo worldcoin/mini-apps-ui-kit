@@ -28,4 +28,6 @@ export * from "./components/BottomBar";
 export * from "./components/Marble";
 export * from "./components/TopBar";
 export * from "./components/CountryDrawer";
+export * from "./components/ToggleGroup";
+
 export { default as uiKitTailwindPlugin } from "./tailwind";

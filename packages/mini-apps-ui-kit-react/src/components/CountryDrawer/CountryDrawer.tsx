@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { defaultCountries, parseCountry } from "react-international-phone";
 
 import { Button } from "../Button";
@@ -48,12 +48,6 @@ export function CountryDrawer({
     setSearchText(event.target.value);
   };
 
-  useEffect(() => {
-    if (open && searchRef.current) {
-      searchRef.current.focus();
-    }
-  }, [open]);
-
   const richCountries = countries ? getCountryDataListByCodes(countries) : defaultCountries;
 
   const filteredCountries = filterCountries(richCountries, searchText);
@@ -97,7 +91,12 @@ export function CountryDrawer({
         />
 
         <div className="p-6">
-          <SearchField ref={searchRef} value={searchText} onChange={handleSearchChange} />
+          <SearchField
+            ref={searchRef}
+            value={searchText}
+            onChange={handleSearchChange}
+            autoFocus={open}
+          />
         </div>
 
         <div className="no-scrollbar w-full overflow-auto px-6 h-full">
@@ -105,11 +104,10 @@ export function CountryDrawer({
             groupedCountries={groupedCountries}
             onSelect={handleCountrySelect}
             showEmptyState={filteredCountries.length === 0}
+            value={value}
           />
         </div>
       </DrawerContent>
     </Drawer>
   );
 }
-
-// TODO: Export all countries.

@@ -133,6 +133,14 @@
       "types": "./dist/components/CountryDrawer/index.d.ts",
       "default": "./dist/components/CountryDrawer/index.js"
     },
+    "./ToggleGroup": {
+      "types": "./dist/components/ToggleGroup/index.d.ts",
+      "default": "./dist/components/ToggleGroup/index.js"
+    },
+    "./ToggleGroupItem": {
+      "types": "./dist/components/ToggleGroup/index.d.ts",
+      "default": "./dist/components/ToggleGroup/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "default": "./dist/tailwind/index.js"
@@ -204,6 +212,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-switch": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.6",
+    "@radix-ui/react-toggle-group": "^1.1.2",
     "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
