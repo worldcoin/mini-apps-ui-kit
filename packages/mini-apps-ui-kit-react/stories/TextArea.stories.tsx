@@ -34,6 +34,14 @@ export const Default: Story = {
   },
 };
 
+export const FloatingLabel: Story = {
+  args: {
+    label: "Enter your text here...",
+    variant: "floating-label",
+    id: "text-area-floating-label",
+  },
+};
+
 export const WithError: Story = {
   args: {
     label: "Enter your text here...",
