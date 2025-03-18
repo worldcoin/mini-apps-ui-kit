@@ -29,33 +29,39 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    placeholder: "Enter your text here...",
+    label: "Enter your text here...",
+    id: "text-area-default",
   },
 };
 
 export const WithError: Story = {
   args: {
-    placeholder: "Enter your text here...",
+    label: "Enter your text here...",
     error: true,
+    id: "text-area-error",
   },
 };
 
 export const Disabled: Story = {
   args: {
-    placeholder: "This textarea is disabled",
+    label: "This textarea is disabled",
     disabled: true,
+    id: "text-area-disabled",
   },
 };
 
 export const Focused: Story = {
   args: {
-    placeholder: "This textarea is focused",
+    label: "This textarea is focused",
     isFocused: true,
+    id: "text-area-focused",
   },
 };
 
 export const WithValue: Story = {
   args: {
+    label: "This textarea has content",
     value: "This is some example text that shows how the textarea looks with content.",
+    id: "text-area-with-value",
   },
 };

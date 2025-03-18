@@ -30,9 +30,15 @@ export const inputVariants = cva(
         true: "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
         false: "",
       },
+      variant: {
+        "floating-label": "pt-6 pb-2 placeholder:text-transparent",
+        default: "",
+      },
     },
     defaultVariants: {
       error: false,
+      isFocused: false,
+      variant: "default",
     },
   },
 );
@@ -159,8 +165,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref,
   ) => {
-    const isPersistLabel = variant === "floating-label";
-
     return (
       <div className="relative flex w-full items-center group">
         {startAdornment && (
@@ -181,7 +185,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           placeholder={label}
           disabled={disabled}
           className={cn(
-            inputVariants({ error, isLabel: isPersistLabel }),
+            inputVariants({ error, isLabel: variant === "floating-label" }),
             typographyVariants({ variant: "body", level: 3 }),
             className,
           )}
@@ -207,7 +211,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             )}
           </div>
         )}
-        {isPersistLabel && (
+        {variant === "floating-label" && (
           <label
             htmlFor={id}
             className={cn(
