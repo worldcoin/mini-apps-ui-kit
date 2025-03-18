@@ -54,7 +54,7 @@ export function CountryDrawer({
   };
 
   return (
-    <Drawer open={open} onOpenChange={setOpen} onAnimationEnd={onAnimationEnd} fullPage>
+    <Drawer open={open} onOpenChange={setOpen} onAnimationEnd={onAnimationEnd} height="full">
       <DrawerTrigger asChild className="outline-none" disabled={disabled}>
         {children}
       </DrawerTrigger>
