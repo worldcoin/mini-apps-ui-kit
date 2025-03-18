@@ -2,6 +2,8 @@ import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ReactNode, forwardRef } from "react";
 
+import { Typography } from "../Typography";
+
 type ChipVariant = "default" | "success" | "warning" | "error" | "important";
 
 export interface ChipProps {
@@ -46,7 +48,9 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof c
     return (
       <div ref={ref} className={chipVariants({ variant, className })}>
         {icon && <Slot style={{ width: "1rem", height: "1rem" }}>{icon}</Slot>}
-        <span>{label}</span>
+        <Typography variant="subtitle" level={3}>
+          {label}
+        </Typography>
       </div>
     );
   },

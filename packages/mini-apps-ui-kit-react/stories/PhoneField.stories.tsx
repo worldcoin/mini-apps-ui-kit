@@ -110,9 +110,7 @@ export const AllowedCountryCodesProvided: Story = {
 
       expect(countryElements).toHaveLength(2);
 
-      searchInput = (await within(drawer!).getByPlaceholderText(
-        "Search name or number",
-      )) as HTMLInputElement;
+      searchInput = (await within(drawer!).getByPlaceholderText("Search")) as HTMLInputElement;
 
       expect(searchInput).toBeVisible();
     });
