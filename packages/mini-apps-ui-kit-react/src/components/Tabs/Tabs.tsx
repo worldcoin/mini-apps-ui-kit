@@ -20,7 +20,7 @@ const Tabs = React.forwardRef<React.ElementRef<typeof ToggleGroup.Root>, TabsPro
         className="flex w-full justify-between px-5 items-center"
         {...props}
       >
-        <div className="flex w-full">{children}</div>
+        {children}
       </ToggleGroup.Root>
     );
   },
