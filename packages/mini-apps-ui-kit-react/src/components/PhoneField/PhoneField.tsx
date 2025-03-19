@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, useImperativeHandle, useMemo } from "react";
+import { forwardRef, useImperativeHandle } from "react";
 import { usePhoneInput } from "react-international-phone";
 
 import { CountryDrawer } from "../CountryDrawer/CountryDrawer";
@@ -92,15 +92,13 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
     },
     ref,
   ) => {
-    const countryDataList = useMemo(() => getCountryDataListByCodes(countries), [countries]);
-
     const { inputValue, country, inputRef, handlePhoneValueChange, setCountry } = usePhoneInput(
       {
         defaultCountry: defaultCountryCode.toLowerCase(),
         disableDialCodePrefill,
         disableDialCodeAndPrefix: true,
         value,
-        countries: countryDataList,
+        countries: getCountryDataListByCodes(countries),
         onChange: (data) => {
           onChange?.(
             data.phone,
