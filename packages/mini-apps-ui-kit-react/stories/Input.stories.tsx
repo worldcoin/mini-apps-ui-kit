@@ -49,7 +49,15 @@ type Story = StoryObj<InputProps>;
 
 export const Text: Story = {
   args: {
-    placeholder: "Enter your name",
+    label: "Name",
+    id: "name",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Basic text input with placeholder text.",
+      },
+    },
   },
   parameters: {
     docs: {
@@ -60,15 +68,46 @@ export const Text: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const input = await canvas.findByPlaceholderText("Enter your name");
+    const input = await canvas.findByPlaceholderText("Name");
 
     expect(input).toBeInTheDocument();
   },
 };
 
+export const PersistLabel: Story = {
+  args: {
+    label: "Email",
+    id: "email",
+    variant: "floating-label",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Input with a persistent floating label that remains visible above the input field.",
+      },
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "Input in a disabled state where user interaction is prevented.",
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = await canvas.findByPlaceholderText("Email");
+    const label = await canvas.findByLabelText("Email");
+
+    expect(input).toBeInTheDocument();
+    expect(label).toBeInTheDocument();
+  },
+};
+
 export const Disabled: Story = {
   args: {
-    placeholder: "Enter your name",
+    label: "Name",
     disabled: true,
   },
   parameters: {
@@ -80,7 +119,7 @@ export const Disabled: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const input = await canvas.findByPlaceholderText("Enter your name");
+    const input = await canvas.findByPlaceholderText("Name");
 
     expect(input).toBeDisabled();
   },
@@ -88,7 +127,7 @@ export const Disabled: Story = {
 
 export const StartCustomSizeIcon: Story = {
   args: {
-    placeholder: "Enter your number",
+    label: "Number",
     startAdornment: <CountryCode />,
     startAdornmentWidth: 4.5,
   },
@@ -109,7 +148,7 @@ export const StartCustomSizeIcon: Story = {
 
 export const EndCustomSizeIcon: Story = {
   args: {
-    placeholder: "Enter your number",
+    label: "Number",
     endAdornment: <Switch />,
     endAdornmentWidth: 2,
   },

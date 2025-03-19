@@ -4,24 +4,41 @@ import * as React from "react";
 
 import { cn } from "../../lib/utils";
 import { Tick } from "../Icons/Tick";
+import { typographyVariants } from "../Typography";
 
 const DEFAULT_ADORNMENT_WIDTH = 1.5;
 
 export const inputVariants = cva(
-  "peer h-[3.125rem] font-sans w-full rounded-xl border-2 border-gray-100 bg-gray-100 px-2.5 py-4 text-base leading-none text-gray-900 outline-none transition duration-300 file:hidden placeholder:focus:border-gray-200 focus:bg-gray-0 focus:shadow-card focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  cn(
+    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
+    "file:hidden",
+    "invalid:border-error-600 invalid:focus:border-error-600 invalid:bg-gray-0",
+    "placeholder:text-gray-500",
+    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+  ),
   {
     variants: {
       error: {
-        true: "border-error-700 bg-error-100 focus:border-error-700 focus:bg-error-100",
+        true: "border-error-600 focus:border-error-600 bg-gray-0",
+      },
+      isLabel: {
+        true: "pt-6 pb-2 placeholder:text-transparent",
+        false: "",
       },
       isFocused: {
-        true: "border-gray-200 bg-gray-0 shadow-card",
+        true: "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
         false: "",
+      },
+      variant: {
+        "floating-label": "pt-6 pb-2 placeholder:text-transparent",
+        default: "",
       },
     },
     defaultVariants: {
       error: false,
       isFocused: false,
+      variant: "default",
     },
   },
 );
@@ -33,22 +50,35 @@ export const iconVariants = cva(
       disabled: {
         true: "text-gray-300 cursor-not-allowed",
       },
-      error: {
-        true: "text-error-700",
-      },
       position: {
-        start: "left-1",
-        end: "right-1",
+        start: "left-0",
+        end: "right-0",
       },
-    },
-    defaultVariants: {
-      error: false,
     },
   },
 );
 
+const dividerVariants = cva("border-r  h-[1.625rem] absolute", {
+  variants: {
+    position: {
+      start: "left-0",
+      end: "right-0",
+    },
+    error: {
+      true: "border-error-600",
+      false: "border-gray-300",
+    },
+  },
+  defaultVariants: {
+    error: false,
+  },
+});
+
 export interface InputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "className" | "style">,
+  extends Omit<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      "className" | "style" | "placeholder"
+    >,
     VariantProps<typeof inputVariants> {
   /**
    * If true, the input will display in an error state with error styling
@@ -89,6 +119,29 @@ export interface InputProps
    * @default false
    */
   isFocused?: boolean;
+  /**
+   * Additional class name for the input
+   */
+  className?: string;
+  /**
+   * Label text to be displayed above the input
+   */
+  label?: string;
+  /**
+   * Variant of the input
+   * @default "default"
+   */
+  variant?: "default" | "floating-label";
+  /**
+   * If true, the dividers will be shown
+   * @default true
+   */
+  showStartDivider?: boolean;
+  /**
+   * If true, the end divider will be shown
+   * @default true
+   */
+  showEndDivider?: boolean;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -101,8 +154,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       isValid,
       startAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
-      isFocused = false,
       disabled,
+      className,
+      label,
+      id,
+      showStartDivider,
+      showEndDivider,
+      variant = "default",
       ...props
     },
     ref,
@@ -111,35 +169,70 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className="relative flex w-full items-center group">
         {startAdornment && (
           <div
-            className={cn(iconVariants({ error, disabled, position: "start" }))}
-            style={{ width: `${startAdornmentWidth + 0.75}rem` }}
+            className={cn(iconVariants({ disabled, position: "start" }))}
+            style={{ width: `${startAdornmentWidth + 1}rem` }}
           >
             {startAdornment}
+            {showStartDivider && (
+              <div className={dividerVariants({ position: "end", error })} />
+            )}
           </div>
         )}
         <input
           ref={ref}
+          id={id}
           type={type}
+          placeholder={label}
           disabled={disabled}
-          className={cn(inputVariants({ error, isFocused }))}
+          className={cn(
+            inputVariants({ error, isLabel: variant === "floating-label" }),
+            typographyVariants({ variant: "body", level: 3 }),
+            className,
+          )}
           {...props}
           style={{
             ...(startAdornment && {
-              paddingLeft: `${1 + startAdornmentWidth}rem`,
+              paddingLeft: `${(showStartDivider ? 1.6 : 1) + startAdornmentWidth}rem`,
             }),
             ...(endAdornment && {
-              paddingRight: `${1 + endAdornmentWidth}rem`,
+              paddingRight: `${(showEndDivider ? 1.6 : 1) + endAdornmentWidth}rem`,
             }),
             ...(isValid && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
           }}
         />
         {(isValid || endAdornment) && (
           <div
-            className={cn(iconVariants({ error, disabled, position: "end" }))}
-            style={{ width: `${endAdornmentWidth + 0.75}rem` }}
+            className={cn(iconVariants({ disabled, position: "end" }))}
+            style={{ width: `${endAdornmentWidth + 1}rem` }}
           >
             {isValid ? <Tick className="text-success-700" /> : endAdornment}
+            {showEndDivider && (
+              <div className={dividerVariants({ position: "start", error })} />
+            )}
           </div>
+        )}
+        {variant === "floating-label" && (
+          <label
+            htmlFor={id}
+            className={cn(
+              typographyVariants({ variant: "body", level: 3 }),
+              cn(
+                // Initial state
+                "peer-placeholder-shown:text-sm peer-placeholder-shown:translate-y-0",
+                "peer-focus:-translate-y-[0.6rem] peer-focus:text-xs",
+                // End state
+                "absolute text-gray-500 duration-300 transform text-xs",
+                "-translate-y-[0.6rem] z-10 pl-4",
+              ),
+            )}
+            style={{
+              ...(startAdornment && {
+                paddingLeft: `${1 + startAdornmentWidth}rem`,
+              }),
+            }}
+          >
+            {label}
+          </label>
         )}
       </div>
     );

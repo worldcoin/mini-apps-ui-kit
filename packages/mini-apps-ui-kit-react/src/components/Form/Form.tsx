@@ -30,9 +30,9 @@ export const Message = forwardRef<
         "h-[1.625rem] mt-1 flex items-center",
         typographyVariants({
           variant: "body",
-          level: 3,
+          level: 4,
         }),
-        error ? "text-error-700" : "text-gray-500",
+        error ? "text-error-600" : "text-gray-500",
       )}
       {...props}
     />

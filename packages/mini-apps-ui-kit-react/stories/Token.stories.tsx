@@ -14,7 +14,7 @@ const meta: Meta<typeof Token> = {
   },
   argTypes: {
     value: {
-      options: ["BTC", "ETH", "USDC", "WLD"],
+      options: ["BTC", "ETH", "USDC", "WLD", "DAI", "USDT"],
       control: { type: "select" },
     },
   },
@@ -26,5 +26,19 @@ type Story = StoryObj<typeof Token>;
 export const Default: Story = {
   args: {
     value: "BTC",
+  },
+};
+
+export const Monochrome: Story = {
+  args: {
+    value: "BTC",
+    variant: "monochrome",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    value: "BTC",
+    disabled: true,
   },
 };

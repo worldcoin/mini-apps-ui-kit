@@ -45,7 +45,7 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
         ref={ref}
         className={cn(
           pillVariants({ checked }),
-          typographyVariants({ variant: "subtitle", level: 3 }),
+          typographyVariants({ variant: "label", level: 2 }),
         )}
         {...props}
       >

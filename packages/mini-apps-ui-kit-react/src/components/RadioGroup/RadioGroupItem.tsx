@@ -21,7 +21,7 @@ export const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>
       <RadioGroupPrimitive.Item
         ref={ref}
         value={value}
-        className="h-6 w-6 rounded-full border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-400 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-20"
+        className="size-6 rounded-full border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-200 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-50"
         disabled={disabled}
         {...rest}
       >

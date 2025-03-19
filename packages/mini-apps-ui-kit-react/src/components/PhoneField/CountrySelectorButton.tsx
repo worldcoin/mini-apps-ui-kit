@@ -3,11 +3,11 @@ import { cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
 import { CountryCode, Flag } from "../Flag";
+import { ArrowDown } from "../Icons/ArrowDown";
 import { Typography } from "../Typography";
-import { ArrowDown } from "./ArrowDown";
 
 const triggerVariants = cva(
-  "flex items-center bg-transparent border-none focus:outline-none cursor-pointer",
+  "flex items-center bg-transparent focus:outline-none cursor-pointer text-gray-900",
   {
     variants: {
       disabled: {
@@ -22,14 +22,13 @@ const triggerVariants = cva(
 );
 
 interface CountrySelectorButtonProps extends React.HTMLAttributes<HTMLDivElement> {
-  disabled: boolean;
-  countryCode: CountryCode;
-  hideDialCode: boolean;
-  dialCode: string;
+  disabled?: boolean;
+  value: CountryCode;
+  label: string;
 }
 
 const CountrySelectorButton = forwardRef<HTMLDivElement, CountrySelectorButtonProps>(
-  ({ disabled, className, countryCode, hideDialCode, dialCode, ...props }, ref) => {
+  ({ disabled, className, value, label, ...props }, ref) => {
     return (
       <div
         ref={ref}
@@ -37,17 +36,13 @@ const CountrySelectorButton = forwardRef<HTMLDivElement, CountrySelectorButtonPr
         className={cn(triggerVariants({ disabled, className }))}
         data-testid="country-selector-button"
       >
-        <div className="w-6 h-6 mr-2">
-          <Flag countryCode={countryCode} size={24} />
+        <div className="mr-2">
+          <Flag countryCode={value} size={24} />
         </div>
-        {!hideDialCode && (
-          <Typography variant="subtitle" level={2} className="mr-2 text-gray-900">
-            {dialCode}
-          </Typography>
-        )}
-        <span className="w-2.5 h-1.5">
-          <ArrowDown className="text-gray-400" />
-        </span>
+        <Typography variant="subtitle" level={3} className="mr-2">
+          {label}
+        </Typography>
+        <ArrowDown />
       </div>
     );
   },

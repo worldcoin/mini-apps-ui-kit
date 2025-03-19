@@ -37,7 +37,7 @@ const ClearButton = React.forwardRef<HTMLButtonElement, ClearButtonProps>(
         onMouseDown={handleClear}
         {...props}
       >
-        <Clear className="text-gray-400 size-5" />
+        <Clear />
       </button>
     );
   },

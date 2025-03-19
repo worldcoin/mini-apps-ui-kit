@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, within } from "@storybook/test";
 
 import { Button } from "../src/components/Button";
-import { iconControl } from "./helpers/icon-control";
 import { Star } from "./helpers/icons/Star";
 
 const meta: Meta<typeof Button> = {
@@ -22,9 +21,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: "radio",
-    },
-    radius: {
-      control: "radio",
+      options: ["sm", "lg"],
     },
     fullWidth: {
       control: "boolean",
@@ -34,11 +31,10 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
       defaultValue: false,
     },
-    isLoading: {
-      control: "boolean",
-      defaultValue: false,
+    state: {
+      control: "radio",
+      options: [undefined, "pending", "success", "failed"],
     },
-    icon: iconControl,
   },
   args: { onClick: fn() },
   decorators: [
@@ -57,8 +53,7 @@ export const Text: Story = {
   args: {
     children: "Button",
     variant: "primary",
-    size: "md",
-    radius: "md",
+    size: "lg",
     fullWidth: false,
   },
   parameters: {
@@ -78,11 +73,14 @@ export const Text: Story = {
 
 export const TextWithIcon: Story = {
   args: {
-    icon: <Star />,
-    children: "Button",
+    children: (
+      <>
+        <Star />
+        Button
+      </>
+    ),
     variant: "primary",
-    size: "md",
-    radius: "md",
+    size: "lg",
     fullWidth: false,
   },
   parameters: {
@@ -105,10 +103,16 @@ export const TextWithIcon: Story = {
 
 export const Icon: Story = {
   args: {
-    icon: <Star />,
+    children: <Star />,
     variant: "primary",
-    size: "md",
-    radius: "md",
+    size: "icon",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: "A button that displays an icon only.",
+      },
+    },
   },
   parameters: {
     docs: {

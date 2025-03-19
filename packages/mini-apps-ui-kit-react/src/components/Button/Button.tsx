@@ -1,38 +1,33 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
-import Spinner from "./Spinner";
+import { Fail } from "../Icons/Fail";
+import { Success } from "../Icons/Success";
+import { Spinner } from "../Spinner";
+import { typographyVariants } from "../Typography";
 
 const buttonVariants = cva(
-  "flex items-center justify-center gap-1 font-display font-semibold leading-[1.2] tracking-normal transition-colors",
+  "flex items-center justify-center rounded-full gap-2 font-sans leading-[1.2] tracking-normal transition-colors",
   {
     variants: {
       variant: {
         primary:
-          "bg-gray-900 text-gray-0 hover:bg-gray-700 active:bg-gray-500 disabled:bg-gray-100 disabled:text-gray-300",
+          "bg-gray-900 text-gray-0 hover:bg-gray-700 active:bg-gray-700 disabled:bg-gray-100 disabled:text-gray-300",
         secondary:
-          "bg-gray-200 text-gray-900 hover:bg-gray-300 active:bg-gray-400 disabled:bg-gray-100 disabled:text-gray-300",
+          "bg-transparent text-gray-900 border border-gray-200 hover:bg-gray-50 active:bg-gray-50 disabled:text-gray-300 disabled:border-gray-100",
         tertiary:
-          "border border-gray-200 bg-transparent text-gray-500 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
-        ghost:
-          "bg-transparent text-gray-500 hover:bg-gray-100 active:bg-gray-200 disabled:text-gray-300",
+          "bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-200 disabled:text-gray-300 disabled:bg-gray-50",
       },
       size: {
-        sm: "h-10 min-w-10 px-2 text-sm",
-        md: "h-12 min-w-12 px-3 text-base",
-        lg: "h-14 min-w-14 px-4 text-base",
+        sm: "h-10 min-w-10 px-4",
+        lg: "h-14 min-w-14 px-4",
+        icon: "size-10",
       },
-      radius: {
-        none: "rounded-none",
-        sm: "rounded",
-        md: "rounded-xl",
-        lg: "rounded-2xl",
-        full: "rounded-full",
-      },
-      isLoading: {
+      stateful: {
         true: "border-none bg-transparent fill-transparent text-transparent hover:bg-transparent active:bg-transparent disabled:bg-transparent disabled:text-transparent",
         false: "",
       },
@@ -44,25 +39,10 @@ const buttonVariants = cva(
     defaultVariants: {
       variant: "primary",
       size: "lg",
-      radius: "md",
       fullWidth: false,
     },
   },
 );
-const iconContainerStyles = {
-  sm: {
-    width: "1rem",
-    height: "1rem",
-  },
-  md: {
-    width: "1.25rem",
-    height: "1.25rem",
-  },
-  lg: {
-    width: "1.5rem",
-    height: "1.5rem",
-  },
-};
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
@@ -71,28 +51,17 @@ export interface ButtonProps
    * The variant style to use
    * @default "primary"
    */
-  variant?: "primary" | "secondary" | "tertiary" | "ghost";
+  variant?: "primary" | "secondary" | "tertiary";
   /**
    * The size of the button
-   * @default "md"
+   * @default "lg"
    */
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "lg" | "icon";
   /**
-   * The border radius of the button
-   * @default "md"
+   * The state of the button
+   * @default undefined
    */
-  radius?: "none" | "sm" | "md" | "lg" | "full";
-  /**
-   * Whether the button is in a loading state
-   * @default false
-   */
-  isLoading?: boolean;
-  /**
-   * Optional icon to display in the button.
-   * The component passed to this prop must accept a `style` prop.
-   * The component should use currentColor to match the Input's styling.
-   */
-  icon?: React.ReactNode;
+  state?: "pending" | "success" | "failed";
   /**
    * Whether the button should take up the full width of its container
    * @default false
@@ -107,46 +76,35 @@ export interface ButtonProps
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    {
-      variant,
-      size = "lg",
-      radius,
-      className,
-      isLoading,
-      children,
-      icon,
-      fullWidth,
-      asChild,
-      ...props
-    },
+    { variant = "primary", size = "lg", fullWidth, asChild, state, children, ...props },
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
+
+    const stateful = !!state;
+
     return (
       <Comp
         ref={ref}
-        className={buttonVariants({
-          variant,
-          size,
-          radius,
-          isLoading,
-          fullWidth,
-        })}
         {...props}
-      >
-        {icon && (
-          <Slot
-            style={{
-              ...iconContainerStyles[size],
-              opacity: isLoading ? 0 : 1,
-            }}
-          >
-            {icon}
-          </Slot>
+        className={cn(
+          buttonVariants({
+            variant,
+            size,
+            stateful,
+            fullWidth,
+          }),
+          typographyVariants({
+            variant: "label",
+            level: size === "lg" ? 1 : 2,
+          }),
+          props.className,
         )}
-        {children && <span>{children}</span>}
-
-        {isLoading && <Spinner className="absolute" />}
+      >
+        {!state && children}
+        {state === "pending" && <Spinner className="absolute size-6" />}
+        {state === "success" && <Success className="absolute size-6" />}
+        {state === "failed" && <Fail className="absolute size-6" />}
       </Comp>
     );
   },
