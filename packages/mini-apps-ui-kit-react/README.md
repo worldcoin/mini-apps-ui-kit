@@ -7,11 +7,11 @@ React components UI Kit library for Mini Apps
 ## Getting Started
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs**/**vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tailwind Configuration
+## Tailwind **Configuration**
 
-- `./styles/globals.css`: is the main entrypoint for the tailwind css styles
+- `./**styles**/globals.css`: is the main entrypoint for the tailwind css styles
 - `./public/globals.css`: compiled tailwind css styles
 - `./src/tailwind`: tailwind plugin with uiKit tailwind presets
 
@@ -107,32 +107,30 @@ This method enables tree-shaking and reduces your final bundle size by only incl
 
 ## Icons
 
-The library uses [Hugeicons](https://hugeicons.com/) for its icon system. To use icons in your project, you'll need to install the [React package](https://www.npmjs.com/package/@hugeicons/react):
+The library uses [Iconoir](https://iconoir.com/) for its icon system. To use icons in your project, you'll need to install the [React package](https://www.npmjs.com/package/iconoir-react):
 
 ```bash
-npm install @hugeicons/react
+npm install iconoir-react
 # or
-yarn add @hugeicons/react
+yarn add iconoir-react
 ```
 
 Then you can import and use icons in your components:
 
 ```jsx
-import { HomeIcon } from '@hugeicons/react';
+import { Home } from 'iconoir-react';
 
 function MyComponent() {
-  return <HomeIcon size={24} />;
+  return <Home width={24} height={24} />;
 }
 ```
 
-Hugeicons provides a comprehensive set of icons across various categories including:
-- Navigation & UI elements
-- Social media
-- Business & Finance
-- Communication
-- Technology
-- And many more...
+Iconoir provides a comprehensive set of 1,600+ unique SVG icons, designed on a 24x24 pixels grid. The icons are:
+- 100% free and open source
+- Available in SVG, React, React Native, Flutter, Figma and Framer
+- Optimized for performance
+- Customizable with different sizes, colors, and styles
 
-You can browse the complete icon set at [hugeicons.com](https://hugeicons.com/).
+You can browse the complete icon set at [iconoir.com](https://iconoir.com/).
 
-Hugeicons is available under various license options. Please refer to their [website](https://hugeicons.com/) for detailed licensing information. 
+Iconoir is available under the MIT License. Please refer to their [website](https://iconoir.com/) for more details. 
