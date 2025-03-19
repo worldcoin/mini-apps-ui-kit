@@ -17,7 +17,10 @@ const Tabs = React.forwardRef<React.ElementRef<typeof ToggleGroup.Root>, TabsPro
       <ToggleGroup.Root
         ref={ref}
         type="single"
-        className="flex w-full justify-between px-5 items-center"
+        className="grid w-full px-5 items-center auto-cols-fr"
+        style={{
+          gridTemplateColumns: `repeat(${React.Children.count(children)}, 1fr)`,
+        }}
         {...props}
       >
         {children}
@@ -31,26 +34,24 @@ Tabs.displayName = "Tabs";
  * Individual tab item that can be selected
  */
 const TabItem = React.forwardRef<React.ElementRef<typeof ToggleGroup.Item>, TabItemProps>(
-  ({ icon, label, activeIcon, ...props }, ref) => (
+  ({ icon, label, altIcon, ...props }, ref) => (
     <ToggleGroup.Item
       ref={ref}
       className={cn(
-        "flex-1 flex flex-col items-center gap-1 relative min-w-0 group",
+        "w-full flex-1 flex flex-col items-center justify-center gap-1 relative min-w-0 group",
         "focus:outline-none transition-colors duration-200",
         "text-gray-350 hover:text-gray-500 data-[state=on]:text-gray-900",
       )}
       {...props}
     >
-      {/* Only show the outline icon when NOT active */}
-      <Slot
-        className={cn("h-[1.625rem] shrink-0", activeIcon && "group-data-[state=on]:hidden")}
-      >
+      {/* Only show the outline icon when NOT alt */}
+      <Slot className={cn("h-[1.625rem] shrink-0", altIcon && "group-data-[state=on]:hidden")}>
         {icon}
       </Slot>
-      {/* Only show the solid icon when active */}
-      {activeIcon && (
+      {/* Only show the solid icon when alt */}
+      {altIcon && (
         <Slot className="h-[1.625rem] shrink-0 hidden group-data-[state=on]:block">
-          {activeIcon}
+          {altIcon}
         </Slot>
       )}
       {label && (

@@ -65,25 +65,39 @@ export const ActiveIcons: Story = {
 
     return (
       <Tabs value={value} onValueChange={setValue}>
-        <TabItem value="apps" icon={<Apps />} activeIcon={<Apps solid />} label="Apps" />
-        <TabItem
-          value="wallet"
-          icon={<Wallet />}
-          activeIcon={<Wallet solid />}
-          label="Wallet"
-        />
+        <TabItem value="apps" icon={<Apps />} altIcon={<Apps solid />} label="Apps" />
+        <TabItem value="wallet" icon={<Wallet />} altIcon={<Wallet solid />} label="Wallet" />
         <TabItem
           value="contacts"
           icon={<Contacts />}
-          activeIcon={<Contacts solid />}
+          altIcon={<Contacts solid />}
           label="Contacts"
         />
-        <TabItem
-          value="worldid"
-          icon={<WorldID />}
-          activeIcon={<WorldID solid />}
-          label="World ID"
-        />
+      </Tabs>
+    );
+  },
+};
+
+export const WithLinks: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Tabs can be used as links by wrapping them in an anchor element. This is useful for navigation between pages.",
+      },
+    },
+  },
+  render: () => {
+    const [value, setValue] = React.useState("wallet");
+
+    return (
+      <Tabs value={value} onValueChange={setValue}>
+        <a>
+          <TabItem value="apps" icon={<Apps />} altIcon={<Apps solid />} label="Apps" />
+        </a>
+        <a>
+          <TabItem value="wallet" icon={<Wallet />} altIcon={<Wallet solid />} label="Wallet" />
+        </a>
       </Tabs>
     );
   },

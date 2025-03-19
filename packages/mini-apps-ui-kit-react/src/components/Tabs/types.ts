@@ -39,7 +39,7 @@ export interface TabItemProps extends Omit<BaseToggleGroupItemProps, "className"
   /**
    * The icon to display when the tab item is active
    */
-  activeIcon?: ReactNode;
+  altIcon?: ReactNode;
   /**
    * The label text
    */
