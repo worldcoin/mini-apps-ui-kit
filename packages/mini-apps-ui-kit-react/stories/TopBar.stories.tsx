@@ -102,27 +102,33 @@ type Story = StoryObj<typeof TopBar>;
 
 export const Default: Story = {
   args: {
-    title: "Title",
+    title: "World",
   },
 };
 
 export const WithStartAdornment: Story = {
   args: {
-    title: "Title",
+    title: "World",
+    startAdornment: <BackButton />,
+  },
+};
+
+export const OnlyStartAdornment: Story = {
+  args: {
     startAdornment: <BackButton />,
   },
 };
 
 export const WithEndAdornment: Story = {
   args: {
-    title: "Title",
+    title: "World",
     endAdornment: <ClockIcon />,
   },
 };
 
 export const WithBothAdornments: Story = {
   args: {
-    title: "Title",
+    title: "World",
     startAdornment: <BackButton />,
     endAdornment: <ClockIcon />,
   },
