@@ -4,8 +4,8 @@ import { cva } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
-import { Tick } from "../Icons/Tick";
 import { typographyVariants } from "../Typography";
+import { Tick } from "../icons/Tick";
 
 const inputContainerVariants = cva(
   [

@@ -1,7 +1,7 @@
 import { DrawerClose } from "../Drawer";
 import { CountryCode } from "../Flag";
-import { Magnifier } from "../Icons/Magnifier";
 import { Typography } from "../Typography";
+import { Magnifier } from "../icons/Magnifier";
 import CountryListItem from "./CountryListItem";
 
 interface GroupedCountries {

@@ -2,7 +2,7 @@ import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import { CheckboxProps as RadixCheckboxProps } from "@radix-ui/react-checkbox";
 import { forwardRef } from "react";
 
-import { Tick } from "../Icons/Tick";
+import { Tick } from "../icons/Tick";
 
 export interface CheckboxProps
   extends Omit<RadixCheckboxProps, "onCheckedChange" | "onChange" | "className"> {

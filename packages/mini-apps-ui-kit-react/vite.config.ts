@@ -20,8 +20,14 @@ export default defineConfig({
     },
   },
   build: {
-    // sourcemap: true,
-    minify: true,
+    sourcemap: true,
+    minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     copyPublicDir: false,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
@@ -38,11 +44,20 @@ export default defineConfig({
           .map((file) => [file.slice(4).replace(/\.(ts|tsx)$/, ""), resolve(__dirname, file)]),
       ]),
       output: {
-        // Ensure each entry point creates its own directory
         preserveModules: true,
         preserveModulesRoot: "src",
         entryFileNames: "[name].js",
+        manualChunks: undefined,
+        chunkFileNames: "chunks/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash][extname]",
+      },
+      onwarn(warning, warn) {
+        // Skip certain warnings
+        if (warning.code === "CIRCULAR_DEPENDENCY") return;
+        warn(warning);
       },
     },
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 1000,
   },
 });

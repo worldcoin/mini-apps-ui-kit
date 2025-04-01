@@ -6,8 +6,8 @@ import { Drawer as DrawerPrimitive } from "vaul";
 
 import { BottomBar, BottomBarProps } from "../BottomBar";
 import { Button } from "../Button";
-import { XMark } from "../Icons/XMark";
 import { Typography } from "../Typography";
+import { XMark } from "../icons/XMark";
 import {
   AlertDialogCloseProps,
   AlertDialogContentProps,

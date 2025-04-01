@@ -5,10 +5,10 @@ import { useRef, useState } from "react";
 import { Button } from "../Button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "../Drawer";
 import { CountryCode } from "../Flag";
-import { XMark } from "../Icons/XMark";
 import { GroupedCountryList } from "../PhoneField/GroupedCountryList";
 import { SearchField } from "../SearchField";
 import { TopBar } from "../TopBar";
+import { XMark } from "../icons/XMark";
 import { useCountryFiltering } from "./useCountryFiltering";
 import { useCountryGrouping } from "./useCountryGrouping";
 
