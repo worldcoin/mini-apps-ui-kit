@@ -49,6 +49,10 @@
       "types": "./dist/components/Flag/index.d.ts",
       "default": "./dist/components/Flag/index.js"
     },
+    "./LazyFlag": {
+      "types": "./dist/components/Flag/LazyFlag.d.ts",
+      "default": "./dist/components/Flag/LazyFlag.js"
+    },
     "./Form": {
       "types": "./dist/components/Form/index.d.ts",
       "default": "./dist/components/Form/index.js"
@@ -184,7 +188,8 @@
     "build:sb": "pnpm build:tailwind && storybook build",
     "build": "pnpm build:tailwind && tsc -b ./tsconfig.lib.json && vite build",
     "lint": "eslint .",
-    "publish": "pnpm build && npm publish --access public"
+    "publish": "pnpm build && npm publish --access public",
+    "generate:country-codes": "tsx scripts/generate-country-codes.ts"
   },
   "peerDependencies": {
     "react": "^18 || ^19",

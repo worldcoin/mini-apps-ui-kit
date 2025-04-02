@@ -1,4 +1,5 @@
-import { CountryCode, LazyFlag } from "../Flag";
+import { CountryCode } from "../Flag";
+import { LazyFlag } from "../Flag/LazyFlag";
 import { Typography } from "../Typography";
 
 interface CountryListItemProps {

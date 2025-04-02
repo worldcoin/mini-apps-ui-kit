@@ -1,6 +1,6 @@
-import * as FlagComponents from "../Flag/flag-components";
-import { CountryCode } from "./Flag";
+import { countryCodes } from "./constants";
+import { CountryCode } from "./types";
 
 export const isSupportedCountryCode = (code: string): code is CountryCode => {
-  return Object.prototype.hasOwnProperty.call(FlagComponents, code.toUpperCase());
+  return countryCodes.includes(code.toUpperCase() as CountryCode);
 };

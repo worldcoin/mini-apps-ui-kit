@@ -4,7 +4,7 @@ import { forwardRef, useImperativeHandle } from "react";
 import { usePhoneInput } from "react-international-phone";
 
 import { CountryDrawer } from "../CountryDrawer/CountryDrawer";
-import { CountryCode } from "../Flag/Flag";
+import { CountryCode } from "../Flag/types";
 import { Input, InputProps } from "../Input";
 import CountrySelectorButton from "./CountrySelectorButton";
 import { DIAL_CODE_PREFIX } from "./constants";
