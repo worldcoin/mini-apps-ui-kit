@@ -34,14 +34,17 @@ Tabs.displayName = "Tabs";
  * Individual tab item that can be selected
  */
 const TabItem = React.forwardRef<React.ElementRef<typeof ToggleGroup.Item>, TabItemProps>(
-  ({ icon, label, altIcon, ...props }, ref) => (
+  ({ icon, label, altIcon, className, ...props }, ref) => (
     <ToggleGroup.Item
       ref={ref}
-      className={cn(
-        "w-full flex-1 flex flex-col items-center justify-center gap-1 relative min-w-0 group",
-        "focus:outline-none transition-colors duration-200",
-        "text-gray-350 hover:text-gray-500 data-[state=on]:text-gray-900",
-      )}
+      className={
+        (cn(
+          "w-full flex-1 flex flex-col items-center justify-center gap-1 relative min-w-0 group",
+          "focus:outline-none transition-colors duration-200",
+          "text-gray-350 hover:text-gray-500 data-[state=on]:text-gray-900",
+        ),
+        className)
+      }
       {...props}
     >
       {/* Only show the outline icon when NOT alt */}

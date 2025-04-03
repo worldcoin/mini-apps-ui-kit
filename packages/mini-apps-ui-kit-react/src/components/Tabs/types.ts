@@ -31,7 +31,7 @@ export interface TabsProps extends Omit<BaseToggleGroupProps, "type" | "size" | 
   children?: ReactNode;
 }
 
-export interface TabItemProps extends Omit<BaseToggleGroupItemProps, "className" | "children"> {
+export interface TabItemProps extends Omit<BaseToggleGroupItemProps, "children"> {
   /**
    * The icon to display
    */
