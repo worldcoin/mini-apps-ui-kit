@@ -1,6 +1,6 @@
 {
   "name": "@worldcoin/mini-apps-ui-kit-react",
-  "version": "1.0.0-canary.5",
+  "version": "1.0.0-canary.6",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -160,6 +160,10 @@
     "./TabItem": {
       "types": "./dist/components/TabItem/index.d.ts",
       "default": "./dist/components/TabItem/index.js"
+    },
+    "./CircularIcon": {
+      "types": "./dist/components/CircularIcon/index.d.ts",
+      "default": "./dist/components/CircularIcon/index.js"
     },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
