@@ -31,10 +31,6 @@ const meta: Meta<typeof Button> = {
       control: "boolean",
       defaultValue: false,
     },
-    state: {
-      control: "radio",
-      options: [undefined, "pending", "success", "failed"],
-    },
   },
   args: { onClick: fn() },
   decorators: [
@@ -106,13 +102,6 @@ export const Icon: Story = {
     children: <Star />,
     variant: "primary",
     size: "icon",
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "A button that displays an icon only.",
-      },
-    },
   },
   parameters: {
     docs: {

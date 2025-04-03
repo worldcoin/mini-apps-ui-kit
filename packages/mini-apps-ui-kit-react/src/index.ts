@@ -33,5 +33,5 @@ export * from "./components/TopBar";
 export * from "./components/CountryDrawer";
 export * from "./components/ToggleGroup";
 export * from "./components/Tabs";
-
+export * from "./components/LiveFeedback";
 export { default as uiKitTailwindPlugin } from "./tailwind";

@@ -5,9 +5,6 @@ import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
-import { Fail } from "../Icons/Fail";
-import { Success } from "../Icons/Success";
-import { Spinner } from "../Spinner";
 import { typographyVariants } from "../Typography";
 
 const buttonVariants = cva(
@@ -26,10 +23,6 @@ const buttonVariants = cva(
         sm: "h-10 min-w-10 px-4",
         lg: "h-14 min-w-14 px-4",
         icon: "size-10",
-      },
-      stateful: {
-        true: "border-none bg-transparent fill-transparent text-transparent hover:bg-transparent active:bg-transparent disabled:bg-transparent disabled:text-transparent",
-        false: "",
       },
       fullWidth: {
         true: "w-full",
@@ -58,11 +51,6 @@ export interface ButtonProps
    */
   size?: "sm" | "lg" | "icon";
   /**
-   * The state of the button
-   * @default undefined
-   */
-  state?: "pending" | "success" | "failed";
-  /**
    * Whether the button should take up the full width of its container
    * @default false
    */
@@ -75,13 +63,8 @@ export interface ButtonProps
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    { variant = "primary", size = "lg", fullWidth, asChild, state, children, ...props },
-    ref,
-  ) => {
+  ({ variant = "primary", size = "lg", fullWidth, asChild, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
-
-    const stateful = !!state;
 
     return (
       <Comp
@@ -91,7 +74,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           buttonVariants({
             variant,
             size,
-            stateful,
             fullWidth,
           }),
           typographyVariants({
@@ -101,10 +83,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           props.className,
         )}
       >
-        {!state && children}
-        {state === "pending" && <Spinner className="absolute size-6" />}
-        {state === "success" && <Success className="absolute size-6" />}
-        {state === "failed" && <Fail className="absolute size-6" />}
+        {children}
       </Comp>
     );
   },
