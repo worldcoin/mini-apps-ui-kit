@@ -5,7 +5,7 @@ import { Typography } from "../Typography";
 
 interface TopBarProps {
   /** Title displayed in the center */
-  title: string;
+  title?: string;
   /** Element rendered on the left side */
   startAdornment?: React.ReactNode;
   /** Element rendered on the right side */
