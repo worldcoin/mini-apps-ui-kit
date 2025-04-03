@@ -22,16 +22,13 @@ export const ColorPickerItem = forwardRef<HTMLButtonElement, ColorPickerItemProp
       <RadioGroup.Item
         ref={ref}
         value={value}
-        className="size-[2.5rem] cursor-default rounded-full outline-none flex items-center justify-center relative disabled:opacity-90 disabled:cursor-not-allowed"
+        className="size-[3.25rem] cursor-default rounded-full outline-none flex items-center justify-center relative disabled:opacity-90 disabled:cursor-not-allowed"
         style={{
           background: value,
         }}
         {...props}
       >
-        <RadioGroup.Indicator
-          className="absolute flex size-[2.75rem] items-center rounded-full justify-center"
-          style={{ boxShadow: `0px 0px 0px 4px ${value}` }}
-        />
+        <RadioGroup.Indicator className="size-11 rounded-full bg-transparent border-2 border-gray-0" />
       </RadioGroup.Item>
     );
   },
