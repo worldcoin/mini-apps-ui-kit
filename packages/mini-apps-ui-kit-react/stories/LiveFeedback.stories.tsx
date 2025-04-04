@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { BottomBar } from "../src/components/BottomBar/BottomBar";
 import { Button } from "../src/components/Button/Button";
-import LiveFeedback from "../src/components/LiveFeedback/LiveFeedback";
+import { LiveFeedback } from "../src/components/LiveFeedback/LiveFeedback";
 
 const meta: Meta<typeof LiveFeedback> = {
   title: "Components/LiveFeedback",
