@@ -24,7 +24,7 @@ interface LiveFeedbackProps {
   };
 }
 
-function LiveFeedback({ state, children, className, label }: LiveFeedbackProps) {
+export function LiveFeedback({ state, children, className, label }: LiveFeedbackProps) {
   return (
     <div className={cn("relative", className)}>
       <div
