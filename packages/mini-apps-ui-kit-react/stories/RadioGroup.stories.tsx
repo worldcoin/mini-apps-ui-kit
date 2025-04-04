@@ -8,14 +8,6 @@ import { cn } from "../src/lib/utils";
 const meta: Meta<typeof RadioGroup> = {
   title: "components/RadioGroup",
   component: RadioGroup,
-  parameters: {
-    docs: {
-      description: {
-        component:
-          "A radio group component that allows users to select a single option from a list of choices.",
-      },
-    },
-  },
   subcomponents: {
     RadioGroupItem: RadioGroupItem as React.ComponentType<unknown>,
   },
