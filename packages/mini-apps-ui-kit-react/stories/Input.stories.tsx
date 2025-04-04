@@ -59,13 +59,6 @@ export const Text: Story = {
       },
     },
   },
-  parameters: {
-    docs: {
-      description: {
-        story: "Basic text input with placeholder text.",
-      },
-    },
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const input = await canvas.findByPlaceholderText("Name");
@@ -85,13 +78,6 @@ export const PersistLabel: Story = {
       description: {
         story:
           "Input with a persistent floating label that remains visible above the input field.",
-      },
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "Input in a disabled state where user interaction is prevented.",
       },
     },
   },
