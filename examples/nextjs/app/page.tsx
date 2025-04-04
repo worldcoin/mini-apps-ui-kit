@@ -13,6 +13,7 @@ import {
   Flag,
   Input,
   ListItem,
+  LiveFeedback,
   NumberPad,
   OTPField,
   PhoneField,
@@ -34,6 +35,9 @@ export default function Home() {
       <Typography variant="heading" level={1} className="mb-8">
         Mini Apps UI Kit Components
       </Typography>
+      <LiveFeedback>
+        <Button>Hello</Button>
+      </LiveFeedback>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Buttons Section */}

@@ -79,5 +79,3 @@ export function LiveFeedback({ state, children, className, label }: LiveFeedback
     </div>
   );
 }
-
-export default LiveFeedback;
