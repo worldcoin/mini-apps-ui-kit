@@ -52,12 +52,12 @@ export type TypographyComponentProps =
 export const typographyVariants = cva("", {
   variants: {
     variant: {
-      display: "font-sans font-semibold leading-narrow tracking-[-0.02em]",
-      heading: "font-sans font-semibold leading-narrow tracking-[-0.01em]",
-      subtitle: "font-sans font-medium leading-narrow",
-      label: "font-sans font-semibold leading-narrow",
-      body: "font-sans font-normal leading-compact",
-      number: "font-sans font-semibold",
+      display: "font-sans font-semibold leading-narrow tracking-[-0.02em] antialiased",
+      heading: "font-sans font-semibold leading-narrow tracking-[-0.01em] antialiased",
+      subtitle: "font-sans font-medium leading-narrow antialiased",
+      label: "font-sans font-semibold leading-narrow antialiased",
+      body: "font-sans font-normal leading-compact antialiased",
+      number: "font-sans font-semibold antialiased",
     },
     level: {
       1: "",
