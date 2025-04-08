@@ -1,6 +1,7 @@
 import { Toaster } from "@worldcoin/mini-apps-ui-kit-react";
 import "@worldcoin/mini-apps-ui-kit-react/styles.css";
 
+import NavigationBar from "./components/NavigationBar";
 import "./globals.css";
 
 export const metadata = {
@@ -15,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <NavigationBar />
+      </body>
       <Toaster />
     </html>
   );
