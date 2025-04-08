@@ -25,7 +25,7 @@ export function TopBar({ title, startAdornment, endAdornment, className }: TopBa
   return (
     <div
       className={cn(
-        "flex items-center px-6 pt-6 pb-2 w-full h-[4.5rem]",
+        "flex items-center px-6 pt-6 pb-2 w-full h-[4.5rem] gap-10",
         justifyContent,
         className,
       )}
