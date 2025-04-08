@@ -13,12 +13,23 @@ import { useCountryFiltering } from "./useCountryFiltering";
 import { useCountryGrouping } from "./useCountryGrouping";
 
 interface CountryDrawerProps {
+  /** Currently selected country code */
   value: CountryCode;
+  /** Optional list of country codes to show. If not provided, shows all countries */
   countries?: CountryCode[];
+  /** Whether the drawer trigger is disabled */
   disabled?: boolean;
+  /** Default country code when no value is selected */
   defaultValue?: CountryCode;
+  /** Content to render as the drawer trigger */
   children: React.ReactNode;
+  /** Title text shown in the drawer header */
+  title?: string;
+  /** Label text shown in the search field */
+  searchLabel?: string;
+  /** Callback fired when a country is selected */
   onChange: (countryCode: string) => void;
+  /** Optional callback fired when drawer open/close animation completes */
   onAnimationEnd?: (open: boolean) => void;
 }
 
@@ -30,6 +41,8 @@ export function CountryDrawer({
   disabled = false,
   children,
   defaultValue = "US",
+  title = "Country",
+  searchLabel,
 }: CountryDrawerProps) {
   const [searchText, setSearchText] = useState("");
   const [open, setOpen] = useState(false);
@@ -63,7 +76,7 @@ export function CountryDrawer({
 
       <DrawerContent>
         <TopBar
-          title="Country"
+          title={title}
           startAdornment={
             <DrawerClose asChild>
               <Button variant="tertiary" size="icon">
@@ -79,6 +92,7 @@ export function CountryDrawer({
             value={searchText}
             onChange={handleSearchChange}
             autoFocus={open}
+            label={searchLabel}
           />
         </div>
 
