@@ -32,6 +32,8 @@ export default function Home() {
   const { toast } = useToast();
   return (
     <div className="min-h-screen p-8">
+      <PhoneField />
+
       <Typography variant="heading" level={1} className="mb-8">
         Mini Apps UI Kit Components
       </Typography>
@@ -58,7 +60,6 @@ export default function Home() {
           </Typography>
           <Input />
           <SearchField label="Search..." />
-          <PhoneField />
         </section>
 
         {/* Form Elements Section */}

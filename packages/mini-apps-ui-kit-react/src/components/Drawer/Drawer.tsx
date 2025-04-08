@@ -36,6 +36,7 @@ const Drawer = ({
       dismissible={dismissible}
       modal={modal}
       direction="bottom"
+      handleOnly
       {...props}
     />
   </DrawerContext.Provider>
@@ -72,16 +73,14 @@ const DrawerContent = React.forwardRef<
   const { height } = useDrawer();
   return (
     <DrawerPrimitive.Portal>
-      <DrawerPrimitive.Overlay className="fixed inset-0 z-50">
-        <div className="w-full h-full bg-gray-900 opacity-40" />
-      </DrawerPrimitive.Overlay>
+      <DrawerOverlay />
 
       <DrawerPrimitive.Content
         ref={ref}
         {...props}
         className={cn(
-          "fixed inset-x-0 bottom-0 z-50 mt-24 bg-gray-0 outline-none",
-          height === "full" ? "h-screen rounded-none" : "h-auto rounded-t-[1.75rem]",
+          "fixed inset-x-0 bottom-0 z-50 bg-gray-0 outline-none flex flex-col",
+          height === "full" ? "top-0 rounded-none" : "h-auto rounded-t-[1.75rem]",
           props.className,
         )}
       />
