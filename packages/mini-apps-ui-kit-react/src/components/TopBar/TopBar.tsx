@@ -10,9 +10,11 @@ interface TopBarProps {
   startAdornment?: React.ReactNode;
   /** Element rendered on the right side */
   endAdornment?: React.ReactNode;
+  /** Additional class name for the top bar */
+  className?: string;
 }
 
-export function TopBar({ title, startAdornment, endAdornment }: TopBarProps) {
+export function TopBar({ title, startAdornment, endAdornment, className }: TopBarProps) {
   const hasStartAdornment = Boolean(startAdornment);
   const hasEndAdornment = Boolean(endAdornment);
 
@@ -21,7 +23,13 @@ export function TopBar({ title, startAdornment, endAdornment }: TopBarProps) {
     hasStartAdornment || hasEndAdornment ? "justify-between" : "justify-start";
 
   return (
-    <div className={cn("flex items-center px-6 pt-6 pb-2 w-full h-[4.5rem]", justifyContent)}>
+    <div
+      className={cn(
+        "flex items-center px-6 pt-6 pb-2 w-full h-[4.5rem]",
+        justifyContent,
+        className,
+      )}
+    >
       {startAdornment && <div className="shrink-0">{startAdornment}</div>}
 
       <Typography

@@ -12,12 +12,12 @@ import { TabItemProps, TabsProps } from "./types";
  * A tab navigation component that allows users to switch between different views
  */
 const Tabs = React.forwardRef<React.ElementRef<typeof ToggleGroup.Root>, TabsProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, className, ...props }, ref) => {
     return (
       <ToggleGroup.Root
         ref={ref}
         type="single"
-        className="grid w-full px-5 items-center auto-cols-fr"
+        className={cn("grid w-full px-5 items-center auto-cols-fr", className)}
         style={{
           gridTemplateColumns: `repeat(${React.Children.count(children)}, 1fr)`,
         }}
