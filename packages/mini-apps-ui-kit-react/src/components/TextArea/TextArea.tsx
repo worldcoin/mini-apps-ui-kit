@@ -2,15 +2,43 @@ import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
-import { inputVariants } from "../Input/Input";
 import { typographyVariants } from "../Typography";
+
+export const textAreaVariants = cva(
+  cn(
+    "min-h-[7.5rem] resize-y peer w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
+    "placeholder:text-gray-500",
+    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+  ),
+  {
+    variants: {
+      error: {
+        true: "border-error-600 focus:border-error-600 bg-gray-0",
+      },
+      isFocused: {
+        true: "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
+        false: "",
+      },
+      variant: {
+        "floating-label": "pt-8 pb-2 placeholder:text-transparent",
+        default: "pt-4",
+      },
+    },
+    defaultVariants: {
+      error: false,
+      isFocused: false,
+      variant: "default",
+    },
+  },
+);
 
 export interface TextAreaProps
   extends Omit<
       React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       "className" | "style" | "placeholder"
     >,
-    VariantProps<typeof inputVariants> {
+    VariantProps<typeof textAreaVariants> {
   /**
    * If true, the textarea will display in an error state with error styling
    */
@@ -31,15 +59,6 @@ export interface TextAreaProps
   variant?: "default" | "floating-label";
 }
 
-const textAreaVariants = cva("min-h-[7.5rem] resize-y", {
-  variants: {
-    variant: {
-      "floating-label": "pt-8",
-      default: "pt-4",
-    },
-  },
-});
-
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ error, isFocused = false, disabled, label, variant = "default", id, ...props }, ref) => {
     return (
@@ -50,9 +69,8 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           placeholder={label}
           disabled={disabled}
           className={cn(
-            inputVariants({ error, isFocused, variant }),
-            typographyVariants({ variant: "body", level: 3 }),
-            textAreaVariants({ variant }),
+            textAreaVariants({ error, isFocused, variant }),
+            typographyVariants({ variant: "body" }),
           )}
           {...props}
         />

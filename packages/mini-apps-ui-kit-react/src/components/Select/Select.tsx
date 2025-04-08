@@ -2,12 +2,49 @@
 
 import { DROPDOWN_CONTAINER_STYLES } from "@/lib/constants/dropdownStyles";
 import * as RadixSelect from "@radix-ui/react-select";
+import { cva } from "class-variance-authority";
 import { forwardRef, useEffect, useState } from "react";
 
 import { cn } from "../../lib/utils";
 import { ArrowDown } from "../Icons/ArrowDown";
-import { inputVariants } from "../Input";
 import { typographyVariants } from "../Typography";
+
+export const selectVariants = cva(
+  cn(
+    "flex items-center justify-between whitespace-nowrap [&>span:first-of-type]:line-clamp-1",
+    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
+    "placeholder:text-gray-500",
+    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+    // Radix Select styles
+    "data-[placeholder]:text-gray-500",
+    "data-[state=closed]:bg-gray-100 data-[state=closed]:border-gray-100",
+  ),
+  {
+    variants: {
+      error: {
+        true: "border-error-600 focus:border-error-600 bg-gray-0",
+      },
+      isLabel: {
+        true: "pt-6 pb-2 placeholder:text-transparent",
+        false: "",
+      },
+      isFocused: {
+        true: "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
+        false: "",
+      },
+      variant: {
+        "floating-label": "pt-6 pb-2 placeholder:text-transparent",
+        default: "",
+      },
+    },
+    defaultVariants: {
+      error: false,
+      isFocused: false,
+      variant: "default",
+    },
+  },
+);
 
 export interface SelectOption {
   /**
@@ -124,11 +161,8 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         <RadixSelect.Trigger
           ref={ref}
           className={cn(
-            typographyVariants({ variant: "body", level: 3 }),
-            inputVariants({ error, isFocused: isOpen }),
-            "flex items-center justify-between whitespace-nowrap [&>span:first-of-type]:line-clamp-1",
-            "data-[placeholder]:text-gray-500",
-            "data-[state=closed]:bg-gray-100 data-[state=closed]:border-gray-100",
+            typographyVariants({ variant: "body" }),
+            selectVariants({ error, isFocused: isOpen }),
           )}
         >
           <RadixSelect.Value placeholder={placeholder} />
