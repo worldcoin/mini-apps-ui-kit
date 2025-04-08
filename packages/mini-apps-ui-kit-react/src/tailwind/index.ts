@@ -82,6 +82,26 @@ export const blue = {
   "--blue-secondary": "230, 240, 255",
 };
 
+export const worldcoin = {
+  "--worldcoin-primary": "24, 24, 24",
+  "--worldcoin-secondary": "243, 244, 245",
+};
+
+export const digitalDollars = {
+  "--digital-dollars-primary": "0, 194, 48",
+  "--digital-dollars-secondary": "230, 249, 236",
+};
+
+export const bitcoin = {
+  "--bitcoin-primary": "255, 90, 0",
+  "--bitcoin-secondary": "255, 237, 230",
+};
+
+export const ethereum = {
+  "--ethereum-primary": "51, 133, 255",
+  "--ethereum-secondary": "230, 240, 255",
+};
+
 const uiKitTailwindPlugin = plugin(
   function ({ addBase }) {
     addBase({
@@ -97,6 +117,10 @@ const uiKitTailwindPlugin = plugin(
         ...purple,
         ...green,
         ...blue,
+        ...worldcoin,
+        ...digitalDollars,
+        ...bitcoin,
+        ...ethereum,
       },
     });
   },
@@ -185,6 +209,24 @@ const uiKitTailwindPlugin = plugin(
           blue: {
             primary: "rgb(var(--blue-primary) / <alpha-value>)",
             secondary: "rgb(var(--blue-secondary) / <alpha-value>)",
+          },
+        },
+        token: {
+          worldcoin: {
+            primary: "rgb(var(--worldcoin-primary) / <alpha-value>)",
+            secondary: "rgb(var(--worldcoin-secondary) / <alpha-value>)",
+          },
+          digitalDollars: {
+            primary: "rgb(var(--digital-dollars-primary) / <alpha-value>)",
+            secondary: "rgb(var(--digital-dollars-secondary) / <alpha-value>)",
+          },
+          bitcoin: {
+            primary: "rgb(var(--bitcoin-primary) / <alpha-value>)",
+            secondary: "rgb(var(--bitcoin-secondary) / <alpha-value>)",
+          },
+          ethereum: {
+            primary: "rgb(var(--ethereum-primary) / <alpha-value>)",
+            secondary: "rgb(var(--ethereum-secondary) / <alpha-value>)",
           },
         },
       },

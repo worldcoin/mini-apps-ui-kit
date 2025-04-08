@@ -1,37 +1,39 @@
-import { gray, success, error, warning, info, worldBlue, carrotOrange, purple, green, blue } from "../../src/tailwind/index";
+import { gray, success, error, warning, info, worldBlue, carrotOrange, purple, green, blue, worldcoin, digitalDollars, bitcoin, ethereum } from "../../src/tailwind/index";
 import { Color } from "./components/Color";
 
 # Colors
 
-## Gray
+## Primary Colors
+
+### Gray
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(gray).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>
 
-## Success
+### Success
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(success).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>
 
-## Error 
+### Error 
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(error).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>
 
-## Warning
+### Warning
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(warning).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>
 
-## Info
+### Info
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(info).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
@@ -39,33 +41,72 @@ import { Color } from "./components/Color";
 </div>
 
 
-## Specialty
+## Specialty Colors
+
+### World Blue
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(worldBlue).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>
 
+### Carrot Orange
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(carrotOrange).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>
 
+### Purple
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(purple).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>  
 
+### Green
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(green).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>  
 
+### Blue
+
 <div className="flex flex-wrap gap-4 pb-20">
   {Object.entries(blue).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>  
+
+### Token Colors
+
+### Worldcoin
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(worldcoin).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+### Digital Dollars
+
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(digitalDollars).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+### Bitcoin
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(bitcoin).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+### Ethereum
+
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(ethereum).map(([key, value]) => (
     <Color key={key} name={key} color={value} />
   ))}
 </div>  
