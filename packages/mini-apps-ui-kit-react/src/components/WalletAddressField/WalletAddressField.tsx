@@ -5,7 +5,7 @@ import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
 import ClearButton from "../ClearButton";
 import { Input, InputProps } from "../Input";
-import PasteButton, { PASTE_BUTTON_WIDTH } from "../PasteButton/PasteButton";
+import PasteButton from "../PasteButton/PasteButton";
 
 export interface WalletAddressFieldProps
   extends Omit<
@@ -53,7 +53,6 @@ export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFiel
     useImperativeHandle(forwardedRef, () => inputRef.current!);
 
     let endAdornment;
-    let endAdornmentWidth;
     if (!disabled && !isPasted && !value) {
       endAdornment = (
         <PasteButton
@@ -68,7 +67,6 @@ export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFiel
           }}
         />
       );
-      endAdornmentWidth = PASTE_BUTTON_WIDTH;
     } else if (isFocused && !disabled) {
       endAdornment = (
         <ClearButton
@@ -82,7 +80,6 @@ export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFiel
           }}
         />
       );
-      endAdornmentWidth = 2.3;
     }
 
     return (
@@ -91,8 +88,6 @@ export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFiel
         ref={inputRef}
         isValid={isValid}
         disabled={disabled}
-        startAdornmentWidth={2.3}
-        endAdornmentWidth={endAdornmentWidth}
         endAdornment={endAdornment}
         type={type}
         autoComplete={autoComplete}

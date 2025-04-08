@@ -6,66 +6,144 @@ import { cn } from "../../lib/utils";
 import { Tick } from "../Icons/Tick";
 import { typographyVariants } from "../Typography";
 
-const DEFAULT_ADORNMENT_WIDTH = 1.5;
-
-export const inputVariants = cva(
-  cn(
-    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
-    "file:hidden",
-    "placeholder:text-gray-500",
-    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
-    "disabled:cursor-not-allowed disabled:opacity-50",
-  ),
+const inputContainerVariants = cva(
+  [
+    "bg-gray-100",
+    "text-base-content",
+    "h-[3.5rem]",
+    "inline-flex",
+    "w-full",
+    "shrink",
+    "cursor-text",
+    "items-center",
+    "overflow-hidden",
+    "border",
+    "border-gray-100",
+    "rounded-[0.625rem]",
+    "outline-none",
+    "transition-all",
+    "duration-300",
+    "ease-out",
+    "px-4",
+    "gap-2",
+    // Focus state
+    "focus-within:border-gray-300",
+    "focus-within:bg-gray-0",
+    "focus-within:isolate",
+    // Disabled state (applied via group-disabled on parent if needed, or directly)
+    "has-[input:disabled]:cursor-not-allowed",
+    "has-[input:disabled]:opacity-50",
+  ],
   {
     variants: {
       error: {
-        true: "border-error-600 focus:border-error-600 bg-gray-0",
-      },
-      isLabel: {
-        true: "pt-6 pb-2 placeholder:text-transparent",
+        true: ["bg-gray-0", "border-error-600", "focus-within:border-error-600"],
         false: "",
-      },
-      isFocused: {
-        true: "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
-        false: "",
-      },
-      variant: {
-        "floating-label": "pt-6 pb-2 placeholder:text-transparent",
-        default: "",
       },
     },
     defaultVariants: {
       error: false,
-      isFocused: false,
+    },
+  },
+);
+
+const inputElementVariants = cva(
+  [
+    // Base styles for <input>
+    "peer", // Add peer class for floating label interaction
+    "inline-block",
+    "h-full",
+    "grow",
+    "appearance-none",
+    "bg-transparent",
+    "border-none",
+    "placeholder:text-base-content/50",
+    "focus:outline-none",
+    "focus-visible:outline-none",
+    // Disabled state
+    "disabled:cursor-not-allowed",
+    // Floating label specific placeholder interaction
+    // These are applied based on variant prop
+  ],
+  {
+    variants: {
+      variant: {
+        default: "placeholder:text-base-content/50",
+        "floating-label": [
+          "placeholder:text-transparent", // Hide placeholder by default for floating
+          "focus:placeholder:text-base-content/50", // Show placeholder on focus
+        ],
+      },
+    },
+    defaultVariants: {
       variant: "default",
     },
   },
 );
 
-export const iconVariants = cva(
-  "absolute top-1 bottom-1 flex items-center justify-center overflow-hidden text-gray-400",
+const floatingLabelContainerVariants = cva(["relative", "grow", "h-full"]);
+
+const floatingLabelVariants = cva(
+  [
+    // Base styles from .input-floating-label
+    "text-base-content/50",
+    "pointer-events-none",
+    "absolute",
+    "start-0", // Position relative to container start
+    "w-fit",
+    "max-w-[calc(100%-2rem)]", // Prevent overlap with end adornment/padding
+    "overflow-hidden",
+    "bg-transparent",
+    "text-ellipsis",
+    "whitespace-nowrap", // Prevent wrapping
+    // Positioning & Transition
+    "translate-y-[-50%]",
+    "transition-[top,transform,scale,opacity,color]",
+    "duration-100",
+    "ease-out",
+    // Peer states for floating effect (when input has value or is focused)
+    "peer-focus:pointer-events-auto",
+    "peer-focus:top-0",
+    "peer-focus:translate-x-[-0.25rem]", // Adjust horizontal position slightly (example)
+    "peer-focus:-translate-y-1/2", // Adjust vertical position (top is 0, translate -50%)
+    "peer-focus:scale-75",
+    "peer-focus:bg-base-100", // Match input background
+    "peer-focus:px-1",
+    "peer-focus:font-medium",
+    "peer-focus:text-[var(--color-primary)]", // Focused label color
+    // State when placeholder is not shown (i.e., input has value)
+    "peer-[:not(:placeholder-shown)]:pointer-events-auto",
+    "peer-[:not(:placeholder-shown)]:top-0",
+    "peer-[:not(:placeholder-shown)]:translate-x-[-0.25rem]", // Adjust horizontal position slightly
+    "peer-[:not(:placeholder-shown)]:-translate-y-1/2", // Adjust vertical position
+    "peer-[:not(:placeholder-shown)]:scale-75",
+    "peer-[:not(:placeholder-shown)]:bg-base-100",
+    "peer-[:not(:placeholder-shown)]:px-1",
+    "peer-[:not(:placeholder-shown)]:font-medium",
+    // Error state color for label
+    "peer-focus:peer-aria-[invalid=true]:text-error-600", // Adjust color if error+focused
+    // Disabled state for label
+    "peer-disabled:text-base-content/30",
+  ],
   {
     variants: {
-      disabled: {
-        true: "text-gray-300 cursor-not-allowed",
+      error: {
+        // Apply error color directly when input has aria-invalid=true
+        true: "peer-aria-[invalid=true]:text-error-600 peer-focus:peer-aria-[invalid=true]:!text-error-600", // Apply error color even when not focused if invalid
+        false: "",
       },
-      position: {
-        start: "left-0",
-        end: "right-0",
-      },
+    },
+    defaultVariants: {
+      error: false,
     },
   },
 );
 
-const dividerVariants = cva("border-r  h-[1.625rem] absolute", {
+const dividerVariants = cva("border-r h-[1.625rem] w-1", {
   variants: {
-    position: {
-      start: "left-0",
-      end: "right-0",
-    },
     error: {
       true: "border-error-600",
-      false: "border-gray-300",
+      false: "border-gray-300", // Consider using a theme variable like border-base-content/20 ?
     },
   },
   defaultVariants: {
@@ -75,10 +153,9 @@ const dividerVariants = cva("border-r  h-[1.625rem] absolute", {
 
 export interface InputProps
   extends Omit<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      "className" | "style" | "placeholder"
-    >,
-    VariantProps<typeof inputVariants> {
+    React.InputHTMLAttributes<HTMLInputElement>,
+    "className" | "style" | "placeholder" | "size" // Omit HTML size attribute
+  > {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -89,41 +166,19 @@ export interface InputProps
   isValid?: boolean;
   /**
    * Element to be rendered at the start (left side) of the input.
-   * The component passed to this prop must accept a `style` prop.
-   * The component should use currentColor to match the Input's styling.
-   * To change styles based on input focus, use Tailwind's `group-*` modifiers
-   * since the input is wrapped in a group class.
    */
   startAdornment?: React.ReactNode;
   /**
    * Element to be rendered at the end (right side) of the input.
-   * The component passed to this prop must accept a `style` prop.
-   * The component should use currentColor to match the Input's styling.
-   * To change styles based on input focus, use Tailwind's `group-*` modifiers
-   * since the input is wrapped in a group class.
    */
   endAdornment?: React.ReactNode;
+  // Removed isFocused prop as focus state is handled by CSS focus-within
   /**
-   * Width of the start adornment in rem
-   * @default 1.25
-   */
-  startAdornmentWidth?: number;
-  /**
-   * Width of the end adornment in rem
-   * @default 1.25
-   */
-  endAdornmentWidth?: number;
-  /**
-   * If true, the input will display in a focused state with focus styling
-   * @default false
-   */
-  isFocused?: boolean;
-  /**
-   * Additional class name for the input
+   * Additional class name for the input container
    */
   className?: string;
   /**
-   * Label text to be displayed above the input
+   * Label text to be displayed above the input or as floating label
    */
   label?: string;
   /**
@@ -132,106 +187,121 @@ export interface InputProps
    */
   variant?: "default" | "floating-label";
   /**
-   * If true, the dividers will be shown
-   * @default true
+   * If true, the start divider will be shown when startAdornment is present.
+   * @default false // Default dividers to false
    */
   showStartDivider?: boolean;
   /**
-   * If true, the end divider will be shown
-   * @default true
+   * If true, the end divider will be shown when endAdornment or isValid is present.
+   * @default false // Default dividers to false
    */
   showEndDivider?: boolean;
+  /**
+   * Id for the input element, used for label association. Auto-generated if not provided.
+   */
+  id?: string;
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       type = "text",
-      error,
+      error = false, // Default error to false
       startAdornment,
       endAdornment,
       isValid,
-      startAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
-      endAdornmentWidth = DEFAULT_ADORNMENT_WIDTH,
       disabled,
       className,
       label,
-      id,
-      showStartDivider,
-      showEndDivider,
+      id: providedId,
+      showStartDivider = false, // Default dividers to false
+      showEndDivider = false,
       variant = "default",
       ...props
     },
     ref,
   ) => {
+    const generatedId = React.useId();
+    const id = providedId || generatedId;
+    const hasStartAdornment = !!startAdornment;
+    // End adornment exists if isValid is true OR endAdornment prop is provided
+    const hasEndAdornment = isValid || !!endAdornment;
+
     return (
-      <div className="relative flex w-full items-center group">
-        {startAdornment && (
-          <div
-            className={cn(iconVariants({ disabled, position: "start" }))}
-            style={{ width: `${startAdornmentWidth + 1}rem` }}
-          >
-            {startAdornment}
-            {showStartDivider && (
-              <div className={dividerVariants({ position: "end", error })} />
-            )}
-          </div>
+      <div className={cn(inputContainerVariants({ error }), className)}>
+        {hasStartAdornment && (
+          <>
+            <div className="inline-flex items-center justify-center shrink-0">
+              {startAdornment}
+            </div>
+            {showStartDivider && <div className={dividerVariants({ error })} />}
+          </>
         )}
-        <input
-          ref={ref}
-          id={id}
-          type={type}
-          placeholder={label}
-          disabled={disabled}
-          className={cn(
-            inputVariants({ error, isLabel: variant === "floating-label" }),
-            typographyVariants({ variant: "body", level: 2 }),
-            className,
-          )}
-          {...props}
-          style={{
-            ...(startAdornment && {
-              paddingLeft: `${(showStartDivider ? 1.6 : 1) + startAdornmentWidth}rem`,
-            }),
-            ...(endAdornment && {
-              paddingRight: `${(showEndDivider ? 1.6 : 1) + endAdornmentWidth}rem`,
-            }),
-            ...(isValid && { paddingRight: `${1 + DEFAULT_ADORNMENT_WIDTH}rem` }),
-          }}
-        />
-        {(isValid || endAdornment) && (
+
+        {variant === "floating-label" ? (
           <div
-            className={cn(iconVariants({ disabled, position: "end" }))}
-            style={{ width: `${endAdornmentWidth + 1}rem` }}
-          >
-            {isValid ? <Tick className="text-success-700" /> : endAdornment}
-            {showEndDivider && (
-              <div className={dividerVariants({ position: "start", error })} />
-            )}
-          </div>
-        )}
-        {variant === "floating-label" && (
-          <label
-            htmlFor={id}
             className={cn(
-              typographyVariants({ variant: "body", level: 3 }),
-              cn(
-                // Initial state
-                "peer-placeholder-shown:text-sm peer-placeholder-shown:translate-y-0",
-                "peer-focus:-translate-y-[0.6rem] peer-focus:text-xs",
-                // End state
-                "absolute text-gray-500 duration-300 transform text-xs",
-                "-translate-y-[0.6rem] z-10 pl-4",
-              ),
+              "relative grow h-full",
+              variant === "floating-label" && "self-stretch",
             )}
-            style={{
-              ...(startAdornment && {
-                paddingLeft: `${1 + startAdornmentWidth}rem`,
-              }),
-            }}
           >
-            {label}
-          </label>
+            <input
+              ref={ref}
+              id={id}
+              type={type}
+              // Use a space or label as placeholder for floating label CSS trick (:placeholder-shown)
+              placeholder={label || " "}
+              disabled={disabled}
+              aria-invalid={error} // Accessibility for error state
+              className={cn(
+                inputElementVariants({
+                  variant,
+                }),
+                "h-full", // Ensure input takes full height for label positioning
+                // Remove input's own padding if corresponding adornment exists
+                hasStartAdornment && "ps-0",
+                hasEndAdornment && "pe-0",
+              )}
+              {...props}
+            />
+            {/* Floating Label */}
+            <label className={cn(floatingLabelVariants({ error }))} htmlFor={id}>
+              {label}
+            </label>
+          </div>
+        ) : (
+          <>
+            {/* Screen-reader only label */}
+            {label && (
+              <label className="sr-only" htmlFor={id}>
+                {label}
+              </label>
+            )}
+            <input
+              ref={ref}
+              id={id}
+              type={type}
+              placeholder={label}
+              disabled={disabled}
+              aria-invalid={error}
+              className={cn(
+                inputElementVariants({
+                  variant,
+                }),
+                typographyVariants({ variant: "body" }),
+              )}
+              {...props}
+            />
+          </>
+        )}
+
+        {hasEndAdornment && (
+          <>
+            {showEndDivider && <div className={dividerVariants({ error })} />}
+            <div className="inline-flex items-center justify-center shrink-0">
+              {isValid ? <Tick className="text-success-700" /> : endAdornment}
+            </div>
+          </>
         )}
       </div>
     );

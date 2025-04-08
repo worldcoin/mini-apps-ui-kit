@@ -7,7 +7,7 @@ import { CountryDrawer } from "../CountryDrawer/CountryDrawer";
 import { CountryCode } from "../Flag/Flag";
 import { Input, InputProps } from "../Input";
 import CountrySelectorButton from "./CountrySelectorButton";
-import { DIAL_CODE_PREFIX, startAdornmentWidthByDialCodeLength } from "./constants";
+import { DIAL_CODE_PREFIX } from "./constants";
 import { getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
 
 export interface PhoneFieldProps
@@ -62,11 +62,6 @@ export interface PhoneFieldProps
    * The component should use currentColor to match the Input's styling.
    */
   endAdornment?: React.ReactNode;
-  /**
-   * Width of the end adornment in rem
-   * @default 1.25
-   */
-  endAdornmentWidth?: number;
 }
 
 export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
@@ -82,7 +77,6 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       error = false,
       isValid,
       endAdornment,
-      endAdornmentWidth,
       type = "tel",
       inputMode = "tel",
       autoComplete = "tel",
@@ -110,7 +104,6 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
 
     const selectedCountryCode = getValidatedCountryCode(country.iso2, defaultCountryCode);
     const currentDialCode = `${DIAL_CODE_PREFIX}${country.dialCode}`;
-    const startAdornmentWidth = startAdornmentWidthByDialCodeLength[country.dialCode.length];
 
     // This allows the parent component to interact with the input element directly
     useImperativeHandle(ref, () => inputRef.current as HTMLDivElement);
@@ -144,8 +137,6 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         error={error}
         isValid={isValid}
         endAdornment={endAdornment}
-        endAdornmentWidth={endAdornmentWidth}
-        startAdornmentWidth={startAdornmentWidth}
         showStartDivider
         startAdornment={
           <CountryDrawer

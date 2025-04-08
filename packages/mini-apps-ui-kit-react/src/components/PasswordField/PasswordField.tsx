@@ -29,8 +29,6 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
       inputMode = "text",
       autoCapitalize = "off",
       autoCorrect = "off",
-      endAdornment: endAdornmentProp,
-      endAdornmentWidth: endAdornmentWidthProp,
       ...props
     },
     ref,
@@ -42,7 +40,6 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
         ref={ref}
         isValid={isValid}
         disabled={disabled}
-        endAdornmentWidth={2.4}
         endAdornment={
           <button type="button" onClick={() => setShowPassword(!showPassword)}>
             {showPassword ? <EyeClosed /> : <Eye />}

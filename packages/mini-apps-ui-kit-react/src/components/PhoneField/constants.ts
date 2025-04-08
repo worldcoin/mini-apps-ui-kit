@@ -33,10 +33,3 @@ export const extendedCountryDataList: CountryData[] = [
 ].sort((a, b) => a[0].localeCompare(b[0])); // sorted by country name
 
 export const DIAL_CODE_PREFIX = "+";
-
-export const startAdornmentWidthByDialCodeLength: Record<string, number> = {
-  "1": 5.5,
-  "2": 6,
-  "3": 6.5,
-  "4": 7,
-};

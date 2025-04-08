@@ -6,7 +6,7 @@ import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 import ClearButton from "../ClearButton";
 import { Magnifier } from "../Icons/Magnifier";
 import { Input, InputProps } from "../Input";
-import PasteButton, { PASTE_BUTTON_WIDTH } from "../PasteButton/PasteButton";
+import PasteButton from "../PasteButton/PasteButton";
 
 export interface SearchFieldProps
   extends Omit<InputProps, "startAdornment" | "startAdornmentWidth" | "placeholder"> {
@@ -46,7 +46,6 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
       autoComplete = "off",
       spellCheck = "false",
       endAdornment: endAdornmentProp,
-      endAdornmentWidth: endAdornmentWidthProp,
       label = "Search",
       ...props
     },
@@ -58,7 +57,6 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
     useImperativeHandle(forwardedRef, () => inputRef.current!);
 
     let endAdornment = endAdornmentProp;
-    let endAdornmentWidth = endAdornmentWidthProp;
     if (showPasteButton && !disabled && !isPasted) {
       endAdornment = (
         <PasteButton
@@ -73,7 +71,6 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           }}
         />
       );
-      endAdornmentWidth = PASTE_BUTTON_WIDTH;
     } else if (isFocused && !disabled) {
       endAdornment = (
         <ClearButton
@@ -86,7 +83,6 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           }}
         />
       );
-      endAdornmentWidth = 2.3;
     }
 
     return (
@@ -96,8 +92,6 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
         startAdornment={<Magnifier />}
         isValid={isValid}
         disabled={disabled}
-        startAdornmentWidth={2.3}
-        endAdornmentWidth={endAdornmentWidth}
         endAdornment={endAdornment}
         type={type}
         autoComplete={autoComplete}

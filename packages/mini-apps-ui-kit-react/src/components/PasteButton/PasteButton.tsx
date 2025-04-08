@@ -21,8 +21,6 @@ interface PasteButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>,
   onPaste?: (value: string) => void;
 }
 
-export const PASTE_BUTTON_WIDTH = 5;
-
 const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
   ({ children, inputRef, label = "Paste", className, onPaste, ...props }, ref) => {
     const handlePaste = async () => {
