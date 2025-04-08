@@ -101,7 +101,7 @@ export const WithIcon: Story = {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader icon={<CircleSpark />}>
-          <AlertDialogTitle>Delete Account</AlertDialogTitle>
+          <AlertDialogTitle>Are you sure you want to delete your account?</AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogDescription>
           This action cannot be undone. This will permanently delete your account and remove
@@ -111,7 +111,7 @@ export const WithIcon: Story = {
           <AlertDialogClose asChild>
             <Button variant="secondary">Cancel</Button>
           </AlertDialogClose>
-          <Button>Delete Account</Button>
+          <Button>Delete</Button>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

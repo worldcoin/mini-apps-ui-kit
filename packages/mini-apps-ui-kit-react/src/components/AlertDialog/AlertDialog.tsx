@@ -68,30 +68,39 @@ AlertDialogContent.displayName = "AlertDialogContent";
 
 const AlertDialogHeader = ({ icon, children, ...props }: AlertDialogHeaderProps) => {
   const { dismissible } = useAlertDialog();
-  return (
-    <div
-      className={cn(
-        "flex justify-between gap-4 mb-4 w-full",
-        icon ? "items-start" : "items-center",
-      )}
-      {...props}
-    >
-      <div className="flex flex-col gap-6">
-        {icon}
+
+  const closeButton = dismissible && (
+    <div className="shrink-0">
+      <AlertDialogClose asChild>
+        <Button variant="tertiary" size="icon">
+          <XMark />
+        </Button>
+      </AlertDialogClose>
+    </div>
+  );
+
+  const baseClasses = "flex justify-between w-full";
+
+  if (icon) {
+    return (
+      <div className="mb-4 flex flex-col gap-6">
+        <div className={cn(baseClasses)} {...props}>
+          <div className="flex flex-col">{icon}</div>
+          {closeButton}
+        </div>
         {children}
       </div>
-      {dismissible && (
-        <div className="shrink-0">
-          <AlertDialogClose asChild>
-            <Button variant="tertiary" size="icon">
-              <XMark />
-            </Button>
-          </AlertDialogClose>
-        </div>
-      )}
+    );
+  }
+
+  return (
+    <div className={cn(baseClasses, "gap-4 mb-4 items-center")} {...props}>
+      <div className="flex flex-col gap-6">{children}</div>
+      {closeButton}
     </div>
   );
 };
+
 AlertDialogHeader.displayName = "AlertDialogHeader";
 
 const AlertDialogFooter = (props: BottomBarProps) => <BottomBar {...props} />;
