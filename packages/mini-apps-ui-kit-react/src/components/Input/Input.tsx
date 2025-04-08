@@ -185,7 +185,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           disabled={disabled}
           className={cn(
             inputVariants({ error, isLabel: variant === "floating-label" }),
-            typographyVariants({ variant: "body", level: 3 }),
+            typographyVariants({ variant: "body", level: 2 }),
             className,
           )}
           {...props}
