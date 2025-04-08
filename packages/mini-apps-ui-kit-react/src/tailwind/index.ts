@@ -61,6 +61,27 @@ export const info = {
   "--info-900": "0 36 102",
 };
 
+export const worldBlue = {
+  "--world-blue-primary": "63, 219, 237",
+  "--world-blue-secondary": "236, 251, 253",
+};
+export const carrotOrange = {
+  "--carrot-orange-primary": "255, 90, 0",
+  "--carrot-orange-secondary": "255, 237, 230",
+};
+export const purple = {
+  "--purple-primary": "134, 0, 255",
+  "--purple-secondary": "242, 230, 255",
+};
+export const green = {
+  "--green-primary": "0, 194, 48",
+  "--green-secondary": "230, 249, 236",
+};
+export const blue = {
+  "--blue-primary": "0, 92, 255",
+  "--blue-secondary": "230, 240, 255",
+};
+
 const uiKitTailwindPlugin = plugin(
   function ({ addBase }) {
     addBase({
@@ -71,6 +92,11 @@ const uiKitTailwindPlugin = plugin(
         ...error,
         ...warning,
         ...info,
+        ...worldBlue,
+        ...carrotOrange,
+        ...purple,
+        ...green,
+        ...blue,
       },
     });
   },
@@ -138,6 +164,28 @@ const uiKitTailwindPlugin = plugin(
           300: "rgb(var(--info-300) / <alpha-value>)",
           200: "rgb(var(--info-200) / <alpha-value>)",
           100: "rgb(var(--info-100) / <alpha-value>)",
+        },
+        specialty: {
+          worldBlue: {
+            primary: "rgb(var(--world-blue-primary) / <alpha-value>)",
+            secondary: "rgb(var(--world-blue-secondary) / <alpha-value>)",
+          },
+          carrotOrange: {
+            primary: "rgb(var(--carrot-orange-primary) / <alpha-value>)",
+            secondary: "rgb(var(--carrot-orange-secondary) / <alpha-value>)",
+          },
+          purple: {
+            primary: "rgb(var(--purple-primary) / <alpha-value>)",
+            secondary: "rgb(var(--purple-secondary) / <alpha-value>)",
+          },
+          green: {
+            primary: "rgb(var(--green-primary) / <alpha-value>)",
+            secondary: "rgb(var(--green-secondary) / <alpha-value>)",
+          },
+          blue: {
+            primary: "rgb(var(--blue-primary) / <alpha-value>)",
+            secondary: "rgb(var(--blue-secondary) / <alpha-value>)",
+          },
         },
       },
       lineHeight: {

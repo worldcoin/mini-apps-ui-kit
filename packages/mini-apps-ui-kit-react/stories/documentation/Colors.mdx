@@ -1,4 +1,4 @@
-import { gray, success, error, warning, info } from "../../src/tailwind/index";
+import { gray, success, error, warning, info, worldBlue, carrotOrange, purple, green, blue } from "../../src/tailwind/index";
 import { Color } from "./components/Color";
 
 # Colors
@@ -39,3 +39,33 @@ import { Color } from "./components/Color";
 </div>
 
 
+## Specialty
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(worldBlue).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(carrotOrange).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>
+
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(purple).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>  
+
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(green).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>  
+
+<div className="flex flex-wrap gap-4 pb-20">
+  {Object.entries(blue).map(([key, value]) => (
+    <Color key={key} name={key} color={value} />
+  ))}
+</div>  
