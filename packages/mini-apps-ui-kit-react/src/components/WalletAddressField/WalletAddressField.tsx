@@ -8,10 +8,7 @@ import { Input, InputProps } from "../Input";
 import PasteButton from "../PasteButton/PasteButton";
 
 export interface WalletAddressFieldProps
-  extends Omit<
-    InputProps,
-    "startAdornment" | "startAdornmentWidth" | "endAdornment" | "endAdornmentWidth"
-  > {
+  extends Omit<InputProps, "startAdornment" | "endAdornment"> {
   /**
    * If true, the input will display in an error state with error styling
    */

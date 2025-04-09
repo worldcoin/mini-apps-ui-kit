@@ -8,8 +8,7 @@ import { Magnifier } from "../Icons/Magnifier";
 import { Input, InputProps } from "../Input";
 import PasteButton from "../PasteButton/PasteButton";
 
-export interface SearchFieldProps
-  extends Omit<InputProps, "startAdornment" | "startAdornmentWidth" | "placeholder"> {
+export interface SearchFieldProps extends Omit<InputProps, "startAdornment" | "placeholder"> {
   /**
    * If true, the input will display in an error state with error styling
    */

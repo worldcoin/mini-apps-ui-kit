@@ -69,7 +69,8 @@ export const Text: Story = {
 
 export const FloatingLabel: Story = {
   args: {
-    label: "Email",
+    label:
+      "Please enter your email address here to receive important updates, newsletters, and communications from our platform. We value your privacy and will handle your information securely.",
     id: "email",
     variant: "floating-label",
   },
@@ -115,7 +116,6 @@ export const StartCustomSizeIcon: Story = {
   args: {
     label: "Number",
     startAdornment: <CountryCode />,
-    startAdornmentWidth: 4.5,
   },
   parameters: {
     docs: {
@@ -136,7 +136,6 @@ export const EndCustomSizeIcon: Story = {
   args: {
     label: "Number",
     endAdornment: <Switch />,
-    endAdornmentWidth: 2,
   },
   parameters: {
     docs: {

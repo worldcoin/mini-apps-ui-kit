@@ -11,10 +11,7 @@ import { DIAL_CODE_PREFIX } from "./constants";
 import { getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
 
 export interface PhoneFieldProps
-  extends Omit<
-    InputProps,
-    "onChange" | "startAdornment" | "startAdornmentWidth" | "placeholder"
-  > {
+  extends Omit<InputProps, "onChange" | "startAdornment" | "placeholder"> {
   /**
    * Current phone number value.
    */

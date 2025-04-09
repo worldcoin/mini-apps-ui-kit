@@ -186,7 +186,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                   className={cn(
                     "w-full cursor-pointer select-none rounded-md p-2 font-sans outline-none hover:bg-gray-50",
                     value === option.value && "bg-gray-100",
-                    typographyVariants({ variant: "body", level: 2 }),
+                    typographyVariants({ variant: "body", level: 3 }),
                   )}
                 >
                   <RadixSelect.ItemText>{option.label}</RadixSelect.ItemText>

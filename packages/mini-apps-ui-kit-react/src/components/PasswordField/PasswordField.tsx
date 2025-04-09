@@ -6,8 +6,7 @@ import { Eye } from "../Icons/Eye";
 import { EyeClosed } from "../Icons/EyeClosed";
 import { Input, InputProps } from "../Input";
 
-export interface PasswordFieldProps
-  extends Omit<InputProps, "startAdornment" | "startAdornmentWidth"> {
+export interface PasswordFieldProps extends Omit<InputProps, "startAdornment"> {
   /**
    * If true, the input will display in an error state with error styling
    */
