@@ -1,1 +1,8 @@
-export * from "./Drawer";
+export {
+  Drawer,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "./Drawer";

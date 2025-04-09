@@ -1,6 +1,11 @@
 "use client";
 
 import {
+  Button,
+  Checkbox,
+  Chip,
+  ColorPickerGroup,
+  ColorPickerItem,
   Drawer,
   DrawerClose,
   DrawerContent,
@@ -22,13 +27,6 @@ import {
   Typography,
   useToast,
 } from "@worldcoin/mini-apps-ui-kit-react";
-import { Button } from "@worldcoin/mini-apps-ui-kit-react/Button";
-import { Checkbox } from "@worldcoin/mini-apps-ui-kit-react/Checkbox";
-import { Chip } from "@worldcoin/mini-apps-ui-kit-react/Chip";
-import {
-  ColorPickerGroup,
-  ColorPickerItem,
-} from "@worldcoin/mini-apps-ui-kit-react/ColorPicker";
 
 export default function Home() {
   const { toast } = useToast();
