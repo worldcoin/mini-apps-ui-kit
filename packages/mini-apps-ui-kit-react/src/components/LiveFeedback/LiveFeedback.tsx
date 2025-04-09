@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-import { Fail } from "../Icons/Fail";
-import { Success } from "../Icons/Success";
 import { Spinner } from "../Spinner";
 import { Typography } from "../Typography";
+import { Fail } from "../icons/Fail";
+import { Success } from "../icons/Success";
 
 interface LiveFeedbackProps {
   /** The current state of the feedback. Controls which icon and label are shown. */

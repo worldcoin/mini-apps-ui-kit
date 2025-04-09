@@ -6,8 +6,8 @@ import { cva } from "class-variance-authority";
 import { forwardRef, useEffect, useState } from "react";
 
 import { cn } from "../../lib/utils";
-import { ArrowDown } from "../Icons/ArrowDown";
 import { typographyVariants } from "../Typography";
+import { ArrowDown } from "../icons/ArrowDown";
 
 export const selectVariants = cva(
   cn(
