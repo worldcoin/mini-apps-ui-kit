@@ -108,7 +108,8 @@
     "build:sb": "pnpm build:tailwind && storybook build",
     "build": "pnpm build:tailwind && tsc -b ./tsconfig.lib.json && vite build",
     "lint": "eslint .",
-    "publish": "pnpm build && npm publish --access public"
+    "publish": "pnpm build && npm publish --access public",
+    "generate:country-codes": "node scripts/generate-country-codes.js"
   },
   "peerDependencies": {
     "react": "^18 || ^19",

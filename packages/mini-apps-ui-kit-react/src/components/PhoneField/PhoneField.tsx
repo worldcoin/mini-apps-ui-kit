@@ -7,7 +7,7 @@ import { forwardRef, useImperativeHandle, useMemo, useRef, useState } from "reac
 import { parseCountry, usePhoneInput } from "react-international-phone";
 
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "../Drawer";
-import { CountryCode } from "../Flag/Flag";
+import { CountryCode } from "../Flag/types";
 import { Input, InputProps } from "../Input";
 import { SearchField } from "../SearchField";
 import { Typography } from "../Typography";
