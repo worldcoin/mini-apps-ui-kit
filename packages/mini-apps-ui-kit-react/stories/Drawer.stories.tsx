@@ -61,7 +61,7 @@ export const Default: StoryObj<typeof Drawer> = {
 
 export const FullPage: StoryObj<typeof Drawer> = {
   render: () => (
-    <Drawer fullPage>
+    <Drawer height="full">
       <DrawerTrigger>
         <Button variant="secondary" size="sm">
           Open

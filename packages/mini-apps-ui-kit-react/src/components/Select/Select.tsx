@@ -203,4 +203,4 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
 Select.displayName = "Select";
 
 export { Select };
-export type { SelectProps };
+export type { SelectProps, SelectOption };
