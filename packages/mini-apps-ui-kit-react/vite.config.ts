@@ -10,7 +10,9 @@ export default defineConfig({
     react(),
     dts({
       tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
-      rollupTypes: true,
+      rollupTypes: false,
+      include: ["src"],
+      exclude: ["**/*.stories.tsx", "**/*.test.tsx", "**/*.test.ts"],
     }),
     preserveDirectives(),
   ],
@@ -45,10 +47,6 @@ export default defineConfig({
         entryFileNames: "[name].js",
         chunkFileNames: "chunks/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash][extname]",
-        manualChunks: {
-          vendor: ["react", "react-dom"],
-          utils: ["class-variance-authority", "clsx", "tailwind-merge"],
-        },
       },
     },
   },
