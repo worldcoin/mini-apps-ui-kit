@@ -16,7 +16,7 @@ interface TokenProps {
   disabled?: boolean;
 }
 
-export const Token: React.FC<TokenProps> = ({
+const Token: React.FC<TokenProps> = ({
   value,
   size = 40,
   variant = "color",
@@ -26,4 +26,7 @@ export const Token: React.FC<TokenProps> = ({
   return <Icon width={size} height={size} disabled={disabled} variant={variant} />;
 };
 
-export default Token;
+Token.displayName = "Token";
+
+export { Token };
+export type { TokenProps };

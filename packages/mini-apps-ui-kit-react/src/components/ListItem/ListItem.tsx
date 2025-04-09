@@ -28,7 +28,7 @@ interface ListItemProps
   disabled?: boolean;
 }
 
-export const ListItem = forwardRef<HTMLButtonElement, ListItemProps>(
+const ListItem = forwardRef<HTMLButtonElement, ListItemProps>(
   ({ children, label, description, startAdornment, endAdornment, disabled, ...props }, ref) => {
     return (
       <button ref={ref} className={listItemStyles()} {...props} disabled={disabled}>
@@ -59,4 +59,5 @@ export const ListItem = forwardRef<HTMLButtonElement, ListItemProps>(
 
 ListItem.displayName = "ListItem";
 
-export default ListItem;
+export { ListItem };
+export type { ListItemProps };

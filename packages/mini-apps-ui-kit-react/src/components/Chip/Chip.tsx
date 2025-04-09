@@ -6,7 +6,7 @@ import { Typography } from "../Typography";
 
 type ChipVariant = "default" | "success" | "warning" | "error" | "important";
 
-export interface ChipProps extends HTMLAttributes<HTMLDivElement> {
+interface ChipProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * The variant of the chip. Default value is "default".
    */
@@ -48,7 +48,7 @@ const chipVariants = cva(
   },
 );
 
-export const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof chipVariants>>(
+const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof chipVariants>>(
   ({ icon, label, variant = "default", className, ...props }, ref) => {
     return (
       <div
@@ -67,4 +67,5 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof c
 
 Chip.displayName = "Chip";
 
-export default Chip;
+export { Chip };
+export type { ChipProps };

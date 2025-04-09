@@ -5,7 +5,7 @@ import { type VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
 import { cn } from "../../lib/utils";
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 
 const pillVariants = cva(
   "inline-flex h-9 items-center rounded-full px-4 transition-colors duration-200",
@@ -22,7 +22,7 @@ const pillVariants = cva(
   },
 );
 
-export interface PillProps
+interface PillProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "style">,
     VariantProps<typeof pillVariants> {
   /**
@@ -37,7 +37,7 @@ export interface PillProps
   asChild?: boolean;
 }
 
-export const Pill = forwardRef<HTMLButtonElement, PillProps>(
+const Pill = forwardRef<HTMLButtonElement, PillProps>(
   ({ checked, children, asChild, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     return (
@@ -57,4 +57,5 @@ export const Pill = forwardRef<HTMLButtonElement, PillProps>(
 
 Pill.displayName = "Pill";
 
-export default Pill;
+export { Pill };
+export type { PillProps };

@@ -3,12 +3,11 @@
 import { createChangeEvent } from "@/lib/utils";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
-import ClearButton from "../ClearButton";
+import { ClearButton } from "../ClearButton";
 import { Input, InputProps } from "../Input";
-import PasteButton from "../PasteButton/PasteButton";
+import { PasteButton } from "../PasteButton/PasteButton";
 
-export interface WalletAddressFieldProps
-  extends Omit<InputProps, "startAdornment" | "endAdornment"> {
+interface WalletAddressFieldProps extends Omit<InputProps, "startAdornment" | "endAdornment"> {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -29,7 +28,7 @@ export interface WalletAddressFieldProps
   pasteButtonLabel?: string;
 }
 
-export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFieldProps>(
+const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFieldProps>(
   (
     {
       isValid,
@@ -109,4 +108,5 @@ export const WalletAddressField = forwardRef<HTMLInputElement, WalletAddressFiel
 
 WalletAddressField.displayName = "WalletAddressField";
 
-export default WalletAddressField;
+export { WalletAddressField };
+export type { WalletAddressFieldProps };

@@ -11,7 +11,7 @@ import {
 } from "input-otp";
 import * as React from "react";
 
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 
 export const inputVariants = cva(
   cn(
@@ -110,7 +110,7 @@ type OTPFieldProps = Omit<
   pasteTransformer?: (pastedText: string) => string;
 };
 
-export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldProps>(
+const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldProps>(
   ({ maxLength = 6, error, children, mode = "digits", pattern, ...props }, ref) => {
     return (
       <OTPInput
@@ -144,4 +144,7 @@ export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPF
   },
 );
 
-export default OTPField;
+OTPField.displayName = "OTPField";
+
+export { OTPField };
+export type { OTPFieldProps };

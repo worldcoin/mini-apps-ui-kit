@@ -15,8 +15,6 @@ interface ClearButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClear?: () => void;
 }
 
-export const CLEAR_BUTTON_WIDTH = 1.25;
-
 const ClearButton = React.forwardRef<HTMLButtonElement, ClearButtonProps>(
   ({ children, inputRef, className, onClear, ...props }, ref) => {
     const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -45,4 +43,5 @@ const ClearButton = React.forwardRef<HTMLButtonElement, ClearButtonProps>(
 
 ClearButton.displayName = "ClearButton";
 
-export default ClearButton;
+export { ClearButton };
+export type { ClearButtonProps };

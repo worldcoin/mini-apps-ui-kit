@@ -1,1 +1,1 @@
-export * from "./Marble";
+export { Marble } from "./Marble";

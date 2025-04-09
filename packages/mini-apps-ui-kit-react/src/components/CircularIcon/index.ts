@@ -1,1 +1,1 @@
-export * from "./CircularIcon";
+export { CircularIcon, type CircularIconProps } from "./CircularIcon";

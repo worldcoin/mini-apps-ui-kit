@@ -3,9 +3,9 @@ import { ReactNode } from "react";
 
 import { cn } from "../../lib/utils";
 
-export type CircularIconSize = "xs" | "sm" | "md" | "lg" | "xl";
+type CircularIconSize = "xs" | "sm" | "md" | "lg" | "xl";
 
-export interface CircularIconProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CircularIconProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
   className?: string;
   size?: CircularIconSize;
@@ -27,12 +27,7 @@ const iconClasses: Record<CircularIconSize, string> = {
   xl: "size-12",
 };
 
-export function CircularIcon({
-  children,
-  className,
-  size = "md",
-  ...props
-}: CircularIconProps) {
+function CircularIcon({ children, className, size = "md", ...props }: CircularIconProps) {
   return (
     <div
       className={cn(
@@ -46,3 +41,6 @@ export function CircularIcon({
     </div>
   );
 }
+
+export { CircularIcon };
+export type { CircularIconProps };

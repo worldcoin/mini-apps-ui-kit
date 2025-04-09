@@ -1,1 +1,2 @@
-export { ColorPickerItem, ColorPickerGroup } from "./ColorPicker";
+export { ColorPickerGroup, ColorPickerItem } from "./ColorPicker";
+export type { ColorPickerGroupProps, ColorPickerItemProps } from "./ColorPicker";

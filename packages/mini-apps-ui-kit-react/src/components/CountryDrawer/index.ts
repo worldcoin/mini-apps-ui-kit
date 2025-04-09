@@ -1,1 +1,1 @@
-export { CountryDrawer } from "./CountryDrawer";
+export { CountryDrawer, type CountryDrawerProps } from "./CountryDrawer";

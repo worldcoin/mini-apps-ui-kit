@@ -3,7 +3,7 @@ import { PropsWithChildren, forwardRef } from "react";
 
 import { cn } from "../../lib/utils";
 
-export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
+interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   /**
    * The HTML element to render the typography as
    * @default "p"
@@ -192,7 +192,7 @@ export const typographyVariants = cva("", {
   },
 });
 
-export const Typography = forwardRef<HTMLElement, PropsWithChildren<TypographyComponentProps>>(
+const Typography = forwardRef<HTMLElement, PropsWithChildren<TypographyComponentProps>>(
   (
     { variant = "body", level = 2, children, as: Component = "p", className, ...props },
     ref,
@@ -211,4 +211,5 @@ export const Typography = forwardRef<HTMLElement, PropsWithChildren<TypographyCo
 
 Typography.displayName = "Typography";
 
-export default Typography;
+export { Typography };
+export type { TypographyProps };

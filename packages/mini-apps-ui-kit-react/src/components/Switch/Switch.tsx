@@ -4,7 +4,7 @@ import * as RadixSwitch from "@radix-ui/react-switch";
 import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
 import { forwardRef } from "react";
 
-export interface SwitchProps
+interface SwitchProps
   extends Omit<RadixSwitchProps, "onCheckedChange" | "onChange" | "className"> {
   /**
    * The checked state of the switch.
@@ -22,7 +22,7 @@ export interface SwitchProps
   disabled?: boolean;
 }
 
-export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
+const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
   ({ checked, onChange: onCheckedChange, disabled = false, ...rest }, ref) => {
     return (
       <RadixSwitch.Root
@@ -41,4 +41,5 @@ export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
 
 Switch.displayName = "Switch";
 
-export default Switch;
+export { Switch };
+export type { SwitchProps };

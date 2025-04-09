@@ -1,1 +1,1 @@
-export * from "./PasswordField";
+export { PasswordField, type PasswordFieldProps } from "./PasswordField";

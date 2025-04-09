@@ -1,1 +1,1 @@
-export * from "./WalletAddressField";
+export { WalletAddressField, type WalletAddressFieldProps } from "./WalletAddressField";

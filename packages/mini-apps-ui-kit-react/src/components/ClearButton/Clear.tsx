@@ -7,7 +7,7 @@ interface ClearProps {
   className?: string;
 }
 
-export function Clear({ className }: ClearProps) {
+function Clear({ className }: ClearProps) {
   return (
     <svg
       width="24"
@@ -26,3 +26,6 @@ export function Clear({ className }: ClearProps) {
     </svg>
   );
 }
+
+export { Clear };
+export type { ClearProps };

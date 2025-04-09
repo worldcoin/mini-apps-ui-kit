@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ComponentProps, ReactNode, forwardRef } from "react";
 
-export interface BulletProps extends ComponentProps<"div"> {
+interface BulletProps extends ComponentProps<"div"> {
   children?: ReactNode;
 }
 
@@ -24,4 +24,5 @@ const BulletPoint = forwardRef<HTMLDivElement, BulletProps>(({ children, ...prop
 
 BulletPoint.displayName = "BulletPoint";
 
-export default BulletPoint;
+export { BulletPoint };
+export type { BulletProps };

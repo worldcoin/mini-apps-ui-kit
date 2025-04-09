@@ -3,13 +3,13 @@ import type { FormProps as RadixFormProps } from "@radix-ui/react-form";
 import * as RadixForm from "@radix-ui/react-form";
 import { forwardRef } from "react";
 
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 
-export type FormProps = RadixFormProps;
-export const Root = RadixForm.Root;
-export const Field = RadixForm.Field;
-export const Control = RadixForm.Control;
-export const Message = forwardRef<
+type FormProps = RadixFormProps;
+const Root = RadixForm.Root;
+const Field = RadixForm.Field;
+const Control = RadixForm.Control;
+const Message = forwardRef<
   React.ElementRef<typeof RadixForm.Message>,
   React.ComponentPropsWithoutRef<typeof RadixForm.Message> & {
     error?: boolean;
@@ -38,5 +38,7 @@ export const Message = forwardRef<
     />
   </div>
 ));
-export const ValidityState: typeof RadixForm.ValidityState = RadixForm.ValidityState;
-export const Submit: typeof RadixForm.Submit = RadixForm.Submit;
+const ValidityState: typeof RadixForm.ValidityState = RadixForm.ValidityState;
+const Submit: typeof RadixForm.Submit = RadixForm.Submit;
+
+export { Root, type FormProps, Field, Control, Message, ValidityState, Submit };

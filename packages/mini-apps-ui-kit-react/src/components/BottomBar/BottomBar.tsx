@@ -15,7 +15,7 @@ const bottomBarVariants = cva("w-full gap-4", {
   },
 });
 
-export interface BottomBarProps
+interface BottomBarProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "className">,
     VariantProps<typeof bottomBarVariants> {
   /**
@@ -25,7 +25,7 @@ export interface BottomBarProps
   direction?: "horizontal" | "vertical";
 }
 
-export const BottomBar = forwardRef<HTMLDivElement, BottomBarProps>(
+const BottomBar = forwardRef<HTMLDivElement, BottomBarProps>(
   ({ children, direction, ...props }, ref) => {
     return (
       <div ref={ref} className={bottomBarVariants({ direction })} {...props}>
@@ -36,3 +36,6 @@ export const BottomBar = forwardRef<HTMLDivElement, BottomBarProps>(
 );
 
 BottomBar.displayName = "BottomBar";
+
+export { BottomBar };
+export type { BottomBarProps };

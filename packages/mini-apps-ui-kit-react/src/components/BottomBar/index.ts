@@ -1,1 +1,1 @@
-export * from "./BottomBar";
+export { BottomBar, type BottomBarProps } from "./BottomBar";

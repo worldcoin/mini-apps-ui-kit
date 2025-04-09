@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { LongPressOptions, useLongPress } from "@uidotdev/usehooks";
 
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 import { Delete } from "./Delete";
 
 interface NumberPadProps {
@@ -50,7 +50,7 @@ const buttons = [
   { value: "del", label: <Delete className="size-6" /> },
 ];
 
-export const NumberPad = ({
+const NumberPad = ({
   value = "",
   onChange,
   disabled = false,
@@ -107,4 +107,5 @@ export const NumberPad = ({
   );
 };
 
-export default NumberPad;
+export { NumberPad };
+export type { NumberPadProps };

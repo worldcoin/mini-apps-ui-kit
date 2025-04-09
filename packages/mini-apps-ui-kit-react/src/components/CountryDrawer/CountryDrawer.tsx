@@ -33,7 +33,7 @@ interface CountryDrawerProps {
   onAnimationEnd?: (open: boolean) => void;
 }
 
-export function CountryDrawer({
+function CountryDrawer({
   onChange,
   value,
   countries,
@@ -106,3 +106,6 @@ export function CountryDrawer({
     </Drawer>
   );
 }
+
+export { CountryDrawer };
+export type { CountryDrawerProps };

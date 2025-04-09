@@ -1,1 +1,1 @@
-export { LiveFeedback } from "./LiveFeedback";
+export { LiveFeedback, type LiveFeedbackProps } from "./LiveFeedback";

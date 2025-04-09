@@ -5,7 +5,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
 import { ButtonHTMLAttributes, forwardRef } from "react";
 
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 
 const buttonVariants = cva(
   "flex items-center justify-center rounded-full gap-2 font-sans leading-[1.2] tracking-normal transition-colors",
@@ -37,7 +37,7 @@ const buttonVariants = cva(
   },
 );
 
-export interface ButtonProps
+interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   /**
@@ -62,7 +62,7 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = "primary", size = "lg", fullWidth, asChild, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
 
@@ -91,4 +91,5 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = "Button";
 
-export default Button;
+export { Button };
+export type { ButtonProps };

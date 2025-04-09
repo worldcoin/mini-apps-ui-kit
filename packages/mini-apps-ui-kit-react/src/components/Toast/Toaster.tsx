@@ -3,7 +3,7 @@
 import { Toast, ToastProvider, ToastViewport } from "./Toast";
 import { useToast } from "./use-toast";
 
-export function Toaster({ duration }: { duration?: number }) {
+function Toaster({ duration }: { duration?: number }) {
   const { toasts } = useToast();
 
   return (
@@ -15,3 +15,7 @@ export function Toaster({ duration }: { duration?: number }) {
     </ToastProvider>
   );
 }
+
+Toaster.displayName = "Toaster";
+
+export { Toaster };

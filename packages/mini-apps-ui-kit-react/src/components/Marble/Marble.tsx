@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ComponentProps, forwardRef } from "react";
 
-export const Marble = forwardRef<HTMLImageElement, ComponentProps<"img">>((props, ref) => {
+const Marble = forwardRef<HTMLImageElement, ComponentProps<"img">>((props, ref) => {
   const { className, ...rest } = props;
 
   return (
@@ -19,4 +19,4 @@ export const Marble = forwardRef<HTMLImageElement, ComponentProps<"img">>((props
 
 Marble.displayName = "Marble";
 
-export default Marble;
+export { Marble };

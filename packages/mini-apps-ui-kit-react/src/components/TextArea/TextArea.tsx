@@ -2,7 +2,7 @@ import { type VariantProps, cva } from "class-variance-authority";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 
 export const textAreaVariants = cva(
   cn(
@@ -33,7 +33,7 @@ export const textAreaVariants = cva(
   },
 );
 
-export interface TextAreaProps
+interface TextAreaProps
   extends Omit<
       React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       "className" | "style" | "placeholder"
@@ -59,7 +59,7 @@ export interface TextAreaProps
   variant?: "default" | "floating-label";
 }
 
-export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ error, isFocused = false, disabled, label, variant = "default", id, ...props }, ref) => {
     return (
       <div className="relative flex w-full items-center group">
@@ -98,4 +98,5 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
 TextArea.displayName = "TextArea";
 
-export default TextArea;
+export { TextArea };
+export type { TextAreaProps };

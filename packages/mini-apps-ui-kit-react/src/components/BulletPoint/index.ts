@@ -1,1 +1,1 @@
-export { default as BulletPoint } from "./BulletPoint";
+export { BulletPoint, type BulletProps } from "./BulletPoint";

@@ -10,7 +10,7 @@ import CountrySelectorButton from "./CountrySelectorButton";
 import { DIAL_CODE_PREFIX } from "./constants";
 import { getCountryDataListByCodes, getValidatedCountryCode } from "./utils";
 
-export interface PhoneFieldProps
+interface PhoneFieldProps
   extends Omit<InputProps, "onChange" | "startAdornment" | "placeholder"> {
   /**
    * Current phone number value.
@@ -61,7 +61,7 @@ export interface PhoneFieldProps
   endAdornment?: React.ReactNode;
 }
 
-export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
+const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
   (
     {
       value,
@@ -154,4 +154,5 @@ export const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
 
 PhoneField.displayName = "PhoneField";
 
-export default PhoneField;
+export { PhoneField };
+export type { PhoneFieldProps };

@@ -14,7 +14,7 @@ interface ProgressProps {
   className?: string;
 }
 
-export const Progress = ({ value, asChild, max, getValueLabel, className }: ProgressProps) => {
+const Progress = ({ value, asChild, max, getValueLabel, className }: ProgressProps) => {
   return (
     <RadixProgress.Root
       className={cn(
@@ -38,3 +38,8 @@ export const Progress = ({ value, asChild, max, getValueLabel, className }: Prog
     </RadixProgress.Root>
   );
 };
+
+Progress.displayName = "Progress";
+
+export { Progress };
+export type { ProgressProps };
