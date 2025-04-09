@@ -24,7 +24,6 @@ const inputContainerVariants = cva(
     "duration-300",
     "ease-out",
     "px-4",
-    "gap-2",
     // Focus state
     "focus-within:border-gray-300",
     "focus-within:bg-gray-0",
@@ -39,9 +38,14 @@ const inputContainerVariants = cva(
         true: ["bg-gray-0", "border-error-600", "focus-within:border-error-600"],
         false: "",
       },
+      areDividers: {
+        true: "gap-2.5",
+        false: "gap-2",
+      },
     },
     defaultVariants: {
       error: false,
+      areDividers: false,
     },
   },
 );
@@ -53,6 +57,7 @@ const inputElementVariants = cva(
     "inline-block",
     "h-full",
     "grow",
+    "w-full",
     "appearance-none",
     "bg-transparent",
     "border-none",
@@ -69,6 +74,7 @@ const inputElementVariants = cva(
       variant: {
         default: "placeholder:text-base-content/50",
         "floating-label": [
+          "pt-6 pb-2",
           "placeholder:text-transparent", // Hide placeholder by default for floating
           "focus:placeholder:text-base-content/50", // Show placeholder on focus
         ],
@@ -85,12 +91,13 @@ const floatingLabelContainerVariants = cva(["relative", "grow", "h-full"]);
 const floatingLabelVariants = cva(
   [
     // Base styles from .input-floating-label
-    "text-base-content/50",
+    "text-gray-500",
     "pointer-events-none",
     "absolute",
     "start-0", // Position relative to container start
     "w-fit",
-    "max-w-[calc(100%-2rem)]", // Prevent overlap with end adornment/padding
+    "top-1/2",
+    // "max-w-[calc(100%-2rem)]", // Prevent overlap with end adornment/padding
     "overflow-hidden",
     "bg-transparent",
     "text-ellipsis",
@@ -102,27 +109,27 @@ const floatingLabelVariants = cva(
     "ease-out",
     // Peer states for floating effect (when input has value or is focused)
     "peer-focus:pointer-events-auto",
-    "peer-focus:top-0",
-    "peer-focus:translate-x-[-0.25rem]", // Adjust horizontal position slightly (example)
-    "peer-focus:-translate-y-1/2", // Adjust vertical position (top is 0, translate -50%)
-    "peer-focus:scale-75",
+    "peer-focus:top-[1.125rem]",
+    "peer-focus:text-xs",
+    // "peer-focus:-translate-y-1/2", // Adjust vertical position (top is 0, translate -50%)
     "peer-focus:bg-base-100", // Match input background
-    "peer-focus:px-1",
-    "peer-focus:font-medium",
-    "peer-focus:text-[var(--color-primary)]", // Focused label color
     // State when placeholder is not shown (i.e., input has value)
     "peer-[:not(:placeholder-shown)]:pointer-events-auto",
-    "peer-[:not(:placeholder-shown)]:top-0",
-    "peer-[:not(:placeholder-shown)]:translate-x-[-0.25rem]", // Adjust horizontal position slightly
-    "peer-[:not(:placeholder-shown)]:-translate-y-1/2", // Adjust vertical position
-    "peer-[:not(:placeholder-shown)]:scale-75",
-    "peer-[:not(:placeholder-shown)]:bg-base-100",
-    "peer-[:not(:placeholder-shown)]:px-1",
-    "peer-[:not(:placeholder-shown)]:font-medium",
+    "peer-[:not(:placeholder-shown)]:top-[1.125rem]",
+    "peer-[:not(:placeholder-shown)]:text-xs",
+    // "peer-[:not(:placeholder-shown)]:translate-x-[-0.25rem]", // Adjust horizontal position slightly
+    // "peer-[:not(:placeholder-shown)]:bg-gray-100",
+    // "peer-[:not(:placeholder-shown)]:px-1",
+    // "peer-[:not(:placeholder-shown)]:font-medium",
     // Error state color for label
-    "peer-focus:peer-aria-[invalid=true]:text-error-600", // Adjust color if error+focused
     // Disabled state for label
     "peer-disabled:text-base-content/30",
+
+    // "peer-placeholder-shown:text-sm peer-placeholder-shown:translate-y-0",
+    // "peer-focus:-translate-y-[0.6rem] peer-focus:text-xs",
+    // // End state
+    // "absolute text-gray-500 duration-300 transform text-xs",
+    // "-translate-y-[0.6rem] z-10 pl-4",
   ],
   {
     variants: {
@@ -227,7 +234,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const hasEndAdornment = isValid || !!endAdornment;
 
     return (
-      <div className={cn(inputContainerVariants({ error }), className)}>
+      <div
+        className={cn(
+          inputContainerVariants({ error, areDividers: showStartDivider || showEndDivider }),
+          className,
+        )}
+      >
         {hasStartAdornment && (
           <>
             <div className="inline-flex items-center justify-center shrink-0">
@@ -238,12 +250,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
 
         {variant === "floating-label" ? (
-          <div
-            className={cn(
-              "relative grow h-full",
-              variant === "floating-label" && "self-stretch",
-            )}
-          >
+          <div className={floatingLabelContainerVariants()}>
             <input
               ref={ref}
               id={id}
@@ -264,7 +271,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               {...props}
             />
             {/* Floating Label */}
-            <label className={cn(floatingLabelVariants({ error }))} htmlFor={id}>
+            <label
+              className={cn(
+                floatingLabelVariants({ error }),
+                typographyVariants({ variant: "body", level: 3 }),
+              )}
+              htmlFor={id}
+            >
               {label}
             </label>
           </div>

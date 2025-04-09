@@ -67,7 +67,7 @@ export const Text: Story = {
   },
 };
 
-export const PersistLabel: Story = {
+export const FloatingLabel: Story = {
   args: {
     label: "Email",
     id: "email",
