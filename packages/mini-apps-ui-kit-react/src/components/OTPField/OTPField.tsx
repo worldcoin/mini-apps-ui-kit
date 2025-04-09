@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { cva } from "class-variance-authority";
 import type { OTPInputProps } from "input-otp";
 import {
   OTPInput,
@@ -10,8 +11,26 @@ import {
 } from "input-otp";
 import * as React from "react";
 
-import { inputVariants } from "../Input/Input";
 import { typographyVariants } from "../Typography";
+
+export const inputVariants = cva(
+  cn(
+    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
+    "placeholder:text-gray-500",
+    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+  ),
+  {
+    variants: {
+      error: {
+        true: "border-error-600 focus:border-error-600 bg-gray-0",
+      },
+    },
+    defaultVariants: {
+      error: false,
+    },
+  },
+);
 
 const patternDictionary = {
   digits: REGEXP_ONLY_DIGITS,
