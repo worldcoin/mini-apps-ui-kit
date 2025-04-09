@@ -1,1 +1,1 @@
-export * from "./BulletPoint";
+export { default as BulletPoint } from "./BulletPoint";

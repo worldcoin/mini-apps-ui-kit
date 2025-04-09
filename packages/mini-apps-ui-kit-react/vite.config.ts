@@ -1,5 +1,4 @@
 import react from "@vitejs/plugin-react";
-import { glob } from "glob";
 import { resolve } from "path";
 import preserveDirectives from "rollup-preserve-directives";
 import { defineConfig } from "vite";
@@ -11,6 +10,7 @@ export default defineConfig({
     react(),
     dts({
       tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+      rollupTypes: true,
     }),
     preserveDirectives(),
   ],
@@ -20,7 +20,6 @@ export default defineConfig({
     },
   },
   build: {
-    sourcemap: true,
     minify: "terser",
     terserOptions: {
       compress: {
@@ -36,28 +35,21 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ["react", "react-dom", "react/jsx-runtime", "tailwindcss"],
-      input: Object.fromEntries([
-        ["index", resolve(__dirname, "src/index.ts")],
-        ["tailwind/index", resolve(__dirname, "src/tailwind/index.ts")],
-        ...glob
-          .sync("src/components/**/*.{ts,tsx}")
-          .map((file) => [file.slice(4).replace(/\.(ts|tsx)$/, ""), resolve(__dirname, file)]),
-      ]),
+      input: {
+        index: resolve(__dirname, "src/index.ts"),
+        tailwind: resolve(__dirname, "src/tailwind/index.ts"),
+      },
       output: {
         preserveModules: true,
         preserveModulesRoot: "src",
         entryFileNames: "[name].js",
-        manualChunks: undefined,
         chunkFileNames: "chunks/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash][extname]",
-      },
-      onwarn(warning, warn) {
-        // Skip certain warnings
-        if (warning.code === "CIRCULAR_DEPENDENCY") return;
-        warn(warning);
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          utils: ["class-variance-authority", "clsx", "tailwind-merge"],
+        },
       },
     },
-    reportCompressedSize: true,
-    chunkSizeWarningLimit: 1000,
   },
 });

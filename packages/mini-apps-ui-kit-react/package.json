@@ -3,7 +3,9 @@
   "version": "1.0.0-canary.16",
   "type": "module",
   "main": "dist/index.js",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist",
     "public"
@@ -11,7 +13,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
     },
     "./Button": {
       "types": "./dist/components/Button/index.d.ts",
@@ -175,7 +178,8 @@
     },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
-      "default": "./dist/tailwind/index.js"
+      "import": "./dist/tailwind/index.js",
+      "require": "./dist/tailwind/index.js"
     },
     "./styles.css": "./public/globals.css"
   },

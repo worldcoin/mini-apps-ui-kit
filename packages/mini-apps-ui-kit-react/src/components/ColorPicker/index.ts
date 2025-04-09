@@ -1,1 +1,1 @@
-export * from "./ColorPicker";
+export { ColorPickerItem, ColorPickerGroup } from "./ColorPicker";
