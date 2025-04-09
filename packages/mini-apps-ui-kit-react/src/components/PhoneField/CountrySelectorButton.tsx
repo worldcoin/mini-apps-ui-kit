@@ -3,8 +3,8 @@ import { cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
 import { CountryCode, Flag } from "../Flag";
+import { ArrowDown } from "../Icons/ArrowDown";
 import { Typography } from "../Typography";
-import { ArrowDown } from "../icons/ArrowDown";
 
 const triggerVariants = cva(
   "flex items-center bg-transparent focus:outline-none cursor-pointer text-gray-900",

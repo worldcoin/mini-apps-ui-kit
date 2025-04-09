@@ -4,9 +4,9 @@ import { createChangeEvent } from "@/lib/utils";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
 import { ClearButton } from "../ClearButton";
+import { Magnifier } from "../Icons/Magnifier";
 import { Input, InputProps } from "../Input";
 import { PasteButton } from "../PasteButton/PasteButton";
-import { Magnifier } from "../icons/Magnifier";
 
 interface SearchFieldProps extends Omit<InputProps, "startAdornment" | "placeholder"> {
   /**

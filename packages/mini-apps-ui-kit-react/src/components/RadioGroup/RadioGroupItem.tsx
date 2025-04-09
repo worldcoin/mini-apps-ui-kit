@@ -2,7 +2,7 @@ import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { RadioGroupItemProps as RadixRadioGroupItemProps } from "@radix-ui/react-radio-group";
 import { forwardRef } from "react";
 
-import { Tick } from "../icons/Tick";
+import { Tick } from "../Icons/Tick";
 
 interface RadioGroupItemProps extends Omit<RadixRadioGroupItemProps, "className"> {
   /**

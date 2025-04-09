@@ -2,8 +2,8 @@ import type { ButtonHTMLAttributes } from "react";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
+import { MagicWand } from "../Icons/MagicWand";
 import { Typography } from "../Typography";
-import { MagicWand } from "../icons/MagicWand";
 
 interface PasteButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onPaste"> {
   /**

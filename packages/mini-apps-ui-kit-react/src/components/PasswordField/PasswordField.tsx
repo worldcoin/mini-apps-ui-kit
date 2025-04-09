@@ -2,9 +2,9 @@
 
 import { forwardRef, useState } from "react";
 
+import { Eye } from "../Icons/Eye";
+import { EyeClosed } from "../Icons/EyeClosed";
 import { Input, InputProps } from "../Input";
-import { Eye } from "../icons/Eye";
-import { EyeClosed } from "../icons/EyeClosed";
 
 interface PasswordFieldProps extends Omit<InputProps, "startAdornment"> {
   /**

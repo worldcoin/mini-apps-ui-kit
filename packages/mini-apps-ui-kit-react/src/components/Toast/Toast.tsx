@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import * as React from "react";
 
+import { Fail } from "../Icons/Fail";
+import { Success } from "../Icons/Success";
 import { Typography } from "../Typography";
-import { Fail } from "../icons/Fail";
-import { Success } from "../icons/Success";
 
 const ToastProvider = ToastPrimitives.Provider;
 
