@@ -7,7 +7,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/Drawer";
-import { Typography } from "@/index";
+import { Input, Typography } from "@/index";
 import { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof Drawer> = {
@@ -88,6 +88,29 @@ export const FullPage: StoryObj<typeof Drawer> = {
             <Button>Close</Button>
           </DrawerClose>
         </div>
+      </DrawerContent>
+    </Drawer>
+  ),
+};
+
+export const WithInputs: StoryObj<typeof Drawer> = {
+  render: () => (
+    <Drawer height="full" repositionInputs>
+      <DrawerTrigger>
+        <Button variant="secondary" size="sm">
+          Open
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent className="p-6 grow flex flex-col justify-between">
+        <div>
+          <DrawerHeader>
+            <DrawerTitle>Drawer with inputs</DrawerTitle>
+          </DrawerHeader>
+          <div className="flex flex-col gap-4 pt-4">
+            <Input label="Name" />
+          </div>
+        </div>
+        <Button fullWidth>Submit</Button>
       </DrawerContent>
     </Drawer>
   ),
