@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 0.0.9
+
+### Patch Changes
+
+- ad63bc7: Add EU flag support
+
 ## 0.0.8
 
 ### Patch Changes
