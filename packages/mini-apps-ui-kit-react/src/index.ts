@@ -43,7 +43,6 @@ export {
 } from "./components/AlertDialog";
 export { BottomBar } from "./components/BottomBar";
 export { BulletList, BulletListItem } from "./components/BulletList";
-export { BulletPoint } from "./components/BulletPoint";
 export { Marble } from "./components/Marble";
 export { TopBar } from "./components/TopBar";
 export { CountryDrawer } from "./components/CountryDrawer";

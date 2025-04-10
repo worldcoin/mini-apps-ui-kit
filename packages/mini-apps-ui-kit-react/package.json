@@ -1,6 +1,6 @@
 {
   "name": "@worldcoin/mini-apps-ui-kit-react",
-  "version": "1.0.0-canary.16",
+  "version": "1.0.0-canary.17",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -104,10 +104,6 @@
     "./BulletList": {
       "types": "./dist/components/BulletList/index.d.ts",
       "default": "./dist/components/BulletList/index.js"
-    },
-    "./BulletPoint": {
-      "types": "./dist/components/BulletPoint/index.d.ts",
-      "default": "./dist/components/BulletPoint/index.js"
     },
     "./Checkbox": {
       "types": "./dist/components/Checkbox/index.d.ts",

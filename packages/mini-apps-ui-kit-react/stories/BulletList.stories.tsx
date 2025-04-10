@@ -1,4 +1,4 @@
-import { BulletPoint } from "@/components/BulletPoint/BulletPoint";
+import { CircularIcon } from "@/components/CircularIcon";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { BulletList, BulletListItem } from "../src/components/BulletList";
@@ -36,9 +36,9 @@ export const Default: Story = {
     <BulletList>
       <BulletListItem
         bulletPoint={
-          <BulletPoint>
+          <CircularIcon className="size-9 bg-gray-900">
             <SparkIcon className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         First bullet point with spark icon
@@ -46,9 +46,9 @@ export const Default: Story = {
 
       <BulletListItem
         bulletPoint={
-          <BulletPoint>
+          <CircularIcon className="size-9 bg-gray-900">
             <SparkIcon className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         Second bullet point with spark icon
@@ -56,9 +56,9 @@ export const Default: Story = {
 
       <BulletListItem
         bulletPoint={
-          <BulletPoint>
+          <CircularIcon className="size-9 bg-gray-900">
             <SparkIcon className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         Third bullet point with spark icon
@@ -72,9 +72,9 @@ export const WithCustomItems: Story = {
     <BulletList>
       <BulletListItem
         bulletPoint={
-          <BulletPoint>
+          <CircularIcon className="size-9 bg-gray-900">
             <SparkIcon className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         <Typography variant="body">Regular text item with body styling</Typography>
@@ -82,9 +82,9 @@ export const WithCustomItems: Story = {
 
       <BulletListItem
         bulletPoint={
-          <BulletPoint>
+          <CircularIcon className="size-9 bg-gray-900">
             <SparkIcon className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         <div className="flex items-center gap-x-2">
@@ -101,9 +101,9 @@ export const WithLongText: Story = {
     <BulletList>
       <BulletListItem
         bulletPoint={
-          <BulletPoint>
+          <CircularIcon className="size-9 bg-gray-900">
             <SparkIcon className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore nam soluta, est a nemo
@@ -114,9 +114,9 @@ export const WithLongText: Story = {
 
       <BulletListItem
         bulletPoint={
-          <BulletPoint>
+          <CircularIcon className="size-9 bg-gray-900">
             <SparkIcon className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         Doloribus saepe mollitia sapiente amet hic optio modi officia voluptas nam? Alias
@@ -125,9 +125,9 @@ export const WithLongText: Story = {
 
       <BulletListItem
         bulletPoint={
-          <BulletPoint>
+          <CircularIcon className="size-9 bg-gray-900">
             <SparkIcon className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         Veniam ex corporis animi aliquid autem beatae harum libero quos, rem dolore numquam
@@ -144,9 +144,9 @@ export const WithCustomBullet: Story = {
     <BulletList>
       <BulletListItem
         bulletPoint={
-          <BulletPoint className="bg-success-500">
+          <CircularIcon className="bg-success-500">
             <Shield className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         First bullet point with shield icon
@@ -154,9 +154,9 @@ export const WithCustomBullet: Story = {
 
       <BulletListItem
         bulletPoint={
-          <BulletPoint className="bg-error-500">
+          <CircularIcon className="bg-error-500">
             <Star className="text-gray-0" />
-          </BulletPoint>
+          </CircularIcon>
         }
       >
         Second bullet point with star icon
