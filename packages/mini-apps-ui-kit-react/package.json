@@ -23,7 +23,7 @@
     "build": "pnpm build:tailwind && tsc -b ./tsconfig.lib.json && vite build",
     "lint": "eslint .",
     "publish": "pnpm build && npm publish --access public",
-    "generate:country-codes": "tsx scripts/generate-country-codes.ts",
+    "generate:country-codes": "node scripts/generate-country-codes.js",
     "analyze": "vite build --config vite.analyze.config.ts"
   },
   "peerDependencies": {

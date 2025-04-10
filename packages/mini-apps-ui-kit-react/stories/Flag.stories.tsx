@@ -2,7 +2,6 @@ import { countryCodes } from "@/components/Flag/constants";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Flag } from "../src/components/Flag";
-import { LazyFlag } from "../src/components/Flag/LazyFlag";
 
 const meta: Meta<typeof Flag> = {
   title: "Components/Flag",
@@ -35,19 +34,5 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     countryCode: "DE",
-  },
-};
-
-export const Lazy: Story = {
-  render: (args: { countryCode: string; size?: number }) => <LazyFlag {...args} />,
-  args: {
-    countryCode: "DE",
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "A lazy-loaded version of the Flag component that loads flag SVGs on demand.",
-      },
-    },
   },
 };

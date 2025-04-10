@@ -1,6 +1,5 @@
 import { forwardRef } from "react";
 
-import * as FlagComponents from "./flag-components";
 import { CountryCode } from "./types";
 
 /* Unsupported countries:
@@ -24,7 +23,6 @@ import { CountryCode } from "./types";
  * - Wallis and Futuna (WF)
  * - Mayotte (YT)
  */
-
 interface FlagProps {
   /**
    * ISO 3166-1 alpha-2 country code (e.g. 'US', 'GB', 'FR')
@@ -36,11 +34,11 @@ interface FlagProps {
   size?: number;
 }
 
-export const Flag = forwardRef<SVGSVGElement, FlagProps>(({ countryCode, size = 40 }, ref) => {
-  const Component = FlagComponents[countryCode as keyof typeof FlagComponents];
-
-  return <Component ref={ref} width={size} height={size} />;
-});
+export const Flag = forwardRef<HTMLImageElement, FlagProps>(
+  ({ countryCode, size = 40 }, ref) => {
+    return <img ref={ref} width={size} height={size} src={`/flags/${countryCode}.svg`} />;
+  },
+);
 
 Flag.displayName = "Flag";
 

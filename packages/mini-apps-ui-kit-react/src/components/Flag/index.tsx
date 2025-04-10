@@ -1,3 +1,3 @@
-export { Flag } from "./Flag";
-export { countryCodes } from "./constants";
+export * from "./Flag";
+export { isSupportedCountryCode } from "./utils";
 export type { CountryCode } from "./types";
