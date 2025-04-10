@@ -4,7 +4,6 @@ export { Checkbox } from "./components/Checkbox";
 export { Chip } from "./components/Chip";
 export { ColorPickerItem, ColorPickerGroup } from "./components/ColorPicker";
 export { Flag } from "./components/Flag";
-export { LazyFlag } from "./components/Flag/LazyFlag";
 export { Form } from "./components/Form";
 export { Input } from "./components/Input";
 export { ListItem } from "./components/ListItem";

@@ -1,5 +1,4 @@
-import { CountryCode } from "../Flag";
-import { LazyFlag } from "../Flag/LazyFlag";
+import { CountryCode, Flag } from "../Flag";
 import { Typography } from "../Typography";
 
 interface CountryListItemProps {
@@ -25,7 +24,7 @@ const CountryListItem = ({
       onClick={() => onClick?.(countryCode)}
       {...(isSelected && { "data-selected": true })}
     >
-      <LazyFlag countryCode={countryCode} size={32} />
+      <Flag countryCode={countryCode} size={32} />
       <Typography
         variant="subtitle"
         level={2}
