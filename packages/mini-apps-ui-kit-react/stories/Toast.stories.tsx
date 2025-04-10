@@ -1,7 +1,8 @@
-import { Button } from "@/index";
+import { Button, TopBar } from "@/index";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Toaster, useToast } from "../src/components/Toast";
+import { ArrowLeft } from "./helpers/icons/ArrowLeft";
 
 const ToastDemo = ({
   variant,
@@ -18,24 +19,32 @@ const ToastDemo = ({
     <div
       style={{
         position: "relative",
-        height: 400,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        height: 300,
+        width: 400,
       }}
     >
-      <Button
-        variant="secondary"
-        size="sm"
-        onClick={() =>
-          toast[variant]({
-            title: title || defaultTitle,
-            duration,
-          })
+      <TopBar
+        title="Toast"
+        startAdornment={
+          <Button variant="tertiary" size="icon">
+            <ArrowLeft />
+          </Button>
         }
-      >
-        Show Toast
-      </Button>
+      />
+      <div className="flex justify-center items-center h-full">
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={() =>
+            toast[variant]({
+              title: title || defaultTitle,
+              duration,
+            })
+          }
+        >
+          Show Toast
+        </Button>
+      </div>
       <Toaster />
     </div>
   );
