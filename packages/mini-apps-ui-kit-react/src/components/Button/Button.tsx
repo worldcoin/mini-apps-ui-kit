@@ -13,11 +13,11 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-gray-900 text-gray-0 hover:bg-gray-700 active:bg-gray-700 disabled:bg-gray-100 disabled:text-gray-300",
+          "bg-gray-900 text-gray-0 hover:bg-gray-700 disabled:bg-gray-100 disabled:text-gray-300",
         secondary:
-          "bg-transparent text-gray-900 border border-gray-200 hover:bg-gray-50 active:bg-gray-50 disabled:text-gray-300 disabled:border-gray-100",
+          "bg-transparent text-gray-900 border border-gray-200 hover:bg-gray-50 disabled:text-gray-300 disabled:border-gray-100",
         tertiary:
-          "bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-200 disabled:text-gray-300 disabled:bg-gray-50",
+          "bg-gray-100 text-gray-900 hover:bg-gray-200 disabled:text-gray-300 disabled:bg-gray-50",
       },
       size: {
         sm: "h-10 min-w-10 px-4",

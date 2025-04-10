@@ -5,6 +5,7 @@ export { Chip } from "./components/Chip";
 export { CircularIcon } from "./components/CircularIcon";
 export { ColorPickerItem, ColorPickerGroup } from "./components/ColorPicker";
 export { Flag } from "./components/Flag";
+export type { CountryCode } from "./components/Flag";
 export { Form } from "./components/Form";
 export { Input } from "./components/Input";
 export { ListItem } from "./components/ListItem";
