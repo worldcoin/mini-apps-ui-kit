@@ -1,1 +1,1 @@
-export * from "./BulletPoint";
+export { BulletPoint, type BulletProps } from "./BulletPoint";

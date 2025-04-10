@@ -2,7 +2,7 @@ import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 import { ToggleGroupItemProps, ToggleGroupRootProps } from "./types";
 
 const ToggleGroupRoot = React.forwardRef<

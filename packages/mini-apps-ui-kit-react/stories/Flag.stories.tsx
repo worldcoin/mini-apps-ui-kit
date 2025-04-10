@@ -1,7 +1,8 @@
 import { countryCodes } from "@/components/Flag/constants";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Flag, LazyFlag } from "../src/components/Flag";
+import { Flag } from "../src/components/Flag";
+import { LazyFlag } from "../src/components/Flag/LazyFlag";
 
 const meta: Meta<typeof Flag> = {
   title: "Components/Flag",

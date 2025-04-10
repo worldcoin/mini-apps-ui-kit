@@ -7,9 +7,9 @@ import { forwardRef, useEffect, useState } from "react";
 
 import { cn } from "../../lib/utils";
 import { ArrowDown } from "../Icons/ArrowDown";
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 
-export const selectVariants = cva(
+const selectVariants = cva(
   cn(
     "flex items-center justify-between whitespace-nowrap [&>span:first-of-type]:line-clamp-1",
     "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
@@ -46,7 +46,7 @@ export const selectVariants = cva(
   },
 );
 
-export interface SelectOption {
+interface SelectOption {
   /**
    * The value of the option.
    */
@@ -57,7 +57,7 @@ export interface SelectOption {
   label: string;
 }
 
-export interface SelectProps
+interface SelectProps
   extends Omit<RadixSelect.SelectProps, "className" | "onValueChange" | "style"> {
   /**
    * The value of the select item that should be selected by default.
@@ -111,7 +111,7 @@ export interface SelectProps
   name?: string;
 }
 
-export const Select = forwardRef<HTMLButtonElement, SelectProps>(
+const Select = forwardRef<HTMLButtonElement, SelectProps>(
   (
     {
       options = [],
@@ -202,4 +202,5 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
 
 Select.displayName = "Select";
 
-export default Select;
+export { Select };
+export type { SelectProps, SelectOption };

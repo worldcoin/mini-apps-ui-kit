@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 
 import { Tick } from "../Icons/Tick";
 
-export interface CheckboxProps
+interface CheckboxProps
   extends Omit<RadixCheckboxProps, "onCheckedChange" | "onChange" | "className"> {
   /**
    * Whether to forward the root element
@@ -49,7 +49,7 @@ export interface CheckboxProps
   value?: string;
 }
 
-export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
+const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
   ({ checked, onChange: onCheckedChange, disabled = false, ...props }, ref) => {
     return (
       <RadixCheckbox.Root
@@ -70,4 +70,5 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
 
 Checkbox.displayName = "Checkbox";
 
-export default Checkbox;
+export { Checkbox };
+export type { CheckboxProps };

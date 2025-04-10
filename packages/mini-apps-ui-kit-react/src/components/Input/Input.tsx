@@ -5,7 +5,7 @@ import * as React from "react";
 
 import { cn } from "../../lib/utils";
 import { Tick } from "../Icons/Tick";
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
 
 const inputContainerVariants = cva(
   [
@@ -121,7 +121,7 @@ const dividerVariants = cva("border-r h-[1.625rem] w-1", {
   },
 });
 
-export interface InputProps
+interface InputProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
     "className" | "style" | "placeholder" | "size" // Omit HTML size attribute
@@ -172,7 +172,7 @@ export interface InputProps
   id?: string;
 }
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       type = "text",
@@ -281,4 +281,5 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
 Input.displayName = "Input";
 
-export default Input;
+export { Input };
+export type { InputProps };

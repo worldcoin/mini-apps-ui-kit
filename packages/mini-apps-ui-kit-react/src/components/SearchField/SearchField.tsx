@@ -3,12 +3,12 @@
 import { createChangeEvent } from "@/lib/utils";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
-import ClearButton from "../ClearButton";
+import { ClearButton } from "../ClearButton";
 import { Magnifier } from "../Icons/Magnifier";
 import { Input, InputProps } from "../Input";
-import PasteButton from "../PasteButton/PasteButton";
+import { PasteButton } from "../PasteButton/PasteButton";
 
-export interface SearchFieldProps extends Omit<InputProps, "startAdornment" | "placeholder"> {
+interface SearchFieldProps extends Omit<InputProps, "startAdornment" | "placeholder"> {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -34,7 +34,7 @@ export interface SearchFieldProps extends Omit<InputProps, "startAdornment" | "p
   label?: string;
 }
 
-export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
+const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
   (
     {
       showPasteButton,
@@ -112,4 +112,5 @@ export const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
 
 SearchField.displayName = "SearchField";
 
-export default SearchField;
+export { SearchField };
+export type { SearchFieldProps };

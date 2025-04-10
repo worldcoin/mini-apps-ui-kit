@@ -1,1 +1,1 @@
-export { default } from "./PasteButton";
+export { PasteButton, type PasteButtonProps } from "./PasteButton";

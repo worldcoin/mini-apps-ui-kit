@@ -6,7 +6,7 @@ import { Eye } from "../Icons/Eye";
 import { EyeClosed } from "../Icons/EyeClosed";
 import { Input, InputProps } from "../Input";
 
-export interface PasswordFieldProps extends Omit<InputProps, "startAdornment"> {
+interface PasswordFieldProps extends Omit<InputProps, "startAdornment"> {
   /**
    * If true, the input will display in an error state with error styling
    */
@@ -17,7 +17,7 @@ export interface PasswordFieldProps extends Omit<InputProps, "startAdornment"> {
   isValid?: boolean;
 }
 
-export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
+const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
   (
     {
       isValid,
@@ -57,4 +57,5 @@ export const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
 
 PasswordField.displayName = "PasswordField";
 
-export default PasswordField;
+export { PasswordField };
+export type { PasswordFieldProps };

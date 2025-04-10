@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { Button } from "../src/components/Button";
 import { Form } from "../src/components/Form";
-import { Select, SelectOption, SelectProps } from "../src/components/Select";
+import { Select, SelectOption, SelectProps } from "../src/components/Select/Select";
 
 const meta: Meta<typeof Select> = {
   title: "components/Select",

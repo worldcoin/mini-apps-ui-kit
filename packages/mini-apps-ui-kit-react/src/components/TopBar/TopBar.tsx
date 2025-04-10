@@ -14,7 +14,7 @@ interface TopBarProps {
   className?: string;
 }
 
-export function TopBar({ title, startAdornment, endAdornment, className }: TopBarProps) {
+function TopBar({ title, startAdornment, endAdornment, className }: TopBarProps) {
   const hasStartAdornment = Boolean(startAdornment);
   const hasEndAdornment = Boolean(endAdornment);
 
@@ -50,3 +50,8 @@ export function TopBar({ title, startAdornment, endAdornment, className }: TopBa
     </div>
   );
 }
+
+TopBar.displayName = "TopBar";
+
+export { TopBar };
+export type { TopBarProps };

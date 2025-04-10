@@ -1,4 +1,4 @@
-import { Toaster } from "@worldcoin/mini-apps-ui-kit-react";
+import { Toaster } from "@worldcoin/mini-apps-ui-kit-react/Toast";
 import "@worldcoin/mini-apps-ui-kit-react/styles.css";
 import type { Viewport } from "next";
 

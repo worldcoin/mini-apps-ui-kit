@@ -1,8 +1,8 @@
-import BulletPoint from "@/components/BulletPoint/BulletPoint";
+import { BulletPoint } from "@/components/BulletPoint/BulletPoint";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { BulletList } from "../src/components/BulletList";
-import { BulletListItem } from "../src/components/BulletListItem/BulletListItem";
+import { BulletList, BulletListItem } from "../src/components/BulletList";
+import "../src/components/BulletList";
 import { Typography } from "../src/components/Typography";
 import { Shield } from "./helpers/icons/Shield";
 import { SparkIcon } from "./helpers/icons/SparkIcon";

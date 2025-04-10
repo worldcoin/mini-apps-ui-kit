@@ -1,1 +1,1 @@
-export * from "./NumberPad";
+export { NumberPad, type NumberPadProps } from "./NumberPad";

@@ -7,7 +7,7 @@ interface SpinnerProps {
   className?: string;
 }
 
-export const Spinner = ({ className }: SpinnerProps) => {
+const Spinner = ({ className }: SpinnerProps) => {
   return (
     <svg
       width="24"
@@ -32,3 +32,8 @@ export const Spinner = ({ className }: SpinnerProps) => {
     </svg>
   );
 };
+
+Spinner.displayName = "Spinner";
+
+export { Spinner };
+export type { SpinnerProps };

@@ -1,1 +1,6 @@
-export * from "./BulletList";
+export {
+  BulletList,
+  BulletListItem,
+  type BulletListProps,
+  type BulletListItemProps,
+} from "./BulletList";

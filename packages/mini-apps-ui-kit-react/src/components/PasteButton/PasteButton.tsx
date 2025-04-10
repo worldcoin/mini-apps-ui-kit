@@ -57,4 +57,5 @@ const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
 
 PasteButton.displayName = "PasteButton";
 
-export default PasteButton;
+export { PasteButton };
+export type { PasteButtonProps };
