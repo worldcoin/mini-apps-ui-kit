@@ -28,6 +28,7 @@ const Drawer = ({
   dismissible = true,
   height = "full",
   modal = true,
+  repositionInputs = false,
   ...props
 }: DrawerProps) => (
   <DrawerContext.Provider value={{ dismissible, height }}>
@@ -37,6 +38,7 @@ const Drawer = ({
       modal={modal}
       direction="bottom"
       handleOnly
+      repositionInputs={repositionInputs}
       {...props}
     />
   </DrawerContext.Provider>
