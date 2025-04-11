@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { State } from "../src/components/State/State";
+import { CircularState } from "../src/components/CircularState/CircularState";
 
 const meta = {
-  title: "Components/State",
-  component: State,
+  title: "Components/CircularState",
+  component: CircularState,
   parameters: {
     layout: "centered",
   },
@@ -19,7 +19,7 @@ const meta = {
       options: ["xs", "sm", "md", "lg", "xl"],
     },
   },
-} satisfies Meta<typeof State>;
+} satisfies Meta<typeof CircularState>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

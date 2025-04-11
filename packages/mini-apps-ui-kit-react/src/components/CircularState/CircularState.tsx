@@ -6,7 +6,8 @@ import { Tick } from "../Icons/Tick";
 import { Warning } from "../Icons/Warning";
 import { XMark } from "../Icons/XMark";
 
-interface StateProps extends CircularIconProps {
+interface CircularStateProps extends Omit<CircularIconProps, "children"> {
+  /** The state to display in the circular icon. */
   value: "success" | "error" | "warning" | "pending" | "critical";
 }
 
@@ -18,7 +19,7 @@ const icon = {
   critical: <XMark />,
 };
 
-const iconClasses: Record<StateProps["value"], string> = {
+const iconClasses: Record<CircularStateProps["value"], string> = {
   success: "bg-success-600",
   error: "bg-gray-400",
   warning: "bg-warning-600",
@@ -26,13 +27,14 @@ const iconClasses: Record<StateProps["value"], string> = {
   critical: "bg-error-600",
 };
 
-function State({ value, size, className, ...props }: StateProps) {
+function CircularState({ value, size, className, ...props }: CircularStateProps) {
   return (
     <CircularIcon
       className={cn(
         "text-gray-0",
         size !== "xs" && "shadow-[inset_0_0_0_1px_rgba(255,255,255,0.3)]",
         iconClasses[value],
+        "bg-[radial-gradient(111.32%_111.8%_at_22.73%_0%,_rgba(255,255,255,0.2)_0%,_rgba(255,255,255,0)_100%)]",
         className,
       )}
       size={size}
@@ -43,5 +45,5 @@ function State({ value, size, className, ...props }: StateProps) {
   );
 }
 
-export { State };
-export type { StateProps };
+export { CircularState };
+export type { CircularStateProps };

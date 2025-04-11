@@ -3,6 +3,7 @@ export { Button } from "./components/Button";
 export { Checkbox } from "./components/Checkbox";
 export { Chip } from "./components/Chip";
 export { CircularIcon } from "./components/CircularIcon";
+export { CircularState } from "./components/CircularState";
 export { ColorPickerItem, ColorPickerGroup } from "./components/ColorPicker";
 export { Flag } from "./components/Flag";
 export type { CountryCode } from "./components/Flag";

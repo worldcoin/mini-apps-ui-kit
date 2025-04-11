@@ -245,6 +245,10 @@
       "types": "./dist/components/LiveFeedback/index.d.ts",
       "default": "./dist/components/LiveFeedback/index.js"
     },
+    "./CircularState": {
+      "types": "./dist/components/CircularState/index.d.ts",
+      "default": "./dist/components/CircularState/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "import": "./dist/tailwind/index.js",
