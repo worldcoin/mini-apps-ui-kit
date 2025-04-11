@@ -84,7 +84,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           }),
           props.className,
         )}
-        onClick={withHaptics(onClick, () => haptics.impact(size === "lg" ? "medium" : "light"))}
+        onClick={withHaptics(onClick, () => haptics.impact("light"))}
       >
         {children}
       </Comp>
