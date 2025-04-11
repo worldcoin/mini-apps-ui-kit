@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 
 import { Tick } from "../Icons/Tick";
 
-export interface RadioGroupItemProps extends Omit<RadixRadioGroupItemProps, "className"> {
+interface RadioGroupItemProps extends Omit<RadixRadioGroupItemProps, "className"> {
   /**
    * The value of the radio group item.
    */
@@ -15,13 +15,13 @@ export interface RadioGroupItemProps extends Omit<RadixRadioGroupItemProps, "cla
   disabled?: boolean;
 }
 
-export const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>(
+const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>(
   ({ value, disabled, ...rest }, ref) => {
     return (
       <RadioGroupPrimitive.Item
         ref={ref}
         value={value}
-        className="h-6 w-6 rounded-full border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-400 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-20"
+        className="size-6 rounded-full border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=unchecked]:border-gray-200 data-[state=checked]:bg-gray-900 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-50"
         disabled={disabled}
         {...rest}
       >
@@ -35,4 +35,5 @@ export const RadioGroupItem = forwardRef<HTMLButtonElement, RadioGroupItemProps>
 
 RadioGroupItem.displayName = "RadioGroupItem";
 
-export default RadioGroupItem;
+export { RadioGroupItem };
+export type { RadioGroupItemProps };

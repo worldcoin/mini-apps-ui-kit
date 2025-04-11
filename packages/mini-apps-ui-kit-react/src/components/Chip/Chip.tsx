@@ -1,10 +1,12 @@
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
-import { ReactNode, forwardRef } from "react";
+import { HTMLAttributes, ReactNode, forwardRef } from "react";
+
+import { Typography } from "../Typography";
 
 type ChipVariant = "default" | "success" | "warning" | "error" | "important";
 
-export interface ChipProps {
+interface ChipProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * The variant of the chip. Default value is "default".
    */
@@ -24,7 +26,7 @@ export interface ChipProps {
 }
 
 const chipVariants = cva(
-  "inline-flex h-7 items-center gap-2 rounded-full px-2 font-sans text-sm font-medium leading-none",
+  "inline-flex h-7 items-center gap-2 rounded-full px-4 font-sans text-sm font-medium leading-none",
   {
     variants: {
       variant: {
@@ -34,19 +36,30 @@ const chipVariants = cva(
         error: "bg-error-100 text-error-700",
         important: "bg-info-100 text-info-700",
       },
+      isIcon: {
+        true: "pl-3",
+        false: "",
+      },
     },
     defaultVariants: {
       variant: "default",
+      isIcon: false,
     },
   },
 );
 
-export const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof chipVariants>>(
-  ({ className = "", icon, label, variant = "default" }, ref) => {
+const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof chipVariants>>(
+  ({ icon, label, variant = "default", className, ...props }, ref) => {
     return (
-      <div ref={ref} className={chipVariants({ variant, className })}>
+      <div
+        ref={ref}
+        className={chipVariants({ variant, className, isIcon: !!icon })}
+        {...props}
+      >
         {icon && <Slot style={{ width: "1rem", height: "1rem" }}>{icon}</Slot>}
-        <span>{label}</span>
+        <Typography variant="subtitle" level={4}>
+          {label}
+        </Typography>
       </div>
     );
   },
@@ -54,4 +67,5 @@ export const Chip = forwardRef<HTMLDivElement, ChipProps & VariantProps<typeof c
 
 Chip.displayName = "Chip";
 
-export default Chip;
+export { Chip };
+export type { ChipProps };

@@ -8,16 +8,16 @@ import { cn } from "../src/lib/utils";
 const meta: Meta<typeof RadioGroup> = {
   title: "components/RadioGroup",
   component: RadioGroup,
+  subcomponents: {
+    RadioGroupItem: RadioGroupItem as React.ComponentType<unknown>,
+  },
   parameters: {
     docs: {
       description: {
         component:
-          "A radio group component that allows users to select a single option from a list of choices.",
+          "A radio group component that extends [Radix's RadioGroup](https://www.radix-ui.com/primitives/docs/components/radio-group) primitive, allowing users to select a single option from a list of options.",
       },
     },
-  },
-  subcomponents: {
-    RadioGroupItem: RadioGroupItem as React.ComponentType<unknown>,
   },
   argTypes: {
     defaultValue: {

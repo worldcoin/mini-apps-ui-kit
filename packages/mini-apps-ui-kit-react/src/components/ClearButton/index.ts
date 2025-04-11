@@ -1,1 +1,1 @@
-export { default } from "./ClearButton";
+export { ClearButton, type ClearButtonProps } from "./ClearButton";

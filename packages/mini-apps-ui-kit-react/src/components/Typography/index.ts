@@ -1,1 +1,1 @@
-export * from "./Typography";
+export { Typography, type TypographyProps } from "./Typography";

@@ -1,1 +1,1 @@
-export * from "./Pill";
+export { Pill, type PillProps } from "./Pill";

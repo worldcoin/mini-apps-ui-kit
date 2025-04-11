@@ -24,3 +24,4 @@ out
 *storybook.log
 storybook-static
 packages/mini-apps-ui-kit-react/public/globals.css
+packages/mini-apps-ui-kit-react/bundle-analysis.html

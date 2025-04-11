@@ -3,7 +3,7 @@ import { RadioGroupProps as RadixRadioGroupProps } from "@radix-ui/react-radio-g
 import { cva } from "class-variance-authority";
 import { forwardRef } from "react";
 
-export interface RadioGroupProps
+interface RadioGroupProps
   extends Omit<RadixRadioGroupProps, "onValueChange" | "onChange" | "className"> {
   /**
    * The value of the radio item that should be checked when initially rendered.
@@ -48,7 +48,7 @@ const radioGroupVariants = cva(`flex disabled:cursor-not-allowed disabled:opacit
   },
 });
 
-export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
+const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
   (
     {
       defaultValue,
@@ -77,4 +77,5 @@ export const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
 
 RadioGroup.displayName = "RadioGroup";
 
-export default RadioGroup;
+export { RadioGroup };
+export type { RadioGroupProps };

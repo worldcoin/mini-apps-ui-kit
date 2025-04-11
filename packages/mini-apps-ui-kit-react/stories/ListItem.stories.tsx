@@ -1,6 +1,8 @@
+import { Chip, Token } from "@/index";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ListItem } from "../src/components/ListItem";
+import { Star } from "./helpers/icons/Star";
 
 const meta: Meta<typeof ListItem> = {
   title: "Components/ListItem",
@@ -14,9 +16,31 @@ const meta: Meta<typeof ListItem> = {
     },
   },
   argTypes: {
-    variant: {
-      options: ["duotone", "outline", "ghost"],
-      control: { type: "select" },
+    label: {
+      control: "text",
+    },
+    description: {
+      control: "text",
+    },
+    disabled: {
+      control: "boolean",
+    },
+    startAdornment: {
+      control: "select",
+      options: ["None", "Token"],
+      mapping: {
+        None: null,
+        Token: <Token value="BTC" />,
+      },
+    },
+    endAdornment: {
+      control: "select",
+      options: ["None", "Star", "Chip"],
+      mapping: {
+        None: null,
+        Star: <Star />,
+        Chip: <Chip label="Action" variant="warning" />,
+      },
     },
   },
   decorators: [
@@ -31,23 +55,25 @@ const meta: Meta<typeof ListItem> = {
 export default meta;
 type Story = StoryObj<typeof ListItem>;
 
-export const Duotone: Story = {
+export const Basic: Story = {
   args: {
-    variant: "duotone",
-    children: "Duotone List Item",
+    label: "Basic List Item",
+    description: "This is a basic list item with a label and description",
   },
 };
 
-export const Outline: Story = {
+export const WithStartAdornment: Story = {
   args: {
-    variant: "outline",
-    children: "Outline List Item",
+    label: "List Item with Icon",
+    description: "This list item has a start adornment",
+    startAdornment: <Token value="BTC" />,
   },
 };
 
-export const Ghost: Story = {
+export const WithEndAdornment: Story = {
   args: {
-    variant: "ghost",
-    children: "Ghost List Item",
+    label: "List Item with Action",
+    description: "This list item has an end adornment",
+    endAdornment: <Chip label="Suggested" className="bg-gray-200" />,
   },
 };

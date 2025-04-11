@@ -7,11 +7,11 @@ React components UI Kit library for Mini Apps
 ## Getting Started
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs**/**vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Tailwind Configuration
+## Tailwind **Configuration**
 
-- `./styles/globals.css`: is the main entrypoint for the tailwind css styles
+- `./**styles**/globals.css`: is the main entrypoint for the tailwind css styles
 - `./public/globals.css`: compiled tailwind css styles
 - `./src/tailwind`: tailwind plugin with uiKit tailwind presets
 
@@ -59,28 +59,19 @@ export default tseslint.config({
 
 ## Font Configuration
 
-The library uses three fonts:
+The library uses the following font **[TWK Lausanne](https://weltkern.com/typefaces/lausanne)** as the sans-serif font for all text `(--font-sans)`. 
 
-- **[Rubik](https://fonts.google.com/specimen/Rubik)** as the sans-serif font for body text and subtitles `(--font-sans)`
-- **[Sora](https://fonts.google.com/specimen/Sora)** as the display font for headings and numbers `(--font-display)`
-- **[DM Mono](https://fonts.google.com/specimen/DM+Mono)** as the monospace font `(--font-mono)`
+> **⚠️ License Notice**: TWK Lausanne is a commercial font that requires a license. Make sure you have obtained the appropriate license from [Weltkern](https://weltkern.com/typefaces/lausanne) before using it in your project.
 
-Embed the following code in the `<head>` of your html to load the fonts:
-
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link
-  href="https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@600&display=swap"
-  rel="stylesheet"
-/>
-```
-
-Or use the following code to load the fonts via CSS:
+By default, the library sets `--font-sans` to **TWK Lausanne**, but you can override this CSS variable to use any other font of your choice:
 
 ```css
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital@0;1&family=Rubik:ital,wght@0,300..900;1,300..900&family=Sora:wght@100..800&display=swap");
+:root {
+  --font-sans: 'Your Font Name', sans-serif;
+}
 ```
+
+You must import the font in your application before using it. The library does not include the font files - you need to handle the font loading yourself according to your license agreement.
 
 ## Importing Styles
 
@@ -116,32 +107,30 @@ This method enables tree-shaking and reduces your final bundle size by only incl
 
 ## Icons
 
-The library uses [Hugeicons](https://hugeicons.com/) for its icon system. To use icons in your project, you'll need to install the [React package](https://www.npmjs.com/package/@hugeicons/react):
+The library uses [Iconoir](https://iconoir.com/) for its icon system. To use icons in your project, you'll need to install the [React package](https://www.npmjs.com/package/iconoir-react):
 
 ```bash
-npm install @hugeicons/react
+npm install iconoir-react
 # or
-yarn add @hugeicons/react
+yarn add iconoir-react
 ```
 
 Then you can import and use icons in your components:
 
 ```jsx
-import { HomeIcon } from '@hugeicons/react';
+import { Home } from 'iconoir-react';
 
 function MyComponent() {
-  return <HomeIcon size={24} />;
+  return <Home width={24} height={24} />;
 }
 ```
 
-Hugeicons provides a comprehensive set of icons across various categories including:
-- Navigation & UI elements
-- Social media
-- Business & Finance
-- Communication
-- Technology
-- And many more...
+Iconoir provides a comprehensive set of 1,600+ unique SVG icons, designed on a 24x24 pixels grid. The icons are:
+- 100% free and open source
+- Available in SVG, React, React Native, Flutter, Figma and Framer
+- Optimized for performance
+- Customizable with different sizes, colors, and styles
 
-You can browse the complete icon set at [hugeicons.com](https://hugeicons.com/).
+You can browse the complete icon set at [iconoir.com](https://iconoir.com/).
 
-Hugeicons is available under various license options. Please refer to their [website](https://hugeicons.com/) for detailed licensing information. 
+Iconoir is available under the MIT License. Please refer to their [website](https://iconoir.com/) for more details. 

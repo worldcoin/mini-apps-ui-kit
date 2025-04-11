@@ -1,4 +1,11 @@
 export { default as BTC } from "./btc";
 export { default as ETH } from "./eth";
+export { default as DAI } from "./dai";
 export { default as USDC } from "./usdc";
+export { default as USDT } from "./usdt";
 export { default as WLD } from "./wld";
+export { default as SOL } from "./sol";
+export { default as SUI } from "./sui";
+export { default as DOGE } from "./doge";
+export { default as XRP } from "./xrp";
+export { default as LINK } from "./link";
