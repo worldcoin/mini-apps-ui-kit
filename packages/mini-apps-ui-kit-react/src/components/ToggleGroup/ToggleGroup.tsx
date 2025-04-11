@@ -1,3 +1,4 @@
+import { withHaptics } from "@/lib/haptics";
 import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
 import * as React from "react";
 
@@ -8,8 +9,13 @@ import { ToggleGroupItemProps, ToggleGroupRootProps } from "./types";
 const ToggleGroupRoot = React.forwardRef<
   React.ElementRef<typeof ToggleGroupPrimitive.Root>,
   ToggleGroupRootProps
->(({ ...props }, ref) => (
-  <ToggleGroupPrimitive.Root ref={ref} className={cn("inline-flex gap-5")} {...props} />
+>(({ onValueChange, ...props }, ref) => (
+  <ToggleGroupPrimitive.Root
+    ref={ref}
+    className={cn("inline-flex gap-5")}
+    onValueChange={withHaptics(onValueChange) as any}
+    {...props}
+  />
 ));
 ToggleGroupRoot.displayName = "ToggleGroup";
 

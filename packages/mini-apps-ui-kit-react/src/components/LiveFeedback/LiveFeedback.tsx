@@ -1,5 +1,8 @@
+"use client";
+
+import haptics from "@/lib/haptics";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { Fail } from "../Icons/Fail";
 import { Success } from "../Icons/Success";
@@ -24,7 +27,26 @@ interface LiveFeedbackProps {
   };
 }
 
+function usePrevious<T>(value: T): T | undefined {
+  const ref = useRef<T>();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 function LiveFeedback({ state, children, className, label }: LiveFeedbackProps) {
+  const prevState = usePrevious(state);
+
+  // Handle haptic feedback when state changes
+  if (state !== prevState) {
+    if (state === "success") {
+      haptics.notification("success");
+    } else if (state === "failed") {
+      haptics.notification("error");
+    }
+  }
+
   return (
     <div className={cn("relative", className)}>
       <div

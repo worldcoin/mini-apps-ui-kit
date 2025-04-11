@@ -1,5 +1,6 @@
 "use client";
 
+import { withHaptics } from "@/lib/haptics";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 import type { OTPInputProps } from "input-otp";
@@ -111,7 +112,7 @@ type OTPFieldProps = Omit<
 };
 
 const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldProps>(
-  ({ maxLength = 6, error, children, mode = "digits", pattern, ...props }, ref) => {
+  ({ maxLength = 6, error, children, mode = "digits", pattern, onChange, ...props }, ref) => {
     return (
       <OTPInput
         ref={ref}
@@ -119,6 +120,7 @@ const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldPro
         maxLength={maxLength}
         inputMode={inputModeDictionary[mode]}
         pattern={pattern || patternDictionary[mode]}
+        onChange={withHaptics(onChange)}
         containerClassName="flex items-center gap-2 has-[:disabled]:opacity-50"
         render={({ slots }) => (
           <>

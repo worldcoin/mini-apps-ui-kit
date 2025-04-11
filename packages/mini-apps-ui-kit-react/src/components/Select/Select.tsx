@@ -1,6 +1,7 @@
 "use client";
 
 import { DROPDOWN_CONTAINER_STYLES } from "@/lib/constants/dropdownStyles";
+import { withHaptics } from "@/lib/haptics";
 import * as RadixSelect from "@radix-ui/react-select";
 import { cva } from "class-variance-authority";
 import { forwardRef, useEffect, useState } from "react";
@@ -150,7 +151,7 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
       <RadixSelect.Root
         value={value}
         open={isOpen}
-        onValueChange={onChange}
+        onValueChange={withHaptics(onChange)}
         defaultOpen={defaultOpen}
         onOpenChange={handleOpenChange}
         name={name}

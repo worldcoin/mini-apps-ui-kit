@@ -1,5 +1,6 @@
 "use client";
 
+import { withHaptics } from "@/lib/haptics";
 import { Slot } from "@radix-ui/react-slot";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import * as React from "react";
@@ -12,7 +13,7 @@ import { TabItemProps, TabsProps } from "./types";
  * A tab navigation component that allows users to switch between different views
  */
 const Tabs = React.forwardRef<React.ElementRef<typeof ToggleGroup.Root>, TabsProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, className, onValueChange, ...props }, ref) => {
     return (
       <ToggleGroup.Root
         ref={ref}
@@ -21,6 +22,7 @@ const Tabs = React.forwardRef<React.ElementRef<typeof ToggleGroup.Root>, TabsPro
         style={{
           gridTemplateColumns: `repeat(${React.Children.count(children)}, 1fr)`,
         }}
+        onValueChange={withHaptics(onValueChange)}
         {...props}
       >
         {children}

@@ -1,3 +1,4 @@
+import haptics from "@/lib/haptics";
 import type { ButtonHTMLAttributes } from "react";
 import * as React from "react";
 
@@ -29,6 +30,7 @@ const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
           const text = await navigator.clipboard.readText();
           inputRef.current.value = text;
           onPaste?.(text);
+          haptics.impact("light");
         }
       } catch (error) {
         console.error("Failed to read clipboard:", error);

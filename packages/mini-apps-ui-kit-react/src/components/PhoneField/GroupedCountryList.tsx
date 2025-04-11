@@ -1,3 +1,5 @@
+import { withHaptics } from "@/lib/haptics";
+
 import { DrawerClose } from "../Drawer";
 import { CountryCode } from "../Flag";
 import { Magnifier } from "../Icons/Magnifier";
@@ -47,7 +49,7 @@ export function GroupedCountryList({
                 <CountryListItem
                   countryCode={country.countryCode}
                   countryName={country.name}
-                  onClick={onSelect}
+                  onClick={withHaptics(onSelect)}
                   isSelected={value === country.countryCode}
                 />
               </DrawerClose>

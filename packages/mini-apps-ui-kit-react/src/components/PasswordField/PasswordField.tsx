@@ -1,5 +1,6 @@
 "use client";
 
+import haptics from "@/lib/haptics";
 import { forwardRef, useState } from "react";
 
 import { Eye } from "../Icons/Eye";
@@ -40,7 +41,13 @@ const PasswordField = forwardRef<HTMLInputElement, PasswordFieldProps>(
         isValid={isValid}
         disabled={disabled}
         endAdornment={
-          <button type="button" onClick={() => setShowPassword(!showPassword)}>
+          <button
+            type="button"
+            onClick={() => {
+              setShowPassword(!showPassword);
+              haptics.impact("light");
+            }}
+          >
             {showPassword ? <EyeClosed /> : <Eye />}
           </button>
         }

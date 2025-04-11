@@ -1,3 +1,4 @@
+import { withHaptics } from "@/lib/haptics";
 import * as RadioGroup from "@radix-ui/react-radio-group";
 import { RadioGroupProps as RadixRadioGroupProps } from "@radix-ui/react-radio-group";
 import { forwardRef } from "react";
@@ -40,7 +41,7 @@ const ColorPickerGroup = forwardRef<HTMLDivElement, ColorPickerGroupProps>(
       <RadioGroup.Root
         ref={ref}
         value={value}
-        onValueChange={onChange}
+        onValueChange={withHaptics(onChange)}
         className="flex gap-4 items-center"
         {...props}
       >
