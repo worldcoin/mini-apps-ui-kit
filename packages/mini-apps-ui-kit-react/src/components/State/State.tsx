@@ -26,9 +26,18 @@ const iconClasses: Record<StateProps["value"], string> = {
   critical: "bg-error-600",
 };
 
-function State({ value, className, ...props }: StateProps) {
+function State({ value, size, className, ...props }: StateProps) {
   return (
-    <CircularIcon className={cn("text-gray-0", iconClasses[value], className)} {...props}>
+    <CircularIcon
+      className={cn(
+        "text-gray-0",
+        size !== "xs" && "shadow-[inset_0_0_0_1px_rgba(255,255,255,0.3)]",
+        iconClasses[value],
+        className,
+      )}
+      size={size}
+      {...props}
+    >
       {icon[value]}
     </CircularIcon>
   );
