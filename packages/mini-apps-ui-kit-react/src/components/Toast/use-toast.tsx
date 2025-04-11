@@ -1,5 +1,6 @@
 "use client";
 
+import haptics from "@/lib/haptics";
 import { useEffect, useState } from "react";
 
 import type { ToastProps } from "./Toast";
@@ -180,8 +181,14 @@ function useToast() {
   return {
     ...state,
     toast: {
-      success: (props: Omit<Toast, "variant">) => toast({ ...props, variant: "success" }),
-      error: (props: Omit<Toast, "variant">) => toast({ ...props, variant: "error" }),
+      success: (props: Omit<Toast, "variant">) => {
+        toast({ ...props, variant: "success" });
+        haptics.notification("success");
+      },
+      error: (props: Omit<Toast, "variant">) => {
+        toast({ ...props, variant: "error" });
+        haptics.notification("error");
+      },
     },
     dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
   };

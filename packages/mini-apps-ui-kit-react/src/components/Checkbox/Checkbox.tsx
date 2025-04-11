@@ -1,3 +1,4 @@
+import { withHaptics } from "@/lib/haptics";
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import { CheckboxProps as RadixCheckboxProps } from "@radix-ui/react-checkbox";
 import { forwardRef } from "react";
@@ -55,7 +56,7 @@ const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
       <RadixCheckbox.Root
         ref={ref}
         checked={checked}
-        onCheckedChange={onCheckedChange}
+        onCheckedChange={withHaptics(onCheckedChange)}
         disabled={disabled}
         className="flex size-6 items-center justify-center rounded-md border-[0.09375rem] transition-all data-[state=checked]:border-gray-900 data-[state=checked]:bg-gray-900 data-[state=unchecked]:border-gray-200 data-[state=unchecked]:bg-transparent disabled:cursor-not-allowed disabled:opacity-20"
         {...props}

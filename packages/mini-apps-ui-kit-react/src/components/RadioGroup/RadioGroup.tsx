@@ -1,3 +1,4 @@
+import { withHaptics } from "@/lib/haptics";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { RadioGroupProps as RadixRadioGroupProps } from "@radix-ui/react-radio-group";
 import { cva } from "class-variance-authority";
@@ -64,7 +65,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
       <RadioGroupPrimitive.Root
         ref={ref}
         defaultValue={defaultValue}
-        onValueChange={onValueChange}
+        onValueChange={withHaptics(onValueChange)}
         className={radioGroupVariants({ orientation })}
         disabled={disabled}
         orientation={orientation}

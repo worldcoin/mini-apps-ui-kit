@@ -1,5 +1,8 @@
+"use client";
+
+import haptics from "@/lib/haptics";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Fail } from "../Icons/Fail";
 import { Success } from "../Icons/Success";
@@ -25,6 +28,14 @@ interface LiveFeedbackProps {
 }
 
 function LiveFeedback({ state, children, className, label }: LiveFeedbackProps) {
+  useEffect(() => {
+    if (state === "success") {
+      haptics.notification("success");
+    } else if (state === "failed") {
+      haptics.notification("error");
+    }
+  }, [state]);
+
   return (
     <div className={cn("relative", className)}>
       <div

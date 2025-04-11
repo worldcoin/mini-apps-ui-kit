@@ -1,5 +1,6 @@
 "use client";
 
+import haptics from "@/lib/haptics";
 import { cn } from "@/lib/utils";
 import { LongPressOptions, useLongPress } from "@uidotdev/usehooks";
 
@@ -65,6 +66,8 @@ const NumberPad = ({
   }
 
   const handleButtonClick = (buttonValue: string) => {
+    haptics.impact("light");
+
     if (!onChange || disabled) return;
 
     if (buttonValue === "del") {
