@@ -14,7 +14,19 @@ const meta: Meta<typeof Token> = {
   },
   argTypes: {
     value: {
-      options: ["BTC", "ETH", "USDC", "WLD", "DAI", "USDT"],
+      options: [
+        "BTC",
+        "ETH",
+        "USDC",
+        "WLD",
+        "DAI",
+        "USDT",
+        "SUI",
+        "DOGE",
+        "XRP",
+        "SOL",
+        "LINK",
+      ],
       control: { type: "select" },
     },
   },
