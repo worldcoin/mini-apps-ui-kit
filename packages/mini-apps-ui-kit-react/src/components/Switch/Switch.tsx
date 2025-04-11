@@ -1,6 +1,6 @@
 "use client";
 
-import haptics, { withHaptics } from "@/lib/haptics";
+import { withHaptics } from "@/lib/haptics";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
 import { forwardRef } from "react";
