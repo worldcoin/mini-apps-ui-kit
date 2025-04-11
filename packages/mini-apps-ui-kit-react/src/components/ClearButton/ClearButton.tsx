@@ -1,3 +1,4 @@
+import haptics from "@/lib/haptics";
 import type { ButtonHTMLAttributes } from "react";
 import * as React from "react";
 
@@ -24,6 +25,7 @@ const ClearButton = React.forwardRef<HTMLButtonElement, ClearButtonProps>(
       if (inputRef && "current" in inputRef && inputRef.current) {
         inputRef.current.value = "";
         onClear?.();
+        haptics.impact("light");
       }
     };
 

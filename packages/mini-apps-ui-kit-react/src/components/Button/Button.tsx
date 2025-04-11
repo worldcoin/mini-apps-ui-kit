@@ -1,5 +1,6 @@
 "use client";
 
+import haptics, { withHaptics } from "@/lib/haptics";
 import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
@@ -63,7 +64,10 @@ interface ButtonProps
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", size = "lg", fullWidth, asChild, children, ...props }, ref) => {
+  (
+    { variant = "primary", size = "lg", fullWidth, asChild, onClick, children, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
 
     return (
@@ -82,6 +86,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           }),
           props.className,
         )}
+        onClick={withHaptics(onClick, () => haptics.impact(size === "lg" ? "medium" : "light"))}
       >
         {children}
       </Comp>

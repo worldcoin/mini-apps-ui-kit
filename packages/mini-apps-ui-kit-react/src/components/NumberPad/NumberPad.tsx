@@ -96,12 +96,12 @@ const NumberPad = ({
           disabled={disabled}
           className={cn(
             typographyVariants({ variant: "heading", level: 3 }),
-            "h-12 min-w-28 flex items-center justify-center select-none group",
-            "disabled:text-gray-300 disabled:cursor-not-allowed disabled:active:bg-transparent",
+            "h-12 min-w-28 flex items-center justify-center select-none",
+            "disabled:text-gray-300 disabled:cursor-not-allowed",
           )}
           {...(button.value === "del" ? longPressAttributes : {})}
         >
-          <span className="duration-200 transition-colors size-12 flex items-center justify-center rounded-full group-active:bg-gray-50">
+          <span className="duration-200 transition-colors size-12 flex items-center justify-center rounded-full">
             {button.label || button.value}
           </span>
         </button>
