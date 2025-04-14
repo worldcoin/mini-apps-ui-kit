@@ -6,27 +6,6 @@ import { CountryCode } from "./types";
 const DEFAULT_CDN_URL = "https://mini-apps-ui-kit.world.org/flags/";
 const DEFAULT_CDN_SUFFIX = "svg";
 
-/* Unsupported countries:
- * - Antarctica (AQ)
- * - Bouvet Island (BV)
- * - Christmas Island (CX)
- * - Western Sahara (EH)
- * - French Guiana (GF)
- * - South Georgia and the South Sandwich Islands (GS)
- * - Heard Island and McDonald Islands (HM)
- * - Saint Kitts and Nevis (KN)
- * - Saint Martin (MF)
- * - New Caledonia (NC)
- * - Saint Pierre and Miquelon (PM)
- * - Reunion (RE)
- * - Saint Helena (SH)
- * - Svalbard and Jan Mayen (SJ)
- * - French Southern Territories (TF)
- * - U.S. Minor Outlying Islands (UM)
- * - U.S. Virgin Islands (VI)
- * - Wallis and Futuna (WF)
- * - Mayotte (YT)
- */
 interface FlagProps extends Omit<HTMLAttributes<HTMLImageElement>, "width" | "height"> {
   /**
    * ISO 3166-1 alpha-2 country code (e.g. 'US', 'GB', 'FR')
