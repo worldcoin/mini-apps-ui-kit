@@ -24,7 +24,7 @@ const selectVariants = cva(
   {
     variants: {
       error: {
-        true: "border-error-600 focus:border-error-600 bg-gray-0",
+        true: "!border-error-600 !focus:border-error-600 !bg-gray-0",
       },
       isLabel: {
         true: "pt-6 pb-2 placeholder:text-transparent",

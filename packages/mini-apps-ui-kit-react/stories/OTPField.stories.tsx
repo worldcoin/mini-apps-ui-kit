@@ -77,7 +77,7 @@ export const Error: Story = {
     expect(slots).toHaveLength(6 + 1);
     slots.slice(0, -1).forEach((slot) => {
       expect(slot).toBeInTheDocument();
-      expect(slot).toHaveClass("border-error-700");
+      expect(slot).toHaveClass("border-error-600");
     });
   },
 };

@@ -59,6 +59,6 @@ export const WithErrorState: Story = {
     const messageElement = await canvas.findByText("Please enter a valid email");
     const input = await canvas.findByPlaceholderText("Enter your email");
     expect(messageElement).toBeInTheDocument();
-    expect(input).toHaveClass("border-error-700");
+    expect(input.parentElement).toHaveClass("border-error-600");
   },
 };

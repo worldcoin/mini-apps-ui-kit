@@ -1,10 +1,9 @@
 import { Button } from "@/components/Button";
-import { countryCodes } from "@/components/Flag/constants";
 import { PhoneField, PhoneFieldProps } from "@/components/PhoneField";
-import { getCountryDataListByCodes } from "@/components/PhoneField/utils";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, fireEvent, userEvent, waitFor, within } from "@storybook/test";
 import { useRef, useState } from "react";
+import { defaultCountries } from "react-international-phone";
 
 import { Form } from "../src/components/Form";
 import { iconControl } from "./helpers/icon-control";
@@ -157,7 +156,7 @@ export const WithErrorLabel: Story = {
 
     const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveClass("border-error-600");
+    expect(input.parentElement).toHaveClass("border-error-600");
 
     const errorMessage = await canvas.getByText("Error message");
 
@@ -188,13 +187,13 @@ export const ShowValidStateWhenMin12Digits: Story = {
     expect(input).toBeVisible();
     expect(input).toHaveValue("");
 
-    userEvent.type(input, "12345678912");
+    userEvent.type(input, "2345678912");
 
     await waitFor(async () => {
       const tickIcon = await canvas.findByTestId("tick-icon");
 
       expect(tickIcon).toBeVisible();
-      expect(input).toHaveValue("+1 (234) 567-8912");
+      expect(input).toHaveValue("(234) 567-8912");
     });
   },
 };
@@ -233,8 +232,7 @@ export const CustomDefaultCountry: Story = {
       expect(drawer).toBeVisible();
 
       const countries = drawer!.querySelectorAll("[data-country]");
-      const countryList = getCountryDataListByCodes(countryCodes);
-      expect(countries).toHaveLength(countryList.length);
+      expect(countries).toHaveLength(defaultCountries.length);
 
       fireEvent.click(countries[0]);
     });
