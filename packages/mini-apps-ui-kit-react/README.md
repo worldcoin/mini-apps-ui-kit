@@ -57,21 +57,12 @@ export default tseslint.config({
 });
 ```
 
-## Font Configuration
+## Font
 
 The library uses the following font **[TWK Lausanne](https://weltkern.com/typefaces/lausanne)** as the sans-serif font for all text `(--font-sans)`. 
 
 > **⚠️ License Notice**: TWK Lausanne is a commercial font that requires a license. Make sure you have obtained the appropriate license from [Weltkern](https://weltkern.com/typefaces/lausanne) before using it in your project.
 
-By default, the library sets `--font-sans` to **TWK Lausanne**, but you can override this CSS variable to use any other font of your choice:
-
-```css
-:root {
-  --font-sans: 'Your Font Name', sans-serif;
-}
-```
-
-You must import the font in your application before using it. The library does not include the font files - you need to handle the font loading yourself according to your license agreement.
 
 ## Importing Styles
 
@@ -81,33 +72,11 @@ To use the UI Kit components with their proper styling, you need to import the s
 import "@worldcoin/mini-apps-ui-kit-react/styles.css";
 ```
 
-## Import Methods
-
-The library supports two different import methods:
-
-### Default Import
-
-Import components from the main entry point:
-
-```typescript
-import { Button } from "@worldcoin/mini-apps-ui-kit-react";
-```
-
-This method is simpler but includes all components in your bundle, even if you're not using them.
-
-### Component-Level Import
-
-Import components directly from their individual modules:
-
-```typescript
-import { Button } from "@worldcoin/mini-apps-ui-kit-react/Button";
-```
-
-This method enables tree-shaking and reduces your final bundle size by only including the components you actually use. Recommended for production applications where bundle size is a concern.
-
 ## Icons
 
-The library uses [Iconoir](https://iconoir.com/) for its icon system. To use icons in your project, you'll need to install the [React package](https://www.npmjs.com/package/iconoir-react):
+The library uses a custom set of icons built on top of [Iconoir](https://iconoir.com/). While we provide our own custom set, we highly recommend using Iconoir directly for your miniapps as it offers a comprehensive and well-maintained icon system.
+
+To use Iconoir in your project, you'll need to install the [React package](https://www.npmjs.com/package/iconoir-react):
 
 ```bash
 npm install iconoir-react
