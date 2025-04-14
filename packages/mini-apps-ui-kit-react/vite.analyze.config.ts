@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: resolve(__dirname, "test-tree-shaking.js"),
+      input: resolve(__dirname, "scripts/test-tree-shaking.js"),
       output: {
         format: "es",
       },
