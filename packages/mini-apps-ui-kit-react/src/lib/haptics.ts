@@ -25,6 +25,28 @@ const sendHapticFeedback = (params: HapticFeedbackParams) => {
   }
 };
 
+const haptics = {
+  notification: (type: NotificationType) => {
+    sendHapticFeedback({
+      hapticsType: "notification",
+      style: type,
+    });
+  },
+
+  selection: () => {
+    sendHapticFeedback({
+      hapticsType: "selectionChanged",
+    });
+  },
+
+  impact: (style: ImpactStyle) => {
+    sendHapticFeedback({
+      hapticsType: "impact",
+      style,
+    });
+  },
+};
+
 /**
  * Wraps a function with haptic feedback
  * @param fn The function to wrap (can be undefined)
@@ -53,27 +75,5 @@ export function withHaptics<T extends (...args: any[]) => any>(
     return result;
   }) as T;
 }
-
-const haptics = {
-  notification: (type: NotificationType) => {
-    sendHapticFeedback({
-      hapticsType: "notification",
-      style: type,
-    });
-  },
-
-  selection: () => {
-    sendHapticFeedback({
-      hapticsType: "selectionChanged",
-    });
-  },
-
-  impact: (style: ImpactStyle) => {
-    sendHapticFeedback({
-      hapticsType: "impact",
-      style,
-    });
-  },
-};
 
 export default haptics;
