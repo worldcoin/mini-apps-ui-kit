@@ -1,0 +1,35 @@
+# Development files
+.git
+.github
+.vscode
+*.log
+node_modules
+dist
+coverage
+*.test.ts
+*.test.tsx
+*.stories.tsx
+
+# Source files
+src
+
+# Public directory and its contents
+public/
+public/**/*
+
+# Configuration files
+.eslintrc
+.prettierrc
+tsconfig.*
+vite.config.ts
+jest.config.ts
+*.config.js
+*.config.ts
+
+# Documentation
+README.md
+LICENSE 
+
+# Changeset
+.changeset
+.changeset/

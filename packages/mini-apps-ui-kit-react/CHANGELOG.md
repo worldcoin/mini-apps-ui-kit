@@ -36,6 +36,9 @@
 - Add Toast component
 - Add Input variants: default and floating label.
 - Add ToggleGroup component
+- Add CircularIcon component
+- Add CircularState component
+- Add LiveFeed component
 
 ### Patch Changes
 
@@ -44,6 +47,7 @@
 - Add support for transparency color utility classes
 - Add EU flag support
 - Allow decimals in NumberPad
+- Host static images for Flag component
 
 ## 0.0.8
 
@@ -83,3 +87,29 @@
 ### Patch Changes
 
 - Allow customization of countries in PhoneField via the `countries` prop.
+
+
+## 0.0.1
+
+### Minor Changes
+
+- Button component
+- Checkbox component
+- Chip component
+- ColorPicker component
+- Drawer component
+- Flag component
+- Form component
+- Input component
+- ListItem component
+- NumberPad component
+- OTPField component
+- PhoneField component
+- Pill component
+- RadioGroup component
+- SearchField component
+- Select component
+- Switch component
+- Token component
+- Typography component
+- Tailwind plugin
