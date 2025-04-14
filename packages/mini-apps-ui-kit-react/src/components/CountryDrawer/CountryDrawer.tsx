@@ -1,9 +1,10 @@
 "use client";
 
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useRef, useState } from "react";
 
 import { Button } from "../Button";
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "../Drawer";
+import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "../Drawer";
 import { CountryCode } from "../Flag";
 import { XMark } from "../Icons/XMark";
 import { GroupedCountryList } from "../PhoneField/GroupedCountryList";
@@ -75,6 +76,9 @@ function CountryDrawer({
       </DrawerTrigger>
 
       <DrawerContent>
+        <VisuallyHidden>
+          <DrawerTitle>{title}</DrawerTitle>
+        </VisuallyHidden>
         <TopBar
           title={title}
           startAdornment={

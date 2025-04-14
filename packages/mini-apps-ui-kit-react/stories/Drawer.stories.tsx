@@ -35,7 +35,7 @@ export default meta;
 export const Default: StoryObj<typeof Drawer> = {
   render: (props) => (
     <Drawer {...props}>
-      <DrawerTrigger>
+      <DrawerTrigger asChild>
         <Button variant="secondary" size="sm">
           Open
         </Button>
@@ -62,7 +62,7 @@ export const Default: StoryObj<typeof Drawer> = {
 export const FullPage: StoryObj<typeof Drawer> = {
   render: () => (
     <Drawer height="full">
-      <DrawerTrigger>
+      <DrawerTrigger asChild>
         <Button variant="secondary" size="sm">
           Open
         </Button>
@@ -96,7 +96,7 @@ export const FullPage: StoryObj<typeof Drawer> = {
 export const WithInputs: StoryObj<typeof Drawer> = {
   render: () => (
     <Drawer height="full" repositionInputs>
-      <DrawerTrigger>
+      <DrawerTrigger asChild>
         <Button variant="secondary" size="sm">
           Open
         </Button>

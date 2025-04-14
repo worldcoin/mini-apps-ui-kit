@@ -16,7 +16,7 @@ export const Contacts: React.FC<IconProps> = ({ size = 24, solid = false, ...pro
         xmlns="http://www.w3.org/2000/svg"
         {...props}
       >
-        <g clip-path="url(#clip0_570_1184)">
+        <g clipPath="url(#clip0_570_1184)">
           <path
             d="M1.82495 20C1.82495 16.4101 4.7351 13.5 8.32495 13.5C11.9148 13.5 14.825 16.4101 14.825 20V22.5H1.82495V20Z"
             fill="currentColor"
@@ -25,7 +25,7 @@ export const Contacts: React.FC<IconProps> = ({ size = 24, solid = false, ...pro
             d="M25.4272 23.45H26.3772V22.5V18C26.3772 13.8855 23.0418 10.55 18.9272 10.55C14.8127 10.55 11.4772 13.8855 11.4772 18V22.5V23.45H12.4272H25.4272Z"
             fill="currentColor"
             stroke="white"
-            stroke-width="1.9"
+            strokeWidth="1.9"
           />
           <path
             d="M11.4272 9C11.4272 10.933 9.86024 12.5 7.92725 12.5C5.99425 12.5 4.42725 10.933 4.42725 9C4.42725 7.067 5.99425 5.5 7.92725 5.5C9.86024 5.5 11.4272 7.067 11.4272 9Z"

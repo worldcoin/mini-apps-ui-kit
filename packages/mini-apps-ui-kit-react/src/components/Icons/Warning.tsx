@@ -11,8 +11,8 @@ export function Warning(props: HTMLAttributes<SVGElement>) {
       {...props}
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M22 0.835449L42.6702 38.0417H1.32983L22 0.835449ZM23.375 15.125V25.2083H20.625V15.125H23.375ZM20.6213 32.5505L23.3987 32.5499L23.3981 29.7999L20.6207 29.8005L20.6213 32.5505Z"
         fill="white"
       />

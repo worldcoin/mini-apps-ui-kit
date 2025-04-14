@@ -42,9 +42,9 @@ export function CountryCode(props: React.SVGProps<SVGSVGElement>) {
       <path
         d="M61 10L65 14L69 10"
         stroke="#9BA3AE"
-        stroke-width="1.84615"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.84615"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <defs>
         <clipPath id="clip0_12_757">
