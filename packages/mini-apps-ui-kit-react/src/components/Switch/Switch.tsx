@@ -1,5 +1,6 @@
 "use client";
 
+import { withHaptics } from "@/lib/haptics";
 import * as RadixSwitch from "@radix-ui/react-switch";
 import { SwitchProps as RadixSwitchProps } from "@radix-ui/react-switch";
 import { forwardRef } from "react";
@@ -28,7 +29,7 @@ const Switch = forwardRef<HTMLButtonElement, SwitchProps>(
       <RadixSwitch.Root
         ref={ref}
         checked={checked}
-        onCheckedChange={onCheckedChange}
+        onCheckedChange={withHaptics(onCheckedChange)}
         disabled={disabled}
         className="relative inline-flex h-6 w-10 items-center rounded-full border-2 transition-all data-[state=checked]:border-gray-900 data-[state=checked]:bg-gray-900 data-[state=unchecked]:border-gray-300 data-[state=unchecked]:bg-gray-300 disabled:cursor-not-allowed disabled:opacity-20"
         {...rest}

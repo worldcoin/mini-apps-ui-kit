@@ -1,5 +1,6 @@
 "use client";
 
+import haptics, { withHaptics } from "@/lib/haptics";
 import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { type VariantProps, cva } from "class-variance-authority";
@@ -12,12 +13,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary:
-          "bg-gray-900 text-gray-0 hover:bg-gray-700 disabled:bg-gray-100 disabled:text-gray-300",
+        primary: "bg-gray-900 text-gray-0 disabled:bg-gray-100 disabled:text-gray-300",
         secondary:
-          "bg-transparent text-gray-900 border border-gray-200 hover:bg-gray-50 disabled:text-gray-300 disabled:border-gray-100",
-        tertiary:
-          "bg-gray-100 text-gray-900 hover:bg-gray-200 disabled:text-gray-300 disabled:bg-gray-50",
+          "bg-transparent text-gray-900 border border-gray-200 disabled:text-gray-300 disabled:border-gray-100",
+        tertiary: "bg-gray-100 text-gray-900 disabled:text-gray-300 disabled:bg-gray-50",
       },
       size: {
         sm: "h-10 min-w-10 px-4",
@@ -63,7 +62,10 @@ interface ButtonProps
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = "primary", size = "lg", fullWidth, asChild, children, ...props }, ref) => {
+  (
+    { variant = "primary", size = "lg", fullWidth, asChild, onClick, children, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
 
     return (
@@ -82,6 +84,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           }),
           props.className,
         )}
+        onClick={withHaptics(onClick, () => haptics.impact("light"))}
       >
         {children}
       </Comp>
