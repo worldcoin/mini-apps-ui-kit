@@ -1,6 +1,6 @@
 @font-face {
   font-family: "TWK Lausanne";
-  src: url("../public/fonts/TWKLausanne-350.woff") format("woff");
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-350.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: "TWK Lausanne";
-  src: url("../public/fonts/TWKLausanne-350Italic.woff") format("woff");
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-350Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: "TWK Lausanne";
-  src: url("../public/fonts/TWKLausanne-500.woff") format("woff");
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-500.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: "TWK Lausanne";
-  src: url("../public/fonts/TWKLausanne-500Italic.woff") format("woff");
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-500Italic.woff") format("woff");
   font-weight: 500;
   font-style: italic;
   font-display: swap;
@@ -32,7 +32,7 @@
 
 @font-face {
   font-family: "TWK Lausanne";
-  src: url("../public/fonts/TWKLausanne-600.woff") format("woff");
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-600.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -40,7 +40,7 @@
 
 @font-face {
   font-family: "TWK Lausanne";
-  src: url("../public/fonts/TWKLausanne-600Italic.woff") format("woff");
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-600Italic.woff") format("woff");
   font-weight: 600;
   font-style: italic;
   font-display: swap;
@@ -50,8 +50,6 @@
   --font-sans: "TWK Lausanne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
 }
-
-@import "react-international-phone/dist/index.css";
 
 /* Hide pseudo-elements for search inputs */
 input[type="search"]::-webkit-search-cancel-button,
