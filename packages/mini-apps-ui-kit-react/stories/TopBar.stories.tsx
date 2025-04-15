@@ -85,6 +85,12 @@ export const Default: Story = {
   },
 };
 
+export const WithLongTitle: Story = {
+  args: {
+    title: "This is a long title that should be truncated",
+  },
+};
+
 export const WithStartAdornment: Story = {
   args: {
     title: "World",

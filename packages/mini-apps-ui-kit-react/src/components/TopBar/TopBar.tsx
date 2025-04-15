@@ -26,7 +26,9 @@ function TopBar({ title, startAdornment, endAdornment, className }: TopBarProps)
         className,
       )}
     >
-      {startAdornment && <div className="absolute left-6">{startAdornment}</div>}
+      {startAdornment && (
+        <div className="absolute left-6 size-10 overflow-hidden">{startAdornment}</div>
+      )}
 
       {!hasStartAdornment && (
         <Typography
@@ -54,7 +56,9 @@ function TopBar({ title, startAdornment, endAdornment, className }: TopBarProps)
         {title}
       </Typography>
 
-      {endAdornment && <div className="absolute right-6">{endAdornment}</div>}
+      {endAdornment && (
+        <div className="absolute right-6 size-10 overflow-hidden">{endAdornment}</div>
+      )}
     </div>
   );
 }
