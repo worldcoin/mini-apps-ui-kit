@@ -62,44 +62,44 @@ export const info = {
 };
 
 export const worldBlue = {
-  "--world-blue-primary": "63, 219, 237",
-  "--world-blue-secondary": "236, 251, 253",
+  "--world-blue-primary": "63 219 237",
+  "--world-blue-secondary": "236 251 253",
 };
 export const carrotOrange = {
-  "--carrot-orange-primary": "255, 90, 0",
-  "--carrot-orange-secondary": "255, 237, 230",
+  "--carrot-orange-primary": "255 90 0",
+  "--carrot-orange-secondary": "255 237 230",
 };
 export const purple = {
-  "--purple-primary": "134, 0, 255",
-  "--purple-secondary": "242, 230, 255",
+  "--purple-primary": "134 0 255",
+  "--purple-secondary": "242 230 255",
 };
 export const green = {
-  "--green-primary": "0, 194, 48",
-  "--green-secondary": "230, 249, 236",
+  "--green-primary": "0 194 48",
+  "--green-secondary": "230 249 236",
 };
 export const blue = {
-  "--blue-primary": "0, 92, 255",
-  "--blue-secondary": "230, 240, 255",
+  "--blue-primary": "0 92 255",
+  "--blue-secondary": "230 240 255",
 };
 
 export const worldcoin = {
-  "--worldcoin-primary": "24, 24, 24",
-  "--worldcoin-secondary": "243, 244, 245",
+  "--worldcoin-primary": "24 24 24",
+  "--worldcoin-secondary": "243 244 245",
 };
 
 export const digitalDollars = {
-  "--digital-dollars-primary": "0, 194, 48",
-  "--digital-dollars-secondary": "230, 249, 236",
+  "--digital-dollars-primary": "0 194 48",
+  "--digital-dollars-secondary": "230 249 236",
 };
 
 export const bitcoin = {
-  "--bitcoin-primary": "255, 90, 0",
-  "--bitcoin-secondary": "255, 237, 230",
+  "--bitcoin-primary": "255 90 0",
+  "--bitcoin-secondary": "255 237 230",
 };
 
 export const ethereum = {
-  "--ethereum-primary": "51, 133, 255",
-  "--ethereum-secondary": "230, 240, 255",
+  "--ethereum-primary": "51 133 255",
+  "--ethereum-secondary": "230 240 255",
 };
 
 const uiKitTailwindPlugin = plugin(
