@@ -4,22 +4,38 @@ import { ComponentProps, forwardRef } from "react";
 
 import { TypographyComponentProps } from "../Typography/Typography";
 
-interface SkeletonProps extends ComponentProps<"div"> {}
+interface SkeletonProps extends ComponentProps<"div"> {
+  /**
+   * Width of the skeleton
+   */
+  width?: string | number;
+  /**
+   * Height of the skeleton
+   */
+  height?: string | number;
+}
 
-const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(({ className, ...props }, ref) => {
-  return (
-    <div
-      role="status"
-      ref={ref}
-      className={cn("rounded-md skeleton m-0", className)}
-      {...props}
-    />
-  );
-});
+const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
+  ({ className, width, height, style, ...props }, ref) => {
+    return (
+      <div
+        role="status"
+        ref={ref}
+        className={cn("rounded-md skeleton m-0", className)}
+        style={{
+          ...style,
+          width,
+          height,
+        }}
+        {...props}
+      />
+    );
+  },
+);
 
 Skeleton.displayName = "Skeleton";
 
-type TypographySkeletonProps = SkeletonProps & {
+type TypographySkeletonProps = Omit<SkeletonProps, "height"> & {
   /**
    * Number of lines to show
    * @default 1
