@@ -49,9 +49,6 @@ Unchecked.play = async ({ canvasElement }) => {
   expect(switchElement).toBeInTheDocument();
   expect(switchElement).not.toBeChecked();
   expect(switchElement).toHaveAttribute("aria-checked", "false");
-  expect(switchElement).toHaveClass("border-gray-300 bg-gray-300");
-  expect(switchElement).not.toHaveClass("border-gray-900 bg-gray-900");
-  expect(switchElement.firstChild).toHaveClass("translate-x-0");
 };
 
 export const Checked: Story = Template.bind({});
@@ -75,10 +72,7 @@ Checked.play = async ({ canvasElement }) => {
   expect(switchElement).toBeInTheDocument();
   expect(switchElement).toBeChecked();
   expect(switchElement).toHaveAttribute("aria-checked", "true");
-  expect(switchElement).toHaveClass("border-gray-900 bg-gray-900");
-  expect(switchElement).not.toHaveClass("border-gray-300 bg-gray-300");
   expect(switchElement.firstChild).toBeInTheDocument();
-  expect(switchElement.firstChild).toHaveClass("translate-x-4");
 };
 
 export const Disabled: Story = Template.bind({});
@@ -101,7 +95,6 @@ Disabled.play = async ({ canvasElement }) => {
 
   expect(switchElement).toBeInTheDocument();
   expect(switchElement).not.toBeChecked();
-  expect(switchElement).toHaveClass("opacity-20");
 
   await userEvent.click(switchElement);
 

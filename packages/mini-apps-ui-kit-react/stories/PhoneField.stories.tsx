@@ -1,9 +1,9 @@
 import { Button } from "@/components/Button";
-import { countryCodes } from "@/components/Flag/constants";
 import { PhoneField, PhoneFieldProps } from "@/components/PhoneField";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, fireEvent, userEvent, waitFor, within } from "@storybook/test";
 import { useRef, useState } from "react";
+import { defaultCountries } from "react-international-phone";
 
 import { Form } from "../src/components/Form";
 import { iconControl } from "./helpers/icon-control";
@@ -50,92 +50,27 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: "The default phone field with country code selector as a dropdown.",
+        story: "The default phone field with country code selector as a drawer.",
       },
     },
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
-    const selectButton = await canvas.getByRole("combobox");
+    const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
+    const selectButton = await canvas.getByTestId("country-selector-button");
 
     expect(input).toBeVisible();
     expect(input).toHaveValue("");
     expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes[0].childNodes).toHaveLength(3);
+    expect(selectButton.childNodes).toHaveLength(3);
 
-    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
-      selectButton.childNodes[0].childNodes;
+    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] = selectButton.childNodes;
 
     expect(selectButtonFlag).toBeVisible();
     expect(selectButtonDialCode).toBeVisible();
     expect(selectButtonDialCode).toHaveTextContent("+1");
     expect(selectButtonArrow).toBeVisible();
-  },
-};
-
-export const CountrySelectorAsDrawer: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-
-    return (
-      <PhoneField {...args} value={value} onChange={setValue} countrySelectorMode="drawer" />
-    );
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Phone field with country selector displayed as a bottom drawer, suitable for mobile interfaces.",
-      },
-    },
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    let drawer: HTMLDivElement | null = null;
-    let searchInput: HTMLInputElement | null = null;
-    let countryElements: NodeListOf<Element> | null = null;
-
-    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
-
-    expect(input).toHaveValue("");
-
-    const selectButton = await canvas.getByTestId("country-selector-button");
-
-    fireEvent.click(selectButton);
-
-    await waitFor(async () => {
-      drawer = document.body.querySelector("[data-vaul-drawer]");
-
-      countryElements = drawer!.querySelectorAll("[data-country]");
-
-      expect(countryElements).toHaveLength(countryCodes.length);
-
-      searchInput = (await within(drawer!).getByPlaceholderText(
-        "Search name or number",
-      )) as HTMLInputElement;
-
-      expect(searchInput).toBeVisible();
-    });
-
-    userEvent.type(searchInput!, "United S");
-
-    await waitFor(() => {
-      countryElements = drawer!.querySelectorAll("[data-country]");
-
-      expect(countryElements).toHaveLength(1);
-    });
-
-    fireEvent.click(countryElements![0]);
-
-    await waitFor(async () => {
-      input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
-
-      expect(input).toHaveValue("+1 ");
-    });
-
-    userEvent.clear(input);
   },
 };
 
@@ -153,7 +88,6 @@ export const AllowedCountryCodesProvided: Story = {
     },
   },
   args: {
-    countrySelectorMode: "drawer",
     disableDialCodePrefill: false,
     defaultCountryCode: "DE",
     countries: ["DE", "PL"],
@@ -175,9 +109,7 @@ export const AllowedCountryCodesProvided: Story = {
 
       expect(countryElements).toHaveLength(2);
 
-      searchInput = (await within(drawer!).getByPlaceholderText(
-        "Search name or number",
-      )) as HTMLInputElement;
+      searchInput = (await within(drawer!).getByPlaceholderText("Search")) as HTMLInputElement;
 
       expect(searchInput).toBeVisible();
     });
@@ -191,77 +123,6 @@ export const AllowedCountryCodesProvided: Story = {
     });
 
     fireEvent.click(countryElements![0]);
-  },
-};
-
-export const DialCodeInInputOnInitialization: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-
-    return <PhoneField {...args} value={value} onChange={setValue} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Phone field that automatically includes the country dial code in the input field on initialization.",
-      },
-    },
-  },
-  args: {
-    disableDialCodePrefill: false,
-    defaultCountryCode: "DE",
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
-    const selectButton = await canvas.getByRole("combobox");
-
-    expect(input).toBeVisible();
-    expect(input).toHaveValue("+49 ");
-    expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes[0].childNodes).toHaveLength(3);
-
-    const [selectButtonFlag, selectButtonDialCode, selectButtonArrow] =
-      selectButton.childNodes[0].childNodes;
-
-    expect(selectButtonFlag).toBeVisible();
-    expect(selectButtonDialCode).toBeVisible();
-    expect(selectButtonDialCode).toHaveTextContent("+49");
-    expect(selectButtonArrow).toBeVisible();
-  },
-};
-
-export const WithoutDialCodeWithinButton: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-
-    return <PhoneField {...args} value={value} onChange={setValue} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          "Phone field with hidden dial code in the country selector button for a cleaner look.",
-      },
-    },
-  },
-  args: {
-    hideDialCode: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    const selectButton = await canvas.getByRole("combobox");
-
-    expect(selectButton).toBeVisible();
-    expect(selectButton.childNodes[0].childNodes).toHaveLength(2);
-
-    const [selectButtonFlag, selectButtonArrow] = selectButton.childNodes[0].childNodes;
-
-    expect(selectButtonFlag).toBeVisible();
-    expect(selectButtonArrow).toBeVisible();
   },
 };
 
@@ -293,40 +154,13 @@ export const WithErrorLabel: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    const input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveClass("border-error-700 bg-error-100");
+    expect(input.parentElement).toHaveClass("border-error-600");
 
     const errorMessage = await canvas.getByText("Error message");
 
     expect(errorMessage).toBeVisible();
-  },
-};
-
-export const Disabled: Story = {
-  render: (args) => {
-    const [value, setValue] = useState("");
-
-    return <PhoneField {...args} value={value} onChange={setValue} />;
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: "Phone field in a disabled state where user interaction is prevented.",
-      },
-    },
-  },
-  args: {
-    disabled: true,
-  },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    const input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
-    const selectButton = await canvas.getByRole("combobox");
-
-    expect(input).toBeDisabled();
-    expect(selectButton).toBeDisabled();
   },
 };
 
@@ -348,18 +182,18 @@ export const ShowValidStateWhenMin12Digits: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
-    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toBeVisible();
     expect(input).toHaveValue("");
 
-    userEvent.type(input, "12345678912");
+    userEvent.type(input, "2345678912");
 
     await waitFor(async () => {
       const tickIcon = await canvas.findByTestId("tick-icon");
 
       expect(tickIcon).toBeVisible();
-      expect(input).toHaveValue("+1 (234) 567-8912");
+      expect(input).toHaveValue("(234) 567-8912");
     });
   },
 };
@@ -382,50 +216,46 @@ export const CustomDefaultCountry: Story = {
     disableDialCodePrefill: false,
   },
   play: async ({ canvasElement }) => {
-    let selectViewport: Element | null = null;
+    let drawer: HTMLDivElement | null = null;
     const canvas = within(canvasElement);
 
-    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveValue("+48 ");
+    expect(input).toHaveValue("");
 
-    const selectButton = await canvas.getByRole("combobox");
+    const selectButton = await canvas.getByTestId("country-selector-button");
 
     fireEvent.click(selectButton);
 
     await waitFor(() => {
-      selectViewport = document.body.querySelector("[data-radix-popper-content-wrapper]");
+      drawer = document.body.querySelector("[data-vaul-drawer]");
+      expect(drawer).toBeVisible();
 
-      expect(selectButton).toBeVisible();
-
-      const countries = selectViewport!.querySelectorAll("[data-radix-collection-item]");
-
-      expect(countries).toHaveLength(countryCodes.length);
+      const countries = drawer!.querySelectorAll("[data-country]");
+      expect(countries).toHaveLength(defaultCountries.length);
 
       fireEvent.click(countries[0]);
     });
 
-    input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveValue("+93 ");
+    expect(input).toHaveValue("");
 
     fireEvent.click(selectButton);
 
     await waitFor(() => {
-      selectViewport = document.body.querySelector("[data-radix-popper-content-wrapper]");
+      drawer = document.body.querySelector("[data-vaul-drawer]");
+      expect(drawer).toBeVisible();
 
-      expect(selectButton).toBeVisible();
-
-      const countryOption = selectViewport!.querySelector('[data-country="PL"]') as HTMLElement;
-
+      const countryOption = drawer!.querySelector('[data-country="PL"]') as HTMLElement;
       expect(countryOption).toBeVisible();
 
       fireEvent.click(countryOption);
     });
 
-    input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
-    expect(input).toHaveValue("+48 ");
+    expect(input).toHaveValue("");
   },
 };
 
@@ -439,14 +269,12 @@ export const FocusOnButtonClick: Story = {
     };
 
     return (
-      <>
-        <div className="mb-2">
-          <Button fullWidth onClick={handleButtonClick}>
-            Focus
-          </Button>
-        </div>
+      <div className="flex flex-col gap-2">
         <PhoneField ref={phoneFieldRef} {...args} value={value} onChange={setValue} />
-      </>
+        <Button fullWidth onClick={handleButtonClick} size="sm" variant="secondary">
+          Focus
+        </Button>
+      </div>
     );
   },
   play: async ({ canvasElement }) => {
@@ -458,7 +286,7 @@ export const FocusOnButtonClick: Story = {
 
     fireEvent.click(button);
 
-    let input = (await canvas.getByPlaceholderText("Enter phone number")) as HTMLInputElement;
+    let input = (await canvas.getByPlaceholderText("Phone")) as HTMLInputElement;
 
     expect(input).toHaveFocus();
   },
@@ -479,14 +307,12 @@ export const RandomNumber: Story = {
     };
 
     return (
-      <>
-        <div className="mb-2">
-          <Button fullWidth onClick={handleButtonClick}>
-            Generate Random Number
-          </Button>
-        </div>
+      <div className="flex flex-col gap-2">
         <PhoneField {...args} value={value} onChange={setValue} />
-      </>
+        <Button fullWidth onClick={handleButtonClick} size="sm" variant="secondary">
+          Generate Random Number
+        </Button>
+      </div>
     );
   },
 };

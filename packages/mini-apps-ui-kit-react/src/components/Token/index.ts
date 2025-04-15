@@ -1,1 +1,1 @@
-export * from "./Token";
+export { Token, type TokenProps } from "./Token";

@@ -10,7 +10,7 @@ export function Switch(props: React.SVGProps<SVGSVGElement>) {
       {...props}
     >
       <rect x="1" y="1" width="38" height="22" rx="11" fill="#191C20" />
-      <rect x="1" y="1" width="38" height="22" rx="11" stroke="#191C20" stroke-width="2" />
+      <rect x="1" y="1" width="38" height="22" rx="11" stroke="#191C20" strokeWidth="2" />
       <rect x="18" y="2" width="20" height="20" rx="10" fill="white" />
     </svg>
   );

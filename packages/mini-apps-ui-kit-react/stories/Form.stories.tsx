@@ -30,7 +30,7 @@ export const WithValidationMessage: Story = {
     <Form.Root>
       <Form.Field name="email">
         <Form.Control asChild>
-          <Input placeholder="Enter your email" />
+          <Input label="Enter your email" />
         </Form.Control>
         <Form.Message>{message}</Form.Message>
       </Form.Field>
@@ -48,7 +48,7 @@ export const WithErrorState: Story = {
     <Form.Root>
       <Form.Field name="email" className="has-error">
         <Form.Control asChild>
-          <Input error placeholder="Enter your email" />
+          <Input error label="Enter your email" />
         </Form.Control>
         <Form.Message error>{message}</Form.Message>
       </Form.Field>
@@ -59,6 +59,6 @@ export const WithErrorState: Story = {
     const messageElement = await canvas.findByText("Please enter a valid email");
     const input = await canvas.findByPlaceholderText("Enter your email");
     expect(messageElement).toBeInTheDocument();
-    expect(input).toHaveClass("border-error-700");
+    expect(input.parentElement).toHaveClass("border-error-600");
   },
 };

@@ -1,8 +1,8 @@
-import { CountryData, parseCountry } from "react-international-phone";
+import { CountryData, defaultCountries, parseCountry } from "react-international-phone";
 
 import { CountryCode } from "../Flag";
 import { isSupportedCountryCode } from "../Flag/utils";
-import { DIAL_CODE_PREFIX, extendedCountryDataList } from "./constants";
+import { DIAL_CODE_PREFIX } from "./constants";
 
 export const getValidatedCountryCode = (
   code: string,
@@ -17,12 +17,12 @@ export const getCountryDataListByCodes = (
   countryCodes: CountryCode[] | undefined,
 ): CountryData[] => {
   if (!countryCodes?.length) {
-    return extendedCountryDataList;
+    return defaultCountries;
   }
 
   const countryCodeSet = new Set(countryCodes);
 
-  return extendedCountryDataList.filter((country) => {
+  return defaultCountries.filter((country) => {
     const countryCode = parseCountry(country).iso2.toUpperCase();
 
     return countryCodeSet.has(countryCode as CountryCode);

@@ -1,1 +1,1 @@
-export * from "./OTPField";
+export { OTPField, type OTPFieldProps } from "./OTPField";

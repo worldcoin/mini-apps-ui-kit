@@ -1,7 +1,9 @@
+import haptics from "@/lib/haptics";
 import type { ButtonHTMLAttributes } from "react";
 import * as React from "react";
 
 import { cn } from "../../lib/utils";
+import { MagicWand } from "../Icons/MagicWand";
 import { Typography } from "../Typography";
 
 interface PasteButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onPaste"> {
@@ -20,8 +22,6 @@ interface PasteButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>,
   onPaste?: (value: string) => void;
 }
 
-export const PASTE_BUTTON_WIDTH = 3.875;
-
 const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
   ({ children, inputRef, label = "Paste", className, onPaste, ...props }, ref) => {
     const handlePaste = async () => {
@@ -30,6 +30,7 @@ const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
           const text = await navigator.clipboard.readText();
           inputRef.current.value = text;
           onPaste?.(text);
+          haptics.impact("light");
         }
       } catch (error) {
         console.error("Failed to read clipboard:", error);
@@ -42,14 +43,15 @@ const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
         ref={ref}
         className={cn(
           className,
-          "flex h-full w-full items-center justify-center rounded-lg px-4 text-base font-medium text-gray-500 transition duration-300 bg-gray-0 group-focus-within:bg-gray-100 disabled:cursor-not-allowed",
+          "flex h-full w-full items-center justify-center gap-1 text-gray-900 transition duration-300 bg-transparent disabled:cursor-not-allowed",
         )}
         onClick={handlePaste}
         {...props}
       >
-        <Typography variant="subtitle" level={4} className="uppercase text-gray-900">
+        <Typography variant="subtitle" level={3}>
           {label}
         </Typography>
+        <MagicWand />
       </button>
     );
   },
@@ -57,4 +59,5 @@ const PasteButton = React.forwardRef<HTMLButtonElement, PasteButtonProps>(
 
 PasteButton.displayName = "PasteButton";
 
-export default PasteButton;
+export { PasteButton };
+export type { PasteButtonProps };

@@ -1,7 +1,10 @@
 "use client";
 
+import haptics from "@/lib/haptics";
+import { cn } from "@/lib/utils";
 import { LongPressOptions, useLongPress } from "@uidotdev/usehooks";
 
+import { typographyVariants } from "../Typography/Typography";
 import { Delete } from "./Delete";
 
 interface NumberPadProps {
@@ -48,7 +51,7 @@ const buttons = [
   { value: "del", label: <Delete className="size-6" /> },
 ];
 
-export const NumberPad = ({
+const NumberPad = ({
   value = "",
   onChange,
   disabled = false,
@@ -63,6 +66,8 @@ export const NumberPad = ({
   }
 
   const handleButtonClick = (buttonValue: string) => {
+    haptics.impact("light");
+
     if (!onChange || disabled) return;
 
     if (buttonValue === "del") {
@@ -71,9 +76,9 @@ export const NumberPad = ({
       // Don't add another decimal point if one already exists
       return;
     } else {
-      // Validate that the new value would still be a valid number
       const newValue = value + buttonValue;
-      if (!isNaN(Number(newValue))) {
+      // Allow trailing decimal point for partial number input
+      if (buttonValue === "." || !isNaN(Number(newValue))) {
         onChange(newValue);
       }
     }
@@ -89,14 +94,21 @@ export const NumberPad = ({
           key={button.value}
           onClick={() => handleButtonClick(button.value)}
           disabled={disabled}
-          className="h-12 min-w-28 flex items-center justify-center text-[1.625rem] font-semibold font-display rounded-md transition-colors duration-200 active:bg-gray-50 select-none disabled:text-gray-300 disabled:cursor-not-allowed disabled:active:bg-transparent"
+          className={cn(
+            typographyVariants({ variant: "heading", level: 3 }),
+            "h-12 min-w-28 flex items-center justify-center select-none",
+            "disabled:text-gray-300 disabled:cursor-not-allowed",
+          )}
           {...(button.value === "del" ? longPressAttributes : {})}
         >
-          {button.label || button.value}
+          <span className="duration-200 transition-colors size-12 flex items-center justify-center rounded-full">
+            {button.label || button.value}
+          </span>
         </button>
       ))}
     </div>
   );
 };
 
-export default NumberPad;
+export { NumberPad };
+export type { NumberPadProps };

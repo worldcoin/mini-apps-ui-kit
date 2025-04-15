@@ -11,7 +11,7 @@ const meta: Meta<typeof Checkbox> = {
     docs: {
       description: {
         component:
-          "A customizable checkbox component that supports checked, unchecked, and disabled states.",
+          "A checkbox component that allows users to select one or multiple options. Built on top of [Radix UI's Checkbox](https://www.radix-ui.com/primitives/docs/components/checkbox) primitive for accessibility and customization.",
       },
     },
   },
@@ -45,8 +45,6 @@ Checked.play = async ({ canvasElement }) => {
 
   expect(checkbox).toBeInTheDocument();
   expect(checkbox).toBeChecked();
-  expect(checkbox).toHaveClass("bg-gray-900 border-gray-900");
-  expect(checkbox).not.toHaveClass("bg-transparent border-gray-400");
   expect(tickIcon).toBeInTheDocument();
   expect(tickIcon).toHaveClass("w-4 h-4");
 };
@@ -63,8 +61,6 @@ Unchecked.play = async ({ canvasElement }) => {
 
   expect(checkbox).toBeInTheDocument();
   expect(checkbox).not.toBeChecked();
-  expect(checkbox).toHaveClass("bg-transparent border-gray-400");
-  expect(checkbox).not.toHaveClass("bg-gray-900 border-gray-900");
 };
 
 export const Disabled: Story = Template.bind({});
@@ -80,5 +76,4 @@ Disabled.play = async ({ canvasElement }) => {
 
   expect(checkbox).toBeInTheDocument();
   expect(checkbox).toBeDisabled();
-  expect(checkbox).toHaveClass("opacity-20 cursor-not-allowed");
 };

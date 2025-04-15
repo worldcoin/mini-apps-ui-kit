@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { Button } from "../src/components/Button";
 import { Form } from "../src/components/Form";
-import { Select, SelectOption, SelectProps } from "../src/components/Select";
+import { Select, SelectOption, SelectProps } from "../src/components/Select/Select";
 
 const meta: Meta<typeof Select> = {
   title: "components/Select",
@@ -195,7 +195,7 @@ export const WithErrorLabel: Story = {
 
     const selectInput = await canvas.getByRole("combobox");
 
-    expect(selectInput).toHaveClass("shadow-none border-error-700 bg-error-100");
+    expect(selectInput).toHaveClass("!border-error-600 !bg-gray-0");
 
     const errorMessage = await canvas.getByText("Error message");
 

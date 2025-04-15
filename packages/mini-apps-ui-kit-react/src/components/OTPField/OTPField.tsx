@@ -1,6 +1,8 @@
 "use client";
 
+import { withHaptics } from "@/lib/haptics";
 import { cn } from "@/lib/utils";
+import { cva } from "class-variance-authority";
 import type { OTPInputProps } from "input-otp";
 import {
   OTPInput,
@@ -10,8 +12,26 @@ import {
 } from "input-otp";
 import * as React from "react";
 
-import { inputVariants } from "../Input/Input";
-import { typographyVariants } from "../Typography";
+import { typographyVariants } from "../Typography/Typography";
+
+export const inputVariants = cva(
+  cn(
+    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
+    "placeholder:text-gray-500",
+    "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
+    "disabled:cursor-not-allowed disabled:opacity-50",
+  ),
+  {
+    variants: {
+      error: {
+        true: "border-error-600 focus:border-error-600 bg-gray-0",
+      },
+    },
+    defaultVariants: {
+      error: false,
+    },
+  },
+);
 
 const patternDictionary = {
   digits: REGEXP_ONLY_DIGITS,
@@ -91,8 +111,8 @@ type OTPFieldProps = Omit<
   pasteTransformer?: (pastedText: string) => string;
 };
 
-export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldProps>(
-  ({ maxLength = 6, error, children, mode = "digits", pattern, ...props }, ref) => {
+const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldProps>(
+  ({ maxLength = 6, error, children, mode = "digits", pattern, onChange, ...props }, ref) => {
     return (
       <OTPInput
         ref={ref}
@@ -100,7 +120,8 @@ export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPF
         maxLength={maxLength}
         inputMode={inputModeDictionary[mode]}
         pattern={pattern || patternDictionary[mode]}
-        containerClassName="flex items-center gap-1 has-[:disabled]:opacity-50"
+        onChange={withHaptics(onChange)}
+        containerClassName="flex items-center gap-2 has-[:disabled]:opacity-50"
         render={({ slots }) => (
           <>
             {slots.map(({ isActive, char }, idx) => (
@@ -112,7 +133,7 @@ export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPF
                   inputVariants({ error }),
                   typographyVariants({ variant: "body", level: 2 }),
                   "w-12 h-[4.25rem] rounded-lg flex items-center justify-center",
-                  isActive && "z-10 bg-gray-0 shadow-card",
+                  (isActive || error) && "z-10 bg-gray-0",
                 )}
               >
                 {char}
@@ -125,4 +146,7 @@ export const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPF
   },
 );
 
-export default OTPField;
+OTPField.displayName = "OTPField";
+
+export { OTPField };
+export type { OTPFieldProps };
