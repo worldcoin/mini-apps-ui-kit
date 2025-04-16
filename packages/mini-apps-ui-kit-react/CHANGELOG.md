@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.0.1
+
+### Patch Changes
+
+- d434f55: Fix specialty color utilities in Tailwind
+
 ## 1.0.0
 
 ### Minor Changes
@@ -87,7 +93,6 @@
 ### Patch Changes
 
 - Allow customization of countries in PhoneField via the `countries` prop.
-
 
 ## 0.0.1
 
