@@ -77,3 +77,4 @@ export function withHaptics<T extends (...args: any[]) => any>(
 }
 
 export default haptics;
+export type { NotificationType, ImpactStyle, HapticFeedbackParams };
