@@ -249,6 +249,10 @@
       "types": "./dist/components/CircularState/index.d.ts",
       "default": "./dist/components/CircularState/index.js"
     },
+    "./Haptic": {
+      "types": "./dist/components/Haptic/index.d.ts",
+      "default": "./dist/components/Haptic/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "import": "./dist/tailwind/index.js",

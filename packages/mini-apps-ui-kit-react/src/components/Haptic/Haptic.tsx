@@ -2,14 +2,29 @@
 
 import { Slot } from "@radix-ui/react-slot";
 
-import haptics, { HapticFeedbackParams } from "../../lib/haptics";
+import haptics, { ImpactStyle, NotificationType } from "../../lib/haptics";
 
-interface HapticProps extends React.HTMLAttributes<HTMLDivElement> {
+type HapticPropsBase = {
   children: React.ReactNode;
-  type?: HapticFeedbackParams["hapticsType"];
-  level?: HapticFeedbackParams["style"];
   asChild?: boolean;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
+
+type ImpactHapticProps = HapticPropsBase & {
+  type: "impact";
+  level: ImpactStyle;
+};
+
+type NotificationHapticProps = HapticPropsBase & {
+  type: "notification";
+  level: NotificationType;
+};
+
+type SelectionHapticProps = HapticPropsBase & {
+  type: "selectionChanged";
+  level?: never;
+};
+
+type HapticProps = ImpactHapticProps | NotificationHapticProps | SelectionHapticProps;
 
 function Haptic({
   children,
@@ -24,10 +39,10 @@ function Haptic({
     onClick?.(event);
     switch (type) {
       case "impact":
-        haptics.impact(level as any);
+        if (level) haptics.impact(level as ImpactStyle);
         break;
       case "notification":
-        haptics.notification(level as any);
+        if (level) haptics.notification(level as NotificationType);
         break;
       case "selectionChanged":
         haptics.selection();
