@@ -1,6 +1,6 @@
 import type { Preview } from "@storybook/react";
 
-import "../public/globals.css";
+import "../dist/globals.css";
 import "./preview.css";
 import theme from "./theme";
 

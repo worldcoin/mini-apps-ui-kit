@@ -32,7 +32,7 @@ const Progress = ({ value, asChild, max, getValueLabel, className }: ProgressPro
       getValueLabel={getValueLabel}
     >
       <RadixProgress.Indicator
-        className="ease-[cubic-bezier(0.65, 0, 0.35, 1)] size-full bg-current transition-transform duration-[660ms]"
+        className="ease-[cubic-bezier(0.65, 0, 0.35, 1)] size-full bg-current transition-transform duration-700"
         style={{ transform: `translateX(-${100 - Math.min(value, 100)}%)` }}
       />
     </RadixProgress.Root>
