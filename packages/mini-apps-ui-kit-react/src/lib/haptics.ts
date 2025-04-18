@@ -39,10 +39,10 @@ const haptics = {
     });
   },
 
-  impact: (style: ImpactStyle) => {
+  impact: (type: ImpactStyle) => {
     sendHapticFeedback({
       hapticsType: "impact",
-      style,
+      style: type,
     });
   },
 };

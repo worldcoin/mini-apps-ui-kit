@@ -11,6 +11,7 @@ import {
   DrawerContent,
   DrawerTrigger,
   Flag,
+  Haptic,
   Input,
   ListItem,
   LiveFeedback,
@@ -40,6 +41,10 @@ export default function Home() {
       <LiveFeedback>
         <Button>Hello</Button>
       </LiveFeedback>
+
+      <Haptic type="notification" level="success">
+        <button>Hello world</button>
+      </Haptic>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Buttons Section */}

@@ -10,26 +10,26 @@ type HapticPropsBase = {
 } & React.HTMLAttributes<HTMLDivElement>;
 
 type ImpactHapticProps = HapticPropsBase & {
-  type: "impact";
-  level: ImpactStyle;
+  variant: "impact";
+  type: ImpactStyle;
 };
 
 type NotificationHapticProps = HapticPropsBase & {
-  type: "notification";
-  level: NotificationType;
+  variant: "notification";
+  type: NotificationType;
 };
 
 type SelectionHapticProps = HapticPropsBase & {
-  type: "selectionChanged";
-  level?: never;
+  variant: "selection";
+  type?: never;
 };
 
 type HapticProps = ImpactHapticProps | NotificationHapticProps | SelectionHapticProps;
 
 function Haptic({
   children,
-  type = "selectionChanged",
-  level,
+  variant = "selection",
+  type,
   asChild,
   onClick,
   ...props
@@ -37,14 +37,14 @@ function Haptic({
   const Component = asChild ? Slot : "div";
   const handleInteraction = (event: React.MouseEvent<HTMLDivElement>) => {
     onClick?.(event);
-    switch (type) {
+    switch (variant) {
       case "impact":
-        if (level) haptics.impact(level as ImpactStyle);
+        haptics.impact(type as ImpactStyle);
         break;
       case "notification":
-        if (level) haptics.notification(level as NotificationType);
+        haptics.notification(type as NotificationType);
         break;
-      case "selectionChanged":
+      case "selection":
         haptics.selection();
         break;
     }
