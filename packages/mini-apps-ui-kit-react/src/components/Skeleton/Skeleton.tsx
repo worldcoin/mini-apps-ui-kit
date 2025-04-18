@@ -191,10 +191,11 @@ const SkeletonTypography = ({
   level = 2,
   lines = 1,
   className,
+  ...props
 }: SkeletonTypographyProps) => {
   return Array.from({ length: lines }).map((_, index) => (
     <div key={index} className={skeletonVariants({ variant, level })}>
-      <Skeleton className={cn("w-full h-full", className)}>&nbsp;</Skeleton>
+      <Skeleton className={cn("w-full h-full", className)} {...props} />
     </div>
   ));
 };
