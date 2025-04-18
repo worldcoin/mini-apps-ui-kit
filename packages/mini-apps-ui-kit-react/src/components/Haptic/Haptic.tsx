@@ -1,3 +1,5 @@
+"use client";
+
 import { Slot } from "@radix-ui/react-slot";
 
 import haptics, { HapticFeedbackParams } from "../../lib/haptics";
