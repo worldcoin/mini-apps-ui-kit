@@ -122,7 +122,7 @@ const uiKitTailwindPlugin = plugin(
         ...bitcoin,
         ...ethereum,
       },
-      "@keyframes shine-lines": {
+      "@keyframes shine": {
         "0%": {
           "background-position": "200%",
         },
@@ -139,7 +139,7 @@ const uiKitTailwindPlugin = plugin(
         backgroundImage:
           "linear-gradient(90deg, transparent 0px, rgba(255, 255, 255, 0.5) 40px, transparent 80px)",
         backgroundSize: "400% 100%",
-        animation: "shine-lines 10s infinite linear",
+        animation: "shine 10s infinite linear",
       },
     });
   },
