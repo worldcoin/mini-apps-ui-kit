@@ -2,7 +2,7 @@ import { Typography } from "@/components/Typography/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 
-import { TypographySkeleton } from "../src/components/Skeleton/Skeleton";
+import { SkeletonTypography } from "../src/components/Skeleton/Skeleton";
 import { Switch } from "../src/components/Switch/Switch";
 
 const LINES = 2;
@@ -27,9 +27,9 @@ const TypographyDecorator = (Story: any, { args }: any) => {
   );
 };
 
-const meta: Meta<typeof TypographySkeleton> = {
-  title: "Components/Skeleton Text",
-  component: TypographySkeleton,
+const meta: Meta<typeof SkeletonTypography> = {
+  title: "Components/Skeleton Typography",
+  component: SkeletonTypography,
   tags: ["autodocs"],
   parameters: {
     docs: {
@@ -47,7 +47,7 @@ const meta: Meta<typeof TypographySkeleton> = {
 };
 
 export default meta;
-type TypographyStory = StoryObj<typeof TypographySkeleton>;
+type TypographyStory = StoryObj<typeof SkeletonTypography>;
 
 export const Text: TypographyStory = {
   args: {

@@ -122,10 +122,24 @@ const uiKitTailwindPlugin = plugin(
         ...bitcoin,
         ...ethereum,
       },
+      "@keyframes shine-lines": {
+        "0%": {
+          "background-position": "200%",
+        },
+        "100%": {
+          "background-position": "-200%",
+        },
+      },
     });
     addComponents({
       ".skeleton": {
-        "@apply bg-gray-700/5 animate-pulse": {},
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor: "rgba(6, 5, 4, 0.02)",
+        backgroundImage:
+          "linear-gradient(90deg, transparent 0px, rgba(255, 255, 255, 0.5) 40px, transparent 80px)",
+        backgroundSize: "400% 100%",
+        animation: "shine-lines 10s infinite linear",
       },
     });
   },

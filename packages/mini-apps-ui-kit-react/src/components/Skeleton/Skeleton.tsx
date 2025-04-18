@@ -35,7 +35,7 @@ const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
 
 Skeleton.displayName = "Skeleton";
 
-type TypographySkeletonProps = Omit<SkeletonProps, "height"> & {
+type SkeletonTypographyProps = Omit<SkeletonProps, "height"> & {
   /**
    * Number of lines to show
    * @default 1
@@ -186,22 +186,20 @@ export const skeletonVariants = cva("", {
   },
 });
 
-const TypographySkeleton = ({
+const SkeletonTypography = ({
   variant = "body",
   level = 2,
   lines = 1,
   className,
-}: TypographySkeletonProps) => {
+}: SkeletonTypographyProps) => {
   return Array.from({ length: lines }).map((_, index) => (
-    <div className={skeletonVariants({ variant, level })}>
-      <Skeleton key={index} className={cn("w-full h-full", className)}>
-        &nbsp;
-      </Skeleton>
+    <div key={index} className={skeletonVariants({ variant, level })}>
+      <Skeleton className={cn("w-full h-full", className)}>&nbsp;</Skeleton>
     </div>
   ));
 };
 
-TypographySkeleton.displayName = "TypographySkeleton";
+SkeletonTypography.displayName = "SkeletonTypography";
 
-export { Skeleton, TypographySkeleton };
-export type { SkeletonProps, TypographySkeletonProps };
+export { Skeleton, SkeletonTypography };
+export type { SkeletonProps, SkeletonTypographyProps };
