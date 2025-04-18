@@ -9,28 +9,48 @@ const meta: Meta<typeof Haptic> = {
   parameters: {
     docs: {
       description: {
-        component:
-          "A component that provides haptic feedback when touched. It supports different types of haptic feedback including impact, notification, and selection changed.",
+        component: `A component that provides haptic feedback when touched. It supports different types of haptic feedback including impact, notification, and selection changed.
+
+        ### Available payloads
+
+        #### Impact Haptics
+        | variant | type | description |
+        |------------|-------|-------------|
+        | impact | light | Collision between small UI elements. |
+        | impact | medium | Collision between medium UI elements. |
+        | impact | heavy | Collision between big UI elements. |
+        | impact | soft | Collision between flexible UI elements. |
+        | impact | rigid | Collision between inflexible UI elements. |
+
+        #### Notification Haptics
+        | variant | type | description |
+        |------------|-------|-------------|
+        | notification | success | Indicates that an action was successful. |
+        | notification | warning | Indicates that something is not right and user should take notice. |
+        | notification | error | Indicates that an action has failed. |
+
+        #### Selection Changed
+        | variant | type | description |
+        |------------|-------|-------------|
+        | selection | --- | Informs the user that a selection has changed, for example a checkbox was clicked |`,
       },
     },
   },
   args: { onClick: fn() },
   argTypes: {
+    variant: {
+      control: "radio",
+      options: ["impact", "notification", "selection"],
+      defaultValue: "selection",
+    },
     type: {
       control: "radio",
-      options: ["impact", "notification", "selectionChanged"],
-      defaultValue: "selectionChanged",
-    },
-    style: {
-      control: "radio",
-      options: ["light", "medium", "heavy", "success", "warning", "error"],
-      defaultValue: "medium",
+      options: ["light", "medium", "heavy", "soft", "rigid", "success", "warning", "error"],
+      defaultValue: "light",
     },
     children: {
-      control: "boolean",
-      table: {
-        disable: true,
-      },
+      control: "text",
+      defaultValue: "Touch me for haptic feedback",
     },
     asChild: {
       control: "boolean",
@@ -42,11 +62,11 @@ const meta: Meta<typeof Haptic> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof Haptic>;
 
 export const Default: Story = {
   args: {
-    type: "selectionChanged",
+    variant: "selection",
     children: "Touch me for haptic feedback",
   },
 };

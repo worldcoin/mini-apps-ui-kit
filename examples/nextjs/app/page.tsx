@@ -42,7 +42,7 @@ export default function Home() {
         <Button>Hello</Button>
       </LiveFeedback>
 
-      <Haptic type="notification" level="success">
+      <Haptic variant="impact" type="light">
         <button>Hello world</button>
       </Haptic>
 
