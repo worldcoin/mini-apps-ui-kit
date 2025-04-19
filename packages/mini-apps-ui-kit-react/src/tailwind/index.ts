@@ -103,7 +103,7 @@ export const ethereum = {
 };
 
 const uiKitTailwindPlugin = plugin(
-  function ({ addBase }) {
+  function ({ addBase, addComponents }) {
     addBase({
       ":root": {
         "--font-sans": "TWK Lausanne",
@@ -121,6 +121,25 @@ const uiKitTailwindPlugin = plugin(
         ...digitalDollars,
         ...bitcoin,
         ...ethereum,
+      },
+      "@keyframes shine": {
+        "0%": {
+          "background-position": "200%",
+        },
+        "100%": {
+          "background-position": "-200%",
+        },
+      },
+    });
+    addComponents({
+      ".skeleton": {
+        position: "relative",
+        overflow: "hidden",
+        backgroundColor: "rgba(6, 5, 4, 0.02)",
+        backgroundImage:
+          "linear-gradient(90deg, transparent 0px, rgba(255, 255, 255, 0.5) 40px, transparent 80px)",
+        backgroundSize: "400% 100%",
+        animation: "shine 10s infinite linear",
       },
     });
   },

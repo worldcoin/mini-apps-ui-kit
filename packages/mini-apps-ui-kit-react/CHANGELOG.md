@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.2.0
+
+### Minor Changes
+
+- Add Skeleton component
+
 ## 1.1.0
 
 ### Minor Changes

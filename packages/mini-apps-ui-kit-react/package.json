@@ -1,6 +1,6 @@
 {
   "name": "@worldcoin/mini-apps-ui-kit-react",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -249,6 +249,10 @@
     "./CircularState": {
       "types": "./dist/components/CircularState/index.d.ts",
       "default": "./dist/components/CircularState/index.js"
+    },
+    "./Skeleton": {
+      "types": "./dist/components/Skeleton/index.d.ts",
+      "default": "./dist/components/Skeleton/index.js"
     },
     "./Haptic": {
       "types": "./dist/components/Haptic/index.d.ts",

@@ -6,7 +6,7 @@ import {
   TypographyDisplayProps,
   TypographyLabelProps,
   TypographyNumberProps,
-} from "../src/components/Typography";
+} from "../src/components/Typography/Typography";
 import TypographyDocs from "./Typography.mdx";
 
 const meta: Meta<typeof Typography> = {
@@ -105,6 +105,20 @@ export const Body: StoryObj<TypographyCommonProps> = {
     level: {
       control: "radio",
       options: [1, 2, 3, 4],
+    },
+  },
+};
+
+export const Number: StoryObj<TypographyNumberProps> = {
+  args: {
+    variant: "number",
+    level: 1,
+    children: "483K Trading Volume Today",
+  },
+  argTypes: {
+    level: {
+      control: "radio",
+      options: [1, 2, 3, 4, 5],
     },
   },
 };

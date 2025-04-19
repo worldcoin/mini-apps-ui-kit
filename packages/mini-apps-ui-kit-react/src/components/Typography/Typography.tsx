@@ -49,15 +49,15 @@ export type TypographyComponentProps =
   | TypographyLabelProps
   | TypographyDisplayProps;
 
-export const typographyVariants = cva("", {
+export const typographyVariants = cva("font-sans antialiased", {
   variants: {
     variant: {
-      display: "font-sans font-semibold leading-narrow tracking-[-0.02em] antialiased",
-      heading: "font-sans font-semibold leading-narrow tracking-[-0.01em] antialiased",
-      subtitle: "font-sans font-medium leading-narrow antialiased",
-      label: "font-sans font-semibold leading-narrow antialiased",
-      body: "font-sans font-normal leading-compact antialiased",
-      number: "font-sans font-semibold antialiased",
+      display: "font-semibold leading-narrow tracking-[-0.02em]",
+      heading: "font-semibold leading-narrow tracking-[-0.01em]",
+      subtitle: "font-medium leading-narrow",
+      label: "font-semibold leading-narrow",
+      body: "font-normal leading-compact",
+      number: "font-semibold leading-narrow",
     },
     level: {
       1: "",
@@ -174,16 +174,6 @@ export const typographyVariants = cva("", {
       variant: "number",
       level: 5,
       className: "text-base tracking-[-0.02em]",
-    },
-    {
-      variant: "label",
-      level: 1,
-      className: "text-[17px]",
-    },
-    {
-      variant: "label",
-      level: 2,
-      className: "text-[15px]",
     },
   ],
   defaultVariants: {
