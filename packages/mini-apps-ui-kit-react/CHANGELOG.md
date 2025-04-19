@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.1.0
+
+### Minor Changes
+
+- Add Haptic component.
+
 ## 1.0.1
 
 ### Patch Changes

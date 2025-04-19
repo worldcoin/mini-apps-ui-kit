@@ -39,10 +39,10 @@ const haptics = {
     });
   },
 
-  impact: (style: ImpactStyle) => {
+  impact: (type: ImpactStyle) => {
     sendHapticFeedback({
       hapticsType: "impact",
-      style,
+      style: type,
     });
   },
 };
@@ -77,3 +77,4 @@ export function withHaptics<T extends (...args: any[]) => any>(
 }
 
 export default haptics;
+export type { NotificationType, ImpactStyle, HapticFeedbackParams };

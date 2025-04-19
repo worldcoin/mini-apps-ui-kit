@@ -52,6 +52,7 @@ export { CountryDrawer } from "./components/CountryDrawer";
 export { ToggleGroupRoot, ToggleGroupItem } from "./components/ToggleGroup";
 export { Tabs, TabItem } from "./components/Tabs";
 export { LiveFeedback } from "./components/LiveFeedback";
+export { Haptic, useHaptics } from "./components/Haptic";
 
 // Export the Tailwind plugin
 export { default as uiKitTailwindPlugin } from "./tailwind";
