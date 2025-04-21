@@ -7,7 +7,7 @@ function Toaster({ duration }: { duration?: number }) {
   const { toasts } = useToast();
 
   return (
-    <ToastProvider duration={duration}>
+    <ToastProvider duration={duration} swipeDirection="up">
       {toasts.map(({ id, ...props }) => (
         <Toast key={id} {...props} />
       ))}
