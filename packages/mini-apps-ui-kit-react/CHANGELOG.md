@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.2.1
+
+### Patch Changes
+
+- Execute haptics before callback in Button.
+
 ## 1.2.0
 
 ### Minor Changes

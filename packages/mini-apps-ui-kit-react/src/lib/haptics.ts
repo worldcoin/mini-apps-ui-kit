@@ -58,21 +58,27 @@ export function withHaptics<T extends (...args: any[]) => any>(
   hapticFn: () => void = haptics.selection,
 ): T {
   return ((...args: Parameters<T>) => {
-    if (!fn) {
+    try {
       hapticFn();
-      return undefined;
+    } catch (error) {
+      console.warn('Haptic feedback failed:', error);
+    }
+    
+    if (!fn) {
+      return undefined as ReturnType<T>;
     }
 
     const result = fn(...args);
 
     // Handle async functions
     if (result instanceof Promise) {
-      return result.finally(() => hapticFn());
+      return result.catch((error) => {
+        console.error('Function failed:', error);
+        throw error;
+      }) as ReturnType<T>;
     }
 
-    // Handle sync functions
-    hapticFn();
-    return result;
+    return result as ReturnType<T>;
   }) as T;
 }
 
