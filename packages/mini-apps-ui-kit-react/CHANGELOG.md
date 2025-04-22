@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.2.2
+
+### Patch Changes
+
+- Propagate click events from ToastViewport to elements below.
+
 ## 1.2.1
 
 ### Patch Changes
