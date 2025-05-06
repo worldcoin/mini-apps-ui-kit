@@ -53,6 +53,7 @@ const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
     const inputRef = useRef<HTMLInputElement>(null);
     const [isFocused, setIsFocused] = useState(false);
     const [isPasted, setIsPasted] = useState(false);
+    const [value, setValue] = useState("");
     useImperativeHandle(forwardedRef, () => inputRef.current!);
 
     let endAdornment = endAdornmentProp;
@@ -66,11 +67,12 @@ const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
               const event = createChangeEvent(inputRef.current);
               props.onChange?.(event);
               setIsPasted(true);
+              setValue(inputRef.current.value);
             }
           }}
         />
       );
-    } else if (isFocused && !disabled) {
+    } else if (isFocused && !disabled && value) {
       endAdornment = (
         <ClearButton
           inputRef={inputRef}
@@ -78,6 +80,7 @@ const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
             if (inputRef.current) {
               const event = createChangeEvent(inputRef.current);
               props.onChange?.(event);
+              setValue("");
             }
           }}
         />
@@ -103,6 +106,10 @@ const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
         onBlur={(e) => {
           setIsFocused(false);
           props.onBlur?.(e);
+        }}
+        onChange={(e) => {
+          setValue(e.target.value);
+          props.onChange?.(e);
         }}
         className="rounded-full h-[3.125rem]"
       />
