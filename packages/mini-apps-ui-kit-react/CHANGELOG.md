@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.2.3
+
+### Patch Changes
+
+- Hide the clear button when there's no content in the SearchField.
+
 ## 1.2.2
 
 ### Patch Changes
