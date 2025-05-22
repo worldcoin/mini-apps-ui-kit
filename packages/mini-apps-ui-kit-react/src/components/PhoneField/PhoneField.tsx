@@ -76,7 +76,6 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       endAdornment,
       type = "tel",
       inputMode = "tel",
-      autoComplete = "tel",
       autoCapitalize = "off",
       autoCorrect = "off",
       ...props
@@ -124,7 +123,6 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
         ref={inputRef}
         type={type}
         inputMode={inputMode}
-        autoComplete={autoComplete}
         autoCapitalize={autoCapitalize}
         autoCorrect={autoCorrect}
         value={inputValue}
