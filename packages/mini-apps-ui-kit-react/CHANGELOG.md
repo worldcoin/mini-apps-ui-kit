@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.2.4
+
+### Patch Changes
+
+- Remove default autocomplete value in the PhoneField. The dependency underneath `react-international-phone` does not support autocomplete.
+
 ## 1.2.3
 
 ### Patch Changes
