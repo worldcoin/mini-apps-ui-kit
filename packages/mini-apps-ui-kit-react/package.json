@@ -258,6 +258,10 @@
       "types": "./dist/components/Haptic/index.d.ts",
       "default": "./dist/components/Haptic/index.js"
     },
+    "./SafeAreaView": {
+      "types": "./dist/components/SafeAreaView/index.d.ts",
+      "default": "./dist/components/SafeAreaView/index.js"
+    },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
       "import": "./dist/tailwind/index.js",
