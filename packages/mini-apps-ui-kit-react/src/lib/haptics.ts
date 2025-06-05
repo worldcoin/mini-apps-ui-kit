@@ -6,17 +6,6 @@ interface HapticFeedbackParams {
   style?: ImpactStyle | NotificationType;
 }
 
-// Type declaration for the global MiniKit object
-declare global {
-  interface Window {
-    MiniKit?: {
-      commands?: {
-        sendHapticFeedback?: (params: HapticFeedbackParams) => void;
-      };
-    };
-  }
-}
-
 const sendHapticFeedback = (params: HapticFeedbackParams) => {
   try {
     window.MiniKit?.commands?.sendHapticFeedback?.(params);
@@ -61,9 +50,9 @@ export function withHaptics<T extends (...args: any[]) => any>(
     try {
       hapticFn();
     } catch (error) {
-      console.warn('Haptic feedback failed:', error);
+      console.warn("Haptic feedback failed:", error);
     }
-    
+
     if (!fn) {
       return undefined as ReturnType<T>;
     }
@@ -73,7 +62,7 @@ export function withHaptics<T extends (...args: any[]) => any>(
     // Handle async functions
     if (result instanceof Promise) {
       return result.catch((error) => {
-        console.error('Function failed:', error);
+        console.error("Function failed:", error);
         throw error;
       }) as ReturnType<T>;
     }
