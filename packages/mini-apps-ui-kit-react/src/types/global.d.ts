@@ -6,7 +6,7 @@ interface HapticFeedbackParams {
   style?: ImpactStyle | NotificationType;
 }
 
-interface MiniKit {
+export interface MiniKit {
   deviceProperties: {
     safeAreaInsets: {
       top: number;
