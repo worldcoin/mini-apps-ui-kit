@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.2.5
+
+### Patch Changes
+
+- Use woff2 font files
+
 ## 1.2.4
 
 ### Patch Changes
