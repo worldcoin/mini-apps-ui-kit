@@ -1,5 +1,12 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.3.0
+
+### Minor Changes
+
+- 57f639e: Add SafeAreaView component
+- 57f639e: Add useSafeAreaInsets hook
+
 ## 1.2.5
 
 ### Patch Changes
