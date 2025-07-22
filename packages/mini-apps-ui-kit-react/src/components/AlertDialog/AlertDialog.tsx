@@ -72,7 +72,7 @@ const AlertDialogContent = React.forwardRef<
 ));
 AlertDialogContent.displayName = "AlertDialogContent";
 
-const AlertDialogHeader = ({ icon, children, ...props }: AlertDialogHeaderProps) => {
+const AlertDialogHeader = ({ icon, children, className, ...props }: AlertDialogHeaderProps) => {
   const { dismissible } = useAlertDialog();
 
   const closeButton = dismissible && (
@@ -89,7 +89,7 @@ const AlertDialogHeader = ({ icon, children, ...props }: AlertDialogHeaderProps)
 
   if (icon) {
     return (
-      <div className="mb-4 flex flex-col gap-6">
+      <div className={cn("mb-4 flex flex-col gap-6", className)}>
         <div className={cn(baseClasses)} {...props}>
           <div className="flex flex-col">{icon}</div>
           {closeButton}
@@ -100,7 +100,7 @@ const AlertDialogHeader = ({ icon, children, ...props }: AlertDialogHeaderProps)
   }
 
   return (
-    <div className={cn(baseClasses, "gap-4 mb-4 items-center")} {...props}>
+    <div className={cn(baseClasses, "gap-4 mb-4 items-center", className)} {...props}>
       <div className="flex flex-col gap-6">{children}</div>
       {closeButton}
     </div>

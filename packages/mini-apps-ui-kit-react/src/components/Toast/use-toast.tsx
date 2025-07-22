@@ -12,11 +12,46 @@ type ToasterToast = ToastProps & {
   id: string;
 };
 
+type DrawerToast = {
+  id: string;
+  title: string;
+  description: string;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
+  variant: "success" | "error";
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
+
+// Base Toast type without id
+type BaseToast = Omit<ToasterToast, "id">;
+
+// Discriminated union payloads
+type RegularToastPayload = BaseToast;
+
+type DrawerToastPayload = {
+  title: string;
+  description: string;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
+  variant: "success" | "error";
+};
+
+type ToastPayload = RegularToastPayload | DrawerToastPayload;
+
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
   UPDATE_TOAST: "UPDATE_TOAST",
   DISMISS_TOAST: "DISMISS_TOAST",
   REMOVE_TOAST: "REMOVE_TOAST",
+  ADD_DRAWER: "ADD_DRAWER",
+  UPDATE_DRAWER: "UPDATE_DRAWER",
+  DISMISS_DRAWER: "DISMISS_DRAWER",
+  REMOVE_DRAWER: "REMOVE_DRAWER",
 } as const;
 
 let count = 0;
@@ -44,10 +79,25 @@ type Action =
   | {
       type: ActionType["REMOVE_TOAST"];
       toastId?: ToasterToast["id"];
+    }
+  | {
+      type: ActionType["ADD_DRAWER"];
+      drawer: DrawerToast;
+    }
+  | {
+      type: ActionType["UPDATE_DRAWER"];
+      drawer: Partial<DrawerToast>;
+    }
+  | {
+      type: ActionType["DISMISS_DRAWER"];
+    }
+  | {
+      type: ActionType["REMOVE_DRAWER"];
     };
 
 interface State {
   toasts: ToasterToast[];
+  drawer: DrawerToast | null;
 }
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
@@ -120,12 +170,36 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         toasts: state.toasts.filter((t) => t.id !== action.toastId),
       };
+
+    case "ADD_DRAWER":
+      return {
+        ...state,
+        drawer: action.drawer,
+      };
+
+    case "UPDATE_DRAWER":
+      return {
+        ...state,
+        drawer: state.drawer ? { ...state.drawer, ...action.drawer } : null,
+      };
+
+    case "DISMISS_DRAWER":
+      return {
+        ...state,
+        drawer: state.drawer ? { ...state.drawer, open: false } : null,
+      };
+
+    case "REMOVE_DRAWER":
+      return {
+        ...state,
+        drawer: null,
+      };
   }
 };
 
 const listeners: Array<(state: State) => void> = [];
 
-let memoryState: State = { toasts: [] };
+let memoryState: State = { toasts: [], drawer: null };
 
 function dispatch(action: Action) {
   memoryState = reducer(memoryState, action);
@@ -134,35 +208,70 @@ function dispatch(action: Action) {
   });
 }
 
-type Toast = Omit<ToasterToast, "id">;
+const toast = (payload: ToastPayload) => {
+  // Check if it's a drawer payload by looking for description
+  if ("description" in payload && payload.description) {
+    // Show as drawer
+    const id = "drawer";
+    const drawerPayload = payload as DrawerToastPayload;
 
-const toast = ({ ...props }: Toast) => {
-  const id = genId();
+    const update = (props: Partial<DrawerToast>) =>
+      dispatch({
+        type: "UPDATE_DRAWER",
+        drawer: { ...props, id },
+      });
+    const dismiss = () => dispatch({ type: "DISMISS_DRAWER" });
 
-  const update = (props: ToasterToast) =>
     dispatch({
-      type: "UPDATE_TOAST",
-      toast: { ...props, id },
-    });
-  const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id });
-
-  dispatch({
-    type: "ADD_TOAST",
-    toast: {
-      ...props,
-      id,
-      open: true,
-      onOpenChange: (open) => {
-        if (!open) dismiss();
+      type: "ADD_DRAWER",
+      drawer: {
+        id,
+        title: drawerPayload.title,
+        description: drawerPayload.description,
+        action: drawerPayload.action,
+        variant: drawerPayload.variant,
+        open: true,
+        onOpenChange: (open: boolean) => {
+          if (!open) dismiss();
+        },
       },
-    },
-  });
+    });
 
-  return {
-    id: id,
-    dismiss,
-    update,
-  };
+    return {
+      id: id,
+      dismiss,
+      update,
+    };
+  } else {
+    // Show as regular toast
+    const id = genId();
+    const regularPayload = payload as RegularToastPayload;
+
+    const update = (props: ToasterToast) =>
+      dispatch({
+        type: "UPDATE_TOAST",
+        toast: { ...props, id },
+      });
+    const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id });
+
+    dispatch({
+      type: "ADD_TOAST",
+      toast: {
+        ...regularPayload,
+        id,
+        open: true,
+        onOpenChange: (open: boolean) => {
+          if (!open) dismiss();
+        },
+      },
+    });
+
+    return {
+      id: id,
+      dismiss,
+      update,
+    };
+  }
 };
 
 function useToast() {
@@ -179,18 +288,56 @@ function useToast() {
   }, [state]);
 
   return {
-    ...state,
+    toasts: state.toasts,
+    drawer: state.drawer,
     toast: {
-      success: (props: Omit<Toast, "variant">) => {
-        toast({ ...props, variant: "success" });
+      success: (payload: {
+        title: string;
+        description?: string;
+        action?: { label: string; onClick: () => void };
+      }) => {
+        if ("description" in payload && payload.description) {
+          toast({
+            title: payload.title,
+            description: payload.description,
+            action: payload.action,
+            variant: "success",
+          });
+        } else {
+          toast({
+            title: payload.title,
+            variant: "success",
+          });
+        }
         haptics.notification("success");
       },
-      error: (props: Omit<Toast, "variant">) => {
-        toast({ ...props, variant: "error" });
+      error: (payload: {
+        title: string;
+        description?: string;
+        action?: { label: string; onClick: () => void };
+      }) => {
+        if ("description" in payload && payload.description) {
+          toast({
+            title: payload.title,
+            description: payload.description,
+            action: payload.action,
+            variant: "error",
+          });
+        } else {
+          toast({
+            title: payload.title,
+            variant: "error",
+          });
+        }
         haptics.notification("error");
       },
     },
-    dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
+    dismiss: (toastId?: string) => {
+      if (toastId === "drawer") {
+        return dispatch({ type: "DISMISS_DRAWER" });
+      }
+      dispatch({ type: "DISMISS_TOAST", toastId });
+    },
   };
 }
 

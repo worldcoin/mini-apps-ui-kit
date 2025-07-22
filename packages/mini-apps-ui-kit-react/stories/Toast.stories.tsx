@@ -7,11 +7,16 @@ import { ArrowLeft } from "./helpers/icons/ArrowLeft";
 const ToastDemo = ({
   variant,
   title,
-  duration,
+  description,
+  action,
 }: {
   variant: "success" | "error";
   title: string;
-  duration: number;
+  description?: string;
+  action?: {
+    label: string;
+    onClick: () => void;
+  };
 }) => {
   const defaultTitle = variant === "success" ? "Something went good" : "Something went wrong";
   const { toast } = useToast();
@@ -38,7 +43,8 @@ const ToastDemo = ({
           onClick={() =>
             toast[variant]({
               title: title || defaultTitle,
-              duration,
+              description,
+              action,
             })
           }
         >
@@ -58,7 +64,7 @@ const meta: Meta<typeof ToastDemo> = {
     docs: {
       description: {
         component:
-          "Toast component for displaying temporary notifications. Supports success and error variants with customizable duration and title content.",
+          "Toast component for displaying temporary notifications. Supports success and error variants with customizable title, description, and action content.",
       },
     },
   },
@@ -68,13 +74,17 @@ const meta: Meta<typeof ToastDemo> = {
       options: ["success", "error"],
       description: "Type of notification to show",
     },
-    duration: {
-      control: "number",
-      description: "Duration of the toast",
-    },
     title: {
       control: "text",
       description: "Message to display in the toast",
+    },
+    description: {
+      control: "text",
+      description: "Optional description for drawer notifications",
+    },
+    action: {
+      control: "object",
+      description: "Optional action with label and onClick function",
     },
   },
 };
@@ -87,6 +97,27 @@ export const Default: Story = {
   args: {
     variant: "success",
     title: "",
-    duration: 3000,
+  },
+};
+
+export const WithDescription: Story = {
+  args: {
+    variant: "error",
+    title: "Failed to save changes",
+    description:
+      "There was an error saving your changes. Please try again or contact support if the issue persists.",
+  },
+};
+
+export const WithAction: Story = {
+  args: {
+    variant: "error",
+    title: "Connection lost",
+    description:
+      "Your internet connection was interrupted. Check your network settings and try reconnecting.",
+    action: {
+      label: "Retry",
+      onClick: () => {},
+    },
   },
 };

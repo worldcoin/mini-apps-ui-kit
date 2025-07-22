@@ -141,8 +141,7 @@ export interface AlertDialogContentProps
 /**
  * Props for the AlertDialogHeader component
  */
-export interface AlertDialogHeaderProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "className"> {
+export interface AlertDialogHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Optional icon to display in the header */
   icon?: React.ReactNode;
   children?: React.ReactNode;
