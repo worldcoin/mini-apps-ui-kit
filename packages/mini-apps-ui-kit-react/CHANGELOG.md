@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.4.0
+
+### Minor Changes
+
+- Add support for long form toasts.
+
 ## 1.3.0
 
 ### Minor Changes
