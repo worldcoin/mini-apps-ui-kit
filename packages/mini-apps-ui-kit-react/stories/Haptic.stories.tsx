@@ -23,7 +23,7 @@ const meta: Meta<typeof Haptic> = {
     },
     type: {
       control: "radio",
-      options: ["light", "medium", "heavy", "soft", "rigid", "success", "warning", "error"],
+      options: ["light", "medium", "heavy", "success", "warning", "error"],
       defaultValue: "light",
     },
     children: {
