@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.3.1
+
+### Patch Changes
+
+- Remove deprecated Minikit haptic options. (`rigid` and `soft`)
+
 ## 1.3.0
 
 ### Minor Changes

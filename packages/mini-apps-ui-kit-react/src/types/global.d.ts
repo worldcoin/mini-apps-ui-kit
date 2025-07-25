@@ -1,5 +1,5 @@
 type NotificationType = "success" | "warning" | "error";
-type ImpactStyle = "light" | "medium" | "heavy" | "soft" | "rigid";
+type ImpactStyle = "light" | "medium" | "heavy";
 
 interface HapticFeedbackParams {
   hapticsType: "impact" | "notification" | "selectionChanged";
