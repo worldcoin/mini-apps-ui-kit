@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { Typography } from "../Typography";
 
 const listItemStyles = cva(
-  "h-[4.75rem] bg-gray-50 p-4 rounded-2xl flex items-center text-gray-900 w-full disabled:text-gray-400 disabled:cursor-not-allowed",
+  "h-19 bg-gray-50 p-4 rounded-2xl flex items-center text-gray-900 w-full disabled:text-gray-400 disabled:cursor-not-allowed",
 );
 
 /**
@@ -32,8 +32,8 @@ const ListItem = forwardRef<HTMLButtonElement, ListItemProps>(
   ({ children, label, description, startAdornment, endAdornment, disabled, ...props }, ref) => {
     return (
       <button ref={ref} className={listItemStyles()} {...props} disabled={disabled}>
-        {startAdornment && <div className="mr-3 flex-shrink-0">{startAdornment}</div>}
-        <div className="flex flex-col flex-grow min-w-0 items-start gap-0.5">
+        {startAdornment && <div className="mr-3 shrink-0">{startAdornment}</div>}
+        <div className="flex flex-col grow min-w-0 items-start gap-0.5">
           {label && (
             <Typography variant="subtitle" level={2} className="truncate grow w-full text-left">
               {label}
@@ -51,7 +51,7 @@ const ListItem = forwardRef<HTMLButtonElement, ListItemProps>(
             </Typography>
           )}
         </div>
-        {endAdornment && <div className="ml-4 flex-shrink-0">{endAdornment}</div>}
+        {endAdornment && <div className="ml-4 shrink-0">{endAdornment}</div>}
       </button>
     );
   },

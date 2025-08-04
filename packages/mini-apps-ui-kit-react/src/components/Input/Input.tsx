@@ -11,7 +11,7 @@ const inputContainerVariants = cva(
   [
     "bg-gray-100",
     "text-gray-900",
-    "h-[3.5rem]",
+    "h-14",
     "inline-flex",
     "w-full",
     "shrink",
@@ -100,16 +100,16 @@ const floatingLabelVariants = cva([
   "ease-out",
   // Peer states for floating effect (when input has value or is focused)
   "peer-focus:pointer-events-auto",
-  "peer-focus:top-[1.125rem]",
+  "peer-focus:top-4.5",
   "peer-focus:text-xs",
   "peer-focus:bg-base-100", // Match input background
   // State when placeholder is not shown (i.e., input has value)
-  "peer-[:not(:placeholder-shown)]:pointer-events-auto",
-  "peer-[:not(:placeholder-shown)]:top-[1.125rem]",
-  "peer-[:not(:placeholder-shown)]:text-xs",
+  "peer-not-placeholder-shown:pointer-events-auto",
+  "peer-not-placeholder-shown:top-4.5",
+  "peer-not-placeholder-shown:text-xs",
 ]);
 
-const dividerVariants = cva("border-r h-[1.625rem] w-1", {
+const dividerVariants = cva("border-r h-6.5 w-1", {
   variants: {
     error: {
       true: "border-error-600",
