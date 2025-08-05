@@ -17,9 +17,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "sb:move": "mv ./storybook-static ../../storybook-static",
     "dev:sb": "concurrently \"npx @tailwindcss/cli -i ./styles/globals.css -o ./dist/globals.css --watch\" \"pnpm storybook\"",
-    "build:tailwind": "npx @tailwindcss/cli -i ./styles/globals.css -o ./dist/globals.css --minify",
-    "build:sb": "pnpm build:tailwind && storybook build",
-    "build": "tsc -b ./tsconfig.lib.json && vite build && pnpm build:tailwind",
+    "build:sb": "vite build && storybook build",
+    "build": "tsc -b ./tsconfig.lib.json && vite build",
     "lint": "eslint .",
     "publish:manual": "pnpm build && npm publish --access public",
     "generate:country-codes": "node scripts/generate-country-codes.js",
@@ -268,6 +267,6 @@
       "import": "./dist/tailwind/index.js",
       "require": "./dist/tailwind/index.js"
     },
-    "./styles.css": "./dist/globals.css"
+    "./styles.css": "./dist/styles.css"
   }
 }

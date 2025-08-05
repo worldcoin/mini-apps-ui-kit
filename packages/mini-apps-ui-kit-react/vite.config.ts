@@ -48,7 +48,13 @@ export default defineConfig({
         preserveModulesRoot: "src",
         entryFileNames: "[name].js",
         chunkFileNames: "chunks/[name]-[hash].js",
-        assetFileNames: "assets/[name]-[hash][extname]",
+        assetFileNames: (assetInfo) => {
+          // Extract CSS to a separate file
+          if (assetInfo.name && assetInfo.name.endsWith(".css")) {
+            return "styles.css";
+          }
+          return "assets/[name]-[hash][extname]";
+        },
       },
     },
   },

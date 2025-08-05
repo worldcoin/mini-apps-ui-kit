@@ -1,94 +1,89 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 @config "../tailwind.config.ts";
 
-@layer base {
-  @font-face {
-    font-family: 'TWK Lausanne';
-    src: url('https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-350.woff2')
-      format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-350.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'TWK Lausanne';
-    src: url('https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-350Italic.woff2')
-      format('woff2');
-    font-weight: 400;
-    font-style: italic;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-350Italic.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'TWK Lausanne';
-    src: url('https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-500.woff2')
-      format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'TWK Lausanne';
-    src: url('https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-500Italic.woff2')
-      format('woff2');
-    font-weight: 500;
-    font-style: italic;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-500Italic.woff2")
+    format("woff2");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'TWK Lausanne';
-    src: url('https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-600.woff2')
-      format('woff2');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
 
-  @font-face {
-    font-family: 'TWK Lausanne';
-    src: url('https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-600Italic.woff2')
-      format('woff2');
-    font-weight: 600;
-    font-style: italic;
-    font-display: swap;
-  }
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-600Italic.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
 
-  :root {
-    --font-sans:
-      'TWK Lausanne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      'Helvetica Neue', Arial, sans-serif;
-  }
-  input[type='search']::-webkit-search-cancel-button,
-  input[type='search']::-webkit-search-decoration,
-  input[type='search']::-webkit-search-results-button,
-  input[type='search']::-webkit-search-results-decoration {
-    display: none;
-  }
-  input::-webkit-clear-button {
-    display: none;
-  }
-  input::-webkit-inner-spin-button,
-  input::-webkit-outer-spin-button {
-    display: none;
-  }
-  input::-webkit-calendar-picker-indicator {
-    display: none;
-  }
-  input::-webkit-datetime-edit,
-  input::-webkit-datetime-edit-fields-wrapper,
-  input::-webkit-datetime-edit-text,
-  input::-webkit-datetime-edit-year-field,
-  input::-webkit-datetime-edit-month-field,
-  input::-webkit-datetime-edit-day-field,
-  input::-webkit-datetime-edit-hour-field,
-  input::-webkit-datetime-edit-minute-field,
-  input::-webkit-datetime-edit-second-field,
-  input::-webkit-datetime-edit-ampm-field {
-    display: none;
-  }
+:root {
+  --font-sans:
+    "TWK Lausanne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+input::-webkit-clear-button {
+  display: none;
+}
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  display: none;
+}
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+input::-webkit-datetime-edit,
+input::-webkit-datetime-edit-fields-wrapper,
+input::-webkit-datetime-edit-text,
+input::-webkit-datetime-edit-year-field,
+input::-webkit-datetime-edit-month-field,
+input::-webkit-datetime-edit-day-field,
+input::-webkit-datetime-edit-hour-field,
+input::-webkit-datetime-edit-minute-field,
+input::-webkit-datetime-edit-second-field,
+input::-webkit-datetime-edit-ampm-field {
+  display: none;
 }
 
 /* Hide pseudo-elements for search inputs */
