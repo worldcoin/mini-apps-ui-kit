@@ -103,7 +103,7 @@ export const ethereum = {
 };
 
 const uiKitTailwindPlugin = plugin(
-  function ({ addBase, addComponents }) {
+  function ({ addBase, addComponents, addVariant }) {
     addBase({
       ":root": {
         "--font-sans": "TWK Lausanne",
@@ -142,6 +142,22 @@ const uiKitTailwindPlugin = plugin(
         animation: "shine 10s infinite linear",
       },
     });
+
+    // Tap variants for handling hover/active states across devices
+    addVariant("tap", [
+      "@media (hover: hover) { &:hover }",
+      "@media (hover: none) { &:active }",
+    ]);
+
+    addVariant("group-tap", [
+      "@media (hover: hover) { .group:hover & }",
+      "@media (hover: none) { .group:active & }",
+    ]);
+
+    addVariant("peer-tap", [
+      "@media (hover: hover) { .peer:hover ~& }",
+      "@media (hover: none) { .peer:active ~& }",
+    ]);
   },
   {
     theme: {
