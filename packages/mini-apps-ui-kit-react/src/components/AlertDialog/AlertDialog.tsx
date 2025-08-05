@@ -56,7 +56,7 @@ const AlertDialogContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   AlertDialogContentProps
 >(({ className, children, ...props }, ref) => {
-  const { bottom } = useSafeAreaInsets();
+  const safe = useSafeAreaInsets();
   return (
     <AlertDialogPortal>
       <DrawerPrimitive.Overlay
@@ -72,7 +72,7 @@ const AlertDialogContent = React.forwardRef<
         <div
           className="flex flex-col rounded-[1.75rem] bg-gray-0 m-3 p-8"
           style={{
-            marginBottom: Math.max(bottom, 12),
+            marginBottom: Math.max(safe.bottom, 12),
           }}
         >
           {children}
