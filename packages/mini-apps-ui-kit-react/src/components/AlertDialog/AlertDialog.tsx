@@ -7,6 +7,7 @@ import { Drawer as DrawerPrimitive } from "vaul";
 import { BottomBar, BottomBarProps } from "../BottomBar";
 import { Button } from "../Button";
 import { XMark } from "../Icons/XMark";
+import { useSafeAreaInsets } from "../SafeAreaView";
 import { Typography } from "../Typography";
 import {
   AlertDialogCloseProps,
@@ -54,22 +55,32 @@ AlertDialogClose.displayName = "AlertDialogClose";
 const AlertDialogContent = React.forwardRef<
   React.ElementRef<typeof DrawerPrimitive.Content>,
   AlertDialogContentProps
->(({ className, children, ...props }, ref) => (
-  <AlertDialogPortal>
-    <DrawerPrimitive.Overlay
-      ref={ref}
-      className={cn("fixed inset-0 z-50 bg-gray-900/40", className)}
-      {...props}
-    />
-    <DrawerPrimitive.Content
-      ref={ref}
-      className={cn("fixed inset-x-0 bottom-0 z-50 mt-24 h-auto", className)}
-      {...props}
-    >
-      <div className="flex flex-col rounded-[1.75rem] bg-gray-0 m-3 p-8">{children}</div>
-    </DrawerPrimitive.Content>
-  </AlertDialogPortal>
-));
+>(({ className, children, ...props }, ref) => {
+  const safe = useSafeAreaInsets();
+  return (
+    <AlertDialogPortal>
+      <DrawerPrimitive.Overlay
+        ref={ref}
+        className={cn("fixed inset-0 z-50 bg-gray-900/40", className)}
+        {...props}
+      />
+      <DrawerPrimitive.Content
+        ref={ref}
+        className={cn("fixed inset-x-0 bottom-0 z-50 mt-24 h-auto", className)}
+        {...props}
+      >
+        <div
+          className="flex flex-col rounded-[1.75rem] bg-gray-0 m-3 p-8"
+          style={{
+            marginBottom: Math.max(safe.bottom, 12),
+          }}
+        >
+          {children}
+        </div>
+      </DrawerPrimitive.Content>
+    </AlertDialogPortal>
+  );
+});
 AlertDialogContent.displayName = "AlertDialogContent";
 
 const AlertDialogHeader = ({ icon, children, ...props }: AlertDialogHeaderProps) => {

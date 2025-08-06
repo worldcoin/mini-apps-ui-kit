@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.3.3
+
+### Patch Changes
+
+- Add safe bottom margin to AlertDialog
+
 ## 1.3.2
 
 ### Patch Changes
