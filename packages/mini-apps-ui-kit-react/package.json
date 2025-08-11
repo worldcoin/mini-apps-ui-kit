@@ -19,6 +19,8 @@
     "dev:sb": "concurrently \"npx @tailwindcss/cli -i ./styles/globals.css -o ./dist/globals.css --watch\" \"pnpm storybook\"",
     "build:sb": "vite build && storybook build",
     "build": "tsc -b ./tsconfig.lib.json && vite build",
+    "build:css": "node scripts/build-css.js",
+    "build:all": "pnpm build && pnpm build:css",
     "lint": "eslint .",
     "publish:manual": "pnpm build && npm publish --access public",
     "generate:country-codes": "node scripts/generate-country-codes.js",
@@ -36,6 +38,7 @@
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
+    "@csstools/postcss-cascade-layers": "^5.0.2",
     "@eslint/js": "^9.13.0",
     "@storybook/addon-essentials": "^8.4.7",
     "@storybook/addon-interactions": "^8.4.7",
@@ -52,6 +55,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "autoprefixer": "^10.4.21",
     "concurrently": "^9.1.0",
     "eslint": "^9.13.0",
     "eslint-plugin-react": "^7.37.2",
@@ -60,6 +64,8 @@
     "eslint-plugin-storybook": "^0.11.1",
     "glob": "^11.0.0",
     "globals": "^15.11.0",
+    "postcss": "^8",
+    "postcss-cli": "^11.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rollup-plugin-visualizer": "^6.0.3",
@@ -98,6 +104,9 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js"
     },
+    "./styles.css": "./dist/styles.css",
+    "./styles-v3.css": "./dist/styles-v3.css",
+    "./styles-v4.css": "./dist/styles-v4.css",
     "./Button": {
       "types": "./dist/components/Button/index.d.ts",
       "default": "./dist/components/Button/index.js"
@@ -266,7 +275,6 @@
       "types": "./dist/tailwind/index.d.ts",
       "import": "./dist/tailwind/index.js",
       "require": "./dist/tailwind/index.js"
-    },
-    "./styles.css": "./dist/styles.css"
+    }
   }
 }
