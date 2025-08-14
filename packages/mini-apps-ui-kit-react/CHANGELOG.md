@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.3.4
+
+### Patch Changes
+
+- Add `use client` directive to SafeAreaWindow.
+
 ## 1.3.3
 
 ### Patch Changes
