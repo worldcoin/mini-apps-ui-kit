@@ -111,7 +111,7 @@ const SearchField = forwardRef<HTMLInputElement, SearchFieldProps>(
           setValue(e.target.value);
           props.onChange?.(e);
         }}
-        className="rounded-full h-[3.125rem]"
+        className="rounded-full h-12.5"
       />
     );
   },

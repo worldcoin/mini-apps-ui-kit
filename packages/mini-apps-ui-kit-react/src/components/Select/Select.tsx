@@ -13,12 +13,12 @@ import { typographyVariants } from "../Typography/Typography";
 const selectVariants = cva(
   cn(
     "flex items-center justify-between whitespace-nowrap [&>span:first-of-type]:line-clamp-1",
-    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
+    "peer h-14 w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
     "placeholder:text-gray-500",
     "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
     "disabled:cursor-not-allowed disabled:opacity-50",
     // Radix Select styles
-    "data-[placeholder]:text-gray-500",
+    "data-placeholder:text-gray-500",
     "data-[state=closed]:bg-gray-100 data-[state=closed]:border-gray-100",
   ),
   {
@@ -176,7 +176,7 @@ const Select = forwardRef<HTMLButtonElement, SelectProps>(
           <RadixSelect.Content position="popper" className={cn(DROPDOWN_CONTAINER_STYLES)}>
             <RadixSelect.Viewport
               className={cn(
-                "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] p-2",
+                "h-(--radix-select-trigger-height) w-full min-w-(--radix-select-trigger-width) p-2",
                 options.length === 0 && "hidden",
               )}
             >

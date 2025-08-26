@@ -1,3 +1,4 @@
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import preserveDirectives from "rollup-preserve-directives";
@@ -15,6 +16,7 @@ export default defineConfig({
       exclude: ["**/*.stories.tsx", "**/*.test.tsx", "**/*.test.ts"],
     }),
     preserveDirectives(),
+    tailwindcss(),
   ],
   resolve: {
     alias: {
@@ -46,7 +48,13 @@ export default defineConfig({
         preserveModulesRoot: "src",
         entryFileNames: "[name].js",
         chunkFileNames: "chunks/[name]-[hash].js",
-        assetFileNames: "assets/[name]-[hash][extname]",
+        assetFileNames: (assetInfo) => {
+          // Extract CSS to a separate file
+          if (assetInfo.name && assetInfo.name.endsWith(".css")) {
+            return "styles.css";
+          }
+          return "assets/[name]-[hash][extname]";
+        },
       },
     },
   },

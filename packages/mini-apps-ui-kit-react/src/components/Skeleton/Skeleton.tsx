@@ -88,7 +88,7 @@ export const skeletonVariants = cva("", {
     {
       variant: "heading",
       level: 2,
-      className: "h-[2.25rem] py-[0.1875rem]",
+      className: "h-9 py-0.75",
     },
     {
       variant: "heading",
@@ -114,7 +114,7 @@ export const skeletonVariants = cva("", {
     {
       variant: "subtitle",
       level: 3,
-      className: "h-[1.125rem] py-[0.09375rem]",
+      className: "h-4.5 py-[0.09375rem]",
     },
     {
       variant: "subtitle",
@@ -130,7 +130,7 @@ export const skeletonVariants = cva("", {
     {
       variant: "label",
       level: 2,
-      className: "h-[1.125rem] py-[0.09375rem]",
+      className: "h-4.5 py-[0.09375rem]",
     },
     // Body
     {
@@ -162,12 +162,12 @@ export const skeletonVariants = cva("", {
     {
       variant: "number",
       level: 2,
-      className: "h-[3rem] py-[0.25rem]",
+      className: "h-12 py-1",
     },
     {
       variant: "number",
       level: 3,
-      className: "h-[2.25rem] py-[0.1875rem]",
+      className: "h-9 py-0.75",
     },
     {
       variant: "number",
