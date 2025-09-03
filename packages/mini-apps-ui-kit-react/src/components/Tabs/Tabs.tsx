@@ -48,12 +48,12 @@ const TabItem = React.forwardRef<React.ElementRef<typeof ToggleGroup.Item>, TabI
       {...props}
     >
       {/* Only show the outline icon when NOT alt */}
-      <Slot className={cn("h-[1.625rem] shrink-0", altIcon && "group-data-[state=on]:hidden")}>
+      <Slot className={cn("h-6.5 shrink-0", altIcon && "group-data-[state=on]:hidden")}>
         {icon}
       </Slot>
       {/* Only show the solid icon when alt */}
       {altIcon && (
-        <Slot className="h-[1.625rem] shrink-0 hidden group-data-[state=on]:block">
+        <Slot className="h-6.5 shrink-0 hidden group-data-[state=on]:block">
           {altIcon}
         </Slot>
       )}

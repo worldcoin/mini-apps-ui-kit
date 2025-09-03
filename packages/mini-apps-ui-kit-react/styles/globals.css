@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
 @font-face {
   font-family: "TWK Lausanne";
   src: url("https://mini-apps-ui-kit.world.org/fonts/TWKLausanne-350.woff2") format("woff2");
@@ -50,35 +53,26 @@
 }
 
 :root {
-  --font-sans: "TWK Lausanne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
+  --font-sans:
+    "TWK Lausanne", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
 }
-
-/* Hide pseudo-elements for search inputs */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-results-button,
 input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
-
-/* Hide clear button for all supported input types */
 input::-webkit-clear-button {
   display: none;
 }
-
-/* Hide spin buttons for number inputs */
 input::-webkit-inner-spin-button,
 input::-webkit-outer-spin-button {
   display: none;
 }
-
-/* Hide calendar picker for date inputs */
 input::-webkit-calendar-picker-indicator {
   display: none;
 }
-
-/* Hide pseudo-elements for datetime inputs */
 input::-webkit-datetime-edit,
 input::-webkit-datetime-edit-fields-wrapper,
 input::-webkit-datetime-edit-text,
@@ -92,6 +86,12 @@ input::-webkit-datetime-edit-ampm-field {
   display: none;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Hide pseudo-elements for search inputs */
+
+/* Hide clear button for all supported input types */
+
+/* Hide spin buttons for number inputs */
+
+/* Hide calendar picker for date inputs */
+
+/* Hide pseudo-elements for datetime inputs */

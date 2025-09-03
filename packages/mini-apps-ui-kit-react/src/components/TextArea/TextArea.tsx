@@ -6,7 +6,7 @@ import { typographyVariants } from "../Typography/Typography";
 
 export const textAreaVariants = cva(
   cn(
-    "min-h-[7.5rem] resize-y peer w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
+    "min-h-30 resize-y peer w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
     "placeholder:text-gray-500",
     "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
     "disabled:cursor-not-allowed disabled:opacity-50",

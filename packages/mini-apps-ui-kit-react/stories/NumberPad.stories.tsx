@@ -56,7 +56,7 @@ export const Controlled: Story = {
     const [value, setValue] = useState(args.value);
     return (
       <div className="flex flex-col gap-4 items-center w-[400px]">
-        <div className="font-sans font-semibold flex items-center gap-2 h-[4.25rem]">
+        <div className="font-sans font-semibold flex items-center gap-2 h-17">
           <span className="text-xl">$</span>
           <span className="text-[3.5rem]">{value}</span>
         </div>
@@ -82,7 +82,7 @@ export const ClearOnLongDeletePress: Story = {
 
     return (
       <div className="flex flex-col gap-4 items-center w-[400px]">
-        <div className="font-sans font-semibold flex items-center gap-2 h-[4.25rem]">
+        <div className="font-sans font-semibold flex items-center gap-2 h-17">
           <span className="text-xl">$</span>
           <span className="text-[3.5rem]">{value}</span>
         </div>

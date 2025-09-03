@@ -1,3 +1,6 @@
+// Import styles
+import "../styles/globals.css";
+
 // Export all components individually to enable tree-shaking
 export { Button } from "./components/Button";
 export { Checkbox } from "./components/Checkbox";

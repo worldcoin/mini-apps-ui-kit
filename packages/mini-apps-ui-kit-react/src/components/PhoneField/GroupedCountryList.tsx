@@ -54,7 +54,7 @@ export function GroupedCountryList({
                 />
               </DrawerClose>
             ))}
-            <div className="h-[1px] bg-gray-200 my-4 group-last:hidden" />
+            <div className="h-px bg-gray-200 my-4 group-last:hidden" />
           </div>
         ))}
     </>

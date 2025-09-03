@@ -16,14 +16,14 @@ const sizeClasses: Record<CircularIconSize, string> = {
   sm: "size-11",
   md: "size-12",
   lg: "size-16",
-  xl: "size-[5.5rem]",
+  xl: "size-22",
 };
 
 const iconClasses: Record<CircularIconSize, string> = {
-  xs: "size-[0.875rem]",
-  sm: "size-[1.5rem]",
-  md: "size-[1.625rem]",
-  lg: "size-[2.125rem]",
+  xs: "size-3.5",
+  sm: "size-6",
+  md: "size-6.5",
+  lg: "size-8.5",
   xl: "size-12",
 };
 
