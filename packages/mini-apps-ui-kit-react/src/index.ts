@@ -12,6 +12,7 @@ export { Input } from "./components/Input";
 export { ListItem } from "./components/ListItem";
 export { NumberPad } from "./components/NumberPad";
 export { OTPField } from "./components/OTPField";
+export { PasswordField } from "./components/PasswordField";
 export { Pill } from "./components/Pill";
 export { RadioGroup, RadioGroupItem } from "./components/RadioGroup";
 export { Select } from "./components/Select";

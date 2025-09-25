@@ -52,6 +52,8 @@ We use [changesets](https://github.com/changesets/changesets) to manage our vers
      - Select which packages you want to release
      - Choose the type of version bump (major, minor, patch)
      - Provide a summary of the changes
+   - This step creates temporary files containing all the specified information
+   - To save these temporary changes in `CHANGELOG.md` and `package.json`, run `pnpm changeset version`
 5. Commit your changes (`git commit -m 'Add some feature'`)
 6. Push to the branch (`git push origin feature/your-feature`)
 7. Open a Pull Request
