@@ -20,7 +20,7 @@ const CountryListItem = ({
     <button
       type="button"
       data-country={countryCode}
-      className="h-[3.75rem] flex items-center w-full gap-2 cursor-pointer"
+      className="h-15 flex items-center w-full gap-2 cursor-pointer"
       onClick={() => onClick?.(countryCode)}
       {...(isSelected && { "data-selected": true })}
     >

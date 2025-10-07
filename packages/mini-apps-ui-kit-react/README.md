@@ -66,11 +66,31 @@ The library uses the following font **[TWK Lausanne](https://weltkern.com/typefa
 
 ## Importing Styles
 
-To use the UI Kit components with their proper styling, you need to import the styles in your application. Add the following import statement to your application's entry point (e.g., `app/layout.tsx` for Next.js or `main.tsx` for Vite):
+To use the UI Kit components with their proper styling, you need to import the styles in your application. The library provides multiple CSS files for maximum compatibility:
 
+### **Tailwind v3 Projects (Recommended for most users)**
 ```typescript
 import "@worldcoin/mini-apps-ui-kit-react/styles.css";
+// or explicitly
+import "@worldcoin/mini-apps-ui-kit-react/styles-v3.css";
 ```
+
+### **Tailwind v4 Projects**
+```typescript
+import "@worldcoin/mini-apps-ui-kit-react/styles-v4.css";
+```
+
+### **CSS File Differences**
+
+- **`styles.css`** - Backward-compatible version (same as v3, recommended for most users)
+- **`styles-v3.css`** - Explicitly marked v3-compatible version
+- **`styles-v4.css` - Modern v4 version with @layer directives
+
+### **Why Multiple Versions?**
+
+This library supports both Tailwind v3 and v4 to ensure maximum compatibility across different projects. The v3 versions work in any project, while the v4 version provides modern CSS features for projects that can use them.
+
+> **💡 Tip**: If you're unsure which version to use, start with `styles.css` - it's designed to work everywhere.
 
 ## Icons
 

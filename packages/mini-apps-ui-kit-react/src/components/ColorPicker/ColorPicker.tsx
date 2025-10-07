@@ -23,7 +23,7 @@ const ColorPickerItem = forwardRef<HTMLButtonElement, ColorPickerItemProps>(
       <RadioGroup.Item
         ref={ref}
         value={value}
-        className="size-[3.25rem] cursor-default rounded-full outline-none flex items-center justify-center relative disabled:opacity-90 disabled:cursor-not-allowed"
+        className="size-13 cursor-default rounded-full outline-none flex items-center justify-center relative disabled:opacity-90 disabled:cursor-not-allowed"
         style={{
           background: value,
         }}

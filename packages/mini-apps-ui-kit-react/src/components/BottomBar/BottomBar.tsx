@@ -6,7 +6,7 @@ import { forwardRef } from "react";
 const bottomBarVariants = cva("w-full gap-4", {
   variants: {
     direction: {
-      horizontal: "grid grid-cols-1 [&>*]:col-span-1 [&:has(>*:nth-child(2))]:grid-cols-2",
+      horizontal: "grid grid-cols-1 *:col-span-1 [&:has(>*:nth-child(2))]:grid-cols-2",
       vertical: "flex flex-col-reverse",
     },
   },

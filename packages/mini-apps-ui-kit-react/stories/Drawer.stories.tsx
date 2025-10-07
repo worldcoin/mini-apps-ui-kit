@@ -71,9 +71,9 @@ export const FullPage: StoryObj<typeof Drawer> = {
         <DrawerHeader>
           <DrawerTitle>Drawer with scrollable content</DrawerTitle>
         </DrawerHeader>
-        <div className="max-w-md w-full mx-auto flex flex-col items-center flex-grow">
+        <div className="max-w-md w-full mx-auto flex flex-col items-center grow">
           <div
-            className="no-scrollbar w-full flex flex-col flex-grow flex-basis-0 overflow-auto p-2 my-4"
+            className="no-scrollbar w-full flex flex-col grow flex-basis-0 overflow-auto p-2 my-4"
             style={{
               flexBasis: 0,
             }}

@@ -34,7 +34,7 @@ function CircularState({ value, size, className, ...props }: CircularStateProps)
         "text-gray-0",
         size !== "xs" && "shadow-[inset_0_0_0_1px_rgba(255,255,255,0.3)]",
         iconClasses[value],
-        "bg-[radial-gradient(111.32%_111.8%_at_22.73%_0%,_rgba(255,255,255,0.2)_0%,_rgba(255,255,255,0)_100%)]",
+        "bg-[radial-gradient(111.32%_111.8%_at_22.73%_0%,rgba(255,255,255,0.2)_0%,rgba(255,255,255,0)_100%)]",
         className,
       )}
       size={size}

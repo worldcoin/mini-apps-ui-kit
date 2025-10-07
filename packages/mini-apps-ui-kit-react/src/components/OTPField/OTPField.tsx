@@ -16,7 +16,7 @@ import { typographyVariants } from "../Typography/Typography";
 
 export const inputVariants = cva(
   cn(
-    "peer h-[3.5rem] w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
+    "peer h-14 w-full rounded-[0.625rem] border border-gray-100 bg-gray-100 px-4 outline-none transition duration-300",
     "placeholder:text-gray-500",
     "focus:border-gray-300 focus:bg-gray-0 focus-visible:outline-none",
     "disabled:cursor-not-allowed disabled:opacity-50",
@@ -121,7 +121,7 @@ const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldPro
         inputMode={inputModeDictionary[mode]}
         pattern={pattern || patternDictionary[mode]}
         onChange={withHaptics(onChange)}
-        containerClassName="flex items-center gap-2 has-[:disabled]:opacity-50"
+        containerClassName="flex items-center gap-2 has-disabled:opacity-50"
         render={({ slots }) => (
           <>
             {slots.map(({ isActive, char }, idx) => (
@@ -132,7 +132,7 @@ const OTPField = React.forwardRef<React.ElementRef<typeof OTPInput>, OTPFieldPro
                 className={cn(
                   inputVariants({ error }),
                   typographyVariants({ variant: "body", level: 2 }),
-                  "w-12 h-[4.25rem] rounded-lg flex items-center justify-center",
+                  "w-12 h-17 rounded-lg flex items-center justify-center",
                   (isActive || error) && "z-10 bg-gray-0",
                 )}
               >
