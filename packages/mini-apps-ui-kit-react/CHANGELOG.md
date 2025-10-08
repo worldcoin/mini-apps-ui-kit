@@ -1,6 +1,5 @@
 # @worldcoin/mini-apps-ui-kit-react
 
-
 ## 1.3.6
 
 ### Patch Changes
