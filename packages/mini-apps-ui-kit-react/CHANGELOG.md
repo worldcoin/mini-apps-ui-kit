@@ -1,5 +1,12 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+
+## 1.3.6
+
+### Patch Changes
+
+- Export `ButtonProps` from the package
+
 ## 1.3.5
 
 ### Patch Changes

@@ -1,5 +1,5 @@
 // Export all components individually to enable tree-shaking
-export { Button } from "./components/Button";
+export { Button, type ButtonProps } from "./components/Button";
 export { Checkbox } from "./components/Checkbox";
 export { Chip } from "./components/Chip";
 export { CircularIcon } from "./components/CircularIcon";
