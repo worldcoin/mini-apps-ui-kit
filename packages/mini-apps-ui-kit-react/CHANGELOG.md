@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.3.7
+
+### Patch Changes
+
+- Disable `CountrySelectorButton` if `PhoneField` is disabled
+
 ## 1.3.6
 
 ### Patch Changes

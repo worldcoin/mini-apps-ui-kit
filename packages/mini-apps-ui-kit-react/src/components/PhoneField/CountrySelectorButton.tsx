@@ -11,7 +11,7 @@ const triggerVariants = cva(
   {
     variants: {
       disabled: {
-        true: "cursor-not-allowed opacity-20",
+        true: "cursor-not-allowed opacity-20 pointer-events-none",
         false: "",
       },
     },
@@ -35,6 +35,7 @@ const CountrySelectorButton = forwardRef<HTMLDivElement, CountrySelectorButtonPr
         {...props}
         className={cn(triggerVariants({ disabled, className }))}
         data-testid="country-selector-button"
+        aria-disabled={disabled}
       >
         <div className="mr-2">
           <Flag countryCode={value} size={24} />
