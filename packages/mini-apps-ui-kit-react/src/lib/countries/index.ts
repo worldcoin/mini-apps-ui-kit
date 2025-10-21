@@ -1,8 +1,6 @@
 // Re-export locale JSON modules from i18n-iso-countries
 // Consumers can import specific locales like:
-// import af from "@worldcoin/mini-apps-ui-kit-react/i18n-iso-countries/af";
-
-export { default as countries } from "i18n-iso-countries";
+// import af from "@worldcoin/mini-apps-ui-kit-react/countries/af";
 
 export { default as af } from "i18n-iso-countries/langs/af.json";
 export { default as am } from "i18n-iso-countries/langs/am.json";
