@@ -1,4 +1,5 @@
 import { withHaptics } from "@/lib/haptics";
+import countriesInstance from "i18n-iso-countries";
 
 import type { Direction } from "../../types/global";
 import { DrawerClose } from "../Drawer";
@@ -19,6 +20,7 @@ interface GroupedCountryListProps {
   value: CountryCode;
   onSelect: (countryCode: CountryCode) => void;
   dir?: Direction;
+  locale?: string | string[];
 }
 
 export function GroupedCountryList({
@@ -26,6 +28,7 @@ export function GroupedCountryList({
   onSelect,
   value,
   dir,
+  locale,
 }: GroupedCountryListProps) {
   if (Object.keys(groupedCountries).length === 0) {
     return (
@@ -41,23 +44,27 @@ export function GroupedCountryList({
   return (
     <div dir={dir}>
       {Object.entries(groupedCountries)
-        .sort(([a], [b]) => a.localeCompare(b))
+        .sort(([a], [b]) => a.localeCompare(b, locale as any))
         .map(([letter, countries]) => (
           <div key={letter} className="group">
             <Typography variant="subtitle" level={3} className="text-gray-400 mb-2">
               {letter}
             </Typography>
-            {countries.map((country) => (
-              <DrawerClose key={country.countryCode} asChild>
-                <CountryListItem
-                  countryCode={country.countryCode}
-                  countryName={country.name}
-                  onClick={withHaptics(onSelect)}
-                  isSelected={value === country.countryCode}
-                  dir={dir}
-                />
-              </DrawerClose>
-            ))}
+            {countries
+              .sort((a, b) => a.name.localeCompare(b.name, locale as any))
+              .map((country) => (
+                <DrawerClose key={country.countryCode} asChild>
+                  <CountryListItem
+                    countryCode={country.countryCode}
+                    countryName={
+                      countriesInstance.getName(country.countryCode, locale as any) ?? ""
+                    }
+                    onClick={withHaptics(onSelect)}
+                    isSelected={value === country.countryCode}
+                    dir={dir}
+                  />
+                </DrawerClose>
+              ))}
             <div className="h-[1px] bg-gray-200 my-4 group-last:hidden" />
           </div>
         ))}

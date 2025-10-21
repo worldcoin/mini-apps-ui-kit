@@ -59,3 +59,6 @@ export { SafeAreaView, useSafeAreaInsets } from "./components/SafeAreaView";
 
 // Export the Tailwind plugin
 export { default as uiKitTailwindPlugin } from "./tailwind";
+
+// Export i18n-iso-countries
+export * from "./countries";
