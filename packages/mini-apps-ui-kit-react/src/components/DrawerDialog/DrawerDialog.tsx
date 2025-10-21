@@ -1,6 +1,7 @@
 "use client";
 
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { cn } from "@/lib/utils";
 import * as React from "react";
 
 // Import Dialog components
@@ -83,7 +84,7 @@ DrawerDialogClose.displayName = "DrawerDialogClose";
 // DrawerDialogContent - maps to DialogContent on desktop, DrawerContent on mobile
 const DrawerDialogContent = React.forwardRef<
   React.ElementRef<typeof DialogContent>,
-  DrawerContentProps & { dialogContentClassName?: string }
+  DrawerContentProps & { dialogClassName?: string }
 >((props, ref) => {
   const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 
@@ -91,7 +92,13 @@ const DrawerDialogContent = React.forwardRef<
     return <DrawerContentComponent {...props} ref={ref} />;
   }
 
-  return <DialogContent {...props} ref={ref} />;
+  return (
+    <DialogContent
+      {...props}
+      ref={ref}
+      className={cn(props.className, props.dialogClassName)}
+    />
+  );
 });
 DrawerDialogContent.displayName = "DrawerDialogContent";
 

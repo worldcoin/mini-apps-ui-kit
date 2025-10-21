@@ -86,7 +86,7 @@ function CountryDrawer({
         {children}
       </DrawerDialogTrigger>
 
-      <DrawerDialogContent dialogContentClassName="h-[80vh]">
+      <DrawerDialogContent dialogClassName="h-[80vh]">
         <div>
           <VisuallyHidden>
             <DrawerDialogTitle>{title}</DrawerDialogTitle>
