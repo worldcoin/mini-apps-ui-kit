@@ -3,6 +3,7 @@
 import { forwardRef, useImperativeHandle } from "react";
 import { usePhoneInput } from "react-international-phone";
 
+import type { Direction } from "../../types/global";
 import { CountryDrawer } from "../CountryDrawer/CountryDrawer";
 import { CountryCode } from "../Flag/types";
 import { Input, InputProps } from "../Input";
@@ -59,6 +60,10 @@ interface PhoneFieldProps
    * The component should use currentColor to match the Input's styling.
    */
   endAdornment?: React.ReactNode;
+  /**
+   * The reading direction of the phone field. If omitted, inherits globally from DirectionProvider or assumes LTR (left-to-right) reading mode.
+   */
+  dir?: Direction;
 }
 
 const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
@@ -78,6 +83,7 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
       inputMode = "tel",
       autoCapitalize = "off",
       autoCorrect = "off",
+      dir,
       ...props
     },
     ref,
@@ -141,6 +147,7 @@ const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(
             onAnimationEnd={handleDrawerAnimationEnd}
             onChange={handleCountrySelect}
             disabled={disabled}
+            dir={dir}
           >
             <CountrySelectorButton value={selectedCountryCode} label={currentDialCode} />
           </CountryDrawer>

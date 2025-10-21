@@ -3,6 +3,7 @@
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useRef, useState } from "react";
 
+import type { Direction } from "../../types/global";
 import { Button } from "../Button";
 import {
   DrawerDialog,
@@ -34,6 +35,8 @@ interface CountryDrawerProps {
   title?: string;
   /** Label text shown in the search field */
   searchLabel?: string;
+  /** The reading direction of the drawer. If omitted, inherits globally from DirectionProvider or assumes LTR (left-to-right) reading mode. */
+  dir?: Direction;
   /** Callback fired when a country is selected */
   onChange: (countryCode: string) => void;
   /** Optional callback fired when drawer open/close animation completes */
@@ -50,6 +53,7 @@ function CountryDrawer({
   defaultValue = "US",
   title = "Country",
   searchLabel,
+  dir,
 }: CountryDrawerProps) {
   const [searchText, setSearchText] = useState("");
   const [open, setOpen] = useState(false);
@@ -86,7 +90,7 @@ function CountryDrawer({
         {children}
       </DrawerDialogTrigger>
 
-      <DrawerDialogContent dialogClassName="h-[80vh]">
+      <DrawerDialogContent dialogClassName="h-[80vh]" dir={dir}>
         <div>
           <VisuallyHidden>
             <DrawerDialogTitle>{title}</DrawerDialogTitle>
@@ -116,6 +120,7 @@ function CountryDrawer({
               groupedCountries={groupedCountries}
               onSelect={handleCountrySelect}
               value={value}
+              dir={dir}
             />
           </div>
         </div>

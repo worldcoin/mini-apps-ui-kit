@@ -1,5 +1,6 @@
 import { withHaptics } from "@/lib/haptics";
 
+import type { Direction } from "../../types/global";
 import { DrawerClose } from "../Drawer";
 import { CountryCode } from "../Flag";
 import { Magnifier } from "../Icons/Magnifier";
@@ -17,12 +18,14 @@ interface GroupedCountryListProps {
   groupedCountries: GroupedCountries;
   value: CountryCode;
   onSelect: (countryCode: CountryCode) => void;
+  dir?: Direction;
 }
 
 export function GroupedCountryList({
   groupedCountries,
   onSelect,
   value,
+  dir,
 }: GroupedCountryListProps) {
   if (Object.keys(groupedCountries).length === 0) {
     return (
@@ -36,7 +39,7 @@ export function GroupedCountryList({
   }
 
   return (
-    <>
+    <div dir={dir}>
       {Object.entries(groupedCountries)
         .sort(([a], [b]) => a.localeCompare(b))
         .map(([letter, countries]) => (
@@ -51,12 +54,13 @@ export function GroupedCountryList({
                   countryName={country.name}
                   onClick={withHaptics(onSelect)}
                   isSelected={value === country.countryCode}
+                  dir={dir}
                 />
               </DrawerClose>
             ))}
             <div className="h-[1px] bg-gray-200 my-4 group-last:hidden" />
           </div>
         ))}
-    </>
+    </div>
   );
 }

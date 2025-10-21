@@ -1,5 +1,6 @@
-type NotificationType = "success" | "warning" | "error";
-type ImpactStyle = "light" | "medium" | "heavy";
+export type NotificationType = "success" | "warning" | "error";
+export type ImpactStyle = "light" | "medium" | "heavy";
+export type Direction = "ltr" | "rtl";
 
 interface HapticFeedbackParams {
   hapticsType: "impact" | "notification" | "selectionChanged";

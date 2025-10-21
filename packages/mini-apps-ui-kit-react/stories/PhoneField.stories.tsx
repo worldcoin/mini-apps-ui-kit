@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import { defaultCountries } from "react-international-phone";
 
 import { Form } from "../src/components/Form";
+import type { Direction } from "../src/types/global";
 import { iconControl } from "./helpers/icon-control";
 
 const meta: Meta<typeof PhoneField> = {
@@ -314,5 +315,32 @@ export const RandomNumber: Story = {
         </Button>
       </div>
     );
+  },
+};
+
+export const RTL: Story = {
+  render: (args) => {
+    const [value, setValue] = useState("");
+
+    return (
+      <div className="w-[300px]">
+        <PhoneField
+          {...args}
+          value={value}
+          onChange={setValue}
+          dir={"rtl" as Direction}
+          label="الهاتف"
+          defaultCountryCode="AE"
+        />
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Phone field with RTL (Right-to-Left) support for Arabic and other RTL languages.",
+      },
+    },
   },
 };
