@@ -4,7 +4,13 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { useRef, useState } from "react";
 
 import { Button } from "../Button";
-import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "../Drawer";
+import {
+  DrawerDialog,
+  DrawerDialogClose,
+  DrawerDialogContent,
+  DrawerDialogTitle,
+  DrawerDialogTrigger,
+} from "../DrawerDialog";
 import { CountryCode } from "../Flag";
 import { XMark } from "../Icons/XMark";
 import { GroupedCountryList } from "../PhoneField/GroupedCountryList";
@@ -70,44 +76,51 @@ function CountryDrawer({
   };
 
   return (
-    <Drawer open={open} onOpenChange={setOpen} onAnimationEnd={onAnimationEnd} height="full">
-      <DrawerTrigger asChild className="outline-none" disabled={disabled}>
+    <DrawerDialog
+      open={open}
+      onOpenChange={setOpen}
+      onAnimationEnd={onAnimationEnd}
+      height="full"
+    >
+      <DrawerDialogTrigger asChild className="outline-none" disabled={disabled}>
         {children}
-      </DrawerTrigger>
+      </DrawerDialogTrigger>
 
-      <DrawerContent>
-        <VisuallyHidden>
-          <DrawerTitle>{title}</DrawerTitle>
-        </VisuallyHidden>
-        <TopBar
-          title={title}
-          startAdornment={
-            <DrawerClose asChild>
-              <Button variant="tertiary" size="icon">
-                <XMark />
-              </Button>
-            </DrawerClose>
-          }
-        />
-
-        <div className="p-6 shrink-0">
-          <SearchField
-            ref={searchRef}
-            value={searchText}
-            onChange={handleSearchChange}
-            label={searchLabel}
+      <DrawerDialogContent>
+        <div className="flex flex-col h-full overflow-hidden">
+          <VisuallyHidden>
+            <DrawerDialogTitle>{title}</DrawerDialogTitle>
+          </VisuallyHidden>
+          <TopBar
+            title={title}
+            startAdornment={
+              <DrawerDialogClose asChild>
+                <Button variant="tertiary" size="icon">
+                  <XMark />
+                </Button>
+              </DrawerDialogClose>
+            }
           />
-        </div>
 
-        <div className="no-scrollbar w-full overflow-auto px-6 grow">
-          <GroupedCountryList
-            groupedCountries={groupedCountries}
-            onSelect={handleCountrySelect}
-            value={value}
-          />
+          <div className="p-6 shrink-0">
+            <SearchField
+              ref={searchRef}
+              value={searchText}
+              onChange={handleSearchChange}
+              label={searchLabel}
+            />
+          </div>
+
+          <div className="no-scrollbar w-full overflow-auto px-6 grow">
+            <GroupedCountryList
+              groupedCountries={groupedCountries}
+              onSelect={handleCountrySelect}
+              value={value}
+            />
+          </div>
         </div>
-      </DrawerContent>
-    </Drawer>
+      </DrawerDialogContent>
+    </DrawerDialog>
   );
 }
 

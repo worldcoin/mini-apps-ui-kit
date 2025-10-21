@@ -39,23 +39,22 @@ function DialogOverlay({
 function DialogContent({
   className,
   children,
-  showCloseButton = true,
   ...props
-}: React.ComponentProps<typeof DialogPrimitive.Content> & {
-  showCloseButton?: boolean;
-}) {
+}: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
     <DialogPortal data-slot="dialog-portal">
       <DialogOverlay />
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "bg-gray-0 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] rounded-[1.75rem] duration-200 sm:max-w-lg",
+          "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-75 data-[state=open]:zoom-in-75 data-[state=closed]:duration-200 data-[state=open]:duration-200 fixed inset-0 z-50 flex items-center justify-center p-4",
           className,
         )}
         {...props}
       >
-        {children}
+        <div className="bg-gray-0 w-full max-w-[calc(100%-2rem)] rounded-[1.75rem] sm:max-w-lg max-h-[80vh] overflow-y-auto grid">
+          {children}
+        </div>
       </DialogPrimitive.Content>
     </DialogPortal>
   );
