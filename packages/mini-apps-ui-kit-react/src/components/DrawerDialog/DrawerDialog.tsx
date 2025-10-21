@@ -83,7 +83,7 @@ DrawerDialogClose.displayName = "DrawerDialogClose";
 // DrawerDialogContent - maps to DialogContent on desktop, DrawerContent on mobile
 const DrawerDialogContent = React.forwardRef<
   React.ElementRef<typeof DialogContent>,
-  DrawerContentProps
+  DrawerContentProps & { dialogContentClassName?: string }
 >((props, ref) => {
   const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 

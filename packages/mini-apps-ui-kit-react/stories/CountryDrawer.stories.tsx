@@ -13,13 +13,14 @@ const meta = {
     docs: {
       description: {
         component: `
-A drawer component for selecting countries, typically used in conjunction with phone number input fields.
-It provides a searchable list of countries with their flags and names, organized alphabetically.
+A responsive country selection component that adapts to different screen sizes. On mobile devices, it displays as a full-page drawer interface, while on desktop it renders as a centered dialog modal.
+
+Typically used in conjunction with phone number input fields, it provides a searchable list of countries with their flags and names, organized alphabetically.
 
 ## Features
 - Search functionality for quick country lookup
 - Alphabetically grouped country list
-- Full-page drawer interface
+- Responsive design: drawer on mobile, dialog on desktop
 - Customizable trigger element
 - Keyboard navigation support
         `,

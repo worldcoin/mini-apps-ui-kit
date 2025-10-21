@@ -86,36 +86,38 @@ function CountryDrawer({
         {children}
       </DrawerDialogTrigger>
 
-      <DrawerDialogContent>
-        <VisuallyHidden>
-          <DrawerDialogTitle>{title}</DrawerDialogTitle>
-        </VisuallyHidden>
-        <TopBar
-          title={title}
-          startAdornment={
-            <DrawerDialogClose asChild>
-              <Button variant="tertiary" size="icon">
-                <XMark />
-              </Button>
-            </DrawerDialogClose>
-          }
-        />
-
-        <div className="p-6 shrink-0">
-          <SearchField
-            ref={searchRef}
-            value={searchText}
-            onChange={handleSearchChange}
-            label={searchLabel}
+      <DrawerDialogContent dialogContentClassName="h-[80vh]">
+        <div>
+          <VisuallyHidden>
+            <DrawerDialogTitle>{title}</DrawerDialogTitle>
+          </VisuallyHidden>
+          <TopBar
+            title={title}
+            startAdornment={
+              <DrawerDialogClose asChild>
+                <Button variant="tertiary" size="icon">
+                  <XMark />
+                </Button>
+              </DrawerDialogClose>
+            }
           />
-        </div>
 
-        <div className="no-scrollbar w-full overflow-auto px-6 grow">
-          <GroupedCountryList
-            groupedCountries={groupedCountries}
-            onSelect={handleCountrySelect}
-            value={value}
-          />
+          <div className="p-6 shrink-0">
+            <SearchField
+              ref={searchRef}
+              value={searchText}
+              onChange={handleSearchChange}
+              label={searchLabel}
+            />
+          </div>
+
+          <div className="no-scrollbar w-full overflow-auto px-6 pb-6 grow">
+            <GroupedCountryList
+              groupedCountries={groupedCountries}
+              onSelect={handleCountrySelect}
+              value={value}
+            />
+          </div>
         </div>
       </DrawerDialogContent>
     </DrawerDialog>
