@@ -57,7 +57,8 @@ export function GroupedCountryList({
                   <CountryListItem
                     countryCode={country.countryCode}
                     countryName={
-                      countriesInstance.getName(country.countryCode, locale as any) ?? ""
+                      countriesInstance.getName(country.countryCode, locale as any) ??
+                      country.name
                     }
                     onClick={withHaptics(onSelect)}
                     isSelected={value === country.countryCode}
