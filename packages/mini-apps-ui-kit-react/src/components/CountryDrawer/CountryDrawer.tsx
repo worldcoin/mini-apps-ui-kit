@@ -87,37 +87,35 @@ function CountryDrawer({
       </DrawerDialogTrigger>
 
       <DrawerDialogContent>
-        <div className="flex flex-col h-full overflow-hidden">
-          <VisuallyHidden>
-            <DrawerDialogTitle>{title}</DrawerDialogTitle>
-          </VisuallyHidden>
-          <TopBar
-            title={title}
-            startAdornment={
-              <DrawerDialogClose asChild>
-                <Button variant="tertiary" size="icon">
-                  <XMark />
-                </Button>
-              </DrawerDialogClose>
-            }
+        <VisuallyHidden>
+          <DrawerDialogTitle>{title}</DrawerDialogTitle>
+        </VisuallyHidden>
+        <TopBar
+          title={title}
+          startAdornment={
+            <DrawerDialogClose asChild>
+              <Button variant="tertiary" size="icon">
+                <XMark />
+              </Button>
+            </DrawerDialogClose>
+          }
+        />
+
+        <div className="p-6 shrink-0">
+          <SearchField
+            ref={searchRef}
+            value={searchText}
+            onChange={handleSearchChange}
+            label={searchLabel}
           />
+        </div>
 
-          <div className="p-6 shrink-0">
-            <SearchField
-              ref={searchRef}
-              value={searchText}
-              onChange={handleSearchChange}
-              label={searchLabel}
-            />
-          </div>
-
-          <div className="no-scrollbar w-full overflow-auto px-6 grow">
-            <GroupedCountryList
-              groupedCountries={groupedCountries}
-              onSelect={handleCountrySelect}
-              value={value}
-            />
-          </div>
+        <div className="no-scrollbar w-full overflow-auto px-6 grow">
+          <GroupedCountryList
+            groupedCountries={groupedCountries}
+            onSelect={handleCountrySelect}
+            value={value}
+          />
         </div>
       </DrawerDialogContent>
     </DrawerDialog>
