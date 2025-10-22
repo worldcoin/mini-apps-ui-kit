@@ -1,3 +1,4 @@
+import { getCountryName } from "@/lib/utils";
 import { parseCountry } from "react-international-phone";
 
 import { CountryCode } from "../Flag";
@@ -13,15 +14,25 @@ interface GroupedCountries {
 interface UseCountryGroupingProps {
   countries: any[];
   defaultValue?: CountryCode;
+  locale?: string;
 }
 
 export function useCountryGrouping({
   countries,
   defaultValue = "US",
+  locale,
 }: UseCountryGroupingProps) {
   const groupedCountries = countries.reduce<GroupedCountries>((acc, country) => {
     const parsedCountry = parseCountry(country);
-    const firstLetter = parsedCountry.name.charAt(0).toUpperCase();
+    const firstLetter = getCountryName(
+      {
+        name: parsedCountry.name,
+        countryCode: parsedCountry.iso2,
+      },
+      locale as any,
+    )
+      .charAt(0)
+      .toUpperCase();
 
     if (!acc[firstLetter]) {
       acc[firstLetter] = [];

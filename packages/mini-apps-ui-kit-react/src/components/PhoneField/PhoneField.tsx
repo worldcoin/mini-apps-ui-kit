@@ -64,8 +64,8 @@ interface PhoneFieldProps
    * The reading direction of the phone field. If omitted, inherits globally from DirectionProvider or assumes LTR (left-to-right) reading mode.
    */
   dir?: Direction;
-  /** Optional BCP 47 locale (or array) to localize country names and search */
-  locale?: string | string[];
+  /** Optional BCP 47 locale to localize country names and search */
+  locale?: string;
 }
 
 const PhoneField = forwardRef<HTMLDivElement, PhoneFieldProps>(

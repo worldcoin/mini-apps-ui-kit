@@ -1,5 +1,5 @@
 import { withHaptics } from "@/lib/haptics";
-import countriesInstance from "i18n-iso-countries";
+import { getCountryName } from "@/lib/utils";
 
 import type { Direction } from "../../types/global";
 import { DrawerClose } from "../Drawer";
@@ -56,10 +56,7 @@ export function GroupedCountryList({
                 <DrawerClose key={country.countryCode} asChild>
                   <CountryListItem
                     countryCode={country.countryCode}
-                    countryName={
-                      countriesInstance.getName(country.countryCode, locale as any) ??
-                      country.name
-                    }
+                    countryName={getCountryName(country, locale as any)}
                     onClick={withHaptics(onSelect)}
                     isSelected={value === country.countryCode}
                     dir={dir}
