@@ -1,0 +1,89 @@
+# Internationalization (i18n)
+
+> Localize country names and sorting across components like `PhoneField` and `CountryDrawer` using `i18n-iso-countries` under the hood.
+
+<br/>
+
+### Register locales (once at app startup)
+
+Import only the locales you need and register them once during app initialization. This keeps bundles small via tree-shaking.
+
+```ts
+import { i18n, fr, ar } from "@worldcoin/mini-apps-ui-kit-react";
+
+// Register at app startup (e.g., _app.tsx, layout.tsx, or main.tsx)
+i18n.registerLocale(fr);
+i18n.registerLocale(ar);
+```
+
+You can also import from the dedicated countries entry if you prefer:
+
+```ts
+import { i18n } from "@worldcoin/mini-apps-ui-kit-react";
+import { fr } from "@worldcoin/mini-apps-ui-kit-react/countries";
+
+i18n.registerLocale(fr);
+```
+
+<br/>
+
+### Use a locale in components
+
+- `PhoneField` and `CountryDrawer` accept an optional `locale` prop (BCP 47 string). It localizes displayed country names and impacts sorting/grouping.
+- For right‑to‑left scripts, also set `dir="rtl"` on those components (see the RTL docs).
+
+```tsx
+import { PhoneField } from "@worldcoin/mini-apps-ui-kit-react";
+
+export function ExampleFR() {
+  return (
+    <PhoneField
+      locale="fr"
+      label="Téléphone"
+      placeholder="06 12 34 56 78"
+    />
+  );
+}
+```
+
+```tsx
+import { CountryDrawer } from "@worldcoin/mini-apps-ui-kit-react";
+
+export function ExampleAR() {
+  return (
+    <CountryDrawer
+      locale="ar"
+      dir="rtl"
+      title="الدولة"
+      searchLabel="ابحث"
+      value="SA"
+      onChange={() => {}}
+    >
+      <button>Open</button>
+    </CountryDrawer>
+  );
+}
+```
+
+<br/>
+
+### What gets localized?
+
+- Country names and alphabetical grouping/sorting in selectors.
+- Component UI strings (labels, titles, placeholders) are controlled by props. Pass your own localized strings:
+  - `PhoneField`: `label`, `placeholder`
+  - `CountryDrawer`: `title`, `searchLabel`
+
+<br/>
+
+### Supported locales
+
+All locales provided by `i18n-iso-countries` are supported. Import only what you need from the package entry (preferred for tree‑shaking) or from `@worldcoin/mini-apps-ui-kit-react/countries`.
+
+<br/>
+
+### Notes
+
+- Register each locale once per app lifecycle before rendering components that use it.
+- The `locale` value should be a valid BCP 47 language tag (e.g., `"en"`, `"fr"`, `"ar"`).
+
