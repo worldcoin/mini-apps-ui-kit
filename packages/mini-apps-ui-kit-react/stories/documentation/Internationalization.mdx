@@ -9,20 +9,21 @@
 Import only the locales you need and register them once during app initialization. This keeps bundles small via tree-shaking.
 
 ```ts
-import { i18n, fr, ar } from "@worldcoin/mini-apps-ui-kit-react";
+import { i18n } from "@worldcoin/mini-apps-ui-kit-react";
+import { fr, ar, type CountryLocaleCode } from "@worldcoin/mini-apps-ui-kit-react/countries";
 
 // Register at app startup (e.g., _app.tsx, layout.tsx, or main.tsx)
 i18n.registerLocale(fr);
 i18n.registerLocale(ar);
 ```
 
-You can also import from the dedicated countries entry if you prefer:
+You can also import locales from the main package entry:
 
 ```ts
-import { i18n } from "@worldcoin/mini-apps-ui-kit-react";
-import { fr } from "@worldcoin/mini-apps-ui-kit-react/countries";
+import { i18n, fr, ar } from "@worldcoin/mini-apps-ui-kit-react";
 
 i18n.registerLocale(fr);
+i18n.registerLocale(ar);
 ```
 
 <br/>
@@ -78,7 +79,19 @@ export function ExampleAR() {
 
 ### Supported locales
 
-All locales provided by `i18n-iso-countries` are supported. Import only what you need from the package entry (preferred for tree‑shaking) or from `@worldcoin/mini-apps-ui-kit-react/countries`.
+All locales provided by `i18n-iso-countries` are supported. Import only what you need from `@worldcoin/mini-apps-ui-kit-react/countries` (preferred for tree‑shaking) or from the main package entry.
+
+<br/>
+
+### Types
+
+The `CountryLocaleCode` type is available for type safety when working with locale codes:
+
+```ts
+import type { CountryLocaleCode } from "@worldcoin/mini-apps-ui-kit-react/countries";
+
+const supportedLocales: CountryLocaleCode[] = ["en", "fr", "ar", "es"];
+```
 
 <br/>
 
