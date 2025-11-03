@@ -99,11 +99,6 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js"
     },
-    "./countries": {
-      "types": "./dist/countries/index.d.ts",
-      "import": "./dist/countries/index.js",
-      "require": "./dist/countries/index.js"
-    },
     "./Button": {
       "types": "./dist/components/Button/index.d.ts",
       "default": "./dist/components/Button/index.js"
