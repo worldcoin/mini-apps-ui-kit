@@ -1,5 +1,5 @@
 import { getCountryName } from "@/lib/utils";
-import { parseCountry } from "react-international-phone";
+import { CountryData, parseCountry } from "react-international-phone";
 
 import { CountryCode } from "../Flag";
 import { getValidatedCountryCode } from "../PhoneField/utils";
@@ -12,7 +12,7 @@ interface GroupedCountries {
 }
 
 interface UseCountryGroupingProps {
-  countries: any[];
+  countries: CountryData[];
   defaultValue?: CountryCode;
   locale?: string;
 }
@@ -24,13 +24,7 @@ export function useCountryGrouping({
 }: UseCountryGroupingProps) {
   const groupedCountries = countries.reduce<GroupedCountries>((acc, country) => {
     const parsedCountry = parseCountry(country);
-    const firstLetter = getCountryName(
-      {
-        name: parsedCountry.name,
-        countryCode: parsedCountry.iso2,
-      },
-      locale as any,
-    )
+    const firstLetter = getCountryName(parsedCountry.iso2, locale ?? "en", parsedCountry.name)
       .charAt(0)
       .toUpperCase();
 

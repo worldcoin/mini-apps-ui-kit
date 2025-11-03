@@ -56,7 +56,11 @@ export function GroupedCountryList({
                 <DrawerClose key={country.countryCode} asChild>
                   <CountryListItem
                     countryCode={country.countryCode}
-                    countryName={getCountryName(country, locale as any)}
+                    countryName={getCountryName(
+                      country.countryCode,
+                      typeof locale === "string" ? locale : locale?.[0] ?? "en",
+                      country.name,
+                    )}
                     onClick={withHaptics(onSelect)}
                     isSelected={value === country.countryCode}
                     dir={dir}
