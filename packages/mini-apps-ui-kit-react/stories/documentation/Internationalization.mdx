@@ -10,18 +10,10 @@ Import only the locales you need and register them once during app initializatio
 
 ```ts
 import { i18n } from "@worldcoin/mini-apps-ui-kit-react";
-import { fr, ar, type CountryLocaleCode } from "@worldcoin/mini-apps-ui-kit-react/countries";
+import fr from "@worldcoin/mini-apps-ui-kit-react/locales/fr.json";
+import ar from "@worldcoin/mini-apps-ui-kit-react/locales/ar.json";
 
 // Register at app startup (e.g., _app.tsx, layout.tsx, or main.tsx)
-i18n.registerLocale(fr);
-i18n.registerLocale(ar);
-```
-
-You can also import locales from the main package entry:
-
-```ts
-import { i18n, fr, ar } from "@worldcoin/mini-apps-ui-kit-react";
-
 i18n.registerLocale(fr);
 i18n.registerLocale(ar);
 ```
