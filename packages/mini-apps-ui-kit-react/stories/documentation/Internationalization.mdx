@@ -6,6 +6,33 @@
 
 ### Register locales (once at app startup)
 
+#### For SSR applications (Next.js, Remix, etc.)
+
+For server-side rendered applications, use the `loadLocale` helper and `I18nProvider` to ensure proper hydration between server and client:
+
+```tsx
+import { I18nProvider, i18n, loadLocale } from "@worldcoin/mini-apps-ui-kit-react";
+
+// In your server component (e.g., Next.js page.tsx)
+export default async function Page({ searchParams }) {
+  const locale = searchParams.locale || "en";
+  
+  // Load locale on server using SSR-friendly loader
+  const localeData = await loadLocale(locale);
+  i18n.registerLocale(localeData);
+  
+  return (
+    <I18nProvider localeData={localeData}>
+      {/* Your components */}
+    </I18nProvider>
+  );
+}
+```
+
+The `I18nProvider` ensures the client-side i18n instance matches the server-side state, preventing hydration mismatches.
+
+#### For client-side only applications
+
 Import only the locales you need and register them once during app initialization. This keeps bundles small via tree-shaking.
 
 ```ts
@@ -69,20 +96,54 @@ export function ExampleAR() {
 
 <br/>
 
+### Loading locales dynamically
+
+Use the `loadLocale` helper for dynamic locale loading (useful for SSR or when you need to load locales based on user selection):
+
+```ts
+import { loadLocale, i18n } from "@worldcoin/mini-apps-ui-kit-react";
+
+// Load and register a locale dynamically
+const localeData = await loadLocale("fr");
+i18n.registerLocale(localeData);
+```
+
+The `loadLocale` function automatically falls back to English if the requested locale is not found.
+
+```ts
+import { availableLocales } from "@worldcoin/mini-apps-ui-kit-react";
+
+// Get all available locale codes
+console.log(availableLocales); // ["af", "am", "ar", "az", ...]
+```
+
+<br/>
+
 ### Supported locales
 
-Import only what you need from `@worldcoin/mini-apps-ui-kit-react/countries` (preferred for tree‑shaking) or from the main package entry.
+All available locales can be loaded using `loadLocale()` or imported directly from `@worldcoin/mini-apps-ui-kit-react/locales/[locale].json`. Import only what you need for optimal tree-shaking.
 
 <br/>
 
 ### Types
 
-The `CountryLocaleCode` type is available for type safety when working with locale codes:
+Type-safe locale support:
 
 ```ts
-import type { CountryLocaleCode } from "@worldcoin/mini-apps-ui-kit-react/countries";
+import type { CountryLocaleCode, LocaleData } from "@worldcoin/mini-apps-ui-kit-react";
 
+// Type for locale codes
 const supportedLocales: CountryLocaleCode[] = ["en", "fr", "ar", "es"];
+
+// Type for locale data structure
+const localeData: LocaleData = {
+  locale: "fr",
+  countries: {
+    "FR": "France",
+    "US": "États-Unis",
+    // ...
+  }
+};
 ```
 
 <br/>
@@ -91,4 +152,6 @@ const supportedLocales: CountryLocaleCode[] = ["en", "fr", "ar", "es"];
 
 - Register each locale once per app lifecycle before rendering components that use it.
 - The `locale` value should be a valid BCP 47 language tag (e.g., `"en"`, `"fr"`, `"ar"`).
+- **For SSR applications**: Always use `I18nProvider` to wrap your components and pass the locale data to prevent hydration mismatches between server and client.
+- The `loadLocale` helper uses static imports internally, making it bundler-friendly and SSR-safe.
 

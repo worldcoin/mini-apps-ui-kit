@@ -62,3 +62,6 @@ export { default as uiKitTailwindPlugin } from "./tailwind";
 
 export type { CountryLocaleCode } from "./locales/types";
 export { i18n } from "@/lib/i18n";
+export type { LocaleData } from "@/lib/i18n";
+export { I18nProvider } from "@/lib/I18nProvider";
+export { loadLocale, availableLocales } from "@/lib/locales";

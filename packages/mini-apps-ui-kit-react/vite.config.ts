@@ -1,6 +1,6 @@
 import react from "@vitejs/plugin-react";
-import { resolve } from "path";
 import { readdirSync } from "fs";
+import { resolve } from "path";
 import preserveDirectives from "rollup-preserve-directives";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
@@ -16,10 +16,13 @@ const localeFiles = readdirSync(localesDir)
       path: resolve(localesDir, file),
     };
   })
-  .reduce((acc, { key, path }) => {
-    acc[key] = path;
-    return acc;
-  }, {} as Record<string, string>);
+  .reduce(
+    (acc, { key, path }) => {
+      acc[key] = path;
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
 
 // https://vite.dev/config/
 export default defineConfig({
