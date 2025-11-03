@@ -1,7 +1,8 @@
 import { type ClassValue, clsx } from "clsx";
-import countries from "i18n-iso-countries";
 import { ChangeEvent } from "react";
 import { twMerge } from "tailwind-merge";
+
+import { i18n } from "./i18n";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -21,5 +22,5 @@ export const getCountryName = (
   },
   locale: string,
 ) => {
-  return countries.getName(country.countryCode, locale as any) ?? country.name;
+  return i18n.getName(country.countryCode, locale as any) ?? country.name;
 };
