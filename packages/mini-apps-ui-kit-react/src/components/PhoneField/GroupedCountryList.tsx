@@ -20,7 +20,7 @@ interface GroupedCountryListProps {
   value: CountryCode;
   onSelect: (countryCode: CountryCode) => void;
   dir?: Direction;
-  locale?: string | string[];
+  locale?: string;
 }
 
 export function GroupedCountryList({
@@ -58,7 +58,7 @@ export function GroupedCountryList({
                     countryCode={country.countryCode}
                     countryName={getCountryName(
                       country.countryCode,
-                      typeof locale === "string" ? locale : locale?.[0] ?? "en",
+                      typeof locale === "string" ? locale : (locale?.[0] ?? "en"),
                       country.name,
                     )}
                     onClick={withHaptics(onSelect)}

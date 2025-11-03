@@ -20,11 +20,11 @@ interface UseCountryGroupingProps {
 export function useCountryGrouping({
   countries,
   defaultValue = "US",
-  locale,
+  locale = "en",
 }: UseCountryGroupingProps) {
   const groupedCountries = countries.reduce<GroupedCountries>((acc, country) => {
     const parsedCountry = parseCountry(country);
-    const firstLetter = getCountryName(parsedCountry.iso2, locale ?? "en", parsedCountry.name)
+    const firstLetter = getCountryName(parsedCountry.iso2, locale, parsedCountry.name)
       .charAt(0)
       .toUpperCase();
 
