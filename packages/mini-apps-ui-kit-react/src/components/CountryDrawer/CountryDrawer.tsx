@@ -35,7 +35,7 @@ interface CountryDrawerProps {
   title?: string;
   /** Label text shown in the search field */
   searchLabel?: string;
-  /** The reading direction of the drawer. If omitted, inherits globally from DirectionProvider or assumes LTR (left-to-right) reading mode. */
+  /** The reading direction of the drawer. If omitted, assumes LTR (left-to-right) reading mode. */
   dir?: Direction;
   /** Optional BCP 47 locale to localize country names and search */
   locale?: string;
