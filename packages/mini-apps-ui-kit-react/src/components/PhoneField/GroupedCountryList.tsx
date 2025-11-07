@@ -1,5 +1,5 @@
+import { useI18n } from "@/lib/I18nProvider";
 import { withHaptics } from "@/lib/haptics";
-import { getCountryName } from "@/lib/utils";
 
 import type { Direction } from "../../types/global";
 import { DrawerClose } from "../Drawer";
@@ -30,6 +30,7 @@ export function GroupedCountryList({
   dir,
   locale,
 }: GroupedCountryListProps) {
+  const i18nStore = useI18n();
   if (Object.keys(groupedCountries).length === 0) {
     return (
       <div className="flex flex-col items-center justify-center grow text-gray-400 gap-2 h-full">
@@ -56,11 +57,12 @@ export function GroupedCountryList({
                 <DrawerClose key={country.countryCode} asChild>
                   <CountryListItem
                     countryCode={country.countryCode}
-                    countryName={getCountryName(
-                      country.countryCode,
-                      typeof locale === "string" ? locale : (locale?.[0] ?? "en"),
-                      country.name,
-                    )}
+                    countryName={
+                      i18nStore.getName(
+                        country.countryCode,
+                        typeof locale === "string" ? locale : (locale?.[0] ?? "en"),
+                      ) ?? country.name
+                    }
                     onClick={withHaptics(onSelect)}
                     isSelected={value === country.countryCode}
                     dir={dir}

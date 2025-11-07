@@ -1,4 +1,4 @@
-import { I18nProvider, i18n, loadLocale } from "@worldcoin/mini-apps-ui-kit-react";
+import { I18nProvider, loadLocale } from "@worldcoin/mini-apps-ui-kit-react";
 
 import HomeContent from "./components/HomeContent";
 
@@ -12,7 +12,6 @@ export default async function Home({
 
   // Load locale on server using the SSR-friendly loader
   const localeData = await loadLocale(localeValue);
-  i18n.registerLocale(localeData);
 
   return (
     <I18nProvider localeData={localeData}>

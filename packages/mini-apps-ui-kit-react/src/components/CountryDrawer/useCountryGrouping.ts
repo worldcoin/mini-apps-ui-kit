@@ -1,4 +1,4 @@
-import { getCountryName } from "@/lib/utils";
+import { useI18n } from "@/lib/I18nProvider";
 import { CountryData, parseCountry } from "react-international-phone";
 
 import { CountryCode } from "../Flag";
@@ -22,11 +22,12 @@ export function useCountryGrouping({
   defaultValue = "US",
   locale = "en",
 }: UseCountryGroupingProps) {
+  const i18nStore = useI18n();
   const groupedCountries = countries.reduce<GroupedCountries>((acc, country) => {
     const parsedCountry = parseCountry(country);
-    const firstLetter = getCountryName(parsedCountry.iso2, locale, parsedCountry.name)
-      .charAt(0)
-      .toUpperCase();
+    const countryName = i18nStore.getName(parsedCountry.iso2, locale);
+    const firstLetter =
+      countryName?.charAt(0).toUpperCase() ?? parsedCountry.name.charAt(0).toUpperCase();
 
     if (!acc[firstLetter]) {
       acc[firstLetter] = [];

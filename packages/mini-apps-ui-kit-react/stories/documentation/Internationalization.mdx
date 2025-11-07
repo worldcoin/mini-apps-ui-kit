@@ -11,16 +11,15 @@
 For server-side rendered applications, use the `loadLocale` helper and `I18nProvider` to ensure proper hydration between server and client:
 
 ```tsx
-import { I18nProvider, i18n, loadLocale } from "@worldcoin/mini-apps-ui-kit-react";
+import { I18nProvider, loadLocale } from "@worldcoin/mini-apps-ui-kit-react";
 
 // In your server component (e.g., Next.js page.tsx)
 export default async function Page({ searchParams }) {
   const locale = searchParams.locale || "en";
-  
-  // Load locale on server using SSR-friendly loader
+
+  // Load locale data on the server using the SSR-friendly loader
   const localeData = await loadLocale(locale);
-  i18n.registerLocale(localeData);
-  
+
   return (
     <I18nProvider localeData={localeData}>
       {/* Your components */}
@@ -29,7 +28,18 @@ export default async function Page({ searchParams }) {
 }
 ```
 
-The `I18nProvider` ensures the client-side i18n instance matches the server-side state, preventing hydration mismatches.
+`I18nProvider` seeds an isolated i18n store for its subtree, so each request gets its own locale registry without leaking data between renders.
+
+If you need even more control (e.g., multiple stores in tests), create a store manually and pass it through the provider:
+
+```tsx
+import { createI18nStore, I18nProvider } from "@worldcoin/mini-apps-ui-kit-react";
+
+const store = createI18nStore();
+store.registerLocale(localeData);
+
+<I18nProvider store={store}>{/* ... */}</I18nProvider>;
+```
 
 #### For client-side only applications
 
