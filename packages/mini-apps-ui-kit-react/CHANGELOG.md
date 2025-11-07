@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.4.0
+
+### Minor Changes
+
+- Add DrawerDialog component for desktop support
+
 ## 1.3.7
 
 ### Patch Changes
