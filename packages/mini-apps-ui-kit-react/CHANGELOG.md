@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.5.0
+
+### Minor Changes
+
+- Add i18n support to CountryDrawer
+
 ## 1.4.0
 
 ### Minor Changes

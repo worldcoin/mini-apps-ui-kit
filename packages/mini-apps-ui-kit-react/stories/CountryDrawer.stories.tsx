@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "../src/components/Button";
 import { CountryDrawer } from "../src/components/CountryDrawer/CountryDrawer";
 import { CountryCode, Flag } from "../src/components/Flag";
+import type { Direction } from "../src/types/global";
 
 const meta = {
   title: "components/CountryDrawer",
@@ -84,6 +85,26 @@ export const WithCustomTrigger: Story = {
     return (
       <CountryDrawer value={country} onChange={(code) => setCountry(code as CountryCode)}>
         <Button variant="primary">Change Country</Button>
+      </CountryDrawer>
+    );
+  },
+};
+
+export const RTL: Story = {
+  render: () => {
+    const [country, setCountry] = useState<CountryCode>("AE");
+
+    return (
+      <CountryDrawer
+        value={country}
+        onChange={(code) => setCountry(code as CountryCode)}
+        dir={"rtl" as Direction}
+        title="البلد"
+        searchLabel="البحث عن البلد"
+      >
+        <Button variant="secondary" size="icon">
+          <Flag countryCode={country} />
+        </Button>
       </CountryDrawer>
     );
   },

@@ -59,3 +59,9 @@ export { SafeAreaView, useSafeAreaInsets } from "./components/SafeAreaView";
 
 // Export the Tailwind plugin
 export { default as uiKitTailwindPlugin } from "./tailwind";
+
+export type { CountryLocaleCode } from "./locales/types";
+export { i18n, createI18nStore } from "@/lib/i18n";
+export type { LocaleData, I18nStore } from "@/lib/i18n";
+export { I18nProvider, useI18n, I18nContext } from "@/lib/I18nProvider";
+export { loadLocale, availableLocales } from "@/lib/locales";

@@ -1,3 +1,4 @@
+import type { Direction } from "../../types/global";
 import { CountryCode, Flag } from "../Flag";
 import { Typography } from "../Typography";
 
@@ -6,6 +7,7 @@ interface CountryListItemProps {
   countryName: string;
   isSelected?: boolean;
   onClick?: (value: CountryCode) => void;
+  dir?: Direction;
 }
 
 // TODO: Implement selected state
@@ -15,6 +17,7 @@ const CountryListItem = ({
   countryName,
   onClick,
   isSelected,
+  dir,
 }: CountryListItemProps) => {
   return (
     <button
@@ -22,6 +25,7 @@ const CountryListItem = ({
       data-country={countryCode}
       className="h-[3.75rem] flex items-center w-full gap-2 cursor-pointer"
       onClick={() => onClick?.(countryCode)}
+      dir={dir}
       {...(isSelected && { "data-selected": true })}
     >
       <Flag countryCode={countryCode} size={32} />
