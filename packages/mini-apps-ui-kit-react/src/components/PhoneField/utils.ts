@@ -1,3 +1,4 @@
+import { I18nStore } from "@/lib/i18n";
 import { CountryData, defaultCountries, parseCountry } from "react-international-phone";
 
 import { CountryCode } from "../Flag";
@@ -29,17 +30,31 @@ export const getCountryDataListByCodes = (
   });
 };
 
-export const filterCountries = (countries: CountryData[], searchText: string) => {
+export const filterCountries = ({
+  countries,
+  searchText,
+  i18nStore,
+  locale,
+}: {
+  countries: CountryData[];
+  searchText: string;
+  i18nStore: I18nStore;
+  locale: string;
+}) => {
   if (!searchText) {
     return countries;
   }
 
   return countries.filter((country) => {
     const parsedCountry = parseCountry(country);
-    const countryName = parsedCountry.name.toLowerCase();
+    const countryName =
+      i18nStore.getName(parsedCountry.iso2.toLocaleUpperCase(), locale) ?? parsedCountry.name;
     const dialCode = `${DIAL_CODE_PREFIX}${parsedCountry.dialCode.toLowerCase()}`;
     const searchLower = searchText.toLowerCase();
 
-    return countryName.includes(searchLower) || dialCode.includes(searchLower);
+    return (
+      countryName.toLocaleLowerCase().includes(searchLower) ||
+      dialCode.toLocaleLowerCase().includes(searchLower)
+    );
   });
 };

@@ -49,7 +49,7 @@ function CountryDrawer({
   onChange,
   value,
   countries,
-  locale,
+  locale = "en",
   onAnimationEnd,
   disabled = false,
   children,
@@ -69,6 +69,7 @@ function CountryDrawer({
   const filteredCountries = useCountryFiltering({
     countries,
     searchText,
+    locale,
   });
 
   const groupedCountries = useCountryGrouping({
