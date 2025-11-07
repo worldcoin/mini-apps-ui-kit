@@ -5,6 +5,19 @@ import { CountryCode } from "../Flag";
 import { isSupportedCountryCode } from "../Flag/utils";
 import { DIAL_CODE_PREFIX } from "./constants";
 
+/**
+ * Normalizes a string by removing accents and diacritics, then converts to lowercase.
+ * This makes string comparison accent-agnostic.
+ * @param str - The string to normalize
+ * @returns The normalized string in lowercase without accents/diacritics
+ */
+export const normalizeString = (str: string): string => {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+};
+
 export const getValidatedCountryCode = (
   code: string,
   defaultCountryCode: CountryCode,
@@ -45,16 +58,17 @@ export const filterCountries = ({
     return countries;
   }
 
+  const normalizedSearch = normalizeString(searchText);
+
   return countries.filter((country) => {
     const parsedCountry = parseCountry(country);
     const countryName =
       i18nStore.getName(parsedCountry.iso2.toLocaleUpperCase(), locale) ?? parsedCountry.name;
     const dialCode = `${DIAL_CODE_PREFIX}${parsedCountry.dialCode.toLowerCase()}`;
-    const searchLower = searchText.toLowerCase();
 
     return (
-      countryName.toLocaleLowerCase().includes(searchLower) ||
-      dialCode.toLocaleLowerCase().includes(searchLower)
+      normalizeString(countryName).includes(normalizedSearch) ||
+      normalizeString(dialCode).includes(normalizedSearch)
     );
   });
 };

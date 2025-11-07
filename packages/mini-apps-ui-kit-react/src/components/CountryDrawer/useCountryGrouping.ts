@@ -2,7 +2,7 @@ import { useI18n } from "@/lib/I18nProvider";
 import { CountryData, parseCountry } from "react-international-phone";
 
 import { CountryCode } from "../Flag";
-import { getValidatedCountryCode } from "../PhoneField/utils";
+import { getValidatedCountryCode, normalizeString } from "../PhoneField/utils";
 
 interface GroupedCountries {
   [key: string]: {
@@ -26,8 +26,9 @@ export function useCountryGrouping({
   const groupedCountries = countries.reduce<GroupedCountries>((acc, country) => {
     const parsedCountry = parseCountry(country);
     const countryName = i18nStore.getName(parsedCountry.iso2, locale);
-    const firstLetter =
-      countryName?.charAt(0).toUpperCase() ?? parsedCountry.name.charAt(0).toUpperCase();
+    const nameToUse = countryName ?? parsedCountry.name;
+    const normalizedName = normalizeString(nameToUse);
+    const firstLetter = normalizedName.charAt(0).toUpperCase();
 
     if (!acc[firstLetter]) {
       acc[firstLetter] = [];
