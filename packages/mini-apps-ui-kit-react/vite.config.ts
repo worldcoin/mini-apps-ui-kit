@@ -1,8 +1,28 @@
 import react from "@vitejs/plugin-react";
+import { readdirSync } from "fs";
 import { resolve } from "path";
 import preserveDirectives from "rollup-preserve-directives";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
+
+// Dynamically get all locale JSON files
+const localesDir = resolve(__dirname, "src/locales");
+const localeFiles = readdirSync(localesDir)
+  .filter((file) => file.endsWith(".json"))
+  .map((file) => {
+    const localeName = file.replace(".json", "");
+    return {
+      key: `locales/${localeName}.json`,
+      path: resolve(localesDir, file),
+    };
+  })
+  .reduce(
+    (acc, { key, path }) => {
+      acc[key] = path;
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -40,6 +60,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, "src/index.ts"),
         tailwind: resolve(__dirname, "src/tailwind/index.ts"),
+        ...localeFiles,
       },
       output: {
         preserveModules: true,

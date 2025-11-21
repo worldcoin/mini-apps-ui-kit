@@ -1,5 +1,7 @@
+import { useI18n } from "@/lib/I18nProvider";
 import { withHaptics } from "@/lib/haptics";
 
+import type { Direction } from "../../types/global";
 import { DrawerClose } from "../Drawer";
 import { CountryCode } from "../Flag";
 import { Magnifier } from "../Icons/Magnifier";
@@ -17,13 +19,18 @@ interface GroupedCountryListProps {
   groupedCountries: GroupedCountries;
   value: CountryCode;
   onSelect: (countryCode: CountryCode) => void;
+  dir?: Direction;
+  locale?: string;
 }
 
 export function GroupedCountryList({
   groupedCountries,
   onSelect,
   value,
+  dir,
+  locale,
 }: GroupedCountryListProps) {
+  const i18nStore = useI18n();
   if (Object.keys(groupedCountries).length === 0) {
     return (
       <div className="flex flex-col items-center justify-center grow text-gray-400 gap-2 h-full">
@@ -36,27 +43,35 @@ export function GroupedCountryList({
   }
 
   return (
-    <>
+    <div dir={dir}>
       {Object.entries(groupedCountries)
-        .sort(([a], [b]) => a.localeCompare(b))
+        .sort(([a], [b]) => a.localeCompare(b, locale as any))
         .map(([letter, countries]) => (
           <div key={letter} className="group">
             <Typography variant="subtitle" level={3} className="text-gray-400 mb-2">
               {letter}
             </Typography>
-            {countries.map((country) => (
-              <DrawerClose key={country.countryCode} asChild>
-                <CountryListItem
-                  countryCode={country.countryCode}
-                  countryName={country.name}
-                  onClick={withHaptics(onSelect)}
-                  isSelected={value === country.countryCode}
-                />
-              </DrawerClose>
-            ))}
+            {countries
+              .sort((a, b) => a.name.localeCompare(b.name, locale as any))
+              .map((country) => (
+                <DrawerClose key={country.countryCode} asChild>
+                  <CountryListItem
+                    countryCode={country.countryCode}
+                    countryName={
+                      i18nStore.getName(
+                        country.countryCode,
+                        typeof locale === "string" ? locale : (locale?.[0] ?? "en"),
+                      ) ?? country.name
+                    }
+                    onClick={withHaptics(onSelect)}
+                    isSelected={value === country.countryCode}
+                    dir={dir}
+                  />
+                </DrawerClose>
+              ))}
             <div className="h-[1px] bg-gray-200 my-4 group-last:hidden" />
           </div>
         ))}
-    </>
+    </div>
   );
 }
