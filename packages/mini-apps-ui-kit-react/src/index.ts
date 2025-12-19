@@ -56,6 +56,7 @@ export { LiveFeedback } from "./components/LiveFeedback";
 export { Skeleton, SkeletonTypography } from "./components/Skeleton";
 export { Haptic, useHaptics } from "./components/Haptic";
 export { SafeAreaView, useSafeAreaInsets } from "./components/SafeAreaView";
+export { VerificationBadge } from "./components/VerificationBadge";
 
 // Export the Tailwind plugin
 export { default as uiKitTailwindPlugin } from "./tailwind";
