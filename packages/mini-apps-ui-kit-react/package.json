@@ -1,6 +1,6 @@
 {
   "name": "@worldcoin/mini-apps-ui-kit-react",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -262,6 +262,10 @@
     "./SafeAreaView": {
       "types": "./dist/components/SafeAreaView/index.d.ts",
       "default": "./dist/components/SafeAreaView/index.js"
+    },
+    "./VerificationBadge": {
+      "types": "./dist/components/VerificationBadge/index.d.ts",
+      "default": "./dist/components/VerificationBadge/index.js"
     },
     "./tailwind": {
       "types": "./dist/tailwind/index.d.ts",
