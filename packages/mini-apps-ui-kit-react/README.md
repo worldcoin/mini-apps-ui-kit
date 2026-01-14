@@ -164,11 +164,6 @@ Default values for the most common props are given below:
 
 The package includes 400+ icons across three variants. Icons are named in PascalCase (e.g., `arrow-down.svg` becomes `ArrowDown`). To see all available icons, check the `icons/` directory in the package.
 
-### Alternative: Using Iconoir
-
-The library icons are built on top of [Iconoir](https://iconoir.com/). While we provide our own custom set, we also recommend using Iconoir directly for your miniapps as it offers a comprehensive and well-maintained icon system.
-
-To use Iconoir directly:
 
 ```bash
 npm install iconoir-react
