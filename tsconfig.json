@@ -11,7 +11,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["prepare-icons.ts"],
+  "include": ["scripts/prepare-icons.ts"],
   "exclude": ["node_modules", "**/node_modules"]
 }
 

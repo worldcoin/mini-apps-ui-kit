@@ -7,8 +7,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Define paths
-const SOURCE_ICONS_DIR = path.join(__dirname, "source-icons");
-const TARGET_ICONS_DIR = path.join(__dirname, "icons");
+const SOURCE_ICONS_DIR = path.join(__dirname, "../source-icons");
+const TARGET_ICONS_DIR = path.join(__dirname, "../icons");
 
 // Variant mapping
 const VARIANT_MAP: Record<string, string> = {
