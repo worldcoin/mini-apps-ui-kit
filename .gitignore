@@ -17,6 +17,8 @@ dist
 build
 out
 .next
+bin/build/test-output
+!bin/build
 
 # Misc
 .DS_Store
@@ -25,3 +27,5 @@ out
 storybook-static
 packages/mini-apps-ui-kit-react/public/globals.css
 packages/mini-apps-ui-kit-react/bundle-analysis.html
+
+source-icons

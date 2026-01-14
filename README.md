@@ -40,6 +40,23 @@ pnpm preview:sb
 - `packages/@mini-apps-ui-kit-react/src/components`: React components, make sure every component has it's own index.ts file
 - `packages/@mini-apps-ui-kit-react/stories`: Storybook stories
 
+## Adding New Icons
+
+To add new icons to the UI kit, follow these steps:
+
+1. Export the icons from Figma using the **World Icons Exporter** plugin
+2. Move the export folder into `/source-icons`
+3. Run the icon preparation script:
+   ```bash
+   pnpm run prepare-icons
+   ```
+   Or directly:
+   ```bash
+   tsx scripts/prepare-icons.ts
+   ```
+
+This will process the exported icons and make them available in the component library.
+
 ## Contributing
 
 We use [changesets](https://github.com/changesets/changesets) to manage our versioning and changelogs. To contribute to this repository, please follow these steps:
