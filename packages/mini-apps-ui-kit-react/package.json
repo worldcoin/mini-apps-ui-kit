@@ -19,9 +19,10 @@
     "dev:sb": "concurrently \"tailwindcss -i ./styles/globals.css -o ./dist/globals.css --watch\" \"pnpm storybook\"",
     "build:tailwind": "tailwindcss -i ./styles/globals.css -o ./dist/globals.css --minify",
     "build:sb": "pnpm build:tailwind && storybook build",
-    "build": "tsc -b ./tsconfig.lib.json && vite build && pnpm build:tailwind",
+    "build": "tsc -b ./tsconfig.lib.json && vite build && pnpm generate:icons && pnpm build:tailwind",
     "lint": "eslint .",
     "publish:manual": "pnpm build && npm publish --access public",
+    "generate:icons": "NODE_OPTIONS=--max-old-space-size=16192 pnpm dlx tsx scripts/generate-icons.ts",
     "generate:country-codes": "node scripts/generate-country-codes.js",
     "analyze": "vite build --config vite.analyze.config.ts"
   },
@@ -661,6 +662,26 @@
       "types": "./dist/locales/zh.json.d.ts",
       "import": "./dist/locales/zh.json.js",
       "require": "./dist/locales/zh.json.js"
+    },
+    "./icons": {
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/esm/index.mjs",
+      "require": "./dist/icons/index.js"
+    },
+    "./icons/outline": {
+      "types": "./dist/icons/outline/index.d.ts",
+      "import": "./dist/icons/esm/outline/index.mjs",
+      "require": "./dist/icons/outline/index.js"
+    },
+    "./icons/regular": {
+      "types": "./dist/icons/regular/index.d.ts",
+      "import": "./dist/icons/esm/regular/index.mjs",
+      "require": "./dist/icons/regular/index.js"
+    },
+    "./icons/solid": {
+      "types": "./dist/icons/solid/index.d.ts",
+      "import": "./dist/icons/esm/solid/index.mjs",
+      "require": "./dist/icons/solid/index.js"
     },
     "./styles.css": "./dist/globals.css"
   }

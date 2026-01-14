@@ -11,16 +11,24 @@
     "sb:move": "turbo sb:move --filter=@worldcoin/mini-apps-ui-kit-react",
     "preview:sb": "pnpm dlx http-server ./packages/mini-apps-ui-kit-react/storybook-static",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "release": "turbo build --filter=@worldcoin/mini-apps-ui-kit-react && changeset publish"
+    "release": "turbo build --filter=@worldcoin/mini-apps-ui-kit-react && changeset publish",
+    "test:build-target": "pnpm dlx tsx bin/build/targets/react/test.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.12",
+    "@svgr/babel-plugin-remove-jsx-attribute": "^8.0.0",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
     "@trivago/prettier-plugin-sort-imports": "^5.0.1",
     "@types/node": "^20",
+    "@vitejs/plugin-react": "^4.3.3",
+    "esbuild": "^0.27.2",
     "prettier": "^3.3.3",
     "prettier-plugin-svelte": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.9",
-    "turbo": "^2.3.3"
+    "turbo": "^2.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^6.3.5"
   },
   "engines": {
     "node": ">=22"

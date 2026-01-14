@@ -74,9 +74,101 @@ import "@worldcoin/mini-apps-ui-kit-react/styles.css";
 
 ## Icons
 
-The library uses a custom set of icons built on top of [Iconoir](https://iconoir.com/). While we provide our own custom set, we highly recommend using Iconoir directly for your miniapps as it offers a comprehensive and well-maintained icon system.
+The library includes a custom set of React icon components generated from SVG files. Icons are available in three variants: `outline`, `regular`, and `solid`.
 
-To use Iconoir in your project, you'll need to install the [React package](https://www.npmjs.com/package/iconoir-react):
+### Using Icons from the Package
+
+You can import icons directly from the package:
+
+```tsx
+// Import from the main icons entry (defaults to outline variant)
+import { Airplane, Check, Home, Settings } from "@worldcoin/mini-apps-ui-kit-react/icons";
+
+function MyComponent() {
+  return (
+    <div>
+      <Airplane />
+      <Check />
+      <Home />
+      <Settings />
+    </div>
+  );
+}
+```
+
+### Importing Specific Variants
+
+You can also import icons from specific variant entry points:
+
+```tsx
+// Import outline variant icons
+import { Airplane, Check } from "@worldcoin/mini-apps-ui-kit-react/icons/outline";
+
+// Import regular variant icons
+import { Airplane as AirplaneRegular, Check as CheckRegular } from "@worldcoin/mini-apps-ui-kit-react/icons/regular";
+
+// Import solid variant icons
+import { Airplane as AirplaneSolid, Check as CheckSolid } from "@worldcoin/mini-apps-ui-kit-react/icons/solid";
+
+function MyComponent() {
+  return (
+    <div>
+      <Airplane /> {/* outline variant */}
+      <AirplaneRegular /> {/* regular variant */}
+      <AirplaneSolid /> {/* solid variant */}
+    </div>
+  );
+}
+```
+
+### Icon Props
+
+All icons accept standard React SVG props and can be customized:
+
+```tsx
+import { Home } from "@worldcoin/mini-apps-ui-kit-react/icons";
+
+function MyComponent() {
+  return (
+    <div>
+      {/* Default size (1.5em) */}
+      <Home />
+      
+      {/* Custom size */}
+      <Home width={24} height={24} />
+      
+      {/* Custom color using className */}
+      <Home className="text-blue-500" />
+      
+      {/* Custom styling */}
+      <Home style={{ color: "red", width: 32, height: 32 }} />
+    </div>
+  );
+}
+```
+
+### Default Icon Props
+
+Default values for the most common props are given below:
+
+| Prop name | Default value |
+|-----------|---------------|
+| `color` | `"currentColor"` |
+| `width` | `"1.5em"` |
+| `height` | `"1.5em"` |
+| `strokeWidth` | `"2"` (outline variant only) |
+
+**Note:** The `strokeWidth` prop is only applicable to outline variant icons and defaults to `"2"` (2px). Regular and solid variants do not use `strokeWidth` as they are filled icons.
+
+### Available Icons
+
+The package includes 400+ icons across three variants. Icons are named in PascalCase (e.g., `arrow-down.svg` becomes `ArrowDown`). To see all available icons, check the `icons/` directory in the package.
+
+### Alternative: Using Iconoir
+
+The library icons are built on top of [Iconoir](https://iconoir.com/). While we provide our own custom set, we also recommend using Iconoir directly for your miniapps as it offers a comprehensive and well-maintained icon system.
+
+To use Iconoir directly:
 
 ```bash
 npm install iconoir-react
@@ -84,7 +176,7 @@ npm install iconoir-react
 yarn add iconoir-react
 ```
 
-Then you can import and use icons in your components:
+Then you can import and use icons:
 
 ```jsx
 import { Home } from 'iconoir-react';

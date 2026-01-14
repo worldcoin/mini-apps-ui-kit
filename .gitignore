@@ -18,6 +18,7 @@ build
 out
 .next
 bin/build/test-output
+!bin/build
 
 # Misc
 .DS_Store
