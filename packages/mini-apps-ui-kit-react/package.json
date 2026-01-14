@@ -23,7 +23,7 @@
     "lint": "eslint .",
     "publish:manual": "pnpm build && npm publish --access public",
     "test:icons": "pnpm dlx tsx ../../bin/build/targets/react/test.ts",
-    "generate:icons": "NODE_OPTIONS=--max-old-space-size=16192 pnpm dlx tsx scripts/generate-icons.ts",
+    "generate:icons": "pnpm dlx tsx scripts/generate-icons.ts",
     "generate:country-codes": "node scripts/generate-country-codes.js",
     "analyze": "vite build --config vite.analyze.config.ts"
   },
