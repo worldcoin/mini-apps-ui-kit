@@ -12,7 +12,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 
 import buildReactTarget from "./index.js";
 
@@ -23,8 +23,13 @@ const __dirname = path.dirname(__filename);
 function toPascalCase(str: string): string {
   return str
     .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join("");
+}
+
+// Helper function to convert a variant name to PascalCase variant suffix
+function toVariantSuffix(variant: string): string {
+  return variant.charAt(0).toUpperCase() + variant.slice(1).toLowerCase();
 }
 
 // Helper function to get icon path
@@ -45,14 +50,17 @@ const sampleIcons = [
 // Create mock context object
 const ctx = {
   icons: {
-    outline: sampleIcons.map((icon) => {
-      const pascalName = toPascalCase(icon.name);
-      return {
-        pascalName,
-        pascalNameVariant: `${pascalName}Outline`,
-        path: getIconPath(icon.variant, icon.name),
-      };
-    }),
+    outline: sampleIcons
+      .map((icon) => {
+        const pascalName = toPascalCase(icon.name);
+        const variantSuffix = toVariantSuffix(icon.variant);
+        return {
+          pascalName,
+          pascalNameVariant: `${pascalName}${variantSuffix}`,
+          path: getIconPath(icon.variant, icon.name),
+        };
+      })
+      .sort((a, b) => a.pascalName.localeCompare(b.pascalName)), // Sort icons by name for consistent output
   },
   global: {
     defaultVariant: "outline",
