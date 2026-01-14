@@ -7,11 +7,7 @@ import { fileURLToPath } from "node:url";
 import { generateExport, generateImport, toImportPath } from "../../lib/import-export";
 import { getDts } from "../../lib/ts";
 import { getTemplate as getIconTemplate } from "./resources/icon-template";
-import {
-  nativeSvgrOptions,
-  svgrOptions,
-  svgrOptionsOutline,
-} from "./resources/svgr-options";
+import { nativeSvgrOptions, svgrOptions } from "./resources/svgr-options";
 
 const outDir = "dist";
 
@@ -329,12 +325,7 @@ export default async (ctx: any, target: any) => {
   return results;
 };
 
-async function getReactComponent(
-  iconPath,
-  native,
-  template,
-  variant?: string,
-) {
+async function getReactComponent(iconPath, native, template, variant?: string) {
   let iconContent = await fs.readFile(iconPath, "utf8");
 
   // For outline variants, move stroke-width from paths to SVG element
@@ -342,32 +333,22 @@ async function getReactComponent(
     // Extract stroke-width value from path elements (should be "2")
     const strokeWidthMatch = iconContent.match(/stroke-width\s*=\s*["']([^"']*)["']/i);
     const strokeWidth = strokeWidthMatch ? strokeWidthMatch[1] : "2";
-    
+
     // Remove stroke-width from all path elements
-    iconContent = iconContent.replace(
-      /\s+stroke-width\s*=\s*["'][^"']*["']/gi,
-      '',
-    );
-    
+    iconContent = iconContent.replace(/\s+stroke-width\s*=\s*["'][^"']*["']/gi, "");
+
     // Add stroke-width to the SVG element if it doesn't already have it
     if (!/stroke-width\s*=\s*["']/i.test(iconContent)) {
-      iconContent = iconContent.replace(
-        /<svg\s+([^>]*?)>/i,
-        (match, attributes) => {
-          attributes = attributes.trim();
-          return `<svg ${attributes} stroke-width="${strokeWidth}">`;
-        },
-      );
+      iconContent = iconContent.replace(/<svg\s+([^>]*?)>/i, (match, attributes) => {
+        attributes = attributes.trim();
+        return `<svg ${attributes} stroke-width="${strokeWidth}">`;
+      });
     }
   }
 
   // Use outline-specific options for outline variant
   // svgrOptionsOutline doesn't remove strokeWidth from SVG element
-  const baseOptions = native
-    ? nativeSvgrOptions
-    : variant === "outline"
-      ? svgrOptionsOutline
-      : svgrOptions;
+  const baseOptions = native ? nativeSvgrOptions : svgrOptions;
 
   const options = {
     ...baseOptions,
@@ -379,49 +360,34 @@ async function getReactComponent(
   // Post-process: For outline icons, ensure strokeWidth is on SVG and removed from paths
   if (variant === "outline" && !native) {
     // Remove strokeWidth from all path elements in the JSX
-    result = result.replace(
-      /<path\s+([^>]*?)>/g,
-      (match, attributes) => {
-        // Remove strokeWidth attribute from paths
-        attributes = attributes.replace(
-          /\s+strokeWidth\s*=\s*["'][^"']*["']/g,
-          '',
-        );
-        attributes = attributes.replace(
-          /\s+strokeWidth\s*=\s*\{[^}]*\}/g,
-          '',
-        );
-        attributes = attributes.trim();
-        return `<path ${attributes}>`;
-      },
-    );
+    result = result.replace(/<path\s+([^>]*?)>/g, (match, attributes) => {
+      // Remove strokeWidth attribute from paths
+      attributes = attributes.replace(/\s+strokeWidth\s*=\s*["'][^"']*["']/g, "");
+      attributes = attributes.replace(/\s+strokeWidth\s*=\s*\{[^}]*\}/g, "");
+      attributes = attributes.trim();
+      return `<path ${attributes}>`;
+    });
 
     // Ensure strokeWidth is on the SVG element (SVGR transforms <svg> to <Svg> in JSX)
     // Match <Svg in JSX context (after return or in JSX, not in type definitions)
     // Use a more specific pattern to avoid matching type definitions
-    result = result.replace(
-      /return\s+<Svg(\s+[^>]*?)>/g,
-      (match, attributes) => {
-        // Check if strokeWidth already exists
-        if (!/\bstrokeWidth\s*=\s*["'{]/.test(attributes)) {
-          // Add strokeWidth="2" to SVG element
-          attributes = attributes.trim();
-          return `return <Svg ${attributes} strokeWidth="2">`;
-        } else {
-          // Ensure it's "2" if it exists
-          attributes = attributes.replace(
-            /\bstrokeWidth\s*=\s*["'][^"']*["']/g,
-            'strokeWidth="2"',
-          );
-          attributes = attributes.replace(
-            /\bstrokeWidth\s*=\s*\{[^}]*\}/g,
-            'strokeWidth="2"',
-          );
-          attributes = attributes.trim();
-          return `return <Svg ${attributes}>`;
-        }
-      },
-    );
+    result = result.replace(/return\s+<Svg(\s+[^>]*?)>/g, (match, attributes) => {
+      // Check if strokeWidth already exists
+      if (!/\bstrokeWidth\s*=\s*["'{]/.test(attributes)) {
+        // Add strokeWidth="2" to SVG element
+        attributes = attributes.trim();
+        return `return <Svg ${attributes} strokeWidth="2">`;
+      } else {
+        // Ensure it's "2" if it exists
+        attributes = attributes.replace(
+          /\bstrokeWidth\s*=\s*["'][^"']*["']/g,
+          'strokeWidth="2"',
+        );
+        attributes = attributes.replace(/\bstrokeWidth\s*=\s*\{[^}]*\}/g, 'strokeWidth="2"');
+        attributes = attributes.trim();
+        return `return <Svg ${attributes}>`;
+      }
+    });
   }
 
   return result;
@@ -527,13 +493,12 @@ async function generateIndexJs(
     // Write temporary input file
     await fs.writeFile(tempInputPath, contentStr, "utf8");
 
-    // Use esbuild to transform the file (much faster than Vite)
     await esbuild.build({
       entryPoints: [tempInputPath],
       bundle: false, // Don't bundle, just transform (imports remain as-is)
       format: format === "cjs" ? "cjs" : "esm",
       outfile: outputPath,
-      minify: false, // Skip minification for faster builds
+      minify: true,
       write: true,
       platform: "browser",
       target: "es2020",
