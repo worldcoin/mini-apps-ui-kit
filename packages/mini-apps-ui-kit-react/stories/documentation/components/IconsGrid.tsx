@@ -69,18 +69,18 @@ export function IconsGrid({
               onClick={() => handleIconClick(iconName)}
               className={`
                 flex flex-col items-center justify-center p-4 border border-gray-50 transition-all
-                hover:bg-gray-50 dark:hover:bg-gray-800
+                hover:bg-gray-50
                 ${
                   isSelected
-                    ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-400"
-                    : "border-gray-200 dark:border-gray-700"
+                    ? "border-blue-500 bg-blue-50"
+                    : "border-gray-200"
                 }
               `}
               aria-label={`${iconName} icon`}
             >
-              <div className="mb-3 flex items-center justify-center h-12 w-12">
+              <div className="flex items-center justify-center h-12 w-12">
                 <IconComponent
-                  className="w-8 h-8 text-gray-900 dark:text-gray-100"
+                  className="w-8 h-8 text-gray-900"
                   width={32}
                   height={32}
                 />
@@ -88,7 +88,7 @@ export function IconsGrid({
               <Typography
                 variant="body"
                 level={4}
-                className="text-center text-gray-500 dark:text-gray-400 break-all"
+                className="text-center text-gray-500 break-all"
               >
                 {iconName}
               </Typography>
