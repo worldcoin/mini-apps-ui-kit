@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
-import * as IconsOutline from "@worldcoin/mini-apps-ui-kit-react/icons/outline";
-import * as IconsRegular from "@worldcoin/mini-apps-ui-kit-react/icons/regular";
-import * as IconsSolid from "@worldcoin/mini-apps-ui-kit-react/icons/solid";
+import * as IconsOutline from "../../../dist/icons/esm/outline/index.mjs";
+import * as IconsRegular from "../../../dist/icons/esm/regular/index.mjs";
+import * as IconsSolid from "../../../dist/icons/esm/solid/index.mjs";
 import { Typography } from "../../../src/components/Typography";
 
 type IconVariant = "outline" | "regular" | "solid";
