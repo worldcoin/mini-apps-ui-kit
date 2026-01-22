@@ -1,5 +1,11 @@
 # @worldcoin/mini-apps-ui-kit-react
 
+## 1.6.0
+
+### Minor Changes
+
+- Add World Icon set inn SVG and React Component variants
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,22 +1,91 @@
 # Icons
 
-Our component library uses [**Iconoir**](https://iconoir.com/), a comprehensive open-source icon set that provides over 1,600 unique SVG icons designed on a 24x24 pixels grid.
+The library includes a custom set of React icon components generated from SVG files. Icons are available in three variants: `outline`, `regular`, and `solid`.
 
-## Features
+## Using Icons from the Package
 
-- **Open Source**: 100% free and open source under MIT License
-- **Multi-Platform**: Available in SVG, React, React Native, Flutter, Figma and Framer
-- **Modern Design**: Clean, consistent design that aligns well with contemporary UI principles
-- **Performance Optimized**: Optimized SVG icons for better performance
-- **Customizable**: Icons can be easily customized with different sizes, colors, and styles
+You can import icons directly from the package:
 
-## Best Practices
+```tsx
+// Import from the main icons entry (defaults to outline variant)
+import { Airplane, Check, Home, Settings } from "@worldcoin/mini-apps-ui-kit-react/icons";
 
-1. **Consistency**: Use consistent icon sizes throughout your application (recommended 24x24 pixels)
-2. **Accessibility**: Always provide appropriate aria-labels or text alternatives for icons
-3. **Color**: Use the theme's color system for icon colors to maintain consistency
-4. **Importing**: Import icons directly from 'iconoir-react' for better tree-shaking
+function MyComponent() {
+  return (
+    <div>
+      <Airplane />
+      <Check />
+      <Home />
+      <Settings />
+    </div>
+  );
+}
+```
 
-## License
+## Importing Specific Variants
 
-Iconoir is available under the MIT License. Please refer to their [website](https://iconoir.com/) for more details. 
+You can also import icons from specific variant entry points:
+
+```tsx
+// Import outline variant icons
+import { Airplane, Check } from "@worldcoin/mini-apps-ui-kit-react/icons/outline";
+
+// Import regular variant icons
+import { Airplane as AirplaneRegular, Check as CheckRegular } from "@worldcoin/mini-apps-ui-kit-react/icons/regular";
+
+// Import solid variant icons
+import { Airplane as AirplaneSolid, Check as CheckSolid } from "@worldcoin/mini-apps-ui-kit-react/icons/solid";
+
+function MyComponent() {
+  return (
+    <div>
+      <Airplane /> {/* outline variant */}
+      <AirplaneRegular /> {/* regular variant */}
+      <AirplaneSolid /> {/* solid variant */}
+    </div>
+  );
+}
+```
+
+## Icon Props
+
+All icons accept standard React SVG props and can be customized:
+
+```tsx
+import { Home } from "@worldcoin/mini-apps-ui-kit-react/icons";
+
+function MyComponent() {
+  return (
+    <div>
+      {/* Default size (1.5em) */}
+      <Home />
+      
+      {/* Custom size */}
+      <Home width={24} height={24} />
+      
+      {/* Custom color using className */}
+      <Home className="text-blue-500" />
+      
+      {/* Custom styling */}
+      <Home style={{ color: "red", width: 32, height: 32 }} />
+    </div>
+  );
+}
+```
+
+## Default Icon Props
+
+Default values for the most common props are given below:
+
+| Prop name | Default value |
+|-----------|---------------|
+| `color` | `"currentColor"` |
+| `width` | `"1.5em"` |
+| `height` | `"1.5em"` |
+| `strokeWidth` | `"2"` (outline variant only) |
+
+**Note:** The `strokeWidth` prop is only applicable to outline variant icons and defaults to `"2"` (2px). Regular and solid variants do not use `strokeWidth` as they are filled icons.
+
+## Available Icons
+
+The package includes 400+ icons across three variants. Icons are named in PascalCase (e.g., `arrow-down.svg` becomes `ArrowDown`). To see all available icons, check the `icons/` directory in the package. 
