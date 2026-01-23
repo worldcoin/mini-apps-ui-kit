@@ -37,7 +37,8 @@ export const Verified: Story = {
   parameters: {
     docs: {
       description: {
-        story: "The verified state displays a blue badge with white icon, indicating the person is a verified human (orb verified).",
+        story:
+          "The verified state displays a blue badge with white icon, indicating the person is a verified human (orb verified).",
       },
     },
   },
@@ -56,7 +57,8 @@ export const Unverified: Story = {
   parameters: {
     docs: {
       description: {
-        story: "The unverified state displays a gray badge with gray icon, indicating the person is not orb verified.",
+        story:
+          "The unverified state displays a gray badge with gray icon, indicating the person is not orb verified.",
       },
     },
   },
@@ -88,4 +90,3 @@ export const WithCustomSize: Story = {
     expect(badge).toHaveClass("size-8");
   },
 };
-
