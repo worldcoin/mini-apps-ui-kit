@@ -11,7 +11,10 @@ function NavigationBar() {
   const pathname = usePathname();
 
   return (
-    <Tabs value={pathname} className="fixed bottom-0 left-0 right-0 z-50 bg-white shadow-md">
+    <Tabs
+      value={pathname}
+      className="fixed bottom-0 left-0 right-0 z-50 border-t border-[var(--border-subtle)] bg-[var(--surface)]"
+    >
       <Link href="/" passHref>
         <TabItem value="/" icon={<Apps />} altIcon={<Apps solid />} label="Apps" />
       </Link>

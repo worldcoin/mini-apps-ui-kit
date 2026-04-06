@@ -1,65 +1,97 @@
+import nucleusColorTokens from "@jaidensiu/nucleus/nucleus-color-tokens.json";
 import plugin from "tailwindcss/plugin";
 
-export const gray = {
-  "--gray-0": "255 255 255",
-  "--gray-50": "249 250 251",
-  "--gray-100": "243 244 245",
-  "--gray-200": "235 236 239",
-  "--gray-300": "214 217 221",
-  "--gray-350": "177 184 194",
-  "--gray-400": "155 163 174",
-  "--gray-500": "113 118 128",
-  "--gray-700": "60 66 75",
-  "--gray-900": "24 24 24",
+type NucleusTokenName = keyof typeof nucleusColorTokens;
+
+const hexToRgb = (hex: string) => {
+  const normalized = hex.replace("#", "");
+  const expanded =
+    normalized.length === 3
+      ? normalized
+          .split("")
+          .map((char) => `${char}${char}`)
+          .join("")
+      : normalized;
+
+  const channels = [0, 2, 4].map((index) => Number.parseInt(expanded.slice(index, index + 2), 16));
+
+  return channels.join(" ");
 };
 
-export const success = {
-  "--success-100": "230 249 236",
-  "--success-200": "204 243 217",
-  "--success-300": "153 232 179",
-  "--success-400": "102 220 141",
-  "--success-500": "51 209 103",
-  "--success-600": "0 194 48",
-  "--success-700": "0 155 38",
-  "--success-800": "0 116 29",
-  "--success-900": "0 77 19",
-};
+const createScale = <TScale extends Record<string, NucleusTokenName>>(
+  prefix: string,
+  scale: TScale,
+) =>
+  Object.fromEntries(
+    Object.entries(scale).map(([step, tokenName]) => [
+      `--${prefix}-${step}`,
+      hexToRgb(nucleusColorTokens[tokenName]),
+    ]),
+  ) as Record<`--${string}`, string>;
 
-export const error = {
-  "--error-100": "254 233 231",
-  "--error-200": "253 211 207",
-  "--error-300": "251 167 159",
-  "--error-400": "249 123 111",
-  "--error-500": "247 80 63",
-  "--error-600": "242 40 13",
-  "--error-700": "194 32 10",
-  "--error-800": "145 24 8",
-  "--error-900": "97 16 5",
-};
+export const gray = createScale("gray", {
+  0: "colorGrey0",
+  50: "colorGrey50",
+  100: "colorGrey100",
+  200: "colorGrey200",
+  300: "colorGrey300",
+  350: "colorGrey400",
+  400: "colorGrey400",
+  500: "colorGrey500",
+  600: "colorGrey600",
+  700: "colorGrey700",
+  800: "colorGrey800",
+  900: "colorGrey900",
+  950: "colorGrey950",
+});
 
-export const warning = {
-  "--warning-100": "255 246 230",
-  "--warning-200": "255 237 204",
-  "--warning-300": "255 219 153",
-  "--warning-400": "255 201 102",
-  "--warning-500": "255 184 51",
-  "--warning-600": "255 174 0",
-  "--warning-700": "204 139 0",
-  "--warning-800": "153 104 0",
-  "--warning-900": "102 70 0",
-};
+export const success = createScale("success", {
+  100: "colorSuccess100",
+  200: "colorSuccess200",
+  300: "colorSuccess300",
+  400: "colorSuccess400",
+  500: "colorSuccess500",
+  600: "colorSuccess600",
+  700: "colorSuccess700",
+  800: "colorSuccess800",
+  900: "colorSuccess900",
+});
 
-export const info = {
-  "--info-100": "230 240 255",
-  "--info-200": "204 224 255",
-  "--info-300": "153 194 255",
-  "--info-400": "102 163 255",
-  "--info-500": "51 133 255",
-  "--info-600": "0 92 255",
-  "--info-700": "0 74 204",
-  "--info-800": "0 55 153",
-  "--info-900": "0 36 102",
-};
+export const error = createScale("error", {
+  100: "colorError100",
+  200: "colorError200",
+  300: "colorError300",
+  400: "colorError400",
+  500: "colorError500",
+  600: "colorError600",
+  700: "colorError700",
+  800: "colorError800",
+  900: "colorError900",
+});
+
+export const warning = createScale("warning", {
+  100: "colorWarning100",
+  200: "colorWarning200",
+  300: "colorWarning300",
+  400: "colorWarning400",
+  500: "colorWarning500",
+  600: "colorWarning600",
+  700: "colorWarning700",
+  800: "colorWarning800",
+  900: "colorWarning900",
+});
+
+export const info = createScale("info", {
+  100: "colorInfo100",
+  200: "colorInfo200",
+  300: "colorInfo300",
+  400: "colorInfo400",
+  500: "colorInfo500",
+  600: "colorInfo600",
+  700: "colorInfo700",
+  800: "colorInfo800",
+  900: "colorInfo900",
+});
 
 export const worldBlue = {
   "--world-blue-primary": "63 219 237",

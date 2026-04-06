@@ -1,44 +1,21 @@
-import { gray, success, error, warning, info, worldBlue, carrotOrange, purple, green, blue, worldcoin, digitalDollars, bitcoin, ethereum } from "../../src/tailwind/index";
+import { worldBlue, carrotOrange, purple, green, blue, worldcoin, digitalDollars, bitcoin, ethereum } from "../../src/tailwind/index";
+import { primaryColorGroups } from "./colors";
 import { Color } from "./components/Color";
 
 # Colors
 
 ## Primary Colors
 
-### Gray
-<div className="flex flex-wrap gap-4 pb-20">
-  {Object.entries(gray).map(([key, value]) => (
-    <Color key={key} name={key} color={value} />
-  ))}
-</div>
-
-### Success
-<div className="flex flex-wrap gap-4 pb-20">
-  {Object.entries(success).map(([key, value]) => (
-    <Color key={key} name={key} color={value} />
-  ))}
-</div>
-
-### Error 
-<div className="flex flex-wrap gap-4 pb-20">
-  {Object.entries(error).map(([key, value]) => (
-    <Color key={key} name={key} color={value} />
-  ))}
-</div>
-
-### Warning
-<div className="flex flex-wrap gap-4 pb-20">
-  {Object.entries(warning).map(([key, value]) => (
-    <Color key={key} name={key} color={value} />
-  ))}
-</div>
-
-### Info
-<div className="flex flex-wrap gap-4 pb-20">
-  {Object.entries(info).map(([key, value]) => (
-    <Color key={key} name={key} color={value} />
-  ))}
-</div>
+{primaryColorGroups.map((group) => (
+  <div key={group.name}>
+    <h3>{group.name}</h3>
+    <div className="flex flex-wrap gap-4 pb-20">
+      {group.values.map(({ name, color }) => (
+        <Color key={name} name={name} color={color} />
+      ))}
+    </div>
+  </div>
+))}
 
 
 ## Specialty Colors

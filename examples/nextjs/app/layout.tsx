@@ -1,3 +1,4 @@
+import "@jaidensiu/nucleus/nucleus-color-tokens.css";
 import { Toaster } from "@worldcoin/mini-apps-ui-kit-react";
 import "@worldcoin/mini-apps-ui-kit-react/styles.css";
 import type { Viewport } from "next";
@@ -26,8 +27,8 @@ export default function RootLayout({
       <body>
         {children}
         <NavigationBar />
+        <Toaster />
       </body>
-      <Toaster />
     </html>
   );
 }

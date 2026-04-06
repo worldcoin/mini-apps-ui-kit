@@ -33,7 +33,7 @@ export default function HomeContent({ locale }: { locale: string }) {
   const { toast } = useToast();
 
   return (
-    <div className="min-h-screen p-8">
+    <div className="min-h-screen bg-[var(--background)] px-8 py-8 pb-28 text-[var(--foreground)]">
       <PhoneField locale={locale} dir="ltr" />
 
       <Typography variant="heading" level={1} className="mb-8">
@@ -111,10 +111,10 @@ export default function HomeContent({ locale }: { locale: string }) {
             Color & Selection
           </Typography>
           <ColorPickerGroup>
-            <ColorPickerItem value="#FF0000" />
-            <ColorPickerItem value="#000" />
-            <ColorPickerItem value="#FF00FF" />
-            <ColorPickerItem value="#0000FF" />
+            <ColorPickerItem value="var(--nucleus-color-error-500)" />
+            <ColorPickerItem value="var(--nucleus-color-warning-500)" />
+            <ColorPickerItem value="var(--nucleus-color-success-500)" />
+            <ColorPickerItem value="var(--nucleus-color-info-500)" />
           </ColorPickerGroup>
           <Select
             options={[

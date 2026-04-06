@@ -29,7 +29,7 @@ export const Wallet: React.FC<IconProps> = ({ solid = false, ...props }) => {
           y="10.8333"
           width="6.5"
           height="4.33333"
-          fill="white"
+          fill="var(--nucleus-color-grey-0)"
           stroke="currentColor"
           strokeWidth="1.89583"
         />
@@ -51,7 +51,7 @@ export const Wallet: React.FC<IconProps> = ({ solid = false, ...props }) => {
         y="11.6667"
         width="7"
         height="4.66667"
-        fill="white"
+        fill="var(--nucleus-color-grey-0)"
         stroke="currentColor"
         strokeWidth="2"
       />

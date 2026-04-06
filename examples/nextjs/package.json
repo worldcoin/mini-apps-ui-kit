@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@jaidensiu/nucleus": "0.4.0",
     "@worldcoin/mini-apps-ui-kit-react": "workspace:*",
+    "next": "15.0.3",
     "react": "^19.0.3",
     "react-dom": "^19.0.3"
   },
