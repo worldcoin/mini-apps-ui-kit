@@ -11,6 +11,8 @@ coverage
 
 # Vercel 
 .vercel
+.wrangler
+cf-worker-config.generated.json
 
 # Build output
 dist

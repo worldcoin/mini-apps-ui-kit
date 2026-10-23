@@ -1,0 +1,28 @@
+{
+  "repo": "worldcoin/mini-apps-ui-kit",
+  "repo_id": "890952595",
+  "workers": {
+    "mini-apps-ui-kit-prod": {
+      "production_branch": "main",
+      "build_token_uuid": "8d038ec1-a5a8-437c-86af-f783de464a5d",
+      "root_directory": ".",
+      "path_includes": ["*"],
+      "build_command": "pnpm install --frozen-lockfile --ignore-scripts && pnpm build:sb",
+      "deploy_command": "pnpm exec wrangler deploy --config wrangler.prod.jsonc",
+      "preview": {
+        "enabled": true,
+        "command": "pnpm exec wrangler versions upload --config wrangler.prod.jsonc",
+        "branch_includes": ["*"],
+        "branch_excludes": ["main"]
+      },
+      "build_vars": {
+        "NODE_VERSION": "22",
+        "PNPM_VERSION": "9.12.1",
+        "SKIP_DEPENDENCY_INSTALL": "true",
+        "STORYBOOK_DISABLE_TELEMETRY": "1"
+      },
+      "build_secrets": ["CLOUDFLARE_ACCOUNT_ID"],
+      "runtime_secrets": []
+    }
+  }
+}

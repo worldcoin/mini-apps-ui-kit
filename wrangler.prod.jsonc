@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mini-apps-ui-kit-prod",
+  "compatibility_date": "2026-10-19",
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "./packages/mini-apps-ui-kit-react/storybook-static",
+    "not_found_handling": "none"
+  }
+}
