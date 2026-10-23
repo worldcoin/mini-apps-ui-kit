@@ -28,10 +28,16 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "turbo": "^2.3.3",
     "typescript": "^5.9.3",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "wrangler": "4.151.3"
   },
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "pnpm@9.12.1"
+  "packageManager": "pnpm@9.12.1",
+  "pnpm": {
+    "overrides": {
+      "miniflare>undici": "7.30.1"
+    }
+  }
 }

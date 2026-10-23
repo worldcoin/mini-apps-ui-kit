@@ -1,0 +1,62 @@
+name: CF Worker Config
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cf-worker-config-prod
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: prod
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare configuration
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_PROVIDER_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_PROVIDER_ACCOUNT_ID }}
+        run: |
+          : "${CLOUDFLARE_ACCOUNT_ID:?Set the CLOUDFLARE_ACCOUNT_ID GitHub secret}"
+          : "${CLOUDFLARE_PROVIDER_ACCOUNT_ID:?Set the CLOUDFLARE_PROVIDER_ACCOUNT_ID GitHub secret}"
+          umask 077
+          jq '.account_id = env.CLOUDFLARE_ACCOUNT_ID |
+              .provider_account_id = env.CLOUDFLARE_PROVIDER_ACCOUNT_ID' \
+            cf-worker-config.json > cf-worker-config.generated.json
+      - name: Check out configuration tool
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: worldcoin/cf-worker-config
+          ref: 1ea76554b50c0fa75e7ac363df3d97b51becdae3
+          token: ${{ secrets.GIT_HUB_TOKEN }}
+          path: deployment-tool
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version-file: deployment-tool/go.mod
+          cache: false
+      - name: Build configuration tool
+        working-directory: deployment-tool
+        run: go build -o "$RUNNER_TEMP/cf-worker-config" .
+      - name: Plan and apply configuration
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_PROVIDER_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_PROVIDER_ACCOUNT_ID }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          "$RUNNER_TEMP/cf-worker-config" plan \
+            --config cf-worker-config.generated.json --worker mini-apps-ui-kit-prod
+          "$RUNNER_TEMP/cf-worker-config" apply \
+            --config cf-worker-config.generated.json --worker mini-apps-ui-kit-prod
+      - name: Remove generated configuration
+        if: always()
+        run: rm -f cf-worker-config.generated.json
